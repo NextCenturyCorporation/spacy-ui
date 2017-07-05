@@ -45,6 +45,9 @@ class Rule extends Component
         //const btt = <div className="arrangeEachToken" onClick={this.handleClick.bind(this)}> <PlusToken  id={++GLOBAL_ID} clickable="1" onClick={this.handleClick.bind(this)}/> </div>;
         //const btt = <PlusToken  id={++GLOBAL_ID} clickable="1" onClick={this.handleClick.bind(this)}/>; 
         //const rToken1 = <div className="arrangeEachToken">  <Token id={++GLOBAL_ID} tokenAbbreviation="P" tokenText={[")",","]} tokenOptionalOrRequired="r" tokenIsCaseRequired=""/> </div>; 
+
+
+
         const btt = <PlusToken  id={PTOKEN_BASE+(++GLOBAL_ID)}  clickable="1" onClick={this.handleClick.bind(this)}/>; 
         const rToken1 = <Token id={TOKEN_BASE+(++GLOBAL_ID)} tokenAbbreviation="P" tokenText={[")",","]} tokenOptionalOrRequired="r" tokenIsCaseRequired=""/>
         //this.state.array.push(rToken1); 
@@ -59,17 +62,12 @@ class Rule extends Component
     }  
     render() 
 	{
-        //const btt = <button className="button"> + </button> ; 
-
-        //const rToken1 = <Token tokenAbbreviation="P" tokenText={[")",","]} tokenOptionalOrRequired="r" tokenIsCaseRequired=""/>; 
-        //const rToken2 = <Token tokenAbbreviation="W" tokenText={["Hello","Hi"]} tokenOptionalOrRequired="r" tokenIsCaseRequired="Ci"/>;         
-         //= [btt]; 
 
         return (
             <section>
                 <div className="rulewrapper">
                 <div className="ruleHeader">
-                    <label htmlFor={this.props.name}> {this.props.rulenum}. <span className="positiveNegative">++</span> </label>
+                    <label htmlFor={this.props.name}> {this.props.rulenum}.  </label>
                     <input
                     placeholder= "Enter rule description "
                     type="text"
@@ -78,33 +76,12 @@ class Rule extends Component
                     onChange={this.props.handleChange}
                     />
                 </div>
-                
-                {/* Let arrange the token with the + signs inbetween. 
-                <div className="arrangeRuleTokens"> <input type="checkbox" name="rule" value="word" className="ruleCheckBox" /> 
-                    <button className="button"> + </button> 
-                    <div className="arrangeEachToken"> 
-                        <Token tokenAbbreviation="P" tokenText={[")",","]} tokenOptionalOrRequired="r" tokenIsCaseRequired=""/>
-                    
-                    </div> 
-                    <button className="button"> + </button> 
-   
-                                    {allToken.map((token, index) => (
-                    <div className="arrangeEachToken"> {token}</div>
-                    ))}  
-                        {/*allToken}
-                    </div>                      
-                    <div className="arrangeEachToken"> 
-
-                        }
-                    <button className="button"> + </button> 
-                </div> 
-                */}
 
                 {/* Let arrange the token with the + signs inbetween. */}
                 <div className="arrangeRuleTokens"> <input type="checkbox" name="rule" value="word" className="ruleCheckBox" /> 
 
                     {this.state.array.map((token, index) => (
-                        token
+                        <div className="arrangeEachToken"> {token} </div>
                     ))}  
 
                 </div>

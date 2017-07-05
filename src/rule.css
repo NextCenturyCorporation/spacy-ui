@@ -25,14 +25,14 @@
   margin-right: 1em; 
 }
 .arrangeEachToken{
-  width:100%; 
+  /*width:100%;*/
   display:inline-block; 
-  margin-left: 1em; 
+  /*margin-left: 0.0em; */
 }
 
 .arrangeRuleTokens{
-  width:100%; 
-  //text-align: center; 
+  width:100%;
+  /*text-align: center; */
 }
 
 

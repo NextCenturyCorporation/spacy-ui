@@ -25,8 +25,7 @@ class Token extends Component
     }
    
     return (
-      <section>
-			<article className="widget">
+			<div className="widget">
         <div id="tokenHeader"> {this.props.tokenAbbreviation}   <button type='button' className='closeToken' onclick='$(this).parent().remove();'>x</button> </div>
 				<div id="tokenBody">
            <div className="tokenText"> 
@@ -37,10 +36,7 @@ class Token extends Component
            <div className="tokenFooter">{isCaseRequired}  <div id="tokenRequired">{this.props.tokenOptionalOrRequired}</div> </div>
         </div>
             
-      </article>  
-        
-        
-      </section>); 
+      </div> ); 
   
  	}
 }
