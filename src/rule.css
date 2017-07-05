@@ -1,0 +1,50 @@
+.ruleHeader{
+  margin: 0; 
+  padding: 0; 
+}
+
+.ruleDescription{
+  font-style: italic; 
+  font-size: small; 
+  border:solid;
+  border-color: lightgray; 
+  border-width: 0.01em; 
+  width: 365px; 
+  height: 2em; 
+    
+}
+
+
+.rulewrapper{
+  margin: 1em; 
+}
+
+.ruleCheckBox
+{
+  display:inline-block;  
+  margin-right: 1em; 
+}
+.arrangeEachToken{
+  width:100%; 
+  display:inline-block; 
+  margin-left: 1em; 
+}
+
+.arrangeRuleTokens{
+  width:100%; 
+  //text-align: center; 
+}
+
+
+#ruleOutput{
+  margin-left: 2em; 
+  margin-top: 1.5em; 
+  margin-bottom: 2em; 
+  font-style: italic; 
+}
+
+.positiveNegative{
+  background:#A2A1B2; 
+  color: white; 
+  padding: 0.1em; 
+}
