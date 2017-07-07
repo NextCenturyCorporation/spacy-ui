@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Rule from './Components/Rule'; 
 import "./layout.css"
 
-
+import WordTokenConfig from './Components/WordTokenConfig'
 
 
 class App extends Component {
@@ -22,7 +22,6 @@ class App extends Component {
     
     return (
       <div className="App">
-        My APP
       
       <div className="page-wrap">
         <div id="appHeader">

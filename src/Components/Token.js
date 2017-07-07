@@ -26,7 +26,7 @@ class Token extends Component
    
     return (
 			<div className="widget">
-        <div id="tokenHeader"> {this.props.tokenAbbreviation}   <button type='button' className='closeToken' onclick='$(this).parent().remove();'>x</button> </div>
+        <div id="tokenHeader"> {this.props.tokenAbbreviation}   <button type='button' className='closeToken' >x</button> </div>
 				<div id="tokenBody">
            <div className="tokenText"> 
               {this.props.tokenText.map((word, index) => (

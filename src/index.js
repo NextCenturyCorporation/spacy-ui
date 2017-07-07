@@ -6,7 +6,8 @@ import ReactDOM from 'react-dom';
 //import './rule.css';
 
 import App from './App';
+import WordTokenConfig from './Components/WordTokenConfig'
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render( <App/>, document.getElementById('root'));
 registerServiceWorker();
