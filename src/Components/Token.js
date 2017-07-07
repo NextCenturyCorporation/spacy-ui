@@ -10,6 +10,12 @@ class Token extends Component
     //this.props.tokenText =  ["Hello", "Hi"];
     //this.props.tokenOptionalOrRequired = "r"; 
     //this.props.tokenIsCaseRequired = "Xx";  
+    this.checkCase = this.checkCase.bind(this); 
+  }
+
+  checkCase()
+  {
+    return (this.props.exact||this.props.lower||this.props.upper||this.props.title||this.mixed); 
   }
   
 	render() 
@@ -19,9 +25,9 @@ class Token extends Component
     var isCaseRequired; 
     //Check to make sure that tokenabrreviation is valid
     //if it's not 
-    if(this.props.tokenAbbreviation !== 'P' && this.props.tokenIsCaseRequired )
+    if(this.props.tokenAbbreviation !== 'P')
     {
-    	isCaseRequired = <div id="tokenCase">{this.props.tokenIsCaseRequired}</div>; 
+    	isCaseRequired = <div id="tokenCase">{this.props.exact? "Xx":"Ci"}</div>; 
     }
    
     return (
@@ -29,11 +35,11 @@ class Token extends Component
         <div id="tokenHeader"> {this.props.tokenAbbreviation}   <button type='button' className='closeToken' >x</button> </div>
 				<div id="tokenBody">
            <div className="tokenText"> 
-              {this.props.tokenText.map((word, index) => (
+              {this.props.allwords.map((word, index) => (
                   <div className="tokenEachText"> {word} </div>
               ))}           
           </div>
-           <div className="tokenFooter">{isCaseRequired}  <div id="tokenRequired">{this.props.tokenOptionalOrRequired}</div> </div>
+           <div className="tokenFooter">{isCaseRequired}  <div id="tokenRequired">{this.props.optional? 'o': 'r'}</div> </div>
         </div>
             
       </div> ); 

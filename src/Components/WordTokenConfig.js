@@ -1,7 +1,10 @@
 import React from 'react';
 import "../Styles/wordtoken.css"
+import Token from "./Token"; 
 
-
+var GLOBAL_ID = 1; 
+var TOKEN_BASE = 9000; 
+var PTOKEN_BASE = 8000; 
 class WordTokenConfig extends React.Component {
   constructor(props) {
     super(props);
@@ -15,7 +18,7 @@ class WordTokenConfig extends React.Component {
       prefix:"",
       suffix:"",
       notinvocabulary: false,
-      allwords: "",
+      allwords:"",
       noun:false, 
       pronoun:false, 
       punctuation:false,
@@ -40,6 +43,7 @@ class WordTokenConfig extends React.Component {
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.createNewToken = this.createNewToken.bind(this); 
   }
 
   handleInputChange(event) 
@@ -58,6 +62,24 @@ class WordTokenConfig extends React.Component {
   handleSubmit(event) {
     //alert('A name was submitted: ' + this.state.value);
     event.preventDefault();
+  }
+
+  createNewToken()
+  {
+    //var myArray = JSON.parse("[" + this.state.allwords + "]");
+    //alert("CreateNewToken" + myArray); 
+    this.props.onAddNewToken(<Token id={TOKEN_BASE+(++GLOBAL_ID)} clickable="0" tokenAbbreviation="W"
+        type="word" allwords={this.state.allwords.split(" ")}  optional={this.state.optional} 
+        part_of_output={this.state.part_of_output} followed_by_space={this.state.followed_by_space}
+        length1={this.state.length1} length2={this.state.length2} length3={this.state.length3}
+        prefix={this.state.prefix} suffix={this.state.suffix} notinvocabulary={this.state.notinvocabulary}
+        noun={this.state.noun} pronoun={this.state.pronoun} punctuation={this.state.punctuation} 
+        propernoun={this.state.propernoun} determiner={this.state.determiner} symbol={this.state.symbol}
+        adjective={this.state.adjective} conjunction={this.state.conjunction} verb={this.state.verb}
+        prepost_position={this.state.prepost_position} adverb={this.state.adverb} particle={this.state.particle}
+        interjection={this.state.interjection} exact={this.state.exact} lower={this.state.lower} 
+        upper={this.state.upper} title={this.state.title} mixed={this.state.mixed}
+                  />); 
   }
 
 
@@ -97,14 +119,14 @@ class WordTokenConfig extends React.Component {
 
               <div id="div21"> 
                 <label>
-                  Words:
+                  <b>Words:</b>
                   <textarea name="allwords" value={this.state.allwords} onChange={this.handleInputChange} rows="15" cols="10"  className="allwords"/>
                 </label>
               </div> 
 
               <div id="div22">
                 <div id="partofspeech">
-                  Part of speech: 
+                  <b>Part of speech: </b>
                 </div>
                 <div id="partofspeech_1">
                     <label className="inspeech">
@@ -176,8 +198,8 @@ class WordTokenConfig extends React.Component {
                       interjection
                     </label>                       
                 </div>
-                <div id="capitalization_header">
-                Capitalization: 
+                <div id="">
+                <b>Capitalization: </b>
                 </div>
                 <div id="capitalization">
                   <label>
@@ -246,7 +268,7 @@ class WordTokenConfig extends React.Component {
             <button onClick={this.props.onClick}>
               cancel
                 </button>
-            <button onClick={this.props.onClose}>
+            <button onClick={this.createNewToken}>
               Save
                 </button>
           </div>
@@ -257,7 +279,7 @@ class WordTokenConfig extends React.Component {
 }
 
 WordTokenConfig.propTypes = {
-  //onClose: React.PropTypes.func.isRequired,
+  onClose: React.PropTypes.func.isRequired,
   show: React.PropTypes.bool,
   children: React.PropTypes.node
 };

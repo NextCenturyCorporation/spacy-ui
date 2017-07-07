@@ -16,6 +16,25 @@ class App extends Component {
     											  "The user can type in whatever they want and select the rules to test. The results show below." +
       											"Hi My Name is Sara and I live in Los Angeles"; 
     	*/							
+
+    this.sendData = this.sendData.bind(this); 
+  }
+
+  sendData()
+  {
+    alert("SendData");
+
+    fetch('http://52.36.12.77:9879/projects/pedro_test_01/fields/name/spacy_rules', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        firstParam: 'yourValue',
+        secondParam: 'yourOtherValue',
+      })
+    })
   }
   
   render() {
@@ -26,7 +45,7 @@ class App extends Component {
       <div className="page-wrap">
         <div id="appHeader">
           
-          <div className="run-rules"> <button className="button">Run Rules </button> </div>
+          <div className="run-rules"> <button className="button" onClick={this.sendData} >Run Rules </button> </div>
         </div> 
         <span className="extractionText"> Extraction Rules </span>
         <div className="extraction-rules">
@@ -44,6 +63,7 @@ class App extends Component {
         <span className="ExtractionText"> Results</span>
         
     	</div>
+
       
       </div>
     );

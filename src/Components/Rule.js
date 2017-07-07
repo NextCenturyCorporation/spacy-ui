@@ -104,17 +104,17 @@ class Rule extends Component
 
     }
 
-    addNewToken()
+    addNewToken(newToken)
     {
         this.toggleModal(); 
         
         //const btt = <PlusToken  id={PTOKEN_BASE+(++GLOBAL_ID)}  clickable="1" onClick={this.handleClick.bind(this)}/>; 
         const btt = <PlusToken  id={PTOKEN_BASE+(++GLOBAL_ID)}  clickable="1" onClick={this.handleClick.bind(this)}/>; 
-        const rToken1 = <Token id={TOKEN_BASE+(++GLOBAL_ID)} clickable="0" tokenAbbreviation="W" tokenText={["Hello","hi"]} tokenOptionalOrRequired="r" tokenIsCaseRequired=""/>
+        //const rToken1 = <Token id={TOKEN_BASE+(++GLOBAL_ID)} clickable="0" tokenAbbreviation="W" tokenText={["Hello","hi"]} tokenOptionalOrRequired="r" tokenIsCaseRequired=""/>
         
         this.setState(prevState => 
         ({
-            array: [...prevState.array, rToken1,btt]
+            array: [...prevState.array, newToken,btt]
         }));
 
     }  
@@ -165,8 +165,8 @@ class Rule extends Component
                     </WordTokenConfig>
                     */} 
                 
-                    <WordTokenConfig show="true"
-                        onClose={this.addNewToken}>
+                    <WordTokenConfig show={this.state.isOpen}
+                        onAddNewToken={this.addNewToken}>
                     </WordTokenConfig>
 
                     <div className="ruleHeader">
