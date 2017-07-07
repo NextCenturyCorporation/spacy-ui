@@ -115,8 +115,6 @@ class Rule extends Component
         this.setState(prevState => 
         ({
             array: [...prevState.array, rToken1,btt]
-
-
         }));
 
     }  
@@ -166,7 +164,8 @@ class Rule extends Component
                     onClose={this.addNewToken}>
                     </WordTokenConfig>
                     */} 
-                    <WordTokenConfig show={true}
+                
+                    <WordTokenConfig show="true"
                         onClose={this.addNewToken}>
                     </WordTokenConfig>
 

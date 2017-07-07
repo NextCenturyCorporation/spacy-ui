@@ -28,7 +28,12 @@ class WordTokenConfig extends React.Component {
       prepost_position: false,
       adverb: false, 
       particle: false, 
-      interjection: false
+      interjection: false,
+      exact: false, 
+      lower: false, 
+      upper: false, 
+      title: false, 
+      mixed: false
 
 
     };
@@ -51,7 +56,7 @@ class WordTokenConfig extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
+    //alert('A name was submitted: ' + this.state.value);
     event.preventDefault();
   }
 
@@ -171,6 +176,31 @@ class WordTokenConfig extends React.Component {
                       interjection
                     </label>                       
                 </div>
+                <div id="capitalization_header">
+                Capitalization: 
+                </div>
+                <div id="capitalization">
+                  <label>
+                    <input name="exact" type="checkbox" checked={this.state.exact} onChange={this.handleInputChange} className="wordlabels" />
+                    exact
+                  </label>      
+                  <label>
+                    <input name="lower" type="checkbox" checked={this.state.lower} onChange={this.handleInputChange} className="wordlabels" />
+                    lower
+                  </label>   
+                  <label>
+                    <input name="upper" type="checkbox" checked={this.state.upper} onChange={this.handleInputChange} className="wordlabels" />
+                    upper
+                  </label>   
+                  <label>
+                    <input name="title" type="checkbox" checked={this.state.title} onChange={this.handleInputChange} className="wordlabels" />
+                    title
+                  </label>             
+                  <label>
+                    <input name="mixed" type="checkbox" checked={this.state.mixed} onChange={this.handleInputChange} className="wordlabels" />
+                    mixed
+                  </label>                                                                           
+                </div> 
               </div> 
             </div>
 
@@ -213,7 +243,7 @@ class WordTokenConfig extends React.Component {
           </div> 
 
           <div id="footer" align="right">
-            <button onClick={this.props.onClose}>
+            <button onClick={this.props.onClick}>
               cancel
                 </button>
             <button onClick={this.props.onClose}>
