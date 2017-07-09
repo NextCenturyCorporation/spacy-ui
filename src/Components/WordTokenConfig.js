@@ -37,8 +37,6 @@ class WordTokenConfig extends React.Component {
       upper: false, 
       title: false, 
       mixed: false
-
-
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -64,10 +62,15 @@ class WordTokenConfig extends React.Component {
     event.preventDefault();
   }
 
+
+
+  /* 
+  Method used to create new token*/
   createNewToken()
   {
     //var myArray = JSON.parse("[" + this.state.allwords + "]");
     //alert("CreateNewToken" + myArray); 
+    /*
     this.props.onAddNewToken(<Token id={TOKEN_BASE+(++GLOBAL_ID)} clickable="0" tokenAbbreviation="W"
         type="word" allwords={this.state.allwords.split(" ")}  optional={this.state.optional} 
         part_of_output={this.state.part_of_output} followed_by_space={this.state.followed_by_space}
@@ -80,6 +83,18 @@ class WordTokenConfig extends React.Component {
         interjection={this.state.interjection} exact={this.state.exact} lower={this.state.lower} 
         upper={this.state.upper} title={this.state.title} mixed={this.state.mixed}
                   />); 
+    */ 
+    alert("property id =" + this.props.id); 
+    this.props.onAddNewToken("W","word", this.state.allwords.split(" "), this.state.optional, 
+        this.state.part_of_output,this.state.followed_by_space, this.state.length1, this.state.length2, this.state.length3,
+        this.state.prefix,this.state.suffix, this.state.notinvocabulary,
+        this.state.noun, this.state.pronoun,this.state.punctuation, 
+        this.state.propernoun, this.state.determiner, this.state.symbol, 
+        this.state.adjective, this.state.conjunction, this.state.verb,
+        this.state.prepost_position, this.state.adverb, this.state.particle,
+        this.state.interjection,this.state.exact,this.state.lower,
+        this.state.upper, this.state.title, this.state.mixed        
+    )
   }
 
 
