@@ -7,6 +7,8 @@ import WordTokenConfig from './WordTokenConfig';
 var GLOBAL_ID = 1; 
 var TOKEN_BASE = 9000; 
 var PTOKEN_BASE = 8000; 
+var RULE_BASE = 7000; 
+var GLOBAL_RULE_ID = 1; 
 class Rule extends Component
 {
     constructor(props)
@@ -21,7 +23,9 @@ class Rule extends Component
         this.state = {
             array:[btt], 
             isOpen: false,
-            allTokenData:{}
+            allTokenData:{},
+            value: 10, 
+            id:0
         }
     
         //this.setState(update(this.state, {allTokens: {$push: [btt]}}));
@@ -36,10 +40,13 @@ class Rule extends Component
         this.remove = this.remove.bind(this); 
         this.createNewToken = this.createNewToken.bind(this); 
         this.getJSON = this.createJSON.bind(this); 
-
-        this.state.value =  10; 
     }
 
+    componentWillMount() 
+    {
+        const id = RULE_BASE+(++GLOBAL_RULE_ID); 
+        this.setState({id: id});
+    }
 
   
     handleClick(e) 
@@ -107,6 +114,10 @@ class Rule extends Component
 
     }
 
+    /*
+    This method will create a new token and json data for the token
+
+    */
     createNewToken(tokenAbbreviation1,type1, allwords1, optional1, 
             part_of_output1, followed_by_space1, length11, length21, length31,
             prefix1, suffix1, notinvocabulary1, noun1, pronoun1, punctuation1,
@@ -114,11 +125,7 @@ class Rule extends Component
             prepost_position1, adverb1, particle1, interjection1, exact1,lower1, upper1,
             title1, mixed1
     )
-    {
-
-
-        var tokenid = TOKEN_BASE+(++GLOBAL_ID); 
-        //alert("createNewToken"); 
+    {        
         var myJSONData = this.createJSON(tokenAbbreviation1,type1, allwords1, optional1, 
             part_of_output1, followed_by_space1, length11, length21, length31,
             prefix1, suffix1, notinvocabulary1, noun1, pronoun1, punctuation1,
@@ -127,9 +134,19 @@ class Rule extends Component
             title1, mixed1
         )
 
-        this.state.allTokenData[tokenid] = myJSONData; 
-        this.setState(this.state.allTokenData);
-        alert("Here is  my JSON = " + JSON.stringify(this.state.allTokenData)); 
+        //Let's store the Token data in a map in the state. 
+        //We store by tokenid as the key.
+        var myTokenData = this.state.allTokenData; 
+        myTokenData[tokenid] = myJSONData; 
+        //this.state.allTokenData[tokenid] = myJSONData; 
+        this.setState({
+            allTokenData: myTokenData
+        });
+
+        /*Send all the data related to this rule up to the app.js level. */
+        this.props.onProcessJSONData(this.state.id, this.state.allTokenData); 
+
+        //console.log("Here is  my JSON = " + JSON.stringify(this.state.allTokenData)); 
 
 
         const newToken = <Token id={tokenid} clickable="0" tokenAbbreviation={tokenAbbreviation1}

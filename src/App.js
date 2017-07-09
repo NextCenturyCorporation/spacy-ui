@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import Rule from './Components/Rule'; 
 import "./layout.css"
@@ -20,15 +21,50 @@ class App extends Component {
 
     this.state = 
     {
-      jsonReturnedValue: null
+      jsonReturnedValue: null, 
+      allRuleData:{}
+
     }
-    this.sendData = this.sendData.bind(this); 
+    this.sendData = this.sendData.bind(this);
+    this.ProcessJSONData = this.ProcessJSONData.bind(this); 
+    this.buildData2Send = this.buildData2Send.bind(this); 
+  }
+
+  ProcessJSONData(ruleid, allTokenData)
+  {
+    console.log("ProcessJSONData....ruleid="+ruleid ); 
+    //console.log("ProcessJSONData...token data" + allTokenData); 
+    //let values = Array.from(allTokenData.values()); 
+    const result = Object.values(allTokenData);
+    console.log("ProcessJSONData...token values" + result); 
+    //alert("All Rule data ="+ JSON.stringify(result)); 
+    //this.allRuleData[ruleid] = result; 
+
+
+    var myRuleData = this.state.allRuleData; 
+    myRuleData[ruleid] = result; 
+    this.setState({
+      allRuleData: myRuleData
+    });
+
+    //alert("All Rule data ="+ JSON.stringify(this.state.allRuleData)); 
+
+  }
+
+  buildData2Send()
+  {
+    let data2send = this.state.allRuleData; 
+
   }
 
   sendData()
   {
     console.Log("SendData");
 
+    //buildData2Send will return the json file to send. 
+    mySendData = buildData2Send(); 
+
+    //This is how you authenticate using base64(username:password. )
     var headers = new Headers();
     headers.append("Authorization", "Basic " + base64.encode("memex:digdig"));
 
@@ -64,7 +100,7 @@ class App extends Component {
         <div id="ruleMenu">
         <button className="button">Add Rule </button>  <button className="button">Select All </button> <button className="button"> Deselect All</button> <button className="button"> Delete</button> <button className="button"> Duplicate</button> 
           </div> 
-          <div>{<Rule rulenum="1"/> } </div> 
+          <div>{<Rule rulenum="1"  onProcessJSONData={this.ProcessJSONData}/> } </div> 
           
           </div>
         <br/>

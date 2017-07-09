@@ -84,7 +84,7 @@ class WordTokenConfig extends React.Component {
         upper={this.state.upper} title={this.state.title} mixed={this.state.mixed}
                   />); 
     */ 
-    alert("property id =" + this.props.id); 
+  
     this.props.onAddNewToken("W","word", this.state.allwords.split(" "), this.state.optional, 
         this.state.part_of_output,this.state.followed_by_space, this.state.length1, this.state.length2, this.state.length3,
         this.state.prefix,this.state.suffix, this.state.notinvocabulary,
