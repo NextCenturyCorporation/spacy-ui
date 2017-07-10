@@ -7,7 +7,9 @@ import WordTokenConfig from './Components/WordTokenConfig'
 
 /*We need base.64 for the authentication*/
 const base64 = require('base-64');
-var webServiceUrl = ""
+var webServiceUrl = ""; 
+
+var RULE_NUM = 0; 
 /*
   Main Application entry point
 */
@@ -35,6 +37,7 @@ class App extends Component {
     this.buildData2Send = this.buildData2Send.bind(this); 
     this.handleSubmit = this.handleSubmit.bind(this);  
     this.handleChange = this.handleChange.bind(this);
+    this.addNewRule = this.addNewRule.bind(this); 
 
   }
 
@@ -48,12 +51,12 @@ class App extends Component {
         url: webServiceUrl
     }
     */
-    const initialRule = <Rule rulenum="1"  onProcessJSONData={this.ProcessJSONData}/> ; 
-    const initialRule2 = <Rule rulenum="2"  onProcessJSONData={this.ProcessJSONData}/> ; 
+    const initialRule = <Rule rulenum={++RULE_NUM}  onProcessJSONData={this.ProcessJSONData}/> ; 
+    //const initialRule2 = <Rule rulenum="2"  onProcessJSONData={this.ProcessJSONData}/> ; 
 
     this.setState(prevState =>
     ({
-        ruleList: [...prevState.ruleList, initialRule,initialRule2]
+        ruleList: [...prevState.ruleList, initialRule]
     }));
   }
 
@@ -167,6 +170,17 @@ class App extends Component {
                         });
                     });
   }
+
+
+  addNewRule()
+  {
+    const newRule = <Rule rulenum={++RULE_NUM}  onProcessJSONData={this.ProcessJSONData}/> ; 
+    this.setState(prevState =>
+    ({
+        ruleList: [...prevState.ruleList, newRule]
+    }));
+  }
+
   
   render() 
   {
@@ -193,7 +207,7 @@ class App extends Component {
         <span className="extractionText"> Extraction Rules </span>
         <div className="extraction-rules">
         <div id="ruleMenu">
-        <button className="button">Add Rule </button>  <button className="button">Select All </button> <button className="button"> Deselect All</button> <button className="button"> Delete</button> <button className="button"> Duplicate</button> 
+        <button className="button" onClick={this.addNewRule} >Add Rule </button>  <button className="button">Select All </button> <button className="button"> Deselect All</button> <button className="button"> Delete</button> <button className="button"> Duplicate</button> 
           </div> 
           <div>
             {/*<Rule rulenum="1"  onProcessJSONData={this.ProcessJSONData}/> */}
