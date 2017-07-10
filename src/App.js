@@ -171,7 +171,9 @@ class App extends Component {
                     });
   }
 
-
+  /*
+    This method is for adding new rule to the rule list. 
+  */
   addNewRule()
   {
     const newRule = <Rule rulenum={++RULE_NUM}  onProcessJSONData={this.ProcessJSONData}/> ; 
@@ -181,21 +183,12 @@ class App extends Component {
     }));
   }
 
-  
+
+  /*
+    For rendering the GUI. 
+  */  
   render() 
   {
-      var parameters = this.props.params; 
-/*
-      var myValue = this.state.jsonresults; 
-      var allkeys = Object.keys(this.state.jsonresults); 
-       const myResults =  Object.keys(this.state.jsonresults).forEach(function (key) 
-                          {
-                            <li>{key}, {this.state.jsonresults[key]} </li>
-                          });
-
-      console.log("myResults "+ myResults);
-
-*/    
     return (
       <div className="App">
       
