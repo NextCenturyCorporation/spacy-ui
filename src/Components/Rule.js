@@ -113,6 +113,8 @@ class Rule extends Component
         //let's update this particular token with tokenid give it the new newJSONTokenData
         //So each time this particular token is updated we update the map. 
         myTokenData[tokenid] = newJSONTokenData; 
+        //var size = Object.keys(myTokenData).length;
+        //console.log("createNewToken: size of the all tokens. ="+size); 
 
         //Let's update the state with our new map data. 
         this.setState({
@@ -198,9 +200,9 @@ class Rule extends Component
             contain_digit: "",
             is_in_vocabulary: "",
             is_out_of_vocabulary: "",
-            is_required: !optional1, 
+            is_required: !optional1? "true": "false", 
             type: type1, 
-            is_in_output: part_of_output1
+            is_in_output: part_of_output1?"true":"false"
         }; 
 
         return tokenData; 
