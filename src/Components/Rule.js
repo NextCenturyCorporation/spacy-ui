@@ -4,16 +4,22 @@ import PlusToken from './PlusToken'
 import "../rule.css"
 import WordTokenConfig from './WordTokenConfig';
 
+/*GLOBAL values used for token, rule ids*/
 var GLOBAL_ID = 1; 
 var TOKEN_BASE = 9000; 
 var PTOKEN_BASE = 8000; 
 var RULE_BASE = 7000; 
 var GLOBAL_RULE_ID = 1; 
+
+/*
+The Rule class holds the different token. There can be multiple rules. 
+*/
 class Rule extends Component
 {
     constructor(props)
     {
         super(props); 
+        
         const btt = <PlusToken  id={PTOKEN_BASE+(++GLOBAL_ID)}  clickable="1" onClick={this.handleClick.bind(this)}/>; 
         this.state = {
             array:[btt], 
@@ -28,17 +34,14 @@ class Rule extends Component
             identifier:"",
             is_in_output:true
         }
-    
-        //this.setState(update(this.state, {allTokens: {$push: [btt]}}));
 
-        //var allTokens = this.state.allTokens.slice(); 
-        
-        //allTokens.push(btt); 
+        /* You need to bind all the function.
+        Need in React
+        */
         this.handleClick = this.handleClick.bind(this);
         this.toggleModal = this.toggleModal.bind(this); 
         this.showWordToken = this.showWordToken.bind(this); 
         this.addNewToken = this.addNewToken.bind(this); 
-        this.remove = this.remove.bind(this); 
         this.createNewToken = this.createNewToken.bind(this); 
         this.getJSON = this.createJSON.bind(this); 
     }
@@ -47,88 +50,53 @@ class Rule extends Component
     {
         const id = RULE_BASE+(++GLOBAL_RULE_ID); 
         this.setState({id: id});
-        this.setState({identifier:"name"+"_"+"_"+id}); 
+        this.setState({identifier:"name"+"_"+"rule"+"_"+id}); 
     }
 
   
-    handleClick(e) 
-    {
-        //if( this.state.array[0].props.id)
-        //var id = this.state.array[0].props.id; 
-        //alert("I found the id = " + this.state.array[0].props.id); 
-        //alert("Hello " + this.state.array[0].clickable); 
-        //Note: how we bind onClick={this.handleClick.bind(this)}
-        //const btt = <div className="arrangeEachToken" onClick={this.handleClick.bind(this)}> <PlusToken  id={++GLOBAL_ID} clickable="1" onClick={this.handleClick.bind(this)}/> </div>;
-        //const btt = <PlusToken  id={++GLOBAL_ID} clickable="1" onClick={this.handleClick.bind(this)}/>; 
-        //const rToken1 = <div className="arrangeEachToken">  <Token id={++GLOBAL_ID} tokenAbbreviation="P" tokenText={[")",","]} tokenOptionalOrRequired="r" tokenIsCaseRequired=""/> </div>; 
-
-  
-
-        /*
-        const btt = <PlusToken  id={PTOKEN_BASE+(++GLOBAL_ID)}  clickable="1" onClick={this.handleClick.bind(this)}/>; 
-        const rToken1 = <Token id={TOKEN_BASE+(++GLOBAL_ID)} clickable="0" tokenAbbreviation="P" tokenText={[")",","]} tokenOptionalOrRequired="r" tokenIsCaseRequired=""/>
-        
-        this.setState(prevState => 
-        ({
-            array: [...prevState.array, rToken1,btt]
-
-
-        }));
-        
-        */
-        
-        //alert("HandleClick"); 
     
+    handleClick(e) 
+    {  
+        /* Let's determine when to show/close the menu when the 
+        plus token is clicked. 
+        */  
         var x = document.getElementById('tokenMenu');
         if (x.style.display === 'none') 
         {
-            /*x.style.visibility = 'visible'; */
             x.style.display = 'block';
         } else 
         {
             x.style.display = 'none';
-            /*x.style.visibility = 'hidden'; */
         }
-    
-    }
-
- 
-
-    handleChange()
-    {
-        alert()
-
-    }
-
-    toggleModal()
-    {
-        //alert("toggleModal"); 
-        
-        this.setState({
-         isOpen: !this.state.isOpen
-        });
-        
-    }
-
-    remove()
-    {
-
-
     }
 
     /*
-    This method will create a new token and json data for the token
+    This method is used to determine when to open or close the token dialog
+    */
+    toggleModal()
+    {
+        this.setState({
+         isOpen: !this.state.isOpen
+        });        
+    }
 
+    /*
+    This method will create a new token and json data for the token. The json 
+    formatted data is also sent all the way to the App.js where we deal with 
+    all webservice communications. 
     */
     createNewToken(tokenAbbreviation1,type1, allwords1, optional1, 
             part_of_output1, followed_by_space1, length11, length21, length31,
             prefix1, suffix1, notinvocabulary1, noun1, pronoun1, punctuation1,
             propernoun1, determiner1, symbol1, adjective1, conjunction1,verb1,  
             prepost_position1, adverb1, particle1, interjection1, exact1,lower1, upper1,
-            title1, mixed1
-    )
-    {        
-        var myJSONData = this.createJSON(tokenAbbreviation1,type1, allwords1, optional1, 
+            title1, mixed1)
+    {
+        //Keep track of the token with a generated token id. 
+        var tokenid = TOKEN_BASE+(++GLOBAL_ID); 
+
+        /*Get the JSON formatted data structure*/
+        var newJSONTokenData = this.createJSON(tokenAbbreviation1,type1, allwords1, optional1, 
             part_of_output1, followed_by_space1, length11, length21, length31,
             prefix1, suffix1, notinvocabulary1, noun1, pronoun1, punctuation1,
             propernoun1, determiner1, symbol1, adjective1, conjunction1,verb1,  
@@ -138,22 +106,31 @@ class Rule extends Component
 
         //Let's store the Token data in a map in the state. 
         //We store by tokenid as the key.
+        //First grab the current copy from the component state - you can mutate direct in the 
+        //the state object. 
         var myTokenData = this.state.allTokenData; 
-        myTokenData[this.state.id] = myJSONData; 
-        //this.state.allTokenData[tokenid] = myJSONData; 
+
+        //let's update this particular token with tokenid give it the new newJSONTokenData
+        //So each time this particular token is updated we update the map. 
+        myTokenData[tokenid] = newJSONTokenData; 
+
+        //Let's update the state with our new map data. 
         this.setState({
             allTokenData: myTokenData
         });
 
-        /*Send all the data related to this rule up to the app.js level. */
+        /* All the webservice conmunication is done in App.js. So we need to propagate
+        all data to the top in App.js. onProcessJSONData is a method is Apps.js. 
+        Send all the data related to this rule up to the app.js level. */
         this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
                 this.state.identifier, this.state.description, this.state.polarity, 
                 this.state.is_active, this.state.output_format ); 
 
         //console.log("Here is  my JSON = " + JSON.stringify(this.state.allTokenData)); 
 
-
-        const newToken = <Token id={this.state.id} clickable="0" tokenAbbreviation={tokenAbbreviation1}
+        /*Now lets create a new token that we are doing to display in the GUI. 
+        */
+        const newToken = <Token id={tokenid} clickable="0" tokenAbbreviation={tokenAbbreviation1}
             type={type1} allwords={allwords1}  optional={optional1} 
             part_of_output={part_of_output1} followed_by_space={followed_by_space1}
             length1={length11} length2={length21} length3={length31}
@@ -168,13 +145,16 @@ class Rule extends Component
         return newToken; 
     }
 
+    /*  
+    This method is used to format our data so that it look like the JSON 
+    that the webservice is expecting. 
+    */
     createJSON(tokenAbbreviation1,type1, allwords1, optional1, 
             part_of_output1, followed_by_space1, length11, length21, length31,
             prefix1, suffix1, notinvocabulary1, noun1, pronoun1, punctuation1,
             propernoun1, determiner1, symbol1, adjective1, conjunction1,verb1,  
             prepost_position1, adverb1, particle1, interjection1, exact1,lower1, upper1,
-            title1, mixed1
-    )
+            title1, mixed1)
     {
 
         var myCapitalization = [];
@@ -224,45 +204,46 @@ class Rule extends Component
         }; 
 
         return tokenData; 
-  }
+    }
+
+
     /*
     Method: Add a token to an array. 
     Arguments: 
     NewToken: a word, shape, punctionation token 
     */
-    addNewToken(tokenAbbreviation1,type1, allwords1, optional1, 
-            part_of_output1, followed_by_space1, length11, length21, length31,
-            prefix1, suffix1, notinvocabulary1, noun1, pronoun1, punctuation1,
-            propernoun1, determiner1, symbol1, adjective1, conjunction1,verb1,  
-            prepost_position1, adverb1, particle1, interjection1, exact1,lower1, upper1,
-            title1, mixed1)
+    addNewToken(tokenAbbreviation1, type1, allwords1, optional1,
+        part_of_output1, followed_by_space1, length11, length21, length31,
+        prefix1, suffix1, notinvocabulary1, noun1, pronoun1, punctuation1,
+        propernoun1, determiner1, symbol1, adjective1, conjunction1, verb1,
+        prepost_position1, adverb1, particle1, interjection1, exact1, lower1, upper1,
+        title1, mixed1) 
     {
-        this.toggleModal(); 
+        //Let's close the token modal dialog box. 
+        this.toggleModal();
 
-        const newToken =     this.createNewToken(tokenAbbreviation1,type1, allwords1, optional1, 
+        /*Let's create a new token.*/ 
+        const newToken = this.createNewToken(tokenAbbreviation1, type1, allwords1, optional1,
             part_of_output1, followed_by_space1, length11, length21, length31,
             prefix1, suffix1, notinvocabulary1, noun1, pronoun1, punctuation1,
-            propernoun1, determiner1, symbol1, adjective1, conjunction1,verb1,  
-            prepost_position1, adverb1, particle1, interjection1, exact1,lower1, upper1,
-            title1, mixed1); 
+            propernoun1, determiner1, symbol1, adjective1, conjunction1, verb1,
+            prepost_position1, adverb1, particle1, interjection1, exact1, lower1, upper1,
+            title1, mixed1);
 
-        
-        //const btt = <PlusToken  id={PTOKEN_BASE+(++GLOBAL_ID)}  clickable="1" onClick={this.handleClick.bind(this)}/>; 
-        const btt = <PlusToken  id={PTOKEN_BASE+(++GLOBAL_ID)}  clickable="1" onClick={this.handleClick.bind(this)}/>; 
-        //const rToken1 = <Token id={TOKEN_BASE+(++GLOBAL_ID)} clickable="0" tokenAbbreviation="W" tokenText={["Hello","hi"]} tokenOptionalOrRequired="r" tokenIsCaseRequired=""/>
-        
+        /*We always need a plus token between regular token*/
+        const btt = <PlusToken id={PTOKEN_BASE + (++GLOBAL_ID)} clickable="1" onClick={this.handleClick.bind(this)} />;
 
-        //var test = newToken.getJSON(); 
-        //alert("JSON : " + test); 
-
-        this.setState(prevState => 
-        ({
-            array: [...prevState.array, newToken,btt]
-        }));
+        /*Let's update the token array in the state that way it re-renders the rules.*/
+        this.setState(prevState =>
+            ({
+                array: [...prevState.array, newToken, btt]
+            }));
 
     }  
 
-
+    /*
+    Show Word token. 
+    */
     showWordToken()
     {
         /*lets close the menu*/
@@ -270,31 +251,7 @@ class Rule extends Component
         x.style.display = 'none';
 
         this.toggleModal();
-        /*
-        this.setState({
-         isOpen: !this.state.isOpen
-        });
-        */
-        
     }
-
-    checkToken(token )
-    {
-        //alert(token); 
-        if(token.props.clickable === "1")
-        {
-            //alert("This is plustoken"); 
-            return   <select value={this.state.value} onChange={this.handleChange} name="tokentype" id='ttype' >
-                <option value="grapefruit">Grapefruit</option>
-                <option value="lime">Lime</option>
-                <option value="coconut">Coconut</option>
-                <option value="mango">Mango</option>
-            </select>; 
-        }
-        
-        return ""; 
-    }
-
 
     render() 
 	{
@@ -339,11 +296,7 @@ class Rule extends Component
                             <input type="checkbox" name="rule" value="word" className="ruleCheckBox" /> 
 
                             {this.state.array.map((token, index) => (
-                                /*<div clasName="arrangeEachToken"> */
                                 <div className="arrangeEachToken">  {token}   </div>
-                                /*}
-                                {this.checkToken(token)} 
-                                </div> */
                             ))}  
 
                         </div>

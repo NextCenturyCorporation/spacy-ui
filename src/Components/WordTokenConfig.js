@@ -65,26 +65,11 @@ class WordTokenConfig extends React.Component {
 
 
   /* 
-  Method used to create new token*/
+  Method used to create new token
+  */
   createNewToken()
   {
-    //var myArray = JSON.parse("[" + this.state.allwords + "]");
-    //alert("CreateNewToken" + myArray); 
-    /*
-    this.props.onAddNewToken(<Token id={TOKEN_BASE+(++GLOBAL_ID)} clickable="0" tokenAbbreviation="W"
-        type="word" allwords={this.state.allwords.split(" ")}  optional={this.state.optional} 
-        part_of_output={this.state.part_of_output} followed_by_space={this.state.followed_by_space}
-        length1={this.state.length1} length2={this.state.length2} length3={this.state.length3}
-        prefix={this.state.prefix} suffix={this.state.suffix} notinvocabulary={this.state.notinvocabulary}
-        noun={this.state.noun} pronoun={this.state.pronoun} punctuation={this.state.punctuation} 
-        propernoun={this.state.propernoun} determiner={this.state.determiner} symbol={this.state.symbol}
-        adjective={this.state.adjective} conjunction={this.state.conjunction} verb={this.state.verb}
-        prepost_position={this.state.prepost_position} adverb={this.state.adverb} particle={this.state.particle}
-        interjection={this.state.interjection} exact={this.state.exact} lower={this.state.lower} 
-        upper={this.state.upper} title={this.state.title} mixed={this.state.mixed}
-                  />); 
-    */ 
-  
+
     this.props.onAddNewToken("W","word", this.state.allwords.split(" "), this.state.optional, 
         this.state.part_of_output,this.state.followed_by_space, this.state.length1, this.state.length2, this.state.length3,
         this.state.prefix,this.state.suffix, this.state.notinvocabulary,

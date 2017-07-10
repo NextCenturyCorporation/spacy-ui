@@ -5,26 +5,27 @@ import "./layout.css"
 
 import WordTokenConfig from './Components/WordTokenConfig'
 
+/*We need base.64 for the authentication*/
 const base64 = require('base-64');
 
+/*
+  Main Application entry point
+*/
 class App extends Component {
   constructor(props) 
   {
     super(props);
-
     var react = require('react'); 
-    //alert("React version" + react); 
-    /*this.props.rulesText = "This is test Text. \n" +
-    											  "The user can type in whatever they want and select the rules to test. The results show below." +
-      											"Hi My Name is Sara and I live in Los Angeles"; 
-    	*/	
 
+    /*Set necessary state*/
     this.state = 
     {
       jsonReturnedValue: null, 
       allRuleData:{}, 
       test_text:""
     }
+
+    /*function binding required by react*/
     this.sendData = this.sendData.bind(this);
     this.ProcessJSONData = this.ProcessJSONData.bind(this); 
     this.buildData2Send = this.buildData2Send.bind(this); 
@@ -33,22 +34,36 @@ class App extends Component {
       
   }
 
+  /*
+    Method for form submittal. 
+  */
   handleSubmit(event) 
   {
     event.preventDefault();
   }
 
+  /*
+    Method to update the form when the test_text changes. 
+  */
   handleChange(event) 
   {
     this.setState({test_text: event.target.value});
   }
 
+  /*
+    The method is a callback method that called by rules.js whenver a new token is created. 
+  */
   ProcessJSONData(ruleid, allTokenData, identifier1, description1, polarity1,is_active1,output_format1,is_in_output1)
   {
     console.log("ProcessJSONData....ruleid="+ruleid ); 
+    
+    /*We need the raw date from allTokenData - we need to remove the token ids since it's not necessary 
+    when we send the JSON file across the wire. So Object.values allows us to just grab the values from the 
+    map allTokenData */
     const result = Object.values(allTokenData);
     console.log("ProcessJSONData...token values" + result); 
 
+    /*Let's build each rule token according to the JSON spec */
     var myRuleData = this.state.allRuleData; 
     myRuleData[ruleid] = {
         polarity: polarity1, 
@@ -58,14 +73,18 @@ class App extends Component {
         is_active: is_active1, 
         identifier: identifier1
     } 
+
+    /*update the state data - kind of a way to persist the data */
     this.setState({
       allRuleData: myRuleData
     });
 
     console.log("Data 2 send  ="+ this.buildData2Send()); 
-
   }
 
+  /*
+  This method is used to build the JSON data that will be transmitted. 
+  */
   buildData2Send()
   {
     const values = Object.values(this.state.allRuleData); 
@@ -78,28 +97,32 @@ class App extends Component {
     return JSON.stringify(myData2Send);     
   }
 
+  /*
+  This method sends the JSON data across the wire and processes the response. 
+  */
   sendData()
   {
     console.log("SendData");
-
-    //mySendJSONData = JSON.stringify(Object.values(myDatasend))
 
     //This is how you authenticate using base64(username:password. )
     var headers = new Headers();
     headers.append("Authorization", "Basic " + base64.encode("memex:digdig"));
 
+    /*
+    Let's fetch the data from the webservice. 
+    */
     fetch('http://52.36.12.77:9879/projects/pedro_test_01/fields/name/spacy_rules', {
-      method: 'POST',
-      headers: headers,
+      method: 'POST',  
+      headers: headers, //authentication header. 
       body:
-          this.buildData2Send()
+          this.buildData2Send() //JSON data created earlier. 
     }).then( (response) => {
                 return response.json() })   
                     .then( (json) => {
 
                         //var myArr = JSON.parse(json);
                         alert("Test = " + json.field_name); 
-                        this.setState({jsonReturnedValue: json});
+                        //this.setState({jsonReturnedValue: json});
                     });
   }
   

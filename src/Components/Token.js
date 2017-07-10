@@ -11,7 +11,6 @@ class Token extends Component
     //this.props.tokenOptionalOrRequired = "r"; 
     //this.props.tokenIsCaseRequired = "Xx";  
     this.checkCase = this.checkCase.bind(this); 
-
   }
 
   checkCase()
