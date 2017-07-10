@@ -7,7 +7,7 @@ import WordTokenConfig from './Components/WordTokenConfig'
 
 /*We need base.64 for the authentication*/
 const base64 = require('base-64');
-
+var webServiceUrl = ""
 /*
   Main Application entry point
 */
@@ -34,8 +34,19 @@ class App extends Component {
     this.buildData2Send = this.buildData2Send.bind(this); 
     this.handleSubmit = this.handleSubmit.bind(this);  
     this.handleChange = this.handleChange.bind(this);
-    this.buildResult= this.buildResult.bind(this); 
-      
+
+  }
+
+  componentWillMount() 
+  {
+    //    'http://52.36.12.77:9879/projects/pedro_test_01/fields/name/spacy_rules'
+    webServiceUrl = 'http://52.36.12.77:9879/projects/' + this.props.params.projectName + '/fields/'+
+                 this.props.params.fieldName + '/spacy_rules'; 
+    /*
+    this.state = {
+        url: webServiceUrl
+    }
+    */
   }
 
   /*
@@ -106,14 +117,6 @@ class App extends Component {
     return JSON.stringify(myData2Send);     
   }
 
-  buildResult()
-  {
-    var result; 
-    this.state.jsonRules.forEach(function(value,i){
-      result += <li>Rule: {value} Extraction: </li>
-    });
-    return result
-  }
 
   /*
   This method sends the JSON data across the wire and processes the response. 
@@ -129,7 +132,8 @@ class App extends Component {
     /*
     Let's fetch the data from the webservice. 
     */
-    fetch('http://52.36.12.77:9879/projects/pedro_test_01/fields/name/spacy_rules', {
+    alert(webServiceUrl); 
+    fetch(webServiceUrl, {
       method: 'POST',  
       headers: headers, //authentication header. 
       body:
@@ -158,6 +162,7 @@ class App extends Component {
   
   render() 
   {
+      var parameters = this.props.params; 
 /*
       var myValue = this.state.jsonresults; 
       var allkeys = Object.keys(this.state.jsonresults); 

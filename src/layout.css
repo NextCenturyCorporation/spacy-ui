@@ -1,5 +1,4 @@
 body {
-  background: $color-bg;
   padding: 20px;
 }
 
@@ -23,16 +22,6 @@ body {
   border-width: 0.05em; 
   
   /*float: bottom;*/
-}
-
-
-
-
-.weight-slider { 
-  text-align: center; 
-  input {
-    width: 300px;
-  }
 }
 
 
