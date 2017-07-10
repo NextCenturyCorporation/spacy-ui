@@ -25,7 +25,8 @@ class App extends Component {
       test_text:"",
       jsonresults:{},
       jsonRules:[], 
-      jsonExtraction:[]
+      jsonExtraction:[],
+      ruleList:[]
     }
 
     /*function binding required by react*/
@@ -47,6 +48,13 @@ class App extends Component {
         url: webServiceUrl
     }
     */
+    const initialRule = <Rule rulenum="1"  onProcessJSONData={this.ProcessJSONData}/> ; 
+    const initialRule2 = <Rule rulenum="2"  onProcessJSONData={this.ProcessJSONData}/> ; 
+
+    this.setState(prevState =>
+    ({
+        ruleList: [...prevState.ruleList, initialRule,initialRule2]
+    }));
   }
 
   /*
@@ -187,7 +195,16 @@ class App extends Component {
         <div id="ruleMenu">
         <button className="button">Add Rule </button>  <button className="button">Select All </button> <button className="button"> Deselect All</button> <button className="button"> Delete</button> <button className="button"> Duplicate</button> 
           </div> 
-          <div>{<Rule rulenum="1"  onProcessJSONData={this.ProcessJSONData}/> } </div> 
+          <div>
+            {/*<Rule rulenum="1"  onProcessJSONData={this.ProcessJSONData}/> */}
+              <ul className="listStyle">
+                {this.state.ruleList.map((rule, index) => (
+                  <li>{rule} </li>
+                ))}    
+
+              </ul>
+
+          </div> 
           
           </div>
         <br/>

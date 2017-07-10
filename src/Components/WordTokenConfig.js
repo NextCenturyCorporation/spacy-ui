@@ -42,6 +42,14 @@ class WordTokenConfig extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.createNewToken = this.createNewToken.bind(this); 
+
+    //console.log("WordTokenConfig = ruleid"+this.props.ruleid); 
+
+  }
+
+  componentWillMount() 
+  {
+    //alert("WordTokenConfig id="+this.props.ruleid); 
   }
 
   handleInputChange(event) 
@@ -62,14 +70,12 @@ class WordTokenConfig extends React.Component {
     event.preventDefault();
   }
 
-
-
   /* 
   Method used to create new token
   */
   createNewToken()
   {
-
+    //alert("createNewToken Rule id = " + this.props.ruleid); 
     this.props.onAddNewToken("W","word", this.state.allwords.split(" "), this.state.optional, 
         this.state.part_of_output,this.state.followed_by_space, this.state.length1, this.state.length2, this.state.length3,
         this.state.prefix,this.state.suffix, this.state.notinvocabulary,
@@ -89,6 +95,8 @@ class WordTokenConfig extends React.Component {
     if (!this.props.show) {
       return null;
     }
+    
+   //alert("WordTokenConfig id="+this.props.ruleid); 
 
     return (
       <div className="backdrop" >

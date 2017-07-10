@@ -11,6 +11,7 @@ var PTOKEN_BASE = 8000;
 var RULE_BASE = 7000; 
 var GLOBAL_RULE_ID = 1; 
 
+var GLOBAL_COUNT=1; 
 /*
 The Rule class holds the different token. There can be multiple rules. 
 */
@@ -51,6 +52,12 @@ class Rule extends Component
         const id = RULE_BASE+(++GLOBAL_RULE_ID); 
         this.setState({id: id});
         this.setState({identifier:"name"+"_"+"rule"+"_"+id}); 
+
+        /*
+        const myWordConfig = <WordTokenConfig show={this.state.isOpen} onAddNewToken={this.addNewToken} id={id}/>;  
+        this.setState({ wtconfig: myWordConfig}); 
+        */
+
     }
 
   
@@ -60,7 +67,12 @@ class Rule extends Component
         /* Let's determine when to show/close the menu when the 
         plus token is clicked. 
         */  
-        var x = document.getElementById('tokenMenu');
+        //alert("You clicked on "+e.target)
+        //alert("handleclick - " + this.state.id); 
+
+        const tMenu = "tokenMenu" + this.state.id; 
+
+        var x = document.getElementById(tMenu);
         if (x.style.display === 'none') 
         {
             x.style.display = 'block';
@@ -223,6 +235,7 @@ class Rule extends Component
         prepost_position1, adverb1, particle1, interjection1, exact1, lower1, upper1,
         title1, mixed1) 
     {
+        //alert("addNewToken + id" + this.state.id);
         //Let's close the token modal dialog box. 
         this.toggleModal();
 
@@ -250,8 +263,10 @@ class Rule extends Component
     */
     showWordToken()
     {
+        const tMenu = "tokenMenu" + this.state.id; 
+        //alert("showWordToken ="+this.state.id); 
         /*lets close the menu*/
-        var x = document.getElementById('tokenMenu');
+        var x = document.getElementById(tMenu);
         x.style.display = 'none';
 
         this.toggleModal();
@@ -259,19 +274,37 @@ class Rule extends Component
 
     render() 
 	{
+        /*
+        if(!this.wtconfig)
+        {
+            this.wtconfig = new WordTokenConfig({
+                show: this.state.isOpen,
+                onAddNewToken:this.addNewToken,
+                ruleid=this.state.id
+            }); 
+        }
+
+        if(this.wtconfig)
+        {
+            this.wtconfig.render(); 
+        }
+        */
+        const tMenu = "tokenMenu" + this.state.id; 
         return (
             <section>
                 <div className="rulewrapper">
-
-                    {/*}
+                
+                    {/*
                     <WordTokenConfig show={this.state.isOpen}
-                    onClose={this.addNewToken}>
+                    onClose={this.addNewToken}> ruleid={this.props.ruleid}
                     </WordTokenConfig>
                     */} 
-                
-                    <WordTokenConfig show={this.state.isOpen}
-                        onAddNewToken={this.addNewToken}>
+                    
+                    {                    <WordTokenConfig show={this.state.isOpen}
+                        onAddNewToken={this.addNewToken} ruleid={this.state.id}>
                     </WordTokenConfig>
+                    }
+                    {this.state.wtconfig}
 
                     <div className="ruleHeader">
                         <label htmlFor={this.props.name}> {this.props.rulenum}.  </label>
@@ -284,17 +317,15 @@ class Rule extends Component
                         />
                     </div>
 
-                    
-                    {/* Let arrange the token with the + signs inbetween. */}
-                    <div id="container">
-                        <div id="tokenMenu" >
+                     <div  >
+                        <div id={tMenu} className="tokenMenu" >
                             <div onClick={this.showWordToken}> word </div>
                             <div> number </div> 
                             <div> shape </div>
                             <div> punctuation </div>
                         </div>   
 
-                        <div id="arrangeRuleTokens"> 
+                        <div className="arrangeRuleTokens"> 
 
 
                             <input type="checkbox" name="rule" value="word" className="ruleCheckBox" /> 
