@@ -14,18 +14,19 @@ class Rule extends Component
     constructor(props)
     {
         super(props); 
-        //this.props.rulenum = "2"; 
-
-        //const btt = <div className="arrangeEachToekn" onClick={this.handleClick.bind(this)}> <PlusToken clickable="1" /> </div>;
-        //const btt = <div className="arrangeEachToekn"> <PlusToken  id={++GLOBAL_ID}  clickable="1" onClick={this.handleClick.bind(this)}/> </div>;
-
         const btt = <PlusToken  id={PTOKEN_BASE+(++GLOBAL_ID)}  clickable="1" onClick={this.handleClick.bind(this)}/>; 
         this.state = {
             array:[btt], 
             isOpen: false,
             allTokenData:{},
             value: 10, 
-            id:0
+            id:0, 
+            description:"", 
+            polarity: [],
+            output_format:"",
+            is_active: true, 
+            identifier:"",
+            is_in_output:true
         }
     
         //this.setState(update(this.state, {allTokens: {$push: [btt]}}));
@@ -46,6 +47,7 @@ class Rule extends Component
     {
         const id = RULE_BASE+(++GLOBAL_RULE_ID); 
         this.setState({id: id});
+        this.setState({identifier:"name"+"_"+"_"+id}); 
     }
 
   
@@ -137,19 +139,21 @@ class Rule extends Component
         //Let's store the Token data in a map in the state. 
         //We store by tokenid as the key.
         var myTokenData = this.state.allTokenData; 
-        myTokenData[tokenid] = myJSONData; 
+        myTokenData[this.state.id] = myJSONData; 
         //this.state.allTokenData[tokenid] = myJSONData; 
         this.setState({
             allTokenData: myTokenData
         });
 
         /*Send all the data related to this rule up to the app.js level. */
-        this.props.onProcessJSONData(this.state.id, this.state.allTokenData); 
+        this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
+                this.state.identifier, this.state.description, this.state.polarity, 
+                this.state.is_active, this.state.output_format ); 
 
         //console.log("Here is  my JSON = " + JSON.stringify(this.state.allTokenData)); 
 
 
-        const newToken = <Token id={tokenid} clickable="0" tokenAbbreviation={tokenAbbreviation1}
+        const newToken = <Token id={this.state.id} clickable="0" tokenAbbreviation={tokenAbbreviation1}
             type={type1} allwords={allwords1}  optional={optional1} 
             part_of_output={part_of_output1} followed_by_space={followed_by_space1}
             length1={length11} length2={length21} length3={length31}
@@ -213,7 +217,7 @@ class Rule extends Component
             numbers: myNumbers,
             contain_digit: "",
             is_in_vocabulary: "",
-            is_out_of_vocabulary: notinvocabulary1,
+            is_out_of_vocabulary: "",
             is_required: !optional1, 
             type: type1, 
             is_in_output: part_of_output1

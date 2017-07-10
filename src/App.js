@@ -22,47 +22,67 @@ class App extends Component {
     this.state = 
     {
       jsonReturnedValue: null, 
-      allRuleData:{}
-
+      allRuleData:{}, 
+      test_text:""
     }
     this.sendData = this.sendData.bind(this);
     this.ProcessJSONData = this.ProcessJSONData.bind(this); 
     this.buildData2Send = this.buildData2Send.bind(this); 
+    this.handleSubmit = this.handleSubmit.bind(this);  
+    this.handleChange = this.handleChange.bind(this);
+      
   }
 
-  ProcessJSONData(ruleid, allTokenData)
+  handleSubmit(event) 
+  {
+    event.preventDefault();
+  }
+
+  handleChange(event) 
+  {
+    this.setState({test_text: event.target.value});
+  }
+
+  ProcessJSONData(ruleid, allTokenData, identifier1, description1, polarity1,is_active1,output_format1,is_in_output1)
   {
     console.log("ProcessJSONData....ruleid="+ruleid ); 
-    //console.log("ProcessJSONData...token data" + allTokenData); 
-    //let values = Array.from(allTokenData.values()); 
     const result = Object.values(allTokenData);
     console.log("ProcessJSONData...token values" + result); 
-    //alert("All Rule data ="+ JSON.stringify(result)); 
-    //this.allRuleData[ruleid] = result; 
-
 
     var myRuleData = this.state.allRuleData; 
-    myRuleData[ruleid] = result; 
+    myRuleData[ruleid] = {
+        polarity: polarity1, 
+        description: description1, 
+        pattern: result,
+        output_format: output_format1,
+        is_active: is_active1, 
+        identifier: identifier1
+    } 
     this.setState({
       allRuleData: myRuleData
     });
 
-    //alert("All Rule data ="+ JSON.stringify(this.state.allRuleData)); 
+    console.log("Data 2 send  ="+ this.buildData2Send()); 
 
   }
 
   buildData2Send()
   {
-    let data2send = this.state.allRuleData; 
+    const values = Object.values(this.state.allRuleData); 
+    var myData2Send = {};
+    myData2Send={
+      rules: values, 
+      test_text:this.state.test_text
+    }; 
 
+    return JSON.stringify(myData2Send);     
   }
 
   sendData()
   {
-    console.Log("SendData");
+    console.log("SendData");
 
-    //buildData2Send will return the json file to send. 
-    mySendData = buildData2Send(); 
+    //mySendJSONData = JSON.stringify(Object.values(myDatasend))
 
     //This is how you authenticate using base64(username:password. )
     var headers = new Headers();
@@ -71,10 +91,8 @@ class App extends Component {
     fetch('http://52.36.12.77:9879/projects/pedro_test_01/fields/name/spacy_rules', {
       method: 'POST',
       headers: headers,
-      body: JSON.stringify(
-          myJsonFile
-      
-      )
+      body:
+          this.buildData2Send()
     }).then( (response) => {
                 return response.json() })   
                     .then( (json) => {
@@ -104,9 +122,10 @@ class App extends Component {
           
           </div>
         <br/>
-        <span className="ExtractionText"> Text</span>
-       
-        <div className="rulesText"> <textarea name="Text1"  rows="5" className="textInput"></textarea> </div> 
+        <form onSubmit={this.handleSubmit}> 
+          <span className="ExtractionText"> Text</span>
+          <div className="rulesText"> <textarea name="Text1" onChange={this.handleChange}  rows="5" className="textInput" value={this.state.test_text}/> </div> 
+        </form>
         <br/>
         <span className="ExtractionText"> Results</span>
            {this.state.jsonReturnedValue}
