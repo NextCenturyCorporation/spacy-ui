@@ -22,7 +22,10 @@ class App extends Component {
     {
       jsonReturnedValue: null, 
       allRuleData:{}, 
-      test_text:""
+      test_text:"",
+      jsonresults:{},
+      jsonRules:[], 
+      jsonExtraction:[]
     }
 
     /*function binding required by react*/
@@ -31,6 +34,7 @@ class App extends Component {
     this.buildData2Send = this.buildData2Send.bind(this); 
     this.handleSubmit = this.handleSubmit.bind(this);  
     this.handleChange = this.handleChange.bind(this);
+    this.buildResult= this.buildResult.bind(this); 
       
   }
 
@@ -102,6 +106,15 @@ class App extends Component {
     return JSON.stringify(myData2Send);     
   }
 
+  buildResult()
+  {
+    var result; 
+    this.state.jsonRules.forEach(function(value,i){
+      result += <li>Rule: {value} Extraction: </li>
+    });
+    return result
+  }
+
   /*
   This method sends the JSON data across the wire and processes the response. 
   */
@@ -126,13 +139,36 @@ class App extends Component {
                     .then( (json) => {
 
                         //var myArr = JSON.parse(json);
-                        alert("Test = " + json.field_name); 
-                        //this.setState({jsonReturnedValue: json});
+                        console.log("Test = " + json.results); 
+                        var myResultRules=[]; 
+                        var myResultExtractions=[]; 
+                        for(var i=0; i < json.results.length; i++)
+                        {
+                          console.log("result rule_id =" +  json.results[i].context.rule_id +" value="+json.results[i].value); 
+                          //myResult[json.results[i].context.rule_id] = json.results[i].value; 
+                          myResultRules.push(json.results[i].context.rule_id); 
+                          myResultExtractions.push(json.results[i].value); 
+                        }
+                        this.setState({
+                          jsonRules: myResultRules,
+                          jsonExtraction: myResultExtractions
+                        });
                     });
   }
   
-  render() {
-    
+  render() 
+  {
+/*
+      var myValue = this.state.jsonresults; 
+      var allkeys = Object.keys(this.state.jsonresults); 
+       const myResults =  Object.keys(this.state.jsonresults).forEach(function (key) 
+                          {
+                            <li>{key}, {this.state.jsonresults[key]} </li>
+                          });
+
+      console.log("myResults "+ myResults);
+
+*/    
     return (
       <div className="App">
       
@@ -155,8 +191,15 @@ class App extends Component {
           <div className="rulesText"> <textarea name="Text1" onChange={this.handleChange}  rows="5" className="textInput" value={this.state.test_text}/> </div> 
         </form>
         <br/>
-        <span className="ExtractionText"> Results</span>
-           {this.state.jsonReturnedValue}
+        <span className="ExtractionText"> Results </span>
+        <div id="result">
+          <ul className="listStyle">
+            {this.state.jsonRules.map((ruleid, index) => (
+               <li> <span className="resultwrap"> Rule: <b>{ruleid}</b> </span>  Extraction: <b>{this.state.jsonExtraction[index]}</b>  </li>
+            ))}             
+          </ul>
+       </div>
+            
     	</div>
 
       

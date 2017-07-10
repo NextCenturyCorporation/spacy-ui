@@ -184,7 +184,8 @@ class Rule extends Component
         length21>0? myLength.push(length21): myLength; 
         length31>0? myLength.push(length31): myLength;     
 
-        var myNumbers= []; 
+        var myNumbers= [];
+        var myShape=[];  
 
         var tokenData=
         {
@@ -195,6 +196,7 @@ class Rule extends Component
             length: myLength,
             maximum:"",
             minimum:"", 
+            shape: myShape,
             token: allwords1,
             numbers: myNumbers,
             contain_digit: "",
