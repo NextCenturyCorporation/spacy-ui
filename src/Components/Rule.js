@@ -338,7 +338,7 @@ class Rule extends Component
         prepost_position1, adverb1, particle1, interjection1, exact1, lower1, upper1,
         title1, mixed1, numbers1) 
     {
-        alert("Enter onAddNumberToken"); 
+        console.log("Rule: Enter onAddNumberToken"); 
         this.toggleNumberConfigDialog(); 
         //Keep track of the token with a generated token id. 
         var tokenid = TOKEN_BASE+(++GLOBAL_ID); 
@@ -416,7 +416,7 @@ class Rule extends Component
             title1, mixed1, numbers1)
     {
 
-        alert("createNumberJSON"); 
+        console.log("createNumberJSON"); 
 
         var myCapitalization = [];
 
@@ -554,8 +554,6 @@ class Rule extends Component
                         placeholder= "Enter rule description "
                         type="text"
                         className="ruleDescription"
-                        value={this.props.value}
-                        onChange={this.props.handleChange}
                         />
                     </div>
 
