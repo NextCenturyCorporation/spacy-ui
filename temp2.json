@@ -1,0 +1,55 @@
+{
+  "rules": [
+    {
+      "polarity": [],
+      "description": "my name is ...",
+      "pattern": [
+        {
+          "prefix": "",
+          "suffix": "",
+          "capitalization": [],
+          "part_of_speech": [],
+          "length": [],
+          "maximum": "",
+          "shapes": [],
+          "token": [
+            "my"
+          ],
+          "minimum": "",
+          "numbers": [],
+          "contain_digit": "",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": true,
+          "type": "word",
+          "is_in_output": false
+        },
+        {
+          "prefix": "",
+          "suffix": "",
+          "capitalization": [],
+          "part_of_speech": [],
+          "length": [],
+          "maximum": "",
+          "token": [
+            "name",
+            "names"
+          ],
+          "minimum": "",
+          "numbers": [],
+          "contain_digit": "",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": true,
+          "type": "word",
+          "is_in_output": true
+        }
+      ],
+      "output_format": "",
+      "is_active": true,
+      "identifier": "name_rule_7003"
+    }
+  ],
+  "test_text": "My name is"
+
+}

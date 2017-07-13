@@ -1,5 +1,4 @@
 body {
-  background: $color-bg;
   padding: 20px;
 }
 
@@ -23,16 +22,6 @@ body {
   border-width: 0.05em; 
   
   /*float: bottom;*/
-}
-
-
-
-
-.weight-slider { 
-  text-align: center; 
-  input {
-    width: 300px;
-  }
 }
 
 
@@ -101,3 +90,21 @@ body {
   
 }
 
+
+#result{
+  max-width: auto;
+  margin: auto;
+  border-radius: 0.1em;
+  border-style: solid; 
+  border-color: black; 
+  padding: 1em;  
+  border-width: 0.05em; 
+}
+
+.listStyle{
+  list-style: none;  
+}
+
+.resultwrap{
+  padding-right: 2em;
+}

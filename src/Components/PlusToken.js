@@ -19,6 +19,7 @@ class PlusToken extends Component
       <section>
         <div id="addButton">
           {btt}
+
         </div> 
       </section>); 
   
