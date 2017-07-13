@@ -6,11 +6,8 @@ class Token extends Component
   constructor(props)
   {
   	super(props); 
-    //this.props.tokenAbbreviation="W"; 
-    //this.props.tokenText =  ["Hello", "Hi"];
-    //this.props.tokenOptionalOrRequired = "r"; 
-    //this.props.tokenIsCaseRequired = "Xx";  
     this.checkCase = this.checkCase.bind(this); 
+    this.deleteToken = this.deleteToken.bind(this); 
   }
 
   checkCase()
@@ -18,6 +15,11 @@ class Token extends Component
     return (this.props.exact||this.props.lower||this.props.upper||this.props.title||this.mixed); 
   }
 
+  deleteToken()
+  {
+    console.log("Token:Enter deleteToken()"); 
+    this.props.deleteToken(this); 
+  }
   
 	render() 
 	{
@@ -48,7 +50,7 @@ class Token extends Component
    
     return (
 			<div className="widget">
-        <div id="tokenHeader"> {this.props.tokenAbbreviation}   <button type='button' className='closeToken' >x</button> </div>
+        <div id="tokenHeader"> {this.props.tokenAbbreviation}   <button type='button' className='closeToken' onClick={this.deleteToken} >x</button> </div>
 				<div id="tokenBody">
            <div className="tokenText"> 
                 {tokenText}

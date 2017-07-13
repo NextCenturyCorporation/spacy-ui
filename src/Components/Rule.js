@@ -26,6 +26,8 @@ class Rule extends Component
         const btt = <PlusToken  id={PTOKEN_BASE+(++GLOBAL_ID)}  clickable="1" onClick={this.handleClick.bind(this)}/>; 
         this.state = {
             array:[btt], 
+            tokenDataArray: [],
+            tokenArray:[],
             isWordDialogOpen: false,
             isNumberDialogOpen: false,
             isShapeDialogOpen:false, 
@@ -57,6 +59,8 @@ class Rule extends Component
         this.createWordJSON = this.createWordJSON.bind(this); 
         this.createNumberJSON = this.createNumberJSON.bind(this); 
         this.showNumberToken = this.showNumberToken.bind(this); 
+        this.deleteToken = this.deleteToken.bind(this); 
+        
     }
 
     componentWillMount() 
@@ -318,7 +322,7 @@ class Rule extends Component
             adjective={adjective1} conjunction={conjunction1} verb={verb1}
             prepost_position={prepost_position1} adverb={adverb1} particle={particle1}
             interjection={interjection1} exact={exact1} lower={lower1} 
-            upper={upper1} title={title1} mixed={mixed1} />
+            upper={upper1} title={title1} mixed={mixed1} deleteToken={this.deleteToken} />
 
         /*We always need a plus token between regular token*/
         const btt = <PlusToken id={PTOKEN_BASE + (++GLOBAL_ID)} clickable="1" onClick={this.handleClick.bind(this)} />;
@@ -390,7 +394,7 @@ class Rule extends Component
             adjective={adjective1} conjunction={conjunction1} verb={verb1}
             prepost_position={prepost_position1} adverb={adverb1} particle={particle1}
             interjection={interjection1} exact={exact1} lower={lower1} 
-            upper={upper1} title={title1} mixed={mixed1} numbers={numbers1} />
+            upper={upper1} title={title1} mixed={mixed1} numbers={numbers1} deleteToken={this.deleteToken} />
 
         /*We always need a plus token between regular token*/
         const btt = <PlusToken id={PTOKEN_BASE + (++GLOBAL_ID)} clickable="1" onClick={this.handleClick.bind(this)} />;
@@ -509,10 +513,27 @@ class Rule extends Component
         this.toggleWordConfigDialog();
     }
 
+    
+    deleteToken(myToken )
+    {
+        var myArray = this.state.array; 
+        console.log("Rule: Enter deleteToken"); 
+        console.log("My token index is = " + myArray.findIndex(myToken)); 
+
+        var f;
+        var filteredElements = myArray.filter(function(myToken, index) 
+                        { f = index; return myToken.id == removeId; });
+
+
+        if (!filteredElements.length) {
+            return false;
+        }
+
+        data.splice(f, 1);
+    }        
+
     render() 
 	{
-
-
         const tMenu = "tokenMenu" + this.state.id; 
         return (
             <section>
