@@ -91,7 +91,7 @@ class WordTokenConfig extends React.Component {
 
   cancelDialog()
   {
-    this.props.onCloseWordConfigDialog(); 
+    this.props.onCloseConfigDialog(); 
   }
 
 
@@ -294,7 +294,7 @@ class WordTokenConfig extends React.Component {
 }
 
 WordTokenConfig.propTypes = {
-  onClose: React.PropTypes.func.isRequired,
+  //onClose: React.PropTypes.func.isRequired,
   show: React.PropTypes.bool,
   children: React.PropTypes.node
 };

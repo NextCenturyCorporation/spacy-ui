@@ -30,15 +30,28 @@ class Token extends Component
     {
     	isCaseRequired = <div id="tokenCase">{this.props.exact? "Xx":"Ci"}</div>; 
     }
+
+    var tokenText; 
+    if(this.props.type === "word")
+    {
+      tokenText = this.props.allwords.map((word, index) => (
+                  <div className="tokenEachText"> {word} </div>
+                  ));  
+    }
+    else if (this.props.type === "numbers")
+    {
+      tokenText = this.props.numbers.map((num, index) => (
+                  <div className="tokenEachText"> {num} </div>
+                  ));  
+
+    }
    
     return (
 			<div className="widget">
         <div id="tokenHeader"> {this.props.tokenAbbreviation}   <button type='button' className='closeToken' >x</button> </div>
 				<div id="tokenBody">
            <div className="tokenText"> 
-              {this.props.allwords.map((word, index) => (
-                  <div className="tokenEachText"> {word} </div>
-              ))}           
+                {tokenText}
           </div>
            <div className="tokenFooter">{isCaseRequired}  <div id="tokenRequired">{this.props.optional? 'o': 'r'}</div> </div>
         </div>

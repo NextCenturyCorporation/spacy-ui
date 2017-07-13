@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 import Rule from './Components/Rule'; 
 import "./layout.css"
 
-import WordTokenConfig from './Components/WordTokenConfig'
-
 /*We need base.64 for the authentication*/
 const base64 = require('base-64');
 var webServiceUrl = ""; 
@@ -17,7 +15,6 @@ class App extends Component {
   constructor(props) 
   {
     super(props);
-    var react = require('react'); 
 
     /*Set necessary state*/
     this.state = 
@@ -92,9 +89,9 @@ class App extends Component {
     map allTokenData */
     const result = Object.values(allTokenData);
     console.log("ProcessJSONData...token values" + result); 
-    var size = result.length;
+    size = result.length;
     console.log("ProcessJSONData: size of results = "+size); 
-    
+  
 
     /*Let's build each rule token according to the JSON spec */
     var myRuleData = this.state.allRuleData; 

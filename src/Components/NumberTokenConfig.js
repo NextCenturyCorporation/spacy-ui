@@ -1,6 +1,5 @@
 import React from 'react';
 import "../Styles/wordtoken.css"
-import Token from "./Token"; 
 
 class NumberTokenConfig extends React.Component {
   constructor(props) {
@@ -16,7 +15,7 @@ class NumberTokenConfig extends React.Component {
       suffix:"",
       notinvocabulary: false,
       allwords:"",
-      numbers:"",
+      allnumbers:"",
       noun:false, 
       pronoun:false, 
       punctuation:false,
@@ -40,6 +39,8 @@ class NumberTokenConfig extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.createNewToken = this.createNewToken.bind(this); 
+    this.checkInput = this.checkInput.bind(this); 
+    this.cancelDialog = this.cancelDialog.bind(this); 
 
     //console.log("NumberTokenConfig = ruleid"+this.props.ruleid); 
 
@@ -74,7 +75,7 @@ class NumberTokenConfig extends React.Component {
   createNewToken()
   {
     //alert("createNewToken Rule id = " + this.props.ruleid); 
-    this.props.onAddNumberToken("#","number", this.state.allwords.split(" "), this.state.optional, 
+    this.props.onAddNumberToken("#","numbers", this.state.allwords.split(" "), this.state.optional, 
         this.state.part_of_output,this.state.followed_by_space, this.state.length1, this.state.length2, this.state.length3,
         this.state.prefix,this.state.suffix, this.state.notinvocabulary,
         this.state.noun, this.state.pronoun,this.state.punctuation, 
@@ -82,8 +83,23 @@ class NumberTokenConfig extends React.Component {
         this.state.adjective, this.state.conjunction, this.state.verb,
         this.state.prepost_position, this.state.adverb, this.state.particle,
         this.state.interjection,this.state.exact,this.state.lower,
-        this.state.upper, this.state.title, this.state.mixed,this.state.numbers.split(" ")        
+        this.state.upper, this.state.title, this.state.mixed,this.state.allnumbers.split(" ")        
     )
+  }
+
+  checkInput(event) 
+  {
+    var invalidcharacters = /[^0-9]/gi
+    var phn = document.getElementById('textarea');
+    if (invalidcharacters.test(phn.value)) {
+       var  newstring = phn.value.replace(invalidcharacters, "");
+        phn.value = newstring
+    }
+  }
+
+  cancelDialog()
+  {
+    this.props.onCloseConfigDialog(); 
   }
 
 
@@ -126,7 +142,7 @@ class NumberTokenConfig extends React.Component {
               <div id="number-div21"> 
                 <label>
                   <b>Numbers:</b>
-                  <textarea name="allnumber" value={this.state.numbers} onChange={this.handleInputChange} rows="10" cols="10"  className="allwords"/>
+                  <textarea name="allnumbers" value={this.state.allnumbers} onChange={this.handleInputChange}  rows="10" cols="10"  className="allwords"/>
                 </label>
               </div> 
 
@@ -169,8 +185,8 @@ class NumberTokenConfig extends React.Component {
 
           </div>
 
-          <div id="numbertoken-footer" align="right">
-            <button onClick={this.props.onClick} className="button">
+          <div id="numbertoken-footer">
+            <button onClick={this.cancelDialog} className="button">
               cancel
                 </button>
             <button onClick={this.createNewToken} className="button" >
@@ -184,7 +200,7 @@ class NumberTokenConfig extends React.Component {
 }
 
 NumberTokenConfig.propTypes = {
-  onClose: React.PropTypes.func.isRequired,
+  //onClose: React.PropTypes.func.isRequired,
   show: React.PropTypes.bool,
   children: React.PropTypes.node
 };
