@@ -16,8 +16,8 @@
 {
     background-color:#fff; 
     border-radius: 5px; 
-    max-width: 500px; 
-    min-Height: 400px; 
+    max-width: 480px; 
+    min-Height: 420px; 
     margin: auto; 
     padding: 0; 
 
@@ -69,7 +69,7 @@
 
 #div22
 {
-    width: 400px;
+    width: 330px;
     padding: 10px; 
     margin-left: 120px; 
     /*height: 300px;  */
@@ -102,10 +102,10 @@
   height: 13px;
   padding: 0;
   margin-left:10px;
-  margin-right: 20px; 
-  vertical-align: bottom;
+  margin-right: 5px; 
+  vertical-align: middle;
   position: relative;
-  top: -1px;
+  top: 0px;
   *overflow: hidden;
 }
 
@@ -119,7 +119,7 @@
 {
    width:200px;  
    height: 15px;
-   margin-bottom: 5px;  
+   margin-bottom: 3px;  
 
 }
 
@@ -132,27 +132,257 @@
 
 #partofspeech_1
 {
-
-    width: 175px; 
+    width: 130px; 
     float: left; 
     height: 155px; 
+    padding-bottom: 10px; 
 }
 
 #partofspeech_2
 {
-
-    margin-left: 180px;   
+    margin-left: 130px;   
     height: 155px;
+    padding-bottom: 10px; 
 }
 
 #capitalization_header
 {
-    margin-top:3px; 
+    margin-top:5px; 
+    padding-top: 5px; 
 }
 
 #capitalization
 {
     float: bottom; 
-    height: 25px; 
+    height: 20px; 
     padding: 5px; 
 }
+
+
+/****** BEGIN NUMBER TOKEN *********/
+/****** All this a specific to number token */
+
+
+.number-modal-header
+{
+   background-color: #A2A1B2;
+   width: 100%;
+   height: 25px;
+   text-align: left;
+   padding-left: 5px;
+   padding-top:5px;
+}
+
+.number-modal
+{
+    background-color:#fff; 
+    border-radius: 5px; 
+    max-width: 400px; 
+    min-Height: 280px; 
+    margin: auto; 
+    padding: 0; 
+
+}
+
+.num_prefixsuffix
+{
+   margin-left:5px;
+   margin-right:10px;  
+   width:100px;
+   font-size: 18pt;
+}
+
+#number-div1
+{
+   /*padding: 10px; */
+   padding-top: 5px;
+   padding-bottom: 5px;
+}
+
+#number-div2
+{
+   overflow: hidden;
+}
+
+#number-div21
+{
+   padding: 10px;
+/*display:inline-block; */
+   width: 100px;
+   float: left; 
+
+}
+
+#number-div22
+{
+   width: 275px;
+   padding: 10px;
+   margin-left:100px;
+   height:  150px;
+}
+
+
+
+#numbertoken-footer
+{
+  float: right;
+  margin: 10px;
+}
+
+/*
+.modal-body input
+{
+ width: 20px;
+ height: 13px;
+ padding: 0;
+ margin-left:10px;
+ margin-right: 20px;
+ vertical-align: bottom;
+ position: relative;
+ top: -1px;
+ *overflow: hidden;
+}
+*/
+
+#number-lengths
+{
+   border-color: red;
+   margin-top: 15px; 
+   height: auto;
+   width: 100%;
+   display: inlilne-block;
+}
+
+
+
+
+#number-prefix-suffix
+{
+   border-color: blue;
+   display: inlilne-block;
+   margin-top: 20px;
+}
+
+#number-prefix-suffix input
+{
+    width:50px; 
+    vertical-align: top; 
+}
+
+/********END NUMBER TOKEN *****/
+
+
+/*******************SHAPE TOKEN ************************/
+
+.shape-modal-header
+{
+   background-color: #A2A1B2;
+   width: 100%;
+   height: 25px;
+   text-align: left;
+   padding-left: 5px;
+   padding-top:5px;
+}
+
+.shape-modal
+{
+    background-color:#fff; 
+    border-radius: 5px; 
+    max-width: 480px; 
+    min-Height: 420px; 
+    margin: auto; 
+    padding: 0; 
+}
+
+.shape-prefixsuffix
+{
+   margin-left:5px;
+   margin-right:10px;  
+   width:100px;
+   font-size: 18pt;
+}
+
+#shape-div1
+{
+   /*padding: 10px; */
+   padding-top: 5px;
+   padding-bottom: 5px;
+}
+
+#shape-div2
+{
+   overflow: hidden;
+}
+
+#shape-div21
+{
+   padding: 10px;
+/*display:inline-block; */
+   width: 100px;
+   float: left; 
+
+}
+
+#shape-div22
+{
+   width: 275px;
+   padding: 10px;
+   margin-left:100px;
+   height:  150px;
+}
+
+
+
+#numbertoken-footer
+{
+  float: right;
+  margin: 10px;
+}
+
+/*
+.modal-body input
+{
+ width: 20px;
+ height: 13px;
+ padding: 0;
+ margin-left:10px;
+ margin-right: 20px;
+ vertical-align: bottom;
+ position: relative;
+ top: -1px;
+ *overflow: hidden;
+}
+*/
+
+#shape-lengths
+{
+   border-color: red;
+   margin-top: 15px; 
+   height: auto;
+   width: 100%;
+   display: inlilne-block;
+}
+
+
+
+
+#shape-prefix-suffix
+{
+   border-color: blue;
+   display: inlilne-block;
+   margin-top: 20px;
+}
+
+#shape-prefix-suffix input
+{
+    width:50px; 
+    vertical-align: top; 
+}
+
+
+
+
+
+
+
+/*****************END OF SHAPE TOKEN *********************/

@@ -2,7 +2,7 @@ import React from 'react';
 import "../Styles/wordtoken.css"
 import Token from "./Token"; 
 
-class WordTokenConfig extends React.Component {
+class ShapeTokenConfig extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -106,10 +106,10 @@ class WordTokenConfig extends React.Component {
 
     return (
       <div className="backdrop" >
-        <form onSubmit={this.handleSubmit} className="modal">
+        <form onSubmit={this.handleSubmit} className="shape-modal">
           {this.props.children}
 
-          <div className="modal-header">Word Token </div>
+          <div className=".shape-modal-header">Shape Token </div>
 
           <div  className="modal-body">
             <div id="div1">
@@ -278,7 +278,7 @@ class WordTokenConfig extends React.Component {
             </div> 
           </div> 
 
-          <div id="footer" align="right">
+          <div id="footer" >
             <button onClick={this.cancelDialog} className="button">
               cancel
                 </button>
@@ -293,10 +293,10 @@ class WordTokenConfig extends React.Component {
   }
 }
 
-WordTokenConfig.propTypes = {
-  onClose: React.PropTypes.func.isRequired,
+ShapeTokenConfig.propTypes = {
+  // onClose: React.PropTypes.func.isRequired,
   show: React.PropTypes.bool,
   children: React.PropTypes.node
 };
 
-export default WordTokenConfig;
+export default ShapeTokenConfig;

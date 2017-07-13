@@ -1,12 +1,11 @@
 import React from 'react';
-import "../Styles/wordtoken.css"
+import "../Styles/punctuation.css"
 import Token from "./Token"; 
 
 class WordTokenConfig extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      show: true,
       optional: false,
       part_of_output: false,
       followed_by_space: false,
@@ -37,12 +36,9 @@ class WordTokenConfig extends React.Component {
       mixed: false
     };
 
-    //if you don't bind like this you will get an error like 
-    //TypeError: Cannot read property 'setState' of null
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.createNewToken = this.createNewToken.bind(this); 
-    this.cancelDialog = this.cancelDialog.bind(this); 
 
     //console.log("WordTokenConfig = ruleid"+this.props.ruleid); 
 
@@ -89,16 +85,11 @@ class WordTokenConfig extends React.Component {
     )
   }
 
-  cancelDialog()
-  {
-    this.props.onCloseWordConfigDialog(); 
-  }
-
 
   render() {
     //alert("render called")
     // Render nothing if the "show" prop is false
-    if (!this.props.show || !this.state.show) {
+    if (!this.props.show) {
       return null;
     }
     
@@ -111,7 +102,7 @@ class WordTokenConfig extends React.Component {
 
           <div className="modal-header">Word Token </div>
 
-          <div  className="modal-body">
+          <div id="modal-body">
             <div id="div1">
               <label>
                 <input name="optional" type="checkbox" checked={this.state.optional} onChange={this.handleInputChange} className="wordlabels" />
@@ -134,7 +125,7 @@ class WordTokenConfig extends React.Component {
               <div id="div21"> 
                 <label>
                   <b>Words:</b>
-                  <textarea name="allwords" value={this.state.allwords} onChange={this.handleInputChange} rows="15" cols="15"  className="allwords"/>
+                  <textarea name="allwords" value={this.state.allwords} onChange={this.handleInputChange} rows="15" cols="10"  className="allwords"/>
                 </label>
               </div> 
 
@@ -279,10 +270,9 @@ class WordTokenConfig extends React.Component {
           </div> 
 
           <div id="footer" align="right">
-            <button onClick={this.cancelDialog} className="button">
+            <button onClick={this.props.onClick} className="button">
               cancel
                 </button>
-
             <button onClick={this.createNewToken} className="button" >
               Save
                 </button>

@@ -51,6 +51,8 @@ class App extends Component {
         url: webServiceUrl
     }
     */
+
+    console.log("webservice url = " + webServiceUrl); 
     const initialRule = <Rule rulenum={++RULE_NUM}  onProcessJSONData={this.ProcessJSONData}/> ; 
     //const initialRule2 = <Rule rulenum="2"  onProcessJSONData={this.ProcessJSONData}/> ; 
 
