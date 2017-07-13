@@ -53,7 +53,7 @@ class Rule extends Component
         this.showWordToken = this.showWordToken.bind(this); 
         this.onAddWordToken = this.onAddWordToken.bind(this); 
         this.onAddNumberToken = this.onAddNumberToken.bind(this); 
-        this.createWordToken = this.createWordToken.bind(this); 
+        //this.createWordToken = this.createWordToken.bind(this); 
         this.createWordJSON = this.createWordJSON.bind(this); 
     }
 
@@ -270,7 +270,7 @@ class Rule extends Component
         var tokenid = TOKEN_BASE+(++GLOBAL_ID); 
 
         /*Get the JSON formatted data structure*/
-        var newJSONTokenData = this.createWordJSON(tokenAbbreviation1,type1, allwords1, optional1, 
+        var newJSONTokenData = this.createWordJSON(tokenid, tokenAbbreviation1,type1, allwords1, optional1, 
             part_of_output1, followed_by_space1, length11, length21, length31,
             prefix1, suffix1, notinvocabulary1, noun1, pronoun1, punctuation1,
             propernoun1, determiner1, symbol1, adjective1, conjunction1,verb1,  
@@ -378,7 +378,7 @@ class Rule extends Component
                     */} 
                     
                     {                 
-                    <WordTokenConfig show={true}
+                    <WordTokenConfig show={this.state.isWordDialogOpen}
                         onAddNewToken={this.onAddWordToken} ruleid={this.state.id}
                          onCloseTokenConfig={this.toggleWordConfigDialog}>
                        

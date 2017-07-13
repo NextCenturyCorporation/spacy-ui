@@ -155,6 +155,9 @@ class App extends Component {
                 return response.json() })   
                     .then( (json) => {
 
+                        if(json === undefined)
+                          return; 
+                        
                         //var myArr = JSON.parse(json);
                         console.log("Test = " + json.results); 
                         var myResultRules=[]; 
