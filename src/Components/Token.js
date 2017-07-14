@@ -5,14 +5,22 @@ class Token extends Component
 {
   constructor(props)
   {
-  	super(props); 
-    this.checkCase = this.checkCase.bind(this); 
+    super(props); 
     this.deleteToken = this.deleteToken.bind(this); 
+    this.generateTokenCase = this.generateTokenCase.bind(this); 
   }
 
-  checkCase()
+  generateTokenCase()
   {
-    return (this.props.exact||this.props.lower||this.props.upper||this.props.title||this.mixed); 
+    var tokenCase =""; 
+    var ret; 
+    tokenCase = this.props.exact? tokenCase + 'e.': tokenCase; 
+    tokenCase = this.props.lower? tokenCase + 'l.': tokenCase; 
+    tokenCase = this.props.upper? tokenCase + 'u.': tokenCase; 
+    tokenCase = this.props.title? tokenCase + 't.': tokenCase; 
+    tokenCase = this.props.mixed? tokenCase + 'm.': tokenCase;     
+
+    return tokenCase; 
   }
 
   deleteToken()
@@ -28,10 +36,13 @@ class Token extends Component
     var isCaseRequired; 
     //Check to make sure that tokenabrreviation is valid
     //if it's not 
-    if(this.props.tokenAbbreviation !== 'P')
+    /*
+    if(this.props.tokenAbbreviation !== 'P' && 
+       this.props.tokenAbbreviation !== 'N')
     {
-    	isCaseRequired = <div id="tokenCase">{this.props.exact? "Xx":"Ci"}</div>; 
+    	isCaseRequired = <div id="tokenCase"> {this.generateTokenCase()}</div>; 
     }
+    */
 
     var tokenText; 
     if(this.props.type === "word")
@@ -39,6 +50,7 @@ class Token extends Component
       tokenText = this.props.allwords.map((word, index) => (
                   <div className="tokenEachText"> {word} </div>
                   ));  
+      isCaseRequired = <div id="tokenCase">{this.generateTokenCase()}</div>; 
     }
     else if (this.props.type === "numbers")
     {
