@@ -162,7 +162,6 @@
 /****** BEGIN NUMBER TOKEN *********/
 /****** All this a specific to number token */
 
-
 .number-modal-header
 {
    background-color: #A2A1B2;
@@ -386,3 +385,78 @@
 
 
 /*****************END OF SHAPE TOKEN *********************/
+
+/***************** Punctuation Token Configuration *****************/
+
+.punctuation-modal-header
+{
+   background-color: #A2A1B2;
+   width: 100%;
+   height: 25px;
+   text-align: left;
+   padding-left: 5px;
+   padding-top:5px;
+}
+
+.punctuation-modal
+{
+    background-color:#fff; 
+    border-radius: 5px; 
+    max-width: 380px; 
+    min-Height: 350px; 
+    margin: auto; 
+    padding: 0; 
+
+}
+
+#punctuation-div1
+{
+   /*padding: 10px; */
+   padding-top: 5px;
+   padding-left:5px; 
+   padding-bottom: 5px;
+}
+
+#punctuation-div2
+{
+    height: 100%; 
+    overflow: hidden;
+    display: inline-block; 
+    height: 230px; 
+    padding-left:2px; 
+}
+
+#punctuation-div21
+{
+    display:block; 
+    width: 100px;
+    float: left;  
+    height:100%; 
+}
+
+#punctuation-div22
+{
+    width: 100px;
+    float: left; 
+    height: 100%; 
+}
+
+
+#punctuation-div23
+{
+    width: 100px;
+    float: left; 
+    height: 100%; 
+    /*border:solid;*/
+}
+
+
+
+#punctuation-footer
+{
+  float: right;
+  margin: 10px;
+}
+
+
+/***************** End of Punctuation Toke *************************/

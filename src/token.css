@@ -4,21 +4,16 @@
 {
   
   display: inline-block; 
-  //position: absolute; 
-  float: left/right; 
 	border: none;
 	min-width: 5em;
 	height: auto;
-	//display: flex;
 	flex-direction: column;
-	//overflow: hidden;
   margin-top: 20px; 
-  //margin-bottom: 10px; 
   margin-right: 10px; 
   background-color: #C6CBDE; 
 }
 
-.widget #tokenHeader
+.tokenHeader
 {
 	flex: 0 0 2.4em;
 	margin: 0;
@@ -30,66 +25,48 @@
   position: relative; 
 }
 
-.widget #tokenBody
+.tokenBody
 {
-	//flex: 0 1 100%;
-	//overflow: auto;
 	padding: 0.5em;
   margin-bottom: 1.3em; 
 }
 
 
-.widget .closeToken
+.closeToken
 {
-   display: inline-block; 
-  //position: absolute; 
   float: left/right; 
   float: right; 
   color: lightgray; 
   border: solid;
   border-width: 0.05em; 
+  color: white; 
 }
 
-.widget .tokenFooter
+.tokenFooter
 {
-  //display: inline-block; 
   position: relative; 
   float: bottom; 
   margin-top: 1em;
-  //float: left/right; 
-  //border: solid; 
 }
 
-.widget #tokenCase
+#tokenCase
 {
-  display: inline;
   float: left; 
   background-color: #BE9974; 
-  padding: 0.125em; 
+  padding: 0.25em; 
+  margin-right: 2em; 
+  font-size: 16pt; 
   /*border: solid; */
 }
 
-.widget #tokenRequired
+.tokenRequired
 {
-  display: inline;
   float: right; 
   background-color: lightblue; 
-  padding: 0.125em; 
+  padding: 0.25em; 
 }
 
-
-
-
-.widget .tokenText
-{
-  /*border: solid; 
-  border-color: white; 
-  border-width: 0.01em; 
-  padding:0.2em; 
-  */
-}
-
-.widget .tokenEachText
+.tokenEachText
 {
   display: inline; 
   border: solid; 
@@ -97,18 +74,9 @@
   border-width: 0.01em; 
   padding:0.2em;   
   margin: 0.2em; 
-  
 }
 
 #addButton
 {
   padding: 1.5em; 
 }
-
-/*
-.widget .arrangeEachToken{
-  width:100%; 
-  display:inline-block; 
-  margin-left: 1em; 
-}
-*/

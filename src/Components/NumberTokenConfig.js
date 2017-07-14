@@ -110,8 +110,6 @@ class NumberTokenConfig extends React.Component {
       return null;
     }
     
-   //alert("NumberTokenConfig id="+this.props.ruleid); 
-
     return (
       <div className="backdrop" >
         <form onSubmit={this.handleSubmit} className="number-modal">

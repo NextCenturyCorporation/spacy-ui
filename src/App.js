@@ -196,14 +196,14 @@ class App extends Component {
       
       <div className="page-wrap">
         <div id="appHeader">
+          <div id="ruleMenu">
+          <button className="button" onClick={this.addNewRule} >Add Rule </button>  <button className="button">Select All </button> <button className="button"> Deselect All</button> <button className="button"> Delete</button> <button className="button"> Duplicate</button> 
+          </div> 
           
-          <div className="run-rules"> <button className="button" onClick={this.sendData} >Run Rules </button> </div>
         </div> 
         <span className="extractionText"> Extraction Rules </span>
         <div className="extraction-rules">
-        <div id="ruleMenu">
-        <button className="button" onClick={this.addNewRule} >Add Rule </button>  <button className="button">Select All </button> <button className="button"> Deselect All</button> <button className="button"> Delete</button> <button className="button"> Duplicate</button> 
-          </div> 
+
           <div>
             {/*<Rule rulenum="1"  onProcessJSONData={this.ProcessJSONData}/> */}
               <ul className="listStyle">
@@ -218,11 +218,13 @@ class App extends Component {
           </div>
         <br/>
         <form onSubmit={this.handleSubmit}> 
-          <span className="ExtractionText"> Text</span>
+          <span className="extractionText"> Text</span>
           <div className="rulesText"> <textarea name="Text1" onChange={this.handleChange}  rows="5" className="textInput" value={this.state.test_text}/> </div> 
         </form>
         <br/>
-        <span className="ExtractionText"> Results </span>
+       <div id="run-rules"> <button className="button" onClick={this.sendData} >Run Rules </button> </div>
+
+        <span className="extractionText"> Results </span>
         <div id="result">
           <ul className="listStyle">
             {this.state.jsonRules.map((ruleid, index) => (

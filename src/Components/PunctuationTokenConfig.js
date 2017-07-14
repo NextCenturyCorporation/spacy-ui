@@ -1,44 +1,51 @@
 import React from 'react';
-import "../Styles/punctuation.css"
-import Token from "./Token"; 
+import "../Styles/wordtoken.css"
 
-class WordTokenConfig extends React.Component {
+
+class PunctuationTokenConfig extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       optional: false,
       part_of_output: false,
-      followed_by_space: false,
-      length1:"",
-      length2:"",
-      length3:"",
-      prefix:"",
-      suffix:"",
-      notinvocabulary: false,
-      allwords:"",
-      noun:false, 
-      pronoun:false, 
-      punctuation:false,
-      propernoun: false,
-      determiner: false, 
-      symbol: false,
-      adjective: false,
-      conjunction: false,
-      verb: false, 
-      prepost_position: false,
-      adverb: false, 
-      particle: false, 
-      interjection: false,
-      exact: false, 
-      lower: false, 
-      upper: false, 
-      title: false, 
-      mixed: false
+      punctuation_comma: false,
+      punctuation_period:false,
+      punctuation_semicomma: false, 
+      punctuation_qmark: false,
+      punctuation_tilde: false,
+      punctuation_colon: false,
+      punctuation_2quote: false,
+      punctuation_1quote: false,
+      punctuation_plus: false,
+      punctuation_underscore: false,
+      punctuation_amperand: false,
+      punctuation_bang: false,
+      punctuation_openbracket: false,
+      punctuation_closebracket: false,
+      punctuation_open_sbracket: false,
+      punctuation_close_sbracket: false,
+      punctuation_open_cbracket: false,
+      punctuation_close_cbracket: false,
+      punctuation_vline: false,
+      punctuation_dash: false,
+      punctuation_caret: false,
+      punctuation_pound: false,
+      punctuation_lessthan: false,
+      punctuation_greaterthan: false,
+      punctuation_equal: false,
+      punctuation_percent: false,
+      punctuation_backslash: false,
+      punctuation_asterisk: false,
+      punctuation_dollar: false
     };
 
+    //if you don't bind like this you will get an error like 
+    //TypeError: Cannot read property 'setState' of null
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.createNewToken = this.createNewToken.bind(this); 
+    this.cancelDialog = this.cancelDialog.bind(this); 
+    this.createAllPunctuations = this.createAllPunctuations.bind(this); 
 
     //console.log("WordTokenConfig = ruleid"+this.props.ruleid); 
 
@@ -72,19 +79,54 @@ class WordTokenConfig extends React.Component {
   */
   createNewToken()
   {
+    
     //alert("createNewToken Rule id = " + this.props.ruleid); 
-    this.props.onAddNewToken("W","word", this.state.allwords.split(" "), this.state.optional, 
-        this.state.part_of_output,this.state.followed_by_space, this.state.length1, this.state.length2, this.state.length3,
-        this.state.prefix,this.state.suffix, this.state.notinvocabulary,
-        this.state.noun, this.state.pronoun,this.state.punctuation, 
-        this.state.propernoun, this.state.determiner, this.state.symbol, 
-        this.state.adjective, this.state.conjunction, this.state.verb,
-        this.state.prepost_position, this.state.adverb, this.state.particle,
-        this.state.interjection,this.state.exact,this.state.lower,
-        this.state.upper, this.state.title, this.state.mixed        
-    )
+    this.props.onAddNewToken("P","punctuation", this.createAllPunctuations(), this.state.optional, 
+        this.state.part_of_output); 
   }
 
+  createAllPunctuations()
+  {
+      var allPunct = []; 
+      var ret; 
+      ret = this.state.punctuation_comma? allPunct.push(","):allPunct; 
+      ret = this.state.punctuation_period? allPunct.push("."):allPunct; 
+      ret = this.state.punctuation_semicomma? allPunct.push(";"):allPunct;  
+      ret = this.state.punctuation_qmark? allPunct.push("?"):allPunct; 
+      ret = this.state.punctuation_tilde? allPunct.push("~"):allPunct; 
+      ret = this.state.punctuation_colon? allPunct.push(":"):allPunct; 
+      ret = this.state.punctuation_2quote? allPunct.push("\""):allPunct; 
+      ret = this.state.punctuation_1quote? allPunct.push("\'"):allPunct; 
+      ret = this.state.punctuation_plus? allPunct.push("+"):allPunct; 
+      ret = this.state.punctuation_underscore? allPunct.push("_"):allPunct; 
+      ret = this.state.punctuation_amperand? allPunct.push("&"):allPunct; 
+      ret = this.state.punctuation_bang? allPunct.push("!"):allPunct; 
+      ret = this.state.punctuation_openbracket? allPunct.push("("):allPunct; 
+      ret = this.state.punctuation_closebracket? allPunct.push(")"):allPunct; 
+      ret = this.state.punctuation_open_sbracket? allPunct.push("["):allPunct; 
+      ret = this.state.punctuation_close_sbracket? allPunct.push("]"):allPunct; 
+      ret = this.state.punctuation_open_cbracket? allPunct.push("{"):allPunct; 
+      ret = this.state.punctuation_close_cbracket? allPunct.push("}"):allPunct; 
+      ret = this.state.punctuation_vline? allPunct.push("|"):allPunct; 
+      ret = this.state.punctuation_dash? allPunct.push("-"):allPunct; 
+      ret = this.state.punctuation_caret? allPunct.push("^"):allPunct; 
+      ret = this.state.punctuation_pound? allPunct.push("#"):allPunct; 
+      ret = this.state.punctuation_lessthan? allPunct.push("<"):allPunct; 
+      ret = this.state.punctuation_greaterthan? allPunct.push(">"):allPunct; 
+      ret = this.state.punctuation_equal? allPunct.push("="):allPunct; 
+      ret = this.state.punctuation_percent? allPunct.push("%"):allPunct; 
+      ret = this.state.punctuation_backslash? allPunct.push("\\"):allPunct; 
+      ret = this.state.punctuation_asterisk? allPunct.push("*"):allPunct; 
+      ret = this.state.punctuation_dollar? allPunct.push(" $"):allPunct;
+
+      return allPunct;
+
+  }
+
+  cancelDialog()
+  {
+    this.props.onCloseConfigDialog(); 
+  }  
 
   render() {
     //alert("render called")
@@ -97,196 +139,91 @@ class WordTokenConfig extends React.Component {
 
     return (
       <div className="backdrop" >
-        <form onSubmit={this.handleSubmit} className="modal">
+        <form onSubmit={this.handleSubmit} className="punctuation-modal">
           {this.props.children}
 
-          <div className="modal-header">Word Token </div>
+          <div className="punctuation-modal-header">Punctuation Token </div>
+          <div className="modal-body">
 
-          <div id="modal-body">
-            <div id="div1">
+
+            <div id="punctuation-div1">
               <label>
                 <input name="optional" type="checkbox" checked={this.state.optional} onChange={this.handleInputChange} className="wordlabels" />
                 optional
                 </label>
 
               <label>
-                <input name="part_of_output" type="checkbox" checked={this.state.part_of_output} onChange={this.handleInputChange} className="wordlabels" />
+                <input name="part_of_output" type="checkbox" checked={this.state.part_of_output} onChange={this.handleInputChange}  />
                 part of output
                 </label>
 
-              <label>
-                <input name="followed_by_space" type="checkbox" checked={this.state.followed_by_space} onChange={this.handleInputChange} className="wordlabels" />
-                followed by space
-                </label>
+
             </div>
+            <div id="punctuation-div2">
+              <div id="punctuation-div21">
+                <label className="inspeech"><input name="punctuation_comma" type="checkbox" checked={this.state.punctuation_comma} onChange={this.handleInputChange} className="wordlabels"/>,</label>
+                <label className="inspeech"><input name="punctuation_period" type="checkbox" checked={this.state.punctuation_period} onChange={this.handleInputChange} className="wordlabels"/>.</label>
+                <label className="inspeech"><input name="punctuation_semicomma" type="checkbox" checked={this.state.punctuation_semicomma} onChange={this.handleInputChange} className="wordlabels"/>;</label>     
+                <label className="inspeech"><input name="punctuation_qmark" type="checkbox" checked={this.state.punctuation_qmark} onChange={this.handleInputChange} className="wordlabels"/>?</label>                                
+                <label className="inspeech"><input name="punctuation_tilde" type="checkbox" checked={this.state.punctuation_tilde} onChange={this.handleInputChange} className="wordlabels"/>~</label>
+                <label className="inspeech"><input name="punctuation_colon" type="checkbox" checked={this.state.punctuation_colon} onChange={this.handleInputChange} className="wordlabels"/>:</label>
+                <label className="inspeech"><input name="punctuation_2quote" type="checkbox" checked={this.state.punctuation_2quote} onChange={this.handleInputChange} className="wordlabels"/>"</label>
+                <label className="inspeech"><input name="punctuation_1quote" type="checkbox" checked={this.state.punctuation_1quote} onChange={this.handleInputChange} className="wordlabels"/>'</label>                
+                <label className="inspeech"><input name="punctuation_plus" type="checkbox" checked={this.state.punctuation_plus} onChange={this.handleInputChange} className="wordlabels"/>+</label>  
+                <label className="inspeech"><input name="punctuation_underscore" type="checkbox" checked={this.state.punctuation_underscore} onChange={this.handleInputChange} className="wordlabels"/>_</label>  
+            
 
-            <div id="div2">
-
-              <div id="div21"> 
-                <label>
-                  <b>Words:</b>
-                  <textarea name="allwords" value={this.state.allwords} onChange={this.handleInputChange} rows="15" cols="10"  className="allwords"/>
-                </label>
               </div> 
 
-              <div id="div22">
-                <div id="partofspeech">
-                  <b>Part of speech: </b>
-                </div>
-                <div id="partofspeech_1">
-                    <label className="inspeech">
-                      <input name="noun" type="checkbox" checked={this.state.noun} onChange={this.handleInputChange}  className="wordlabels" />
-                      noun
-                    </label>    
 
-                    <label className="inspeech">
-                      <input name="pronoun" type="checkbox" checked={this.state.pronoun} onChange={this.handleInputChange} className="wordlabels" />
-                      pronoun
-                    </label> 
-
-                    <label className="inspeech">
-                      <input name="punctuation" type="checkbox" checked={this.state.punctuation} onChange={this.handleInputChange} className="wordlabels" />
-                      punctuation
-                    </label> 
-
-                    <label className="inspeech">
-                      <input name="propernoun" type="checkbox" checked={this.state.propernoun} onChange={this.handleInputChange} className="wordlabels" />
-                      proper noun
-                    </label> 
-
-                    <label className="inspeech">
-                      <input name="determiner" type="checkbox" checked={this.state.determiner} onChange={this.handleInputChange} className="wordlabels" />
-                      determiner
-                    </label> 
-
-                    <label className="inspeech">
-                      <input name="symbol" type="checkbox" checked={this.state.symbol} onChange={this.handleInputChange} className="wordlabels" />
-                      symbol
-                    </label>        
-
-                    <label className="inspeech">   
-                      <input name="adjective" type="checkbox" checked={this.state.adjective} onChange={this.handleInputChange} className="wordlabels" />
-                      adjective
-                    </label>      
-
-                </div>
-                <div id="partofspeech_2">
-         
-
-                    <label className="inspeech">
-                      <input name="conjunction" type="checkbox" checked={this.state.conjunction} onChange={this.handleInputChange} className="wordlabels" />
-                      conjunction
-                    </label>                     
-
-                    <label className="inspeech">
-                      <input name="verb" type="checkbox" checked={this.state.verb} onChange={this.handleInputChange} className="wordlabels" />
-                      verb
-                    </label>                     
-
-                    <label className="inspeech">
-                      <input name="prepost_position" type="checkbox" checked={this.state.prepost_position} onChange={this.handleInputChange} className="wordlabels" />
-                      pre/post-position
-                    </label>                     
-
-                    <label className="inspeech">
-                      <input name="adverb" type="checkbox" checked={this.state.adverb} onChange={this.handleInputChange} className="wordlabels" />
-                      adverb
-                    </label>                     
-
-                    <label className="inspeech">
-                      <input name="particle" type="checkbox" checked={this.state.particle} onChange={this.handleInputChange} className="wordlabels" />
-                      particle
-                    </label>                     
-
-                    <label className="inspeech">
-                      <input name="interjection" type="checkbox" checked={this.state.interjection} onChange={this.handleInputChange} className="wordlabels" />
-                      interjection
-                    </label>                       
-                </div>
-                <div id="">
-                <b>Capitalization: </b>
-                </div>
-                <div id="capitalization">
-                  <label>
-                    <input name="exact" type="checkbox" checked={this.state.exact} onChange={this.handleInputChange} className="wordlabels" />
-                    exact
-                  </label>      
-                  <label>
-                    <input name="lower" type="checkbox" checked={this.state.lower} onChange={this.handleInputChange} className="wordlabels" />
-                    lower
-                  </label>   
-                  <label>
-                    <input name="upper" type="checkbox" checked={this.state.upper} onChange={this.handleInputChange} className="wordlabels" />
-                    upper
-                  </label>   
-                  <label>
-                    <input name="title" type="checkbox" checked={this.state.title} onChange={this.handleInputChange} className="wordlabels" />
-                    title
-                  </label>             
-                  <label>
-                    <input name="mixed" type="checkbox" checked={this.state.mixed} onChange={this.handleInputChange} className="wordlabels" />
-                    mixed
-                  </label>                                                                           
-                </div> 
+               <div id="punctuation-div22">
+                <label className="inspeech" ><input name="punctuation_amperand" type="checkbox" checked={this.state.punctuation_amperand} onChange={this.handleInputChange} className="wordlabels"/>&amp;</label>  
+                <label className="inspeech"><input name="punctuation_bang" type="checkbox" checked={this.state.punctuation_bang} onChange={this.handleInputChange} className="wordlabels"/>!</label>  
+                <label className="inspeech"><input name="punctuation_openbracket" type="checkbox" checked={this.state.punctuation_openbracket} onChange={this.handleInputChange} className="wordlabels"/>(</label>
+                <label className="inspeech"><input name="punctuation_closebracket" type="checkbox" checked={this.state.punctuation_closebracket} onChange={this.handleInputChange} className="wordlabels"/>)</label>
+                <label className="inspeech"><input name="punctuation_open_sbracket" type="checkbox" checked={this.state.punctuation_open_sbracket} onChange={this.handleInputChange} className="wordlabels"/>[</label>
+                <label className="inspeech"><input name="punctuation_close_sbracket" type="checkbox" checked={this.state.punctuation_close_sbracket} onChange={this.handleInputChange} className="wordlabels"/>]</label>
+                <label className="inspeech"><input name="punctuation_open_cbracket" type="checkbox" checked={this.state.punctuation_open_cbracket} onChange={this.handleInputChange} className="wordlabels"/>&#123;</label>
+                <label className="inspeech"><input name="punctuation_close_cbracket" type="checkbox" checked={this.state.punctuation_close_cbracket} onChange={this.handleInputChange} className="wordlabels"/>}</label>
+                <label className="inspeech"><input name="punctuation_vline" type="checkbox" checked={this.state.punctuation_vline} onChange={this.handleInputChange} className="wordlabels"/>|</label>
+                <label className="inspeech"><input name="punctuation_dash" type="checkbox" checked={this.state.punctuation_dash} onChange={this.handleInputChange} className="wordlabels"/>-</label>                 
               </div> 
-            </div>
 
-            <div id="div3">
-              <label>
-                Length 1:
-                <input name="length1" type="checkbox" checked={this.state.length1} onChange={this.handleInputChange} className="wordlabels2" />
-                </label>
-
-              <label>
-                Length 2: 
-                <input name="length2" type="checkbox" checked={this.state.length2} onChange={this.handleInputChange} className="wordlabels2" />
-                </label>
-
-              <label>
-                Length 3
-                <input name="length3" type="checkbox" checked={this.state.length3} onChange={this.handleInputChange} className="wordlabels2" />
-                </label>              
-            </div> 
-          </div>
-
-          <div id="div4">
-            <div id="div41">
-              <label>
-                Prefix: 
-                <input name="prefix" type="text" value={this.state.prefix} onChange={this.handleInputChange} size="10" className="wordlabels2" />
-              </label> 
-
-              <label>
-                Suffix: 
-                <input name="suffix" type="text" value={this.state.suffix} onChange={this.handleInputChange} size="10" className="wordlabels2" />
-              </label> 
-
-              <label>
-                <input name="notinvocabulary" type="checkbox" checked={this.state.notinvocabulary} onChange={this.handleInputChange} className="wordlabels" />
-                not in vocabulary
-                </label>
+              <div id="punctuation-div23">
+                <label className="inspeech"><input name="punctuation_caret" type="checkbox" checked={this.state.punctuation_caret} onChange={this.handleInputChange} className="wordlabels"/>^</label>
+                <label className="inspeech"><input name="punctuation_pound" type="checkbox" checked={this.state.punctuation_pound} onChange={this.handleInputChange} className="wordlabels"/>#</label>
+                <label className="inspeech"><input name="punctuation_lessthan" type="checkbox" checked={this.state.punctuation_lessthan} onChange={this.handleInputChange} className="wordlabels"/>	&lt;</label>
+                <label className="inspeech"><input name="punctuation_greaterthan" type="checkbox" checked={this.state.punctuation_greaterthan} onChange={this.handleInputChange} className="wordlabels"/>	&gt;</label>
+                <label className="inspeech"><input name="punctuation_equal" type="checkbox" checked={this.state.punctuation_equal} onChange={this.handleInputChange} className="wordlabels"/>=</label> 
+                <label className="inspeech"><input name="punctuation_percent" type="checkbox" checked={this.state.punctuation_percent} onChange={this.handleInputChange} className="wordlabels"/>%</label>
+                <label className="inspeech"><input name="punctuation_backslash" type="checkbox" checked={this.state.punctuation_backslash} onChange={this.handleInputChange} className="wordlabels"/>\</label>
+                <label className="inspeech"><input name="punctuation_asterisk" type="checkbox" checked={this.state.punctuation_asterisk} onChange={this.handleInputChange} className="wordlabels"/>*</label>
+                <label className="inspeech"><input name="punctuation_dollar" type="checkbox" checked={this.state.punctuation_dollar} onChange={this.handleInputChange} className="wordlabels"/>$</label>
+                                                                                                                                               
+              </div>               
 
             </div> 
           </div> 
-
-          <div id="footer" align="right">
-            <button onClick={this.props.onClick} className="button">
+          <div id="punctuation-footer" align="right">
+            <button onClick={this.cancelDialog} className="button">
               cancel
                 </button>
             <button onClick={this.createNewToken} className="button" >
               Save
                 </button>
           </div>
+
+
         </form>
       </div>
     );
   }
 }
 
-WordTokenConfig.propTypes = {
-  onClose: React.PropTypes.func.isRequired,
+PunctuationTokenConfig.propTypes = {
+  //onClose: React.PropTypes.func.isRequired,
   show: React.PropTypes.bool,
   children: React.PropTypes.node
 };
 
-export default WordTokenConfig;
+export default PunctuationTokenConfig;
