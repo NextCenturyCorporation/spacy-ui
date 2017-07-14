@@ -5,6 +5,7 @@ import "../rule.css"
 import WordTokenConfig from './WordTokenConfig';
 import ShapeTokenConfig from './ShapeTokenConfig'; 
 import NumberTokenConfig from './NumberTokenConfig'; 
+import PunctuationTokenConfig from './PunctuationTokenConfig'; 
 
 /*GLOBAL values used for token, rule ids*/
 var GLOBAL_ID = 1; 
@@ -52,13 +53,16 @@ class Rule extends Component
         this.toggleWordConfigDialog = this.toggleWordConfigDialog.bind(this); 
         this.toggleNumberConfigDialog = this.toggleNumberConfigDialog.bind(this); 
         this.toggleShapeConfigDialog = this.toggleShapeConfigDialog.bind(this); 
+        this.togglePunctuationConfigDialog = this.togglePunctuationConfigDialog.bind(this); 
         this.showWordToken = this.showWordToken.bind(this); 
         this.onAddWordToken = this.onAddWordToken.bind(this); 
         this.onAddNumberToken = this.onAddNumberToken.bind(this); 
+        this.onAddPunctuationToken = this.onAddPunctuationToken.bind(this); 
         //this.createWordToken = this.createWordToken.bind(this); 
         this.createWordJSON = this.createWordJSON.bind(this); 
         this.createNumberJSON = this.createNumberJSON.bind(this); 
         this.showNumberToken = this.showNumberToken.bind(this); 
+        this.showPunctuationToken = this.showPunctuationToken.bind(this); 
         this.deleteToken = this.deleteToken.bind(this); 
         
     }
@@ -111,6 +115,16 @@ class Rule extends Component
     {
         this.setState({
          isNumberDialogOpen: !this.state.isNumberDialogOpen
+        });        
+    }
+
+        /*
+    This method is used to determine when to open or close the token dialog
+    */
+    togglePunctuationConfigDialog()
+    {
+        this.setState({
+         isPunctuationDialogOpen: !this.state.isPunctuationDialogOpen
         });        
     }
 
@@ -408,6 +422,14 @@ class Rule extends Component
 
     }
 
+
+    onAddPunctuationToken()
+    {
+        this.togglePunctuationConfigDialog(); 
+        //alert("onAddPunctuationToken: ")
+
+    }
+
     /*  
     This method is used to format our data so that it look like the JSON 
     that the webservice is expecting. 
@@ -495,8 +517,12 @@ class Rule extends Component
 
     showPunctuationToken()
     {
-
-
+        const tMenu = "tokenMenu" + this.state.id; 
+        
+        /*lets close the menu*/
+        var x = document.getElementById(tMenu);
+        x.style.display = 'none';
+        this.togglePunctuationConfigDialog(); 
     }
 
 
@@ -516,7 +542,8 @@ class Rule extends Component
     
     deleteToken(myToken )
     {
-        var myArray = this.state.array; 
+        /*
+        //var myArray = this.state.array; 
         console.log("Rule: Enter deleteToken"); 
         console.log("My token index is = " + myArray.findIndex(myToken)); 
 
@@ -530,6 +557,7 @@ class Rule extends Component
         }
 
         data.splice(f, 1);
+        */
     }        
 
     render() 
@@ -559,8 +587,16 @@ class Rule extends Component
                        
                     </ShapeTokenConfig>
                     */}
+                    {
+                        <PunctuationTokenConfig show={this.state.isPunctuationDialogOpen}
+                            onAddNewToken={this.onAddPunctuationToken} ruleid={this.state.id}
+                            onCloseConfigDialog={this.togglePunctuationConfig}>
+                        
+                        </PunctuationTokenConfig>
+                    }
 
-                                        {
+
+                    {
                     <NumberTokenConfig show={this.state.isNumberDialogOpen}
                         onAddNumberToken={this.onAddNumberToken} ruleid={this.state.id}
                          onCloseConfigDialog={this.toggleNumberConfigDialog}>
@@ -582,14 +618,14 @@ class Rule extends Component
                         <div id={tMenu} className="tokenMenu" >
                             <div onClick={this.showWordToken}> word </div>
                             <div onClick={this.showNumberToken}>number </div> 
-                            <div> shape </div>
-                            <div> punctuation {this.showPunctuationToken} </div>
+                            <div onClick={this.showPunctuationToken} >  punctuation </div>
+
                         </div>   
 
                         <div className="arrangeRuleTokens"> 
 
 
-                            <input type="checkbox" name="rule" value="word" className="ruleCheckBox" /> 
+                            <input type="checkbox" checked={this.state.is_active} value={true} name="rule"  className="ruleCheckBox" /> 
 
                             {this.state.array.map((token, index) => (
                                 <div className="arrangeEachToken">  {token}   </div>

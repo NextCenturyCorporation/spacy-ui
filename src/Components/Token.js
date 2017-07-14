@@ -45,17 +45,18 @@ class Token extends Component
       tokenText = this.props.numbers.map((num, index) => (
                   <div className="tokenEachText"> {num} </div>
                   ));  
-
     }
-   
+
+    const divStyle =  this.props.part_of_output? 
+                          {border: '2px solid orange'}: {border: 'none'};    
     return (
-			<div className="widget">
-        <div id="tokenHeader"> {this.props.tokenAbbreviation}   <button type='button' className='closeToken' onClick={this.deleteToken} >x</button> </div>
-				<div id="tokenBody">
+			<div className="widget" style={divStyle} >
+        <div className="tokenHeader"> {this.props.tokenAbbreviation}   <button type='button' className='closeToken' onClick={this.deleteToken} >x</button> </div>
+				<div className="tokenBody">
            <div className="tokenText"> 
                 {tokenText}
           </div>
-           <div className="tokenFooter">{isCaseRequired}  <div id="tokenRequired">{this.props.optional? 'o': 'r'}</div> </div>
+           <div className="tokenFooter">{isCaseRequired}  <div className="tokenRequired">{this.props.optional? 'o': 'r'}</div> </div>
         </div>
             
       </div> ); 
