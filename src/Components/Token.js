@@ -57,6 +57,12 @@ class Token extends Component
       tokenText = this.props.numbers.map((num, index) => (
                   <div className="tokenEachText"> {num} </div>
                   ));  
+    } else if(this.props.type === "punctuation")
+    {
+      tokenText = this.props.allwords.map((word, index) => (
+                  <div className="tokenEachText"> {word} </div>
+                  ));  
+      //isCaseRequired = <div id="tokenCase">{this.generateTokenCase()}</div>; 
     }
 
     const divStyle =  this.props.part_of_output? 

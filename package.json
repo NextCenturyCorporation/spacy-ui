@@ -2,6 +2,7 @@
   "name": "spacygui",
   "version": "0.1.0",
   "private": true,
+  "homepage" : "http://xnet.nextcentury.com/wiser/spacy",
   "dependencies": {
     "react": "^15.6.1",
     "react-dom": "^15.6.1",

@@ -61,10 +61,11 @@ class Rule extends Component
         //this.createWordToken = this.createWordToken.bind(this); 
         this.createWordJSON = this.createWordJSON.bind(this); 
         this.createNumberJSON = this.createNumberJSON.bind(this); 
+        this.createPunctuationJSON = this.createPunctuationJSON.bind(this); 
         this.showNumberToken = this.showNumberToken.bind(this); 
         this.showPunctuationToken = this.showPunctuationToken.bind(this); 
         this.deleteToken = this.deleteToken.bind(this); 
-        
+        this.updateData = this.updateData.bind(this); 
     }
 
     componentWillMount() 
@@ -423,10 +424,124 @@ class Rule extends Component
     }
 
 
-    onAddPunctuationToken()
+    onAddPunctuationToken(tokenAbbreviation1, type1,allPunctuations,optional1,
+        part_of_output1) 
     {
+        console.log("Rule: Enter onAddPunctuationToken"); 
         this.togglePunctuationConfigDialog(); 
-        //alert("onAddPunctuationToken: ")
+
+        //Keep track of the token with a generated token id. 
+        var tokenid = TOKEN_BASE+(++GLOBAL_ID); 
+        var newJSONTokenData = this.createPunctuationJSON(tokenid, tokenAbbreviation1,type1, allPunctuations, optional1, 
+            part_of_output1);    
+            
+         //Let's store the Token data in a map in the state. 
+        //We store by tokenid as the key.
+        //First grab the current copy from the component state - you can't mutate direct in the 
+        //the state object. 
+        var myTokenData = this.state.allTokenData; 
+
+        //let's update this particular token with tokenid give it the new newJSONTokenData
+        //So each time this particular token is updated we update the map. 
+        myTokenData[tokenid] = newJSONTokenData; 
+        //var size = Object.keys(myTokenData).length;
+        //console.log("createNewToken: size of the all tokens. ="+size); 
+
+        //Let's update the state with our new map data. 
+        this.setState({
+            allTokenData: myTokenData
+        });
+
+        /* All the webservice conmunication is done in App.js. So we need to propagate
+        all data to the top in App.js. onProcessJSONData is a method is Apps.js. 
+        Send all the data related to this rule up to the app.js level. */
+        this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
+                this.state.identifier, this.state.description, this.state.polarity, 
+                this.state.is_active, this.state.output_format ); 
+
+        //console.log("Here is  my JSON = " + JSON.stringify(this.state.allTokenData)); 
+
+        /*Now lets create a new token that we are doing to display in the GUI. 
+        * Note that words and punctions interchange. 
+        */
+        const newToken = <Token id={tokenid} clickable="0" tokenAbbreviation={tokenAbbreviation1}
+            type={type1} allwords={allPunctuations}  optional={optional1} 
+            part_of_output={part_of_output1}  deleteToken={this.deleteToken} />
+
+        /*We always need a plus token between regular token*/
+        const btt = <PlusToken id={PTOKEN_BASE + (++GLOBAL_ID)} clickable="1" onClick={this.handleClick.bind(this)} />;
+
+        /*Let's update the token array in the state that way it re-renders the rules.*/
+        this.setState(prevState =>
+            ({
+                array: [...prevState.array, newToken, btt]
+            }));
+           
+            
+
+    }
+
+    createPunctuationJSON(tokenid, tokenAbbreviation1,type1, allPunctuations, optional1, 
+            part_of_output1)
+    {
+        console.log("createPunctuationJSON"); 
+
+        var myCapitalization = [];
+
+        var mypartOfSpeech = []; 
+
+        var myLength=[];    
+
+        var myShape= []; 
+
+        var tokenData=
+        {
+            prefix: "",
+            suffix: "",
+            capitalization:  myCapitalization, 
+            part_of_speech: mypartOfSpeech, 
+            length: myLength,
+            maximum:"",
+            minimum:"", 
+            shape: myShape,
+            token: allPunctuations,
+            numbers: [],
+            contain_digit: "",
+            is_in_vocabulary: "",
+            is_out_of_vocabulary: "",
+            is_required: !optional1? "true": "false", 
+            type: type1, 
+            is_in_output: part_of_output1?"true":"false"
+        }; 
+
+
+        /*We need to save the JSON and send up the top level of the application layer. */
+
+        //Let's store the Token data in a map in the state. 
+        //We store by tokenid as the key.
+        //First grab the current copy from the component state - you can't mutate direct in the 
+        //the state object. 
+        var myTokenData = this.state.allTokenData; 
+
+        //let's update this particular token with tokenid give it the new newJSONTokenData
+        //So each time this particular token is updated we update the map. 
+        myTokenData[tokenid] = tokenData; 
+        //var size = Object.keys(myTokenData).length;
+        //console.log("createNewToken: size of the all tokens. ="+size); 
+
+        //Let's update the state with our new map data. 
+        this.setState({
+            allTokenData: myTokenData
+        });
+
+        /* All the webservice conmunication is done in App.js. So we need to propagate
+        all data to the top in App.js. onProcessJSONData is a method is Apps.js. 
+        Send all the data related to this rule up to the app.js level. */
+        this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
+                this.state.identifier, this.state.description, this.state.polarity, 
+                this.state.is_active, this.state.output_format ); 
+
+        return tokenData; 
 
     }
 
@@ -560,6 +675,17 @@ class Rule extends Component
         */
     }        
 
+    updateData(e)
+    {
+        console.log("Rule: Updating the top level application data")
+        /* All the webservice conmunication is done in App.js. So we need to propagate
+        all data to the top in App.js. onProcessJSONData is a method is Apps.js. 
+        Send all the data related to this rule up to the app.js level. */
+        this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
+                this.state.identifier, this.state.description, this.state.polarity, 
+                this.state.is_active, this.state.output_format ); 
+    }
+
     render() 
 	{
         const tMenu = "tokenMenu" + this.state.id; 
@@ -590,17 +716,14 @@ class Rule extends Component
                     {
                         <PunctuationTokenConfig show={this.state.isPunctuationDialogOpen}
                             onAddNewToken={this.onAddPunctuationToken} ruleid={this.state.id}
-                            onCloseConfigDialog={this.togglePunctuationConfig}>
-                        
+                            onCloseConfigDialog={this.togglePunctuationConfigDialog}>
                         </PunctuationTokenConfig>
                     }
-
 
                     {
                     <NumberTokenConfig show={this.state.isNumberDialogOpen}
                         onAddNumberToken={this.onAddNumberToken} ruleid={this.state.id}
                          onCloseConfigDialog={this.toggleNumberConfigDialog}>
-                       
                     </NumberTokenConfig>
                     }
 
@@ -625,7 +748,7 @@ class Rule extends Component
                         <div className="arrangeRuleTokens"> 
 
 
-                            <input type="checkbox" checked={this.state.is_active} value={true} name="rule"  className="ruleCheckBox" /> 
+                            <input type="checkbox" defaultChecked={this.state.is_active}  name="rule"  className="ruleCheckBox"  onChange={this.updateData}/> 
 
                             {this.state.array.map((token, index) => (
                                 <div className="arrangeEachToken">  {token}   </div>
