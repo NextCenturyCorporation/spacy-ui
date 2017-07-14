@@ -66,6 +66,8 @@ class Rule extends Component
         this.showPunctuationToken = this.showPunctuationToken.bind(this); 
         this.deleteToken = this.deleteToken.bind(this); 
         this.updateData = this.updateData.bind(this); 
+        this.handleChange_outformat = this.handleChange_outformat.bind(this); 
+        this.handleChange_description = this.handleChange_description.bind(this); 
     }
 
     componentWillMount() 
@@ -686,9 +688,24 @@ class Rule extends Component
                 this.state.is_active, this.state.output_format ); 
     }
 
+    handleChange_outformat(event)
+    {
+        this.setState({output_format: event.target.value});    
+        this.updateData(); 
+    }
+
+    handleChange_description(event)
+    {
+        this.setState({description: event.target.value});       
+        this.updateData(); 
+    }
+
     render() 
 	{
         const tMenu = "tokenMenu" + this.state.id; 
+        var msg_output_format = this.state.output_format; 
+        var msg_description = this.state.description; 
+        
         return (
             <section>
                 <div className="rulewrapper">
@@ -734,6 +751,8 @@ class Rule extends Component
                         placeholder= "Enter rule description "
                         type="text"
                         className="ruleDescription"
+                        value={msg_description}
+                        onChange={this.handleChange_description}
                         />
                     </div>
 
@@ -759,7 +778,15 @@ class Rule extends Component
                     </div> 
 
         
-                    <div id="ruleOutput"> Output format: </div> 
+                    <div id="ruleOutput"> 
+                        Output format: 
+                        <input
+                        placeholder= "e.g., {1}-{2}-{3} "
+                        type="text"
+                        className="output_format"
+                        value={msg_output_format}
+                        onChange={this.handleChange_outformat}/>
+                    </div> 
                     
                 </div>
             </section>    

@@ -3,7 +3,9 @@ body {
 }
 
 .page-wrap {
-  max-width: 900px;
+  max-width: auto;
+  min-width: 800px; 
+  min-height:600px; 
   margin: 0 auto;
   border-radius: 0.5em;
   border-style: solid; 
@@ -12,7 +14,20 @@ body {
   position: relative; 
 }
 
-.extraction-rules, .rulesText{
+.extraction-rules{
+  max-width: auto;
+  margin: 0;
+  border-radius: 0.1em;
+  border-style: solid; 
+  border-color: black; 
+  padding: 0em;  
+  border-width: 0.05em; 
+  height: 600px; 
+  overflow: scroll; 
+  /*float: bottom;*/
+}
+
+ .rulesText{
   max-width: auto;
   margin: auto;
   border-radius: 0.1em;
@@ -20,10 +35,9 @@ body {
   border-color: black; 
   padding: 1em;  
   border-width: 0.05em; 
-  
+  overflow: auto; 
   /*float: bottom;*/
 }
-
 
 /*
 .button {
@@ -40,17 +54,18 @@ body {
 */
 .extractionText{
   display: inline; 
+  font-weight: bold; 
+  font-size: 1.2em; 
 }
 
 #appHeader
 {
   border: none; 
-  padding-bottom: 30px; 
   position: relative; 
 }
 
-.run-rules{
-     float: right; 
+#run-rules{
+  margin-bottom: 20px; 
 }
 
 
@@ -86,8 +101,7 @@ body {
 }
 
 #ruleMenu{
-  margin-bottom: 3em; 
-  
+  margin-bottom: 1.5em; 
 }
 
 
@@ -108,3 +122,5 @@ body {
 .resultwrap{
   padding-right: 2em;
 }
+
+
