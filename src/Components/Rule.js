@@ -18,6 +18,9 @@ var GLOBAL_COUNT=1;
 
 const CREATEDBY_SERVER = "server"; 
 const CREATEDBY_USER = "user"; 
+const TYPE_WORD = "word"; 
+const TYPE_NUMBERS = "numbers"; 
+const TYPE_PUNCTUATION = "punctuation"; 
 /*
 The Rule class holds the different token. There can be multiple rules. 
 */
@@ -38,7 +41,7 @@ class Rule extends Component
             isPunctuationDialogOpen: false,
             allTokenData:{},
             value: 10, 
-            id:0, 
+            id:RULE_BASE+(++GLOBAL_RULE_ID), 
             description:"", 
             polarity: [],
             output_format:"",
@@ -76,19 +79,20 @@ class Rule extends Component
 
     componentWillMount() 
     {
-        const id = RULE_BASE+(++GLOBAL_RULE_ID); 
-        this.setState({id: id});
+        //const id = RULE_BASE+(++GLOBAL_RULE_ID); 
+        //this.setState({id: id});
 
         if(this.props.createdby != CREATEDBY_SERVER)
         {
             console.log("Rule was created by user")
-            const myIdentifier = "name"+"_"+"rule"+"_"+id; 
+            const myIdentifier = "name"+"_"+"rule"+"_"+this.state.id; 
             this.setState({identifier:myIdentifier}); 
         }
         else
         {
             console.log("Rule was created from server"); 
             this.loadTokensFromServer(); 
+
         }
 
 
@@ -160,33 +164,43 @@ class Rule extends Component
     loadTokensFromServer()
     {
         var myToken; 
-        for(var i = 0; i < this.props.ruleObj.pattern.length; i++) 
+        this.state.description = this.props.ruleObj.description; 
+        this.state.output_format = this.props.ruleObj.output_format; 
+        this.state.is_active = this.props.ruleObj.is_active; 
+        this.state.identifier = this.props.ruleObj.identifier; 
+        var count = this.props.ruleObj.pattern.length; 
+
+        for(var i = 0; i < count; i++) 
         {
             myToken = this.props.ruleObj.pattern[i]; 
-            if( myToken.type == "word")
+            if( myToken.type == TYPE_WORD)
             {
-                /*
-                onAddNumberToken("w","word", myToken.token, myToken.is_required, 
-                    myToken.part_of_speech, myToken.is_followed_by_space, 0, 0, 0,
-                    myToken.prefix, myToken.suffix, myToken.is_in_vocabulary, noun1, pronoun1, punctuation1,
-                    propernoun1, determiner1, symbol1, adjective1, conjunction1,verb1,  
-                    prepost_position1, adverb1, particle1, interjection1, exact1,lower1, upper1,
-                    title1, mixed1, numbers1)                
-                */
-
                 var myarr = myToken.part_of_speech; 
                 var myarr1 = myToken.capitalization; 
-                this.onAddWordToken("w","word", myToken.token, !myToken.is_required, 
-                    myToken.part_of_speech, myToken.is_followed_by_space, 0, 0, 0,
+                this.onAddWordToken("W",TYPE_WORD, myToken.token, !myToken.is_required, 
+                    myToken.part_of_output, myToken.is_followed_by_space, 0, 0, 0,
                     myToken.prefix, myToken.suffix, myToken.is_in_vocabulary, (myarr.indexOf("noun") > -1), (myarr.indexOf("pronoun") > -1), (myarr.indexOf("punctuation") > -1),
                     (myarr.indexOf("propernoun") > -1), (myarr.indexOf("determiner") > -1), (myarr.indexOf("symbol") > -1), (myarr.indexOf("adjective") > -1), (myarr.indexOf("conjunction") > -1),(myarr.indexOf("verb") > -1),  
                     (myarr.indexOf("prepost_position") > -1), (myarr.indexOf("adverb") > -1), (myarr.indexOf("particle") > -1), (myarr.indexOf("interjection") > -1), (myarr1.indexOf("exact") > -1),(myarr1.indexOf("lower") > -1), (myarr1.indexOf("upper") > -1),
-                    (myarr1.indexOf("title") > -1), (myarr1.indexOf("mixed") > -1), (myarr.indexOf("numbers") > -1), CREATEDBY_SERVER);            
+                    (myarr1.indexOf("title") > -1), (myarr1.indexOf("mixed") > -1), myToken.numbers, CREATEDBY_SERVER);            
 
             }
-            else if (myToken.type == "numbers")
+            else if (myToken.type == TYPE_NUMBERS)
             {
+                var myarr = myToken.part_of_speech; 
+                var myarr1 = myToken.capitalization; 
+                this.onAddNumberToken("#",TYPE_NUMBERS, myToken.token, !myToken.is_required, 
+                    myToken.part_of_output, myToken.is_followed_by_space, 0, 0, 0,
+                    myToken.prefix, myToken.suffix, myToken.is_in_vocabulary, (myarr.indexOf("noun") > -1), (myarr.indexOf("pronoun") > -1), (myarr.indexOf("punctuation") > -1),
+                    (myarr.indexOf("propernoun") > -1), (myarr.indexOf("determiner") > -1), (myarr.indexOf("symbol") > -1), (myarr.indexOf("adjective") > -1), (myarr.indexOf("conjunction") > -1),(myarr.indexOf("verb") > -1),  
+                    (myarr.indexOf("prepost_position") > -1), (myarr.indexOf("adverb") > -1), (myarr.indexOf("particle") > -1), (myarr.indexOf("interjection") > -1), (myarr1.indexOf("exact") > -1),(myarr1.indexOf("lower") > -1), (myarr1.indexOf("upper") > -1),
+                    (myarr1.indexOf("title") > -1), (myarr1.indexOf("mixed") > -1), myToken.numbers, CREATEDBY_SERVER);            
 
+            }
+            else if (myToken.type == TYPE_PUNCTUATION)
+            {
+                this.onAddPunctuationToken("P", TYPE_PUNCTUATION, myToken.token, !myToken.is_required, 
+                    myToken.part_of_output,CREATEDBY_SERVER); 
             }
             
         }
@@ -336,6 +350,8 @@ class Rule extends Component
         prepost_position1, adverb1, particle1, interjection1, exact1, lower1, upper1,
         title1, mixed1, numbers1, createdby) 
     {
+        console.log("Rule: Enter onAddWordToken word="+allwords1); 
+
         //alert("addNewToken + id" + this.state.id);
         //Let's close the token modal dialog box. 
         if(createdby === CREATEDBY_USER)
@@ -409,7 +425,7 @@ class Rule extends Component
         prefix1, suffix1, notinvocabulary1, noun1, pronoun1, punctuation1,
         propernoun1, determiner1, symbol1, adjective1, conjunction1, verb1,
         prepost_position1, adverb1, particle1, interjection1, exact1, lower1, upper1,
-        title1, mixed1, numbers1) 
+        title1, mixed1, numbers1, createdby) 
     {
         console.log("Rule: Enter onAddNumberToken"); 
         this.toggleNumberConfigDialog(); 
@@ -479,10 +495,11 @@ class Rule extends Component
 
 
     onAddPunctuationToken(tokenAbbreviation1, type1,allPunctuations,optional1,
-        part_of_output1) 
+        part_of_output1, createdby) 
     {
         console.log("Rule: Enter onAddPunctuationToken"); 
-        this.togglePunctuationConfigDialog(); 
+        if(createdby === CREATEDBY_USER)
+            this.togglePunctuationConfigDialog(); 
 
         //Keep track of the token with a generated token id. 
         var tokenid = TOKEN_BASE+(++GLOBAL_ID); 

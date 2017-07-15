@@ -12,6 +12,7 @@ class WordTokenConfig extends React.Component {
       optional: false,
       part_of_output: false,
       followed_by_space: false,
+      numbers:[],
       length1:"",
       length2:"",
       length3:"",
@@ -87,7 +88,7 @@ class WordTokenConfig extends React.Component {
         this.state.adjective, this.state.conjunction, this.state.verb,
         this.state.prepost_position, this.state.adverb, this.state.particle,
         this.state.interjection,this.state.exact,this.state.lower,
-        this.state.upper, this.state.title, this.state.mixed, CREATEDBY_USER    
+        this.state.upper, this.state.title, this.state.mixed, this.state.numbers, CREATEDBY_USER    
     )
   }
 
