@@ -11,6 +11,7 @@
   margin-top: 20px; 
   margin-right: 10px; 
   background-color: #C6CBDE; 
+  min-height: 7em; 
 }
 
 .tokenHeader
@@ -68,12 +69,14 @@
 
 .tokenEachText
 {
-  display: inline; 
+  display: inline-flex; 
   border: solid; 
   border-color: white; 
   border-width: 0.01em; 
   padding:0.2em;   
   margin: 0.2em; 
+  min-width:0.5em;
+  min-height:0.8em;  
 }
 
 #addButton

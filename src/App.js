@@ -6,6 +6,7 @@ import "./layout.css"
 /*We need base.64 for the authentication*/
 const base64 = require('base-64');
 var webServiceUrl = ""; 
+var webServiceUrlAllRules = ""
 
 var RULE_NUM = 0; 
 /*
@@ -25,7 +26,8 @@ class App extends Component {
       jsonresults:{},
       jsonRules:[], 
       jsonExtraction:[],
-      ruleList:[]
+      ruleList:[],
+      allServerRules:{rules:[]}
     }
 
     /*function binding required by react*/
@@ -35,28 +37,40 @@ class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);  
     this.handleChange = this.handleChange.bind(this);
     this.addNewRule = this.addNewRule.bind(this); 
+    this.getData = this.getData.bind(this); 
+    this.addRuleFromServer = this.addRuleFromServer.bind(this); 
 
   }
 
   componentWillMount() 
   {
     //    'http://52.36.12.77:9879/projects/pedro_test_01/fields/name/spacy_rules'
+
+    if(this.props.params.projectName == undefined || this.props.params.fieldName == undefined)
+    {
+      console.log("No project/field name specified. ")
+    }
+
+
     webServiceUrl = 'http://52.36.12.77:9879/projects/' + this.props.params.projectName + '/fields/'+
                  this.props.params.fieldName + '/spacy_rules'; 
-    /*
-    this.state = {
-        url: webServiceUrl
-    }
-    */
+    webServiceUrlAllRules = webServiceUrl + "?type=rules";
+
 
     console.log("webservice url = " + webServiceUrl); 
+    console.log("Address for getting rules:" +webServiceUrlAllRules); 
+
+    this.getData(); 
+
+    /*
     const initialRule = <Rule rulenum={++RULE_NUM}  onProcessJSONData={this.ProcessJSONData}/> ; 
-    //const initialRule2 = <Rule rulenum="2"  onProcessJSONData={this.ProcessJSONData}/> ; 
 
     this.setState(prevState =>
     ({
         ruleList: [...prevState.ruleList, initialRule]
     }));
+    */
+
   }
 
   /*
@@ -127,6 +141,55 @@ class App extends Component {
     return JSON.stringify(myData2Send);     
   }
 
+  getData()
+  {
+    console.log("getData  from webservice=" +webServiceUrlAllRules);
+
+    //This is how you authenticate using base64(username:password. )
+    var headers = new Headers();
+    headers.append("Authorization", "Basic " + base64.encode("memex:digdig"));
+    headers.append("accept", "application/json"); 
+    /*
+    Let's fetch the data from the webservice. 
+    */
+    //alert(webServiceUrl); 
+    fetch(webServiceUrlAllRules, {
+      method: 'GET',  
+      headers: headers, //authentication header. 
+    }).then( (response) => {
+                return response.json() })   
+                    .then( (json) => {
+                        //alert("GETDATA WoRKED"); 
+                        if(json === undefined)
+                          return; 
+
+                        if(json.rules !=undefined)
+                        {
+                          console.log("Received 200 ok"); 
+                          if(json.rules.length < 1 )
+                          {
+                            console.log("There are NO rules from this project/field combination");
+                            return; 
+                          }
+
+                          console.log("Received data contains " + json.rules.length + " rules"); 
+                          this.setState({
+                            allServerRules: json
+                          });
+
+                        this.state.allServerRules.rules.map((rule,index)=>(
+                            this.addRuleFromServer(rule)
+                        )); 
+
+
+                        }
+                        else
+                        {
+                          console.log("Error code " + json.status_code + "received"); 
+                          console.log("Error msg = " + json.error_message); 
+                        }
+                    });
+  }
 
   /*
   This method sends the JSON data across the wire and processes the response. 
@@ -178,11 +241,20 @@ class App extends Component {
   */
   addNewRule()
   {
-    const newRule = <Rule rulenum={++RULE_NUM}  onProcessJSONData={this.ProcessJSONData}/> ; 
+    const newRule = <Rule rulenum={++RULE_NUM}  onProcessJSONData={this.ProcessJSONData} createdby="user"/> ; 
     this.setState(prevState =>
     ({
         ruleList: [...prevState.ruleList, newRule]
     }));
+  }
+
+  addRuleFromServer(rule)
+  {
+    const newRule = <Rule rulenum={++RULE_NUM}  onProcessJSONData={this.ProcessJSONData}  ruleObj={rule} createdby="server"/> ; 
+    this.setState(prevState =>
+    ({
+        ruleList: [...prevState.ruleList, newRule]
+    }));    
   }
 
 
@@ -207,9 +279,13 @@ class App extends Component {
           <div>
             {/*<Rule rulenum="1"  onProcessJSONData={this.ProcessJSONData}/> */}
               <ul className="listStyle">
+
                 {this.state.ruleList.map((rule, index) => (
                   <li>{rule} </li>
                 ))}    
+                {/*this.state.allServerRules.rules.map((rule,index)=>(
+                    <Rule rulenum={index+1}  index = {index} onProcessJSONData={this.ProcessJSONData} ruleObj={rule}/>
+                ))*/}
 
               </ul>
 

@@ -47,22 +47,49 @@ class Token extends Component
     var tokenText; 
     if(this.props.type === "word")
     {
-      tokenText = this.props.allwords.map((word, index) => (
-                  <div className="tokenEachText"> {word} </div>
+      /*if there is no word text, keep
+      the space for formatting otherwise the tokens will be misaligned. */
+      if(this.props.allwords.length == 0)
+      {
+        tokenText = <div className="tokenEachText"></div>
+      }
+      else
+      {
+        tokenText = this.props.allwords.map((word, index) => (
+                  <div className="tokenEachText"> {word}</div>
                   ));  
+      }
       isCaseRequired = <div id="tokenCase">{this.generateTokenCase()}</div>; 
     }
     else if (this.props.type === "numbers")
     {
-      tokenText = this.props.numbers.map((num, index) => (
+      /*if there is no word text, keep
+      the space for formatting otherwise the tokens will be misaligned. */
+      if(this.props.numbers.length == 0)
+      {
+          tokenText = <div className="tokenEachText"></div>
+      }
+      else
+      {
+          tokenText = this.props.numbers.map((num, index) => (
                   <div className="tokenEachText"> {num} </div>
                   ));  
+
+      }
     } else if(this.props.type === "punctuation")
     {
-      tokenText = this.props.allwords.map((word, index) => (
-                  <div className="tokenEachText"> {word} </div>
+      /*if there is no word text, keep
+      the space for formatting otherwise the tokens will be misaligned. */
+      if(this.props.allwords.length == 0)
+      {
+        tokenText = <div className="tokenEachText"></div>
+      }
+      else
+      {
+        tokenText = this.props.allwords.map((word, index) => (
+                  <div className="tokenEachText"> {word}</div>
                   ));  
-      //isCaseRequired = <div id="tokenCase">{this.generateTokenCase()}</div>; 
+      }
     }
 
     const divStyle =  this.props.part_of_output? 

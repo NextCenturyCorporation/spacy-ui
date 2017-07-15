@@ -15,6 +15,9 @@ var RULE_BASE = 7000;
 var GLOBAL_RULE_ID = 1; 
 
 var GLOBAL_COUNT=1; 
+
+const CREATEDBY_SERVER = "server"; 
+const CREATEDBY_USER = "user"; 
 /*
 The Rule class holds the different token. There can be multiple rules. 
 */
@@ -68,14 +71,27 @@ class Rule extends Component
         this.updateData = this.updateData.bind(this); 
         this.handleChange_outformat = this.handleChange_outformat.bind(this); 
         this.handleChange_description = this.handleChange_description.bind(this); 
+        this.loadTokensFromServer = this.loadTokensFromServer.bind(this); 
     }
 
     componentWillMount() 
     {
         const id = RULE_BASE+(++GLOBAL_RULE_ID); 
         this.setState({id: id});
-        const myIdentifier = "name"+"_"+"rule"+"_"+id; 
-        this.setState({identifier:myIdentifier}); 
+
+        if(this.props.createdby != CREATEDBY_SERVER)
+        {
+            console.log("Rule was created by user")
+            const myIdentifier = "name"+"_"+"rule"+"_"+id; 
+            this.setState({identifier:myIdentifier}); 
+        }
+        else
+        {
+            console.log("Rule was created from server"); 
+            this.loadTokensFromServer(); 
+        }
+
+
     }
 
   
@@ -139,6 +155,41 @@ class Rule extends Component
         this.setState({
          isShapeDialogOpen: !this.state.isShapeDialogOpen
         });        
+    }
+
+    loadTokensFromServer()
+    {
+        var myToken; 
+        for(var i = 0; i < this.props.ruleObj.pattern.length; i++) 
+        {
+            myToken = this.props.ruleObj.pattern[i]; 
+            if( myToken.type == "word")
+            {
+                /*
+                onAddNumberToken("w","word", myToken.token, myToken.is_required, 
+                    myToken.part_of_speech, myToken.is_followed_by_space, 0, 0, 0,
+                    myToken.prefix, myToken.suffix, myToken.is_in_vocabulary, noun1, pronoun1, punctuation1,
+                    propernoun1, determiner1, symbol1, adjective1, conjunction1,verb1,  
+                    prepost_position1, adverb1, particle1, interjection1, exact1,lower1, upper1,
+                    title1, mixed1, numbers1)                
+                */
+
+                var myarr = myToken.part_of_speech; 
+                var myarr1 = myToken.capitalization; 
+                this.onAddWordToken("w","word", myToken.token, !myToken.is_required, 
+                    myToken.part_of_speech, myToken.is_followed_by_space, 0, 0, 0,
+                    myToken.prefix, myToken.suffix, myToken.is_in_vocabulary, (myarr.indexOf("noun") > -1), (myarr.indexOf("pronoun") > -1), (myarr.indexOf("punctuation") > -1),
+                    (myarr.indexOf("propernoun") > -1), (myarr.indexOf("determiner") > -1), (myarr.indexOf("symbol") > -1), (myarr.indexOf("adjective") > -1), (myarr.indexOf("conjunction") > -1),(myarr.indexOf("verb") > -1),  
+                    (myarr.indexOf("prepost_position") > -1), (myarr.indexOf("adverb") > -1), (myarr.indexOf("particle") > -1), (myarr.indexOf("interjection") > -1), (myarr1.indexOf("exact") > -1),(myarr1.indexOf("lower") > -1), (myarr1.indexOf("upper") > -1),
+                    (myarr1.indexOf("title") > -1), (myarr1.indexOf("mixed") > -1), (myarr.indexOf("numbers") > -1), CREATEDBY_SERVER);            
+
+            }
+            else if (myToken.type == "numbers")
+            {
+
+            }
+            
+        }
     }
     /*
     This method will create a new token and json data for the token. The json 
@@ -283,11 +334,12 @@ class Rule extends Component
         prefix1, suffix1, notinvocabulary1, noun1, pronoun1, punctuation1,
         propernoun1, determiner1, symbol1, adjective1, conjunction1, verb1,
         prepost_position1, adverb1, particle1, interjection1, exact1, lower1, upper1,
-        title1, mixed1, numbers1) 
+        title1, mixed1, numbers1, createdby) 
     {
         //alert("addNewToken + id" + this.state.id);
         //Let's close the token modal dialog box. 
-        this.toggleWordConfigDialog();
+        if(createdby === CREATEDBY_USER)
+            this.toggleWordConfigDialog();
 
         //Keep track of the token with a generated token id. 
         var tokenid = TOKEN_BASE+(++GLOBAL_ID); 
