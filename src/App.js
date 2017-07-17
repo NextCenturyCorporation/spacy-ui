@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import Rule from './Components/Rule'; 
-import "./layout.css"
+import "./layout.css"; 
 
 /*We need base.64 for the authentication*/
 const base64 = require('base-64');
@@ -9,6 +9,14 @@ var webServiceUrl = "";
 var webServiceUrlAllRules = ""
 
 var RULE_NUM = 0; 
+
+
+window.CREATEDBY_SERVER = "server"; 
+window.CREATEDBY_USER = "user"; 
+window.TYPE_WORD = "word"; 
+window.TYPE_NUMBERS = "numbers"; 
+window.TYPE_PUNCTUATION = "punctuation"; 
+
 /*
   Main Application entry point
 */
@@ -27,7 +35,8 @@ class App extends Component {
       jsonRules:[], 
       jsonExtraction:[],
       ruleList:[],
-      allServerRules:{rules:[]}
+      allServerRules:{rules:[]},
+      createdby:window.CREATEDBY_SERVER
     }
 
     /*function binding required by react*/
@@ -39,6 +48,10 @@ class App extends Component {
     this.addNewRule = this.addNewRule.bind(this); 
     this.getData = this.getData.bind(this); 
     this.addRuleFromServer = this.addRuleFromServer.bind(this); 
+    this.processRulesData = this.processRulesData.bind(this); 
+    this.getInitialState = this.getInitialState.bind(this); 
+
+
 
   }
 
@@ -46,7 +59,7 @@ class App extends Component {
   {
     //    'http://52.36.12.77:9879/projects/pedro_test_01/fields/name/spacy_rules'
 
-    if(this.props.params.projectName == undefined || this.props.params.fieldName == undefined)
+    if(this.props.params.projectName === undefined || this.props.params.fieldName === undefined)
     {
       console.log("No project/field name specified. ")
     }
@@ -95,7 +108,6 @@ class App extends Component {
   ProcessJSONData(ruleid, allTokenData, identifier1, description1, polarity1,is_active1,output_format1,is_in_output1)
   {
     console.log("ProcessJSONData....ruleid="+ruleid ); 
-    var size = Object.keys(allTokenData).length;
     //console.log("ProcessJSONData: size of the all tokens. ="+size); 
     
     /*We need the raw date from allTokenData - we need to remove the token ids since it's not necessary 
@@ -103,7 +115,7 @@ class App extends Component {
     map allTokenData */
     const result = Object.values(allTokenData);
     //console.log("ProcessJSONData...token values" + result); 
-    size = result.length;
+    //size = result.length;
     //console.log("ProcessJSONData: size of results = "+size); 
   
 
@@ -126,11 +138,37 @@ class App extends Component {
     //console.log("Data 2 send  ="+ this.buildData2Send()); 
   }
 
+  processRulesData(rule, index)
+  {
+    var myRule= this.getInitialState(); 
+    //this.state.allServerRules.rules.push(myRule); 
+    let allRules = this.state.allServerRules.rules; 
+    allRules[index] = rule; 
+
+    this.setState(prevState =>
+    ({
+        allServerRules: {rules:allRules}
+    }));
+  }
+
+  getInitialState()
+  {
+    return {
+        identifier: "",
+      description: "",
+      is_active: "true",
+      output_format:"",
+      pattern:[]
+    }
+  }
+
   /*
   This method is used to build the JSON data that will be transmitted. 
   */
   buildData2Send()
   {
+
+    //TODO: @wole change the rule data to send. 
     const values = Object.values(this.state.allRuleData); 
     var myData2Send = {};
     myData2Send={
@@ -163,6 +201,9 @@ class App extends Component {
                         if(json === undefined)
                           return; 
 
+                        /*If there is an error, then there is no json.rules - it's undefined. 
+                        *
+                        */
                         if(json.rules !=undefined)
                         {
                           console.log("Received 200 ok"); 
@@ -173,14 +214,18 @@ class App extends Component {
                           }
 
                           console.log("Received data contains " + json.rules.length + " rules"); 
+                          //this.state.createdby = window.CREATEDBY_SERVER; 
+                          
+                    
                           this.setState({
+                            createdby: window.CREATEDBY_SERVER,
                             allServerRules: json
                           });
-
+/*
                         this.state.allServerRules.rules.map((rule,index)=>(
-                            this.addRuleFromServer(rule)
+                            this.addRuleFromServer(rule, index)
                         )); 
-
+*/
 
                         }
                         else
@@ -241,14 +286,32 @@ class App extends Component {
   */
   addNewRule()
   {
-    const newRule = <Rule rulenum={++RULE_NUM}  onProcessJSONData={this.ProcessJSONData} createdby="user"/> ; 
+    /*
+    const newRule = <Rule rulenum={++RULE_NUM}  onProcessJSONData={this.ProcessJSONData} createdby="user" /> ; 
     this.setState(prevState =>
     ({
         ruleList: [...prevState.ruleList, newRule]
     }));
+    */
+    var myRule = this.getInitialState(); 
+    this.setState({
+        createdby: window.CREATEDBY_USER
+    }); 
+
+    //this.state.allServerRules.rules.push(myRule); 
+    let allRules = this.state.allServerRules.rules; 
+    allRules.push(myRule); 
+    var test = {rules:allRules}; 
+
+    this.setState(prevState =>
+    ({
+        allServerRules: {rules:allRules}
+    }));
+    
+
   }
 
-  addRuleFromServer(rule)
+  addRuleFromServer(rule, index)
   {
     const newRule = <Rule rulenum={++RULE_NUM}  onProcessJSONData={this.ProcessJSONData}  ruleObj={rule} createdby="server"/> ; 
     this.setState(prevState =>
@@ -280,12 +343,14 @@ class App extends Component {
             {/*<Rule rulenum="1"  onProcessJSONData={this.ProcessJSONData}/> */}
               <ul className="listStyle">
 
-                {this.state.ruleList.map((rule, index) => (
+                {/*this.state.ruleList.map((rule, index) => (
                   <li>{rule} </li>
-                ))}    
-                {/*this.state.allServerRules.rules.map((rule,index)=>(
-                    <Rule rulenum={index+1}  index = {index} onProcessJSONData={this.ProcessJSONData} ruleObj={rule}/>
-                ))*/}
+                ))*/}    
+                {this.state.allServerRules.rules.map((rule,index)=>(
+                   // <Rule rulenum={index+1}  index = {index} onProcessJSONData={this.ProcessJSONData} ruleObj={rule}/>
+                    <Rule rulenum={index+1} index = {index}  onProcessJSONData={this.ProcessJSONData}  ruleObj={rule} createdby={this.state.createdby} onProcessRulesData={this.ProcessRulesData}/> 
+
+                ))}
 
               </ul>
 

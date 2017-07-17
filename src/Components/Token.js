@@ -13,12 +13,12 @@ class Token extends Component
   generateTokenCase()
   {
     var tokenCase =""; 
-    var ret; 
-    tokenCase = this.props.exact? tokenCase + 'e.': tokenCase; 
-    tokenCase = this.props.lower? tokenCase + 'l.': tokenCase; 
-    tokenCase = this.props.upper? tokenCase + 'u.': tokenCase; 
-    tokenCase = this.props.title? tokenCase + 't.': tokenCase; 
-    tokenCase = this.props.mixed? tokenCase + 'm.': tokenCase;     
+    var myCap = this.props.tokenPatternData.capitalization; 
+    tokenCase = myCap.indexOf("exact")>-1? tokenCase + 'e.': tokenCase; 
+    tokenCase = myCap.indexOf("lower")>-1? tokenCase + 'l.': tokenCase; 
+    tokenCase = myCap.indexOf("upper")>-1? tokenCase + 'u.': tokenCase; 
+    tokenCase = myCap.indexOf("title")>-1? tokenCase + 't.': tokenCase; 
+    tokenCase = myCap.indexOf("mixed")>-1? tokenCase + 'm.': tokenCase;     
 
     return tokenCase; 
   }
@@ -45,54 +45,54 @@ class Token extends Component
     */
 
     var tokenText; 
-    if(this.props.type === "word")
+    if(this.props.tokenPatternData.type === window.TYPE_WORD)
     {
       /*if there is no word text, keep
       the space for formatting otherwise the tokens will be misaligned. */
-      if(this.props.allwords.length == 0)
+      if(this.props.tokenPatternData.token.length === 0)
       {
         tokenText = <div className="tokenEachText"></div>
       }
       else
       {
-        tokenText = this.props.allwords.map((word, index) => (
+        tokenText = this.props.tokenPatternData.token.map((word, index) => (
                   <div className="tokenEachText"> {word}</div>
                   ));  
       }
       isCaseRequired = <div id="tokenCase">{this.generateTokenCase()}</div>; 
     }
-    else if (this.props.type === "numbers")
+    else if (this.props.tokenPatternData.type ===window.TYPE_NUMBERS)
     {
       /*if there is no word text, keep
       the space for formatting otherwise the tokens will be misaligned. */
-      if(this.props.numbers.length == 0)
+      if(this.props.tokenPatternData.token.length === 0)
       {
           tokenText = <div className="tokenEachText"></div>
       }
       else
       {
-          tokenText = this.props.numbers.map((num, index) => (
+          tokenText = this.props.tokenPatternData.numbers.map((num, index) => (
                   <div className="tokenEachText"> {num} </div>
                   ));  
 
       }
-    } else if(this.props.type === "punctuation")
+    } else if(this.props.type === window.TYPE_PUNCTUATION)
     {
       /*if there is no word text, keep
       the space for formatting otherwise the tokens will be misaligned. */
-      if(this.props.allwords.length == 0)
+      if(this.props.tokenPatternData.token.length === 0)
       {
         tokenText = <div className="tokenEachText"></div>
       }
       else
       {
-        tokenText = this.props.allwords.map((word, index) => (
+        tokenText = this.props.tokenPatternData.allwords.map((word, index) => (
                   <div className="tokenEachText"> {word}</div>
                   ));  
       }
     }
 
-    const divStyle =  this.props.part_of_output? 
+    const divStyle =  this.props.tokenPatternData.part_of_output? 
                           {border: '2px solid orange'}: {border: 'none'};    
     return (
 			<div className="widget" style={divStyle} >
@@ -101,7 +101,7 @@ class Token extends Component
            <div className="tokenText"> 
                 {tokenText}
           </div>
-           <div className="tokenFooter">{isCaseRequired}  <div className="tokenRequired">{this.props.optional? 'o': 'r'}</div> </div>
+           <div className="tokenFooter">{isCaseRequired}  <div className="tokenRequired">{this.props.tokenPatternData.optional? 'o': 'r'}</div> </div>
         </div>
             
       </div> ); 

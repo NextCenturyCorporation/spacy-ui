@@ -6,7 +6,7 @@
       left: 0;
       right: 0; 
       background-color:rgba(0,0,0,0.3);  
-      z-index:1; 
+      z-index:20; 
       padding: 50px; 
 
 }
@@ -76,11 +76,7 @@
     height: 218px; 
 }
 
-#div3
-{
 
-    margin: 10px; 
-}
 
 #footer
 {
@@ -109,6 +105,17 @@
   *overflow: hidden;
 }
 
+#div3
+{
+    margin: 10px; 
+}
+
+#div3 input
+{
+    margin: 10px; 
+    width:30px; 
+    height: 15px; 
+}
 
 #div4
 {
