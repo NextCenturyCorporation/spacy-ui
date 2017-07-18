@@ -54,7 +54,7 @@
 #tokenCase
 {
   float: left; 
-  background-color: #BE9974; 
+  /*background-color: #BE9974; &*/
   padding: 0.25em; 
   margin-right: 2em; 
   font-size: 16pt; 

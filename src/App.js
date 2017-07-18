@@ -150,7 +150,7 @@ class App extends Component {
   getInitialState()
   {
     return {
-        identifier: "",
+      identifier: "",
       description: "",
       is_active: "true",
       output_format:"",
@@ -315,7 +315,7 @@ class App extends Component {
 
   deselectAll()
   {
-    
+
   }
 
   addRuleFromServer(rule, index)
@@ -339,7 +339,8 @@ class App extends Component {
       <div className="page-wrap">
         <div id="appHeader">
           <div id="ruleMenu">
-          <button className="button" onClick={this.addNewRule} >Add Rule </button>  <button className="button" onClick={this.selectAll}>Select All </button> <button className="button" onClick={this.deselectAll}> Deselect All</button> <button className="button"> Delete</button> <button className="button"> Duplicate</button> 
+          <button className="button" onClick={this.addNewRule} >Add Rule </button>  <button className="button" onClick={this.selectAll}>Select All </button> <button className="button" onClick={this.deselectAll}> Deselect All</button> 
+          {/*<button className="button"> Delete</button> <button className="button"> Duplicate</button> */}
           </div> 
           
         </div> 

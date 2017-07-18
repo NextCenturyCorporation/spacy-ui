@@ -59,7 +59,11 @@ class Token extends Component
                   <div className="tokenEachText"> {word}</div>
                   ));  
       }
-      isCaseRequired = <div id="tokenCase">{this.generateTokenCase()}</div>; 
+      
+      const tCase = this.generateTokenCase(); 
+      const divStyle =  tCase ==""? 
+                          {backgroundColor: 'none'}: {backgroundColor: '#BE9974'}; 
+      isCaseRequired = <div id="tokenCase" style={divStyle}>{tCase}</div>; 
     }
     else if (this.props.tokenPatternData.type ===window.TYPE_NUMBERS)
     {
