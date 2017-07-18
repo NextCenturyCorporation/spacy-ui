@@ -83,6 +83,7 @@ class Rule extends Component
         this.onEditToken = this.onEditToken.bind(this); 
         this.onModifyWordToken = this.onModifyWordToken.bind(this); 
         this.onModifyPunctuationToken = this.onModifyPunctuationToken.bind(this); 
+        this.onModifyNumberToken = this.onModifyNumberToken.bind(this); 
     }
 
     componentWillMount() 
@@ -91,7 +92,6 @@ class Rule extends Component
         //this.setState({id: id});
         var myRuleObj = this.props.ruleObj; 
         this.setState({ ruleObj: myRuleObj}); 
-
 
         if(this.props.createdby != window.CREATEDBY_SERVER)
         {
@@ -104,12 +104,8 @@ class Rule extends Component
             console.log("Rule was created from server"); 
             this.loadTokensFromServer(); 
         }
-
-
     }
 
-  
-    
     handleClick(e) 
     {  
         /* Let's determine when to show/close the menu when the 
@@ -215,7 +211,6 @@ class Rule extends Component
                     (myarr.indexOf("propernoun") > -1), (myarr.indexOf("determiner") > -1), (myarr.indexOf("symbol") > -1), (myarr.indexOf("adjective") > -1), (myarr.indexOf("conjunction") > -1),(myarr.indexOf("verb") > -1),  
                     (myarr.indexOf("prepost_position") > -1), (myarr.indexOf("adverb") > -1), (myarr.indexOf("particle") > -1), (myarr.indexOf("interjection") > -1), (myarr1.indexOf("exact") > -1),(myarr1.indexOf("lower") > -1), (myarr1.indexOf("upper") > -1),
                     (myarr1.indexOf("title") > -1), (myarr1.indexOf("mixed") > -1), myToken.numbers, window.CREATEDBY_SERVER);            
-
             }
             else if (myToken.type == window.TYPE_NUMBERS)
             {
@@ -227,7 +222,6 @@ class Rule extends Component
                     (myarr.indexOf("propernoun") > -1), (myarr.indexOf("determiner") > -1), (myarr.indexOf("symbol") > -1), (myarr.indexOf("adjective") > -1), (myarr.indexOf("conjunction") > -1),(myarr.indexOf("verb") > -1),  
                     (myarr.indexOf("prepost_position") > -1), (myarr.indexOf("adverb") > -1), (myarr.indexOf("particle") > -1), (myarr.indexOf("interjection") > -1), (myarr1.indexOf("exact") > -1),(myarr1.indexOf("lower") > -1), (myarr1.indexOf("upper") > -1),
                     (myarr1.indexOf("title") > -1), (myarr1.indexOf("mixed") > -1), myToken.numbers, window.CREATEDBY_SERVER);            
-
             }
             else if (myToken.type == window.TYPE_PUNCTUATION)
             {
@@ -258,6 +252,15 @@ class Rule extends Component
             this.togglePunctuationConfigDialog(); 
             this.setState({
                 isModifyPunctuation:true,
+                tokenModifyIndex: dataIndex
+            }); 
+        }
+        else if(this.state.allTokenData[dataIndex].type == window.TYPE_NUMBERS)
+        {
+            console.log("Tokens are = " + this.state.allTokenData[dataIndex].numbers); 
+            this.toggleNumberConfigDialog(); 
+            this.setState({
+                isModifyNumbers:true,
                 tokenModifyIndex: dataIndex
             }); 
         }
@@ -449,7 +452,7 @@ class Rule extends Component
         /* All the webservice conmunication is done in App.js. So we need to propagate
         all data to the top in App.js. onProcessJSONData is a method is Apps.js. 
         Send all the data related to this rule up to the app.js level. */
-        if(createdby === window.CREATEDBY_USER)
+        //if(createdby === window.CREATEDBY_USER)
         {        
             this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
                     this.state.identifier, this.state.description, this.state.polarity, 
@@ -475,6 +478,69 @@ class Rule extends Component
             }));
 
     }      
+
+    onModifyNumberToken(index, tokenAbbreviation1, type1, allwords1, optional1,
+        part_of_output1, followed_by_space1, length11, length21, length31,
+        prefix1, suffix1, notinvocabulary1, noun1, pronoun1, punctuation1,
+        propernoun1, determiner1, symbol1, adjective1, conjunction1, verb1,
+        prepost_position1, adverb1, particle1, interjection1, exact1, lower1, upper1,
+        title1, mixed1, numbers1, createdby) 
+    {
+        console.log("Rule: Enter onModifyNumberToken"); 
+
+
+        if(createdby === window.CREATEDBY_USER)
+            this.toggleNumberConfigDialog(); 
+        
+        //Keep track of the token with a generated token id. 
+        var tokenid = TOKEN_BASE+(++GLOBAL_ID); 
+
+        /*Get the JSON formatted data structure*/
+        var newJSONTokenData = this.createNumberJSON(tokenAbbreviation1,type1, allwords1, optional1, 
+            part_of_output1, followed_by_space1, length11, length21, length31,
+            prefix1, suffix1, notinvocabulary1, noun1, pronoun1, punctuation1,
+            propernoun1, determiner1, symbol1, adjective1, conjunction1,verb1,  
+            prepost_position1, adverb1, particle1, interjection1, exact1,lower1, upper1,
+            title1, mixed1, numbers1
+        )
+
+        //Get the state token array. 
+        var myTokenData = this.state.allTokenData; 
+
+        //Add the new token to the array of tokens by replacing 
+        myTokenData.splice(index, 1, newJSONTokenData); 
+
+        //Let's update the state with our new map data. 
+        this.setState({
+            allTokenData: myTokenData
+        });
+
+        /* All the webservice conmunication is done in App.js. So we need to propagate
+        all data to the top in App.js. onProcessJSONData is a method is Apps.js. 
+        Send all the data related to this rule up to the app.js level. */
+        this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
+                this.state.identifier, this.state.description, this.state.polarity, 
+                this.state.is_active, this.state.output_format ); 
+
+        //console.log("Here is  my JSON = " + JSON.stringify(this.state.allTokenData)); 
+
+        /*Now lets create a new token that we are doing to display in the GUI. 
+        */
+       var myTokens = this.state.array; 
+
+        const newToken = <Token id={tokenid} clickable="0" tokenAbbreviation={tokenAbbreviation1}
+            tokenPatternData={newJSONTokenData} deleteToken={this.deleteToken} />
+
+        myTokens.splice(((2*index)+1),1,newToken); 
+        /*We always need a plus token between regular token*/
+        const btt = <PlusToken id={PTOKEN_BASE + (++GLOBAL_ID)} clickable="1" onClick={this.handleClick.bind(this)} />;
+
+        /*Let's update the token array in the state that way it re-renders the rules.*/
+        this.setState(prevState =>
+            ({
+                array: myTokens
+            }));
+    }
 
     onAddNumberToken(tokenAbbreviation1, type1, allwords1, optional1,
         part_of_output1, followed_by_space1, length11, length21, length31,
@@ -666,9 +732,9 @@ class Rule extends Component
             contain_digit: "",
             is_in_vocabulary: "",
             is_out_of_vocabulary: "",
-            is_required: !optional1? "true": "false", 
+            is_required: !optional1, 
             type: type1, 
-            is_in_output: part_of_output1?"true":"false"
+            is_in_output: part_of_output1,
         }; 
 
         return tokenData; 
@@ -709,14 +775,15 @@ class Rule extends Component
             maximum:"",
             minimum:"", 
             shape: myShape,
-            token: allwords1,
+            token: [],
             numbers: numbers1,
             contain_digit: "",
             is_in_vocabulary: "",
             is_out_of_vocabulary: "",
-            is_required: !optional1? "true": "false", 
+            is_required: !optional1, 
             type: type1, 
-            is_in_output: part_of_output1?"true":"false"
+            is_in_output: part_of_output1,
+            is_followed_by_space: followed_by_space1
         }; 
 
         return tokenData; 
@@ -851,7 +918,11 @@ class Rule extends Component
                     {
                     <NumberTokenConfig show={this.state.isNumberDialogOpen}
                         onAddNumberToken={this.onAddNumberToken} ruleid={this.state.id}
-                         onCloseConfigDialog={this.toggleNumberConfigDialog}>
+                        onCloseConfigDialog={this.toggleNumberConfigDialog}
+                        modify={this.state.isModifyNumbers} tokenModifyIndex={this.state.tokenModifyIndex}
+                        tokenData={this.state.allTokenData[this.state.tokenModifyIndex]}
+                        onModifyNumberToken={this.onModifyNumberToken}
+                         >
                     </NumberTokenConfig>
                     }
 

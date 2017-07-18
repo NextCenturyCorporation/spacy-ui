@@ -250,13 +250,22 @@ class PunctuationTokenConfig extends React.Component {
     }
     
    //alert("WordTokenConfig id="+this.props.ruleid); 
+    var displayHeader; 
+    if(this.props.modify)
+    {
+       displayHeader = <div className="punctuation-modal-header">Modify Punctuation Token </div>
+    }
+    else
+    {
+       displayHeader = <div className="punctuation-modal-header">Create Punctuation Token </div>
+    }
 
     return (
       <div className="backdrop" >
         <form onSubmit={this.handleSubmit} className="punctuation-modal">
           {this.props.children}
 
-          <div className="punctuation-modal-header">Punctuation Token </div>
+          {displayHeader}
           <div className="modal-body">
 
 

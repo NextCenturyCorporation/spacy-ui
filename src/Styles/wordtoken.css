@@ -116,6 +116,12 @@
     width:30px; 
     height: 15px; 
 }
+#number-div22 input
+{
+    margin: 10px; 
+    width:30px; 
+    height: 15px;     
+}
 
 #div4
 {
@@ -272,7 +278,7 @@
 #number-prefix-suffix input
 {
     width:50px; 
-    vertical-align: top; 
+    /*vertical-align: top; */
 }
 
 /********END NUMBER TOKEN *****/
