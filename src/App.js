@@ -104,34 +104,52 @@ class App extends Component {
   /*
     The method is a callback method that called by rules.js whenver a new token is created. 
   */
-  ProcessJSONData(ruleid, allTokenData, identifier1, description1, polarity1,is_active1,output_format1,is_in_output1)
+  ProcessJSONData(ruleid, allTokenData, identifier1, description1, polarity1,is_active1,output_format1, createdby)
   {
     
     console.log("ProcessJSONData....ruleid="+ruleid ); 
+    //This allows us to make a copy. 
+    var myPattern = JSON.parse(JSON.stringify(allTokenData));
     
+    for(var i=0; i< myPattern.length ;  i++)
+    {
+      myPattern[i].is_followed_by_space = myPattern[i].is_followed_by_space.toString(); 
+      myPattern[i].is_required = myPattern[i].is_required.toString(); 
+      myPattern[i].is_in_output = myPattern[i].is_in_output.toString(); 
+    }
+    
+
+
     /*We need the raw date from allTokenData - we need to remove the token ids since it's not necessary 
     when we send the JSON file across the wire. So Object.values allows us to just grab the values from the 
     map allTokenData */
-    const result = Object.values(allTokenData);
 
     /*Let's build each rule token according to the JSON spec */
+    
+    const result = Object.values(allTokenData);
+
+
     var myRuleData = this.state.allRuleData; 
     myRuleData[ruleid] = {
         polarity: polarity1, 
         description: description1, 
-        pattern: result,
+        pattern: myPattern,
         output_format: output_format1,
         is_active: is_active1? "true":"false", //requires a string for true or false. 
         identifier: identifier1
     } 
 
     /*update the state data - kind of a way to persist the data */
-    
+
     this.setState({
       allRuleData: myRuleData
     });
-    
+
     //console.log("Data 2 send  ="+ this.buildData2Send()); 
+    if(createdby == window.CREATEDBY_USER)
+    {
+      this.sendData(); 
+    }
   }
 
   processRulesData(rule, index)
@@ -246,7 +264,7 @@ class App extends Component {
     /*
     Let's fetch the data from the webservice. 
     */
-    alert(webServiceUrl); 
+    console.log(webServiceUrl); 
     fetch(webServiceUrl, {
       method: 'POST',  
       headers: headers, //authentication header. 
@@ -356,7 +374,7 @@ class App extends Component {
                 ))*/}    
                 {this.state.allServerRules.rules.map((rule,index)=>(
                    // <Rule rulenum={index+1}  index = {index} onProcessJSONData={this.ProcessJSONData} ruleObj={rule}/>
-                    <Rule rulenum={index+1} index = {index}  onProcessJSONData={this.ProcessJSONData}  ruleObj={rule} createdby={this.state.createdby} onProcessRulesData={this.ProcessRulesData}/> 
+                    <Rule rulenum={index+1} index = {index}  onProcessJSONData={this.ProcessJSONData}  ruleObj={rule} createdby={this.state.createdby}/> 
 
                 ))}
 
@@ -377,7 +395,7 @@ class App extends Component {
         <div id="result">
           <ul className="listStyle">
             {this.state.jsonRules.map((ruleid, index) => (
-               <li> <span className="resultwrap"> Rule: <b>{ruleid}</b> </span>  Extraction: <b>{this.state.jsonExtraction[index]}</b>  </li>
+               <li> <span className="resultwrap"> Rule: <b>{ruleid+1}</b> </span>  Extraction: <b>{this.state.jsonExtraction[index]}</b>  </li>
             ))}             
           </ul>
        </div>

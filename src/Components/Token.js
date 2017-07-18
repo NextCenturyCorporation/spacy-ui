@@ -69,7 +69,7 @@ class Token extends Component
     {
       /*if there is no word text, keep
       the space for formatting otherwise the tokens will be misaligned. */
-      if(this.props.tokenPatternData.token.length === 0)
+      if(this.props.tokenPatternData.numbers.length === 0)
       {
           tokenText = <div className="tokenEachText"></div>
       }

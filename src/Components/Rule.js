@@ -330,7 +330,7 @@ class Rule extends Component
             is_required: !optional1, 
             type: type1, 
             is_in_output: part_of_output1,
-            is_followed_by_space: followed_by_space1
+            is_followed_by_space: false            
         }; 
         return tokenData; 
     }
@@ -385,7 +385,7 @@ class Rule extends Component
         {
             this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
                     this.state.identifier, this.state.description, this.state.polarity, 
-                    this.state.is_active, this.state.output_format ); 
+                    this.state.is_active, this.state.output_format,createdby ); 
         }
 
         //console.log("Here is  my JSON = " + JSON.stringify(this.state.allTokenData)); 
@@ -456,7 +456,7 @@ class Rule extends Component
         {        
             this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
                     this.state.identifier, this.state.description, this.state.polarity, 
-                    this.state.is_active, this.state.output_format ); 
+                    this.state.is_active, this.state.output_format, createdby ); 
         }
         //console.log("Here is  my JSON = " + JSON.stringify(this.state.allTokenData)); 
 
@@ -520,7 +520,7 @@ class Rule extends Component
         Send all the data related to this rule up to the app.js level. */
         this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
                 this.state.identifier, this.state.description, this.state.polarity, 
-                this.state.is_active, this.state.output_format ); 
+                this.state.is_active, this.state.output_format,createdby ); 
 
         //console.log("Here is  my JSON = " + JSON.stringify(this.state.allTokenData)); 
 
@@ -550,7 +550,6 @@ class Rule extends Component
         title1, mixed1, numbers1, createdby) 
     {
         console.log("Rule: Enter onAddNumberToken"); 
-        
         if(createdby === window.CREATEDBY_USER)
             this.toggleNumberConfigDialog(); 
         //Keep track of the token with a generated token id. 
@@ -581,7 +580,7 @@ class Rule extends Component
         Send all the data related to this rule up to the app.js level. */
         this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
                 this.state.identifier, this.state.description, this.state.polarity, 
-                this.state.is_active, this.state.output_format ); 
+                this.state.is_active, this.state.output_format, createdby ); 
 
         //console.log("Here is  my JSON = " + JSON.stringify(this.state.allTokenData)); 
 
@@ -631,7 +630,7 @@ class Rule extends Component
         Send all the data related to this rule up to the app.js level. */
         this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
                 this.state.identifier, this.state.description, this.state.polarity, 
-                this.state.is_active, this.state.output_format ); 
+                this.state.is_active, this.state.output_format,createdby ); 
 
         //console.log("Here is  my JSON = " + JSON.stringify(this.state.allTokenData)); 
 
@@ -683,7 +682,7 @@ class Rule extends Component
         Send all the data related to this rule up to the app.js level. */
         this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
                 this.state.identifier, this.state.description, this.state.polarity, 
-                this.state.is_active, this.state.output_format ); 
+                this.state.is_active, this.state.output_format, createdby ); 
 
         //console.log("Here is  my JSON = " + JSON.stringify(this.state.allTokenData)); 
 
@@ -737,6 +736,7 @@ class Rule extends Component
             is_required: !optional1, 
             type: type1, 
             is_in_output: part_of_output1,
+            is_followed_by_space: false            
         }; 
 
         return tokenData; 
@@ -785,7 +785,7 @@ class Rule extends Component
             is_required: !optional1, 
             type: type1, 
             is_in_output: part_of_output1,
-            is_followed_by_space: followed_by_space1
+            is_followed_by_space: false            
         }; 
 
         return tokenData; 
@@ -854,7 +854,7 @@ class Rule extends Component
         Send all the data related to this rule up to the app.js level. */
         this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
                 this.state.identifier, this.state.description, this.state.polarity, 
-                this.state.is_active, this.state.output_format ); 
+                this.state.is_active, this.state.output_format, window.CREATEDBY_USER ); 
     }
 
     handleChange_outformat(event)
