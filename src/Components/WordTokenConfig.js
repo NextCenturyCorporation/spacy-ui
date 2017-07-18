@@ -153,8 +153,32 @@ class WordTokenConfig extends React.Component {
       console.log("componentWillReceiveProps: Tokens are =" + nextProps.tokenData); 
       this.setState({
         allwords: tData.token.join(" "),
-
+        optional: !tData.is_required, 
+        part_of_output: tData.is_in_output,
+        upper: tData.capitalization.indexOf("upper")>-1? true:false,
+        lower: tData.capitalization.indexOf("lower")>-1? true:false,
+        title: tData.capitalization.indexOf("title")>-1? true:false, 
+        mixed: tData.capitalization.indexOf("mixed")>-1? true:false, 
+        exact: tData.capitalization.indexOf("exact")>-1? true:false, 
+        noun: tData.part_of_speech.indexOf("noun")>-1? true:false, 
+        pronoun:tData.part_of_speech.indexOf("pronoun")>-1? true:false, 
+        punctuation:tData.part_of_speech.indexOf("punctuation")>-1? true:false,
+        propernoun: tData.part_of_speech.indexOf("propernoun")>-1? true:false,
+        determiner: tData.part_of_speech.indexOf("determiner")>-1? true:false, 
+        symbol: tData.part_of_speech.indexOf("symbol")>-1? true:false,
+        adjective: tData.part_of_speech.indexOf("adjective")>-1? true:false,
+        conjunction: tData.part_of_speech.indexOf("conjunction")>-1? true:false,
+        verb: tData.part_of_speech.indexOf("verb")>-1? true:false, 
+        prepost_position: tData.part_of_speech.indexOf("pre/post-position")>-1? true:false,
+        adverb: tData.part_of_speech.indexOf("adverb")>-1? true:false, 
+        particle: tData.part_of_speech.indexOf("particle")>-1? true:false, 
+        interjection: tData.part_of_speech.indexOf("interjection")>-1? true:false, 
+        length1: tData.length[0], 
+        length2: tData.length[1],
+        length3: tData.length[2],
+        followed_by_space: tData.is_followed_by_space
       })
+
     } 
     else
     {

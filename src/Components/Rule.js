@@ -272,11 +272,14 @@ class Rule extends Component
         lower1? myCapitalization.push("lower"):myCapitalization; 
         upper1? myCapitalization.push("upper"):myCapitalization; 
         mixed1? myCapitalization.push("mixed"): myCapitalization;
+        title1? myCapitalization.push("title"): myCapitalization;
+        
 
         var mypartOfSpeech = []; 
         noun1? mypartOfSpeech.push("noun"): mypartOfSpeech;
         pronoun1? mypartOfSpeech.push("pronoun"): mypartOfSpeech;
         punctuation1? mypartOfSpeech.push("punctuation"): mypartOfSpeech;
+        propernoun1? mypartOfSpeech.push("propernoun"): mypartOfSpeech;        
         determiner1? mypartOfSpeech.push("determiner"): mypartOfSpeech;
         symbol1? mypartOfSpeech.push("symbol"): mypartOfSpeech;
         adjective1? mypartOfSpeech.push("adjective"): mypartOfSpeech;
@@ -312,7 +315,8 @@ class Rule extends Component
             is_out_of_vocabulary: "",
             is_required: !optional1? "true": "false", 
             type: type1, 
-            is_in_output: part_of_output1?"true":"false"
+            is_in_output: part_of_output1?"true":"false",
+            is_followed_by_space: followed_by_space1
         }; 
         return tokenData; 
     }

@@ -90,8 +90,6 @@
 	font-size: 1em;
 	font-weight: normal;
   position: relative; 
-  border: solid; 
-  border-color: black; 
   margin-top: 20px; 
   margin-right: 10px;
   z-index:5; 
@@ -103,8 +101,6 @@
     top:0; 
     right:0; 
     border-width: 0.05em; 
-    border:solid; 
-    border-color:red; 
     width: 30px;
     height: 30px; 
     z-index:10;
@@ -116,8 +112,6 @@
     top:0; 
     left:0; 
     border-width: 0.05em; 
-    border:solid; 
-    border-color:red; 
     width: 30px;
     height: 30px; 
     z-index:10;
@@ -125,7 +119,5 @@
 
 .wrapPlusToken
 {
-  border:solid;
-  border-color:yellow; 
   z-index: 10; 
 }

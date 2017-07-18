@@ -93,7 +93,9 @@ class Token extends Component
     }
 
     const divStyle =  this.props.tokenPatternData.part_of_output? 
-                          {border: '2px solid orange'}: {border: 'none'};    
+                          {border: '2px solid orange'}: {border: 'none'};  
+    if(this.props.tokenPatternData.part_of_output)  
+        alert("part of output"); 
     return (
 			<div className="widget" style={divStyle} >
         <div className="tokenHeader"> {this.props.tokenAbbreviation}   <button type='button' className='closeToken' onClick={this.deleteToken} >x</button> </div>
