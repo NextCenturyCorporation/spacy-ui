@@ -76,7 +76,7 @@ class Token extends Component
                   ));  
 
       }
-    } else if(this.props.type === window.TYPE_PUNCTUATION)
+    } else if(this.props.tokenPatternData.type === window.TYPE_PUNCTUATION)
     {
       /*if there is no word text, keep
       the space for formatting otherwise the tokens will be misaligned. */
@@ -86,7 +86,7 @@ class Token extends Component
       }
       else
       {
-        tokenText = this.props.tokenPatternData.allwords.map((word, index) => (
+        tokenText = this.props.tokenPatternData.token.map((word, index) => (
                   <div className="tokenEachText"> {word}</div>
                   ));  
       }

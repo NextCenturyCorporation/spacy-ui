@@ -144,8 +144,8 @@ class WordTokenConfig extends React.Component {
   */
   componentWillReceiveProps(nextProps)
   {
-    console.log("Enter componentWillReceiveProps  comp = " +
-        nextProps.tokenData === this.props.tokenData ); 
+    console.log("WordTokenConfig: componentWillReceiveProps"); 
+    console.log("Was Modify clicked = " + this.props.modify);   
     
     var tData = nextProps.tokenData; 
     if(nextProps.modify)

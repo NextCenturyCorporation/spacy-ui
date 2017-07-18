@@ -140,7 +140,15 @@ class Rule extends Component
     {
         this.setState({
          isWordDialogOpen: !this.state.isWordDialogOpen
-        });        
+        });  
+        
+        //Once the dialog closes, we need to turn off modify if it's still on. 
+        if(!this.setState.isWordDialogOpen)
+        {   
+            this.setState({
+                isModify:false
+            })
+        }
     }
 
 
@@ -233,6 +241,16 @@ class Rule extends Component
                 tokenModifyIndex: dataIndex
             })
         }
+        else if(this.state.allTokenData[dataIndex].type == window.TYPE_PUNCTUATION)
+        {
+            console.log("Tokens are = " + this.state.allTokenData[dataIndex].token); 
+            this.togglePunctuationConfigDialog(); 
+            this.setState({
+                isModify:true,
+                tokenModifyIndex: dataIndex
+            }); 
+        }
+
 
     }
 
@@ -345,9 +363,12 @@ class Rule extends Component
         /* All the webservice conmunication is done in App.js. So we need to propagate
         all data to the top in App.js. onProcessJSONData is a method is Apps.js. 
         Send all the data related to this rule up to the app.js level. */
-        this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
-                this.state.identifier, this.state.description, this.state.polarity, 
-                this.state.is_active, this.state.output_format ); 
+        if(createdby === window.CREATEDBY_USER)
+        {
+            this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
+                    this.state.identifier, this.state.description, this.state.polarity, 
+                    this.state.is_active, this.state.output_format ); 
+        }
 
         //console.log("Here is  my JSON = " + JSON.stringify(this.state.allTokenData)); 
 
@@ -413,10 +434,12 @@ class Rule extends Component
         /* All the webservice conmunication is done in App.js. So we need to propagate
         all data to the top in App.js. onProcessJSONData is a method is Apps.js. 
         Send all the data related to this rule up to the app.js level. */
-        this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
-                this.state.identifier, this.state.description, this.state.polarity, 
-                this.state.is_active, this.state.output_format ); 
-
+        if(createdby === window.CREATEDBY_USER)
+        {        
+            this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
+                    this.state.identifier, this.state.description, this.state.polarity, 
+                    this.state.is_active, this.state.output_format ); 
+        }
         //console.log("Here is  my JSON = " + JSON.stringify(this.state.allTokenData)); 
 
         /*Now lets create a new token that we are doing to display in the GUI. 
@@ -451,7 +474,7 @@ class Rule extends Component
         var tokenid = TOKEN_BASE+(++GLOBAL_ID); 
 
         /*Get the JSON formatted data structure*/
-        var newJSONTokenData = this.createNumberJSON(tokenid, tokenAbbreviation1,type1, allwords1, optional1, 
+        var newJSONTokenData = this.createNumberJSON(tokenAbbreviation1,type1, allwords1, optional1, 
             part_of_output1, followed_by_space1, length11, length21, length31,
             prefix1, suffix1, notinvocabulary1, noun1, pronoun1, punctuation1,
             propernoun1, determiner1, symbol1, adjective1, conjunction1,verb1,  
@@ -507,7 +530,7 @@ class Rule extends Component
         //Keep track of the token with a generated token id. 
         var tokenid = TOKEN_BASE+(++GLOBAL_ID); 
 
-        var newJSONTokenData = this.createPunctuationJSON(tokenid, tokenAbbreviation1,type1, allPunctuations, optional1, 
+        var newJSONTokenData = this.createPunctuationJSON(tokenAbbreviation1,type1, allPunctuations, optional1, 
             part_of_output1);    
             
         //Get the state token array. 
@@ -549,7 +572,7 @@ class Rule extends Component
 
     }
 
-    createPunctuationJSON(tokenid, tokenAbbreviation1,type1, allPunctuations, optional1, 
+    createPunctuationJSON(tokenAbbreviation1,type1, allPunctuations, optional1, 
             part_of_output1)
     {
         console.log("createPunctuationJSON"); 
@@ -589,7 +612,7 @@ class Rule extends Component
     This method is used to format our data so that it look like the JSON 
     that the webservice is expecting. 
     */
-    createNumberJSON(tokenid, tokenAbbreviation1,type1, allwords1, optional1, 
+    createNumberJSON(tokenAbbreviation1,type1, allwords1, optional1, 
             part_of_output1, followed_by_space1, length11, length21, length31,
             prefix1, suffix1, notinvocabulary1, noun1, pronoun1, punctuation1,
             propernoun1, determiner1, symbol1, adjective1, conjunction1,verb1,  
@@ -753,7 +776,11 @@ class Rule extends Component
                     {
                         <PunctuationTokenConfig show={this.state.isPunctuationDialogOpen}
                             onAddNewToken={this.onAddPunctuationToken} ruleid={this.state.id}
-                            onCloseConfigDialog={this.togglePunctuationConfigDialog}>
+                            onCloseConfigDialog={this.togglePunctuationConfigDialog}
+                            modify={this.state.isModify} tokenModifyIndex={this.state.tokenModifyIndex}
+                            tokenData={this.state.allTokenData[this.state.tokenModifyIndex]}
+                        onModifyWordToken={this.onModifyWordToken}
+                            >
                         </PunctuationTokenConfig>
                     }
 

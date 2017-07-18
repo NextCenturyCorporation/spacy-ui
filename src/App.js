@@ -107,17 +107,13 @@ class App extends Component {
   */
   ProcessJSONData(ruleid, allTokenData, identifier1, description1, polarity1,is_active1,output_format1,is_in_output1)
   {
+    
     console.log("ProcessJSONData....ruleid="+ruleid ); 
-    //console.log("ProcessJSONData: size of the all tokens. ="+size); 
     
     /*We need the raw date from allTokenData - we need to remove the token ids since it's not necessary 
     when we send the JSON file across the wire. So Object.values allows us to just grab the values from the 
     map allTokenData */
     const result = Object.values(allTokenData);
-    //console.log("ProcessJSONData...token values" + result); 
-    //size = result.length;
-    //console.log("ProcessJSONData: size of results = "+size); 
-  
 
     /*Let's build each rule token according to the JSON spec */
     var myRuleData = this.state.allRuleData; 
@@ -131,10 +127,11 @@ class App extends Component {
     } 
 
     /*update the state data - kind of a way to persist the data */
+    /*
     this.setState({
       allRuleData: myRuleData
     });
-
+    */
     //console.log("Data 2 send  ="+ this.buildData2Send()); 
   }
 
