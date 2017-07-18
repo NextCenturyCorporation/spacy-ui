@@ -49,7 +49,9 @@ class Rule extends Component
             is_active: true, 
             identifier:"",
             is_in_output:true,
-            isModify: false,
+            isModifyWord: false,
+            isModifyPunctuation: false, 
+            isModifyNumbers: false, 
             tokenModifyIndex: -1
         }
 
@@ -80,6 +82,7 @@ class Rule extends Component
         this.loadTokensFromServer = this.loadTokensFromServer.bind(this); 
         this.onEditToken = this.onEditToken.bind(this); 
         this.onModifyWordToken = this.onModifyWordToken.bind(this); 
+        this.onModifyPunctuationToken = this.onModifyPunctuationToken.bind(this); 
     }
 
     componentWillMount() 
@@ -117,7 +120,7 @@ class Rule extends Component
 
         //reset some variable. 
         this.setState({
-            isModify:false,
+            isModifyWord:false,
             tokenModifyIndex: -1
         })
 
@@ -146,7 +149,7 @@ class Rule extends Component
         if(!this.setState.isWordDialogOpen)
         {   
             this.setState({
-                isModify:false
+                isModifyWord:false
             })
         }
     }
@@ -198,8 +201,8 @@ class Rule extends Component
             {
                 var myarr = myToken.part_of_speech; 
                 var myarr1 = myToken.capitalization; 
-                this.onAddWordToken("W",window.TYPE_WORD, myToken.token, !myToken.is_required, 
-                    myToken.part_of_output, myToken.is_followed_by_space, 0, 0, 0,
+                this.onAddWordToken("W",window.TYPE_WORD, myToken.token, !(myToken.is_required=='true'), 
+                    myToken.is_in_output=='true', myToken.is_followed_by_space == 'true', 0, 0, 0,
                     myToken.prefix, myToken.suffix, myToken.is_in_vocabulary, (myarr.indexOf("noun") > -1), (myarr.indexOf("pronoun") > -1), (myarr.indexOf("punctuation") > -1),
                     (myarr.indexOf("propernoun") > -1), (myarr.indexOf("determiner") > -1), (myarr.indexOf("symbol") > -1), (myarr.indexOf("adjective") > -1), (myarr.indexOf("conjunction") > -1),(myarr.indexOf("verb") > -1),  
                     (myarr.indexOf("prepost_position") > -1), (myarr.indexOf("adverb") > -1), (myarr.indexOf("particle") > -1), (myarr.indexOf("interjection") > -1), (myarr1.indexOf("exact") > -1),(myarr1.indexOf("lower") > -1), (myarr1.indexOf("upper") > -1),
@@ -210,8 +213,8 @@ class Rule extends Component
             {
                 var myarr = myToken.part_of_speech; 
                 var myarr1 = myToken.capitalization; 
-                this.onAddNumberToken("#",window.TYPE_NUMBERS, myToken.token, !myToken.is_required, 
-                    myToken.part_of_output, myToken.is_followed_by_space, 0, 0, 0,
+                this.onAddNumberToken("#",window.TYPE_NUMBERS, myToken.token, !(myToken.is_required=='true'), 
+                    myToken.is_in_output=='true', myToken.is_followed_by_space == 'true', 0, 0, 0,
                     myToken.prefix, myToken.suffix, myToken.is_in_vocabulary, (myarr.indexOf("noun") > -1), (myarr.indexOf("pronoun") > -1), (myarr.indexOf("punctuation") > -1),
                     (myarr.indexOf("propernoun") > -1), (myarr.indexOf("determiner") > -1), (myarr.indexOf("symbol") > -1), (myarr.indexOf("adjective") > -1), (myarr.indexOf("conjunction") > -1),(myarr.indexOf("verb") > -1),  
                     (myarr.indexOf("prepost_position") > -1), (myarr.indexOf("adverb") > -1), (myarr.indexOf("particle") > -1), (myarr.indexOf("interjection") > -1), (myarr1.indexOf("exact") > -1),(myarr1.indexOf("lower") > -1), (myarr1.indexOf("upper") > -1),
@@ -220,8 +223,8 @@ class Rule extends Component
             }
             else if (myToken.type == window.TYPE_PUNCTUATION)
             {
-                this.onAddPunctuationToken("P", window.TYPE_PUNCTUATION, myToken.token, !myToken.is_required, 
-                    myToken.part_of_output,window.CREATEDBY_SERVER); 
+                this.onAddPunctuationToken("P", window.TYPE_PUNCTUATION, myToken.token, !(myToken.is_required=='true'), 
+                    myToken.is_in_output=='true',window.CREATEDBY_SERVER); 
             }
             
         }
@@ -237,7 +240,7 @@ class Rule extends Component
             console.log("Tokens are = " + this.state.allTokenData[dataIndex].token); 
             this.toggleWordConfigDialog(); 
             this.setState({
-                isModify:true,
+                isModifyWord:true,
                 tokenModifyIndex: dataIndex
             })
         }
@@ -246,7 +249,7 @@ class Rule extends Component
             console.log("Tokens are = " + this.state.allTokenData[dataIndex].token); 
             this.togglePunctuationConfigDialog(); 
             this.setState({
-                isModify:true,
+                isModifyWord:true,
                 tokenModifyIndex: dataIndex
             }); 
         }
@@ -313,9 +316,9 @@ class Rule extends Component
             contain_digit: "",
             is_in_vocabulary: "",
             is_out_of_vocabulary: "",
-            is_required: !optional1? "true": "false", 
+            is_required: !optional1, 
             type: type1, 
-            is_in_output: part_of_output1?"true":"false",
+            is_in_output: part_of_output1,
             is_followed_by_space: followed_by_space1
         }; 
         return tokenData; 
@@ -523,6 +526,14 @@ class Rule extends Component
 
     }
 
+    onModifyPunctuationToken(tokenAbbreviation1, type1,allPunctuations,optional1,
+        part_of_output1, createdby) 
+    {
+        console.log("Rule: Enter onModifyPunctuationToken"); 
+        if(createdby === window.CREATEDBY_USER)
+            this.togglePunctuationConfigDialog();         
+
+    }
 
     onAddPunctuationToken(tokenAbbreviation1, type1,allPunctuations,optional1,
         part_of_output1, createdby) 
@@ -745,11 +756,12 @@ class Rule extends Component
         var msg_description = this.state.description; 
 
         var wordTokenEditor; 
-
+        if(this.state.isModifyWord)
+            console.log("Rule->render: Modify was clicked!!!!!!!!!!"); 
         wordTokenEditor =   <WordTokenConfig show={this.state.isWordDialogOpen}
                         onAddNewToken={this.onAddWordToken} ruleid={this.state.id}
                          onCloseConfigDialog={this.toggleWordConfigDialog}
-                        modify={this.state.isModify} tokenModifyIndex={this.state.tokenModifyIndex}
+                        modify={this.state.isModifyWord} tokenModifyIndex={this.state.tokenModifyIndex}
                         tokenData={this.state.allTokenData[this.state.tokenModifyIndex]}
                         onModifyWordToken={this.onModifyWordToken}>
                     </WordTokenConfig>
@@ -781,9 +793,9 @@ class Rule extends Component
                         <PunctuationTokenConfig show={this.state.isPunctuationDialogOpen}
                             onAddNewToken={this.onAddPunctuationToken} ruleid={this.state.id}
                             onCloseConfigDialog={this.togglePunctuationConfigDialog}
-                            modify={this.state.isModify} tokenModifyIndex={this.state.tokenModifyIndex}
+                            modify={this.state.isModifyPunctuation} tokenModifyIndex={this.state.tokenModifyIndex}
                             tokenData={this.state.allTokenData[this.state.tokenModifyIndex]}
-                        onModifyWordToken={this.onModifyWordToken}
+                        onModifyPunctuationToken={this.onModifyPunctuationToken}
                             >
                         </PunctuationTokenConfig>
                     }

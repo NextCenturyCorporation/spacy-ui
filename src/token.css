@@ -12,6 +12,8 @@
   margin-right: 0px; 
   background-color: #C6CBDE; 
   min-height: 7em; 
+  border:solid; 
+  border-color: blue; 
 }
 
 .tokenHeader

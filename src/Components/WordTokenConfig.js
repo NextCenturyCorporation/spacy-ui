@@ -57,11 +57,12 @@ class WordTokenConfig extends React.Component {
     //alert("WordTokenConfig id="+this.props.ruleid); 
     console.log("WordTokenConfig: componentWillMount")
     console.log("Was Modify clicked = " + this.props.modify);     
+    console.log("Is token part of output "+ this.state.part_of_output); 
   }
 
   handleInputChange(event) 
   {
-
+    console.log("handleInputChange"); 
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
@@ -144,13 +145,16 @@ class WordTokenConfig extends React.Component {
   */
   componentWillReceiveProps(nextProps)
   {
+    
     console.log("WordTokenConfig: componentWillReceiveProps"); 
-    console.log("Was Modify clicked = " + this.props.modify);   
     
     var tData = nextProps.tokenData; 
+    console.log("Was Modify clicked = " + nextProps.modify);   
+    console.log("componentWillReceiveProps: part of output = " + this.props.modify);   
+
     if(nextProps.modify)
     {
-      console.log("componentWillReceiveProps: Tokens are =" + nextProps.tokenData); 
+      console.log("componentWillReceiveProps: Tokens are = " + tData.is_in_output); 
       this.setState({
         allwords: tData.token.join(" "),
         optional: !tData.is_required, 
@@ -185,6 +189,7 @@ class WordTokenConfig extends React.Component {
       this.resetState(); 
 
     }
+   
   }
 
   resetState()
@@ -243,6 +248,8 @@ class WordTokenConfig extends React.Component {
     }
 
 
+    if(this.state.part_of_output)
+      console.log("WordTokenConfig->render: part of outputtttttttttttttttttt"); 
    //alert("WordTokenConfig id="+this.props.ruleid); 
 
     return (

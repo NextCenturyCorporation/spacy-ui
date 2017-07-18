@@ -92,10 +92,9 @@ class Token extends Component
       }
     }
 
-    const divStyle =  this.props.tokenPatternData.part_of_output? 
+    const divStyle =  this.props.tokenPatternData.is_in_output? 
                           {border: '2px solid orange'}: {border: 'none'};  
-    if(this.props.tokenPatternData.part_of_output)  
-        alert("part of output"); 
+
     return (
 			<div className="widget" style={divStyle} >
         <div className="tokenHeader"> {this.props.tokenAbbreviation}   <button type='button' className='closeToken' onClick={this.deleteToken} >x</button> </div>
@@ -103,7 +102,7 @@ class Token extends Component
            <div className="tokenText"> 
                 {tokenText}
           </div>
-           <div className="tokenFooter">{isCaseRequired}  <div className="tokenRequired">{this.props.tokenPatternData.optional? 'o': 'r'}</div> </div>
+           <div className="tokenFooter">{isCaseRequired}  <div className="tokenRequired">{this.props.tokenPatternData.is_required? 'r': 'o'}</div> </div>
         </div>
             
       </div> ); 
