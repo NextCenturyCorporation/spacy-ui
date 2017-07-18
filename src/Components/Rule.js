@@ -172,7 +172,15 @@ class Rule extends Component
     {
         this.setState({
          isPunctuationDialogOpen: !this.state.isPunctuationDialogOpen
-        });        
+        });    
+        
+                //Once the dialog closes, we need to turn off modify if it's still on. 
+        if(!this.setState.isWordDialogOpen)
+        {   
+            this.setState({
+                isModifyPunctuation:false
+            })
+        }
     }
 
     /*
@@ -249,7 +257,7 @@ class Rule extends Component
             console.log("Tokens are = " + this.state.allTokenData[dataIndex].token); 
             this.togglePunctuationConfigDialog(); 
             this.setState({
-                isModifyWord:true,
+                isModifyPunctuation:true,
                 tokenModifyIndex: dataIndex
             }); 
         }
@@ -370,7 +378,7 @@ class Rule extends Component
         /* All the webservice conmunication is done in App.js. So we need to propagate
         all data to the top in App.js. onProcessJSONData is a method is Apps.js. 
         Send all the data related to this rule up to the app.js level. */
-        if(createdby === window.CREATEDBY_USER)
+        //if(createdby === window.CREATEDBY_USER)
         {
             this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
                     this.state.identifier, this.state.description, this.state.polarity, 
@@ -526,13 +534,56 @@ class Rule extends Component
 
     }
 
-    onModifyPunctuationToken(tokenAbbreviation1, type1,allPunctuations,optional1,
+    onModifyPunctuationToken(index, tokenAbbreviation1, type1,allPunctuations,optional1,
         part_of_output1, createdby) 
     {
         console.log("Rule: Enter onModifyPunctuationToken"); 
         if(createdby === window.CREATEDBY_USER)
-            this.togglePunctuationConfigDialog();         
+            this.togglePunctuationConfigDialog(); 
 
+        //Keep track of the token with a generated token id. 
+        var tokenid = TOKEN_BASE+(++GLOBAL_ID); 
+
+        var newJSONTokenData = this.createPunctuationJSON(tokenAbbreviation1,type1, allPunctuations, optional1, 
+            part_of_output1);    
+            
+        //Get the state token array. 
+        var myTokenData = this.state.allTokenData; 
+
+        //Add the new token to the array of tokens. 
+        myTokenData.splice(index, 1, newJSONTokenData); 
+
+        //Let's update the state with our new map data. 
+        this.setState({
+            allTokenData: myTokenData
+        });
+
+        /* All the webservice conmunication is done in App.js. So we need to propagate
+        all data to the top in App.js. onProcessJSONData is a method is Apps.js. 
+        Send all the data related to this rule up to the app.js level. */
+        this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
+                this.state.identifier, this.state.description, this.state.polarity, 
+                this.state.is_active, this.state.output_format ); 
+
+        //console.log("Here is  my JSON = " + JSON.stringify(this.state.allTokenData)); 
+
+        /*Now lets create a new token that we are doing to display in the GUI. 
+        * Note that words and punctions interchange. 
+        */
+       var myTokens = this.state.array; 
+
+        const newToken = <Token id={tokenid} clickable="0" tokenAbbreviation={tokenAbbreviation1}
+            tokenPatternData={newJSONTokenData} deleteToken={this.deleteToken} />
+
+        myTokens.splice(((2*index)+1),1,newToken); 
+        /*We always need a plus token between regular token*/
+        const btt = <PlusToken id={PTOKEN_BASE + (++GLOBAL_ID)} clickable="1" onClick={this.handleClick.bind(this)} />;
+
+        /*Let's update the token array in the state that way it re-renders the rules.*/
+        this.setState(prevState =>
+            ({
+                array: myTokens
+            }));
     }
 
     onAddPunctuationToken(tokenAbbreviation1, type1,allPunctuations,optional1,
@@ -755,10 +806,7 @@ class Rule extends Component
         var msg_output_format = this.state.output_format; 
         var msg_description = this.state.description; 
 
-        var wordTokenEditor; 
-        if(this.state.isModifyWord)
-            console.log("Rule->render: Modify was clicked!!!!!!!!!!"); 
-        wordTokenEditor =   <WordTokenConfig show={this.state.isWordDialogOpen}
+        var wordTokenEditor =   <WordTokenConfig show={this.state.isWordDialogOpen}
                         onAddNewToken={this.onAddWordToken} ruleid={this.state.id}
                          onCloseConfigDialog={this.toggleWordConfigDialog}
                         modify={this.state.isModifyWord} tokenModifyIndex={this.state.tokenModifyIndex}
