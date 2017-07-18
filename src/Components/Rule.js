@@ -550,7 +550,9 @@ class Rule extends Component
         title1, mixed1, numbers1, createdby) 
     {
         console.log("Rule: Enter onAddNumberToken"); 
-        this.toggleNumberConfigDialog(); 
+        
+        if(createdby === window.CREATEDBY_USER)
+            this.toggleNumberConfigDialog(); 
         //Keep track of the token with a generated token id. 
         var tokenid = TOKEN_BASE+(++GLOBAL_ID); 
 

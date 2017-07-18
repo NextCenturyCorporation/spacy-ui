@@ -50,9 +50,8 @@ class App extends Component {
     this.addRuleFromServer = this.addRuleFromServer.bind(this); 
     this.processRulesData = this.processRulesData.bind(this); 
     this.getInitialState = this.getInitialState.bind(this); 
-
-
-
+    this.selectAll = this.selectAll.bind(this); 
+    this.deselectAll = this.deselectAll.bind(this); 
   }
 
   componentWillMount() 
@@ -308,6 +307,17 @@ class App extends Component {
 
   }
 
+  selectAll()
+  {
+
+
+  }
+
+  deselectAll()
+  {
+    
+  }
+
   addRuleFromServer(rule, index)
   {
     const newRule = <Rule rulenum={++RULE_NUM}  onProcessJSONData={this.ProcessJSONData}  ruleObj={rule} createdby="server"/> ; 
@@ -329,7 +339,7 @@ class App extends Component {
       <div className="page-wrap">
         <div id="appHeader">
           <div id="ruleMenu">
-          <button className="button" onClick={this.addNewRule} >Add Rule </button>  <button className="button">Select All </button> <button className="button"> Deselect All</button> <button className="button"> Delete</button> <button className="button"> Duplicate</button> 
+          <button className="button" onClick={this.addNewRule} >Add Rule </button>  <button className="button" onClick={this.selectAll}>Select All </button> <button className="button" onClick={this.deselectAll}> Deselect All</button> <button className="button"> Delete</button> <button className="button"> Duplicate</button> 
           </div> 
           
         </div> 
