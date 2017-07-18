@@ -127,11 +127,11 @@ class App extends Component {
     } 
 
     /*update the state data - kind of a way to persist the data */
-    /*
+    
     this.setState({
       allRuleData: myRuleData
     });
-    */
+    
     //console.log("Data 2 send  ="+ this.buildData2Send()); 
   }
 
