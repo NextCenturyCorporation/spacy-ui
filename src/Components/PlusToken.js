@@ -26,4 +26,5 @@ class PlusToken extends Component
  	}
 }
 
+
 export default PlusToken;

@@ -6,7 +6,7 @@
       left: 0;
       right: 0; 
       background-color:rgba(0,0,0,0.3);  
-      z-index:1; 
+      z-index:20; 
       padding: 50px; 
 
 }
@@ -17,7 +17,7 @@
     background-color:#fff; 
     border-radius: 5px; 
     max-width: 480px; 
-    min-Height: 420px; 
+    min-Height: 430px; 
     margin: auto; 
     padding: 0; 
 
@@ -45,20 +45,20 @@
     margin-right:10px;   
 }
 
-#div1
+#div1, #shapes-div1
 {
     /*padding: 10px; */
     padding-top: 5px; 
     padding-bottom: 5px; 
 }
 
-#div2
+#div2, #shapes-div2
 {
     height: 100%; 
     overflow: hidden;
 }
 
-#div21
+#div21, #shapes-div21
 {
     padding: 10px; 
 /*display:inline-block; */
@@ -67,7 +67,7 @@
 
 }
 
-#div22
+#div22, #shapes-div22
 {
     width: 330px;
     padding: 10px; 
@@ -76,13 +76,9 @@
     height: 218px; 
 }
 
-#div3
-{
 
-    margin: 10px; 
-}
 
-#footer
+#footer, #shapes-footer
 {
    float: right; 
    margin: 10px; 
@@ -109,18 +105,34 @@
   *overflow: hidden;
 }
 
-
-#div4
+#div3, #shapes-div3
 {
     margin: 10px; 
 }
 
-#partofspeech
+#div3 input, #shapes-div3 input
+{
+    margin: 10px; 
+    width:30px; 
+    height: 15px; 
+}
+#number-div22 input
+{
+    margin: 10px; 
+    width:30px; 
+    height: 15px;     
+}
+
+#div4, #shapes-div4
+{
+    margin: 10px; 
+}
+
+#partofspeech, #shapes-partofspeech
 {
    width:200px;  
    height: 15px;
    margin-bottom: 3px;  
-
 }
 
 .inspeech
@@ -130,7 +142,7 @@
     margin: 3px;
 }
 
-#partofspeech_1
+#partofspeech_1, #shapes-partofspeech_1
 {
     width: 130px; 
     float: left; 
@@ -138,20 +150,20 @@
     padding-bottom: 10px; 
 }
 
-#partofspeech_2
+#partofspeech_2, #shapes-partofspeech_2
 {
     margin-left: 130px;   
     height: 155px;
     padding-bottom: 10px; 
 }
 
-#capitalization_header
+#capitalization_header, #shapes-capitalization_header
 {
     margin-top:5px; 
     padding-top: 5px; 
 }
 
-#capitalization
+#capitalization, #shapes-capitalization
 {
     float: bottom; 
     height: 20px; 
@@ -265,7 +277,7 @@
 #number-prefix-suffix input
 {
     width:50px; 
-    vertical-align: top; 
+    /*vertical-align: top; */
 }
 
 /********END NUMBER TOKEN *****/

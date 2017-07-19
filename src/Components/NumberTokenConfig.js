@@ -41,6 +41,7 @@ class NumberTokenConfig extends React.Component {
     this.createNewToken = this.createNewToken.bind(this); 
     this.checkInput = this.checkInput.bind(this); 
     this.cancelDialog = this.cancelDialog.bind(this); 
+    this.resetState = this.resetState.bind(this);     
 
     //console.log("NumberTokenConfig = ruleid"+this.props.ruleid); 
 
@@ -49,6 +50,9 @@ class NumberTokenConfig extends React.Component {
   componentWillMount() 
   {
     //alert("NumberTokenConfig id="+this.props.ruleid); 
+    console.log("NumberTokenConfig: componentWillMount")
+    console.log("Was Modify clicked = " + this.props.modify);     
+    console.log("Is token part of output "+ this.state.part_of_output);     
   }
 
   handleInputChange(event) 
@@ -75,16 +79,35 @@ class NumberTokenConfig extends React.Component {
   createNewToken()
   {
     //alert("createNewToken Rule id = " + this.props.ruleid); 
-    this.props.onAddNumberToken("#","numbers", this.state.allwords.split(" "), this.state.optional, 
-        this.state.part_of_output,this.state.followed_by_space, this.state.length1, this.state.length2, this.state.length3,
-        this.state.prefix,this.state.suffix, this.state.notinvocabulary,
-        this.state.noun, this.state.pronoun,this.state.punctuation, 
-        this.state.propernoun, this.state.determiner, this.state.symbol, 
-        this.state.adjective, this.state.conjunction, this.state.verb,
-        this.state.prepost_position, this.state.adverb, this.state.particle,
-        this.state.interjection,this.state.exact,this.state.lower,
-        this.state.upper, this.state.title, this.state.mixed,this.state.allnumbers.split(" ")        
-    )
+    var myNumbers = this.state.allnumbers.length==0? []:this.state.allnumbers.split(" ");  
+
+    if(!this.props.modify)
+    {    
+
+      this.props.onAddNumberToken("#",window.TYPE_NUMBERS, [], this.state.optional, 
+          this.state.part_of_output,this.state.followed_by_space, this.state.length1, this.state.length2, this.state.length3,
+          this.state.prefix,this.state.suffix, this.state.notinvocabulary,
+          this.state.noun, this.state.pronoun,this.state.punctuation, 
+          this.state.propernoun, this.state.determiner, this.state.symbol, 
+          this.state.adjective, this.state.conjunction, this.state.verb,
+          this.state.prepost_position, this.state.adverb, this.state.particle,
+          this.state.interjection,this.state.exact,this.state.lower,
+          this.state.upper, this.state.title, this.state.mixed,myNumbers, 
+          window.CREATEDBY_USER ); 
+    }
+    else
+    {
+      this.props.onModifyNumberToken(this.props.tokenModifyIndex, "#",window.TYPE_NUMBERS, [], this.state.optional, 
+          this.state.part_of_output,this.state.followed_by_space, this.state.length1, this.state.length2, this.state.length3,
+          this.state.prefix,this.state.suffix, this.state.notinvocabulary,
+          this.state.noun, this.state.pronoun,this.state.punctuation, 
+          this.state.propernoun, this.state.determiner, this.state.symbol, 
+          this.state.adjective, this.state.conjunction, this.state.verb,
+          this.state.prepost_position, this.state.adverb, this.state.particle,
+          this.state.interjection,this.state.exact,this.state.lower,
+          this.state.upper, this.state.title, this.state.mixed,myNumbers, 
+          window.CREATEDBY_USER ); 
+    }
   }
 
   checkInput(event) 
@@ -95,6 +118,60 @@ class NumberTokenConfig extends React.Component {
        var  newstring = phn.value.replace(invalidcharacters, "");
         phn.value = newstring
     }
+  }
+
+
+  /*We had to put the setting of the state here because 
+  * of the way we show the dialog and don't re-render. 
+  */
+  componentWillReceiveProps(nextProps)
+  {
+    
+    console.log("NumberTokenConfig: componentWillReceiveProps"); 
+    
+    var tData = nextProps.tokenData; 
+    console.log("Was Modify clicked = " + nextProps.modify);   
+    
+    if(nextProps.modify)
+    {
+      console.log("componentWillReceiveProps: Tokens are part_of_output = " + tData.is_in_output); 
+      this.setState({
+        allnumbers: tData.numbers.join(" "),
+        optional: !tData.is_required, 
+        part_of_output: tData.is_in_output,
+        length1: tData.length[0], 
+        length2: tData.length[1],
+        length3: tData.length[2],
+        followed_by_space: tData.is_followed_by_space
+      })
+
+    } 
+    else
+    {
+      this.resetState(); 
+
+    }
+   
+  }
+  
+  resetState()
+  {
+    this.state = {
+      show:true,
+      optional: false,
+      part_of_output: false,
+      followed_by_space: false,
+      numbers:[],
+      allnumbers:"",
+      length1:"",
+      length2:"",
+      length3:"",
+      prefix:"",
+      suffix:"",
+      notinvocabulary: false,
+      allwords:"",
+    };
+
   }
 
   cancelDialog()
@@ -110,13 +187,21 @@ class NumberTokenConfig extends React.Component {
       return null;
     }
     
+    var displayHeader; 
+    if(this.props.modify)
+    {
+       displayHeader = <div className="number-modal-header">Modify Number Token </div>
+    }
+    else
+    {
+       displayHeader = <div className="number-modal-header">Create Number Token </div>
+    }
+
     return (
       <div className="backdrop" >
         <form onSubmit={this.handleSubmit} className="number-modal">
           {this.props.children}
-
-          <div className="number-modal-header">Number Token </div>
-
+          {displayHeader}
           <div className="modal-body">
             <div id="number-div1">
               <label>
@@ -149,17 +234,17 @@ class NumberTokenConfig extends React.Component {
                 <div id="number-lengths">
                 <label>
                 Length 1:
-                <input name="length1" type="checkbox" checked={this.state.length1} onChange={this.handleInputChange} className="wordlabels2" />
+                <input name="length1" type="text" value={this.state.length1} onChange={this.handleInputChange} size="10" />
                 </label>
 
               <label>
                 Length 2: 
-                <input name="length2" type="checkbox" checked={this.state.length2} onChange={this.handleInputChange} className="wordlabels2" />
+                <input name="length2" type="text" value={this.state.length2} onChange={this.handleInputChange}  size="10"  />
                 </label>
 
               <label>
-                Length 3
-                <input name="length3" type="checkbox" checked={this.state.length3} onChange={this.handleInputChange} className="wordlabels2" />
+                Length 3:
+                <input name="length3" type="text" value={this.state.length3} onChange={this.handleInputChange} size="10"  />
                 </label>              
 
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import "../Styles/wordtoken.css"
 
-
 class PunctuationTokenConfig extends React.Component {
   constructor(props) {
     super(props);
@@ -46,6 +45,7 @@ class PunctuationTokenConfig extends React.Component {
     this.createNewToken = this.createNewToken.bind(this); 
     this.cancelDialog = this.cancelDialog.bind(this); 
     this.createAllPunctuations = this.createAllPunctuations.bind(this); 
+    this.resetState = this.resetState.bind(this); 
 
     //console.log("WordTokenConfig = ruleid"+this.props.ruleid); 
 
@@ -54,10 +54,72 @@ class PunctuationTokenConfig extends React.Component {
   componentWillMount() 
   {
     //alert("WordTokenConfig id="+this.props.ruleid); 
+    console.log("Was Modify clicked = " + this.props.modify);     
+    
   }
+
+  /*We had to put the setting of the state here because 
+  * of the way we show the dialog and don't re-render. 
+  */
+  componentWillReceiveProps(nextProps)
+  {
+    
+    console.log("WordTokenConfig: componentWillReceiveProps"); 
+    
+    var tData = nextProps.tokenData; 
+    console.log("Was Modify clicked = " + nextProps.modify);   
+    console.log("componentWillReceiveProps: part of output = " + this.props.modify);   
+
+    if(nextProps.modify)
+    {
+      console.log("componentWillReceiveProps: Tokens are = " + tData.is_in_output); 
+      this.setState({
+        allwords: tData.token.join(" "),
+        optional: !tData.is_required, 
+        part_of_output: tData.is_in_output,
+        punctuation_comma: tData.token.indexOf(",")>-1,
+        punctuation_period: tData.token.indexOf(".")>-1, 
+        punctuation_semicomma: tData.token.indexOf(";")>-1,  
+        punctuation_qmark: tData.token.indexOf("?")>-1, 
+        punctuation_tilde: tData.token.indexOf("~")>-1, 
+        punctuation_colon: tData.token.indexOf(":")>-1, 
+        punctuation_2quote: tData.token.indexOf("\"")>-1, 
+        punctuation_1quote: tData.token.indexOf("\'")>-1, 
+        punctuation_plus: tData.token.indexOf("+")>-1, 
+        punctuation_underscore: tData.token.indexOf("_")>-1, 
+        punctuation_amperand: tData.token.indexOf("&")>-1, 
+        punctuation_bang: tData.token.indexOf("!")>-1, 
+        punctuation_openbracket: tData.token.indexOf("(")>-1, 
+        punctuation_closebracket: tData.token.indexOf(")")>-1, 
+        punctuation_open_sbracket: tData.token.indexOf("[")>-1, 
+        punctuation_close_sbracket: tData.token.indexOf("]")>-1, 
+        punctuation_open_cbracket: tData.token.indexOf("{")>-1, 
+        punctuation_close_cbracket: tData.token.indexOf("}")>-1, 
+        punctuation_vline: tData.token.indexOf("|")>-1, 
+        punctuation_dash: tData.token.indexOf("-")>-1, 
+        punctuation_caret: tData.token.indexOf("^")>-1, 
+        punctuation_pound: tData.token.indexOf("#")>-1, 
+        punctuation_lessthan: tData.token.indexOf("<")>-1, 
+        punctuation_greaterthan: tData.token.indexOf(">")>-1, 
+        punctuation_equal: tData.token.indexOf("=")>-1, 
+        punctuation_percent: tData.token.indexOf("%")>-1, 
+        punctuation_backslash: tData.token.indexOf("\\")>-1, 
+        punctuation_asterisk: tData.token.indexOf("*")>-1, 
+        punctuation_dollar: tData.token.indexOf(" $")>-1       
+      })
+
+    } 
+    else
+    {
+      this.resetState(); 
+    }
+   
+  }
+
 
   handleInputChange(event) 
   {
+    console.log("handleInputChange"); 
 
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -81,9 +143,59 @@ class PunctuationTokenConfig extends React.Component {
   {
     
     //alert("createNewToken Rule id = " + this.props.ruleid); 
-    this.props.onAddNewToken("P","punctuation", this.createAllPunctuations(), this.state.optional, 
-        this.state.part_of_output); 
+    if(!this.props.modify)
+    {
+      this.props.onAddNewToken("P","punctuation", this.createAllPunctuations(), this.state.optional, 
+          this.state.part_of_output, window.CREATEDBY_USER); 
+    }
+    else
+    {
+      this.props.onModifyPunctuationToken(this.props.tokenModifyIndex, "P","punctuation", this.createAllPunctuations(), this.state.optional, 
+          this.state.part_of_output, window.CREATEDBY_USER); 
+
+    }
+
   }
+
+  resetState()
+  {
+    this.state = {
+      optional: false,
+      part_of_output: false,
+      punctuation_comma: false,
+      punctuation_period:false,
+      punctuation_semicomma: false, 
+      punctuation_qmark: false,
+      punctuation_tilde: false,
+      punctuation_colon: false,
+      punctuation_2quote: false,
+      punctuation_1quote: false,
+      punctuation_plus: false,
+      punctuation_underscore: false,
+      punctuation_amperand: false,
+      punctuation_bang: false,
+      punctuation_openbracket: false,
+      punctuation_closebracket: false,
+      punctuation_open_sbracket: false,
+      punctuation_close_sbracket: false,
+      punctuation_open_cbracket: false,
+      punctuation_close_cbracket: false,
+      punctuation_vline: false,
+      punctuation_dash: false,
+      punctuation_caret: false,
+      punctuation_pound: false,
+      punctuation_lessthan: false,
+      punctuation_greaterthan: false,
+      punctuation_equal: false,
+      punctuation_percent: false,
+      punctuation_backslash: false,
+      punctuation_asterisk: false,
+      punctuation_dollar: false
+    };
+
+  }
+
+
 
   createAllPunctuations()
   {
@@ -136,13 +248,22 @@ class PunctuationTokenConfig extends React.Component {
     }
     
    //alert("WordTokenConfig id="+this.props.ruleid); 
+    var displayHeader; 
+    if(this.props.modify)
+    {
+       displayHeader = <div className="punctuation-modal-header">Modify Punctuation Token </div>
+    }
+    else
+    {
+       displayHeader = <div className="punctuation-modal-header">Create Punctuation Token </div>
+    }
 
     return (
       <div className="backdrop" >
         <form onSubmit={this.handleSubmit} className="punctuation-modal">
           {this.props.children}
 
-          <div className="punctuation-modal-header">Punctuation Token </div>
+          {displayHeader}
           <div className="modal-body">
 
 

@@ -1,0 +1,101 @@
+{
+
+"test_text": "my name is Wole",
+"rules": [
+{
+       "description": "my name is ...", 
+            "identifier": "name_rule_7002", 
+            "is_active": "true", 
+            "output_format": "{1}", 
+            "pattern": [
+                {
+                    "capitalization": [], 
+                    "contain_digit": "", 
+                    "is_followed_by_space": "false", 
+                    "is_in_output": "false", 
+                    "is_in_vocabulary": "", 
+                    "is_out_of_vocabulary": "", 
+                    "is_required": "true", 
+                    "length": [], 
+                    "maximum": "", 
+                    "minimum": "", 
+                    "numbers": [], 
+                    "part_of_speech": [], 
+                    "prefix": "", 
+                    "shapes": [], 
+                    "suffix": "", 
+                    "token": [
+                        "my"
+                    ], 
+                    "type": "word"
+                }, 
+                {
+                    "capitalization": [], 
+                    "contain_digit": "", 
+                    "is_followed_by_space": "false", 
+                    "is_in_output": "false", 
+                    "is_in_vocabulary": "", 
+                    "is_out_of_vocabulary": "", 
+                    "is_required": "true", 
+                    "length": [], 
+                    "maximum": "", 
+                    "minimum": "", 
+                    "numbers": [], 
+                    "part_of_speech": [], 
+                    "prefix": "", 
+                    "shapes": [], 
+                    "suffix": "", 
+                    "token": [
+                        "name"
+                    ], 
+                    "type": "word"
+                }, 
+                {
+                    "capitalization": [], 
+                    "contain_digit": "", 
+                    "is_followed_by_space": "false", 
+                    "is_in_output": "false", 
+                    "is_in_vocabulary": "", 
+                    "is_out_of_vocabulary": "", 
+                    "is_required": "true", 
+                    "length": [], 
+                    "maximum": "", 
+                    "minimum": "", 
+                    "numbers": [], 
+                    "part_of_speech": [], 
+                    "prefix": "", 
+                    "shapes": [], 
+                    "suffix": "", 
+                    "token": [
+                        "is"
+                    ], 
+                    "type": "word"
+                }, 
+                {
+                    "capitalization": [], 
+                    "contain_digit": "", 
+                    "is_followed_by_space": "false", 
+                    "is_in_output": "true", 
+                    "is_in_vocabulary": "", 
+                    "is_out_of_vocabulary": "", 
+                    "is_required": "true", 
+                    "length": [], 
+                    "maximum": "", 
+                    "minimum": "", 
+                    "numbers": [], 
+                    "part_of_speech": [], 
+                    "prefix": "", 
+                    "shapes": [], 
+                    "suffix": "", 
+                    "token": [
+                        ""
+                    ], 
+                    "type": "word"
+                }
+            ], 
+            "polarity": []
+
+        }
+]
+}
+    

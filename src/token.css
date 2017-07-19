@@ -8,9 +8,12 @@
 	min-width: 5em;
 	height: auto;
 	flex-direction: column;
-  margin-top: 20px; 
-  margin-right: 10px; 
+  margin-top: 0px; 
+  margin-right: 0px; 
   background-color: #C6CBDE; 
+  min-height: 7em; 
+  border:solid; 
+  border-color: blue; 
 }
 
 .tokenHeader
@@ -30,7 +33,6 @@
 	padding: 0.5em;
   margin-bottom: 1.3em; 
 }
-
 
 .closeToken
 {
@@ -52,7 +54,7 @@
 #tokenCase
 {
   float: left; 
-  background-color: #BE9974; 
+  /*background-color: #BE9974; &*/
   padding: 0.25em; 
   margin-right: 2em; 
   font-size: 16pt; 
@@ -68,15 +70,59 @@
 
 .tokenEachText
 {
-  display: inline; 
+  display: inline-flex; 
   border: solid; 
   border-color: white; 
   border-width: 0.01em; 
   padding:0.2em;   
   margin: 0.2em; 
+  min-width:0.5em;
+  min-height:0.8em;  
 }
 
 #addButton
 {
   padding: 1.5em; 
+}
+
+
+.tokenHeader2
+{
+  color: white;
+	font-size: 1em;
+	font-weight: normal;
+  position: relative; 
+  margin-top: 20px; 
+  margin-right: 10px;
+  z-index:5; 
+}
+
+.overlayClose
+{
+    position:absolute;
+    top:0; 
+    right:0; 
+    border-width: 0.05em; 
+    width: 30px;
+    height: 30px; 
+    z-index:10;
+}
+
+.overlayEdit
+{
+    position:absolute;
+    top:0; 
+    left:0; 
+    border-width: 0.05em; 
+    width: 30px;
+    height: 30px; 
+    z-index:10;
+    border:solid; 
+    border-width: 0.1em; 
+    border-color: gray; 
+}
+
+.wrapPlusToken
+{
+  z-index: 10; 
 }

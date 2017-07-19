@@ -1,0 +1,3427 @@
+/************* Beginning only rules  *****/
+
+{
+  "rules": [
+    {
+      "description": "a description",
+      "identifier": "telenum_rule_us",
+      "is_active": "true",
+      "output_format": "",
+      "pattern": [
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "("
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "ddd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            ")"
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "-",
+            "."
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "ddd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "-",
+            "."
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "dddd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        }
+      ]
+    },
+    {
+      "description": "a description",
+      "identifier": "telenum_rule_us",
+      "is_active": "true",
+      "output_format": "",
+      "pattern": [
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "dddddddddd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        }
+      ]
+    },
+    {
+      "description": "a description",
+      "identifier": "telenum_rule_us",
+      "is_active": "true",
+      "output_format": "",
+      "pattern": [
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "("
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "ddd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            ")"
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "-",
+            "."
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "ddd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "-",
+            "."
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "dddd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        }
+      ]
+    },
+    {
+      "description": "a description",
+      "identifier": "telenum_rule_us",
+      "is_active": "true",
+      "output_format": "",
+      "pattern": [
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "dddddddddd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        }
+      ]
+    },
+    {
+      "description": "a description",
+      "identifier": "telenum_rule_us",
+      "is_active": "true",
+      "output_format": "",
+      "pattern": [
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "("
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "ddd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            ")"
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "-",
+            "."
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "ddd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "-",
+            "."
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "dddd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        }
+      ]
+    },
+    {
+      "description": "a description",
+      "identifier": "telenum_rule_us",
+      "is_active": "true",
+      "output_format": "",
+      "pattern": [
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "dddddddddd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        }
+      ]
+    },
+    {
+      "description": "a description",
+      "identifier": "telenum_rule_us",
+      "is_active": "true",
+      "output_format": "",
+      "pattern": [
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "("
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "ddd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            ")"
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "-",
+            "."
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "ddd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "-",
+            "."
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "dd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "-",
+            "."
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "dd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        }
+      ]
+    },
+    {
+      "description": "a description",
+      "identifier": "telenum_rule_us",
+      "is_active": "true",
+      "output_format": "",
+      "pattern": [
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "("
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [
+            "044",
+            "045"
+          ],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [],
+          "type": "number"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            ")"
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "-",
+            "."
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "ddd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "-",
+            "."
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "ddddddd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        }
+      ]
+    },
+    {
+      "description": "a description",
+      "identifier": "telenum_rule_us",
+      "is_active": "true",
+      "output_format": "",
+      "pattern": [
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "("
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [
+            "044",
+            "045"
+          ],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [],
+          "type": "number"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            ")"
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "-",
+            "."
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "dd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "-",
+            "."
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "dd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "-",
+            "."
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "dd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "-",
+            "."
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "dd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "-",
+            "."
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "dd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        }
+      ]
+    },
+    {
+      "description": "a description",
+      "identifier": "telenum_rule_us",
+      "is_active": "true",
+      "output_format": "",
+      "pattern": [
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "("
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [
+            "044",
+            "045"
+          ],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [],
+          "type": "number"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            ")"
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "-",
+            "."
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "dddddddddd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        }
+      ]
+    }
+  ]
+}
+
+
+
+/***************end of rules only /
+
+
+
+
+{
+  "field_name": "phone",
+  "results": [
+    {
+      "context": {
+        "end": 10,
+        "identifier": "telenum_rule_us",
+        "input": "tokens",
+        "rule_id": 0,
+        "start": 4,
+        "text": "my telephone number is <etk 'attribute' = 'phone'>( 217 ) 331 - 6779</etk> , ( 217 ) - ",
+        "tokens_left": [
+          "my",
+          "telephone",
+          "number",
+          "is"
+        ],
+        "tokens_right": [
+          ",",
+          "(",
+          "217",
+          ")",
+          "-"
+        ]
+      },
+      "value": "217 331 6779"
+    },
+    {
+      "context": {
+        "end": 18,
+        "identifier": "telenum_rule_us",
+        "input": "tokens",
+        "rule_id": 0,
+        "start": 11,
+        "text": ") 331 - 6779 , <etk 'attribute' = 'phone'>( 217 ) - 331 - 6778</etk> , ( 217 ) - ",
+        "tokens_left": [
+          ")",
+          "331",
+          "-",
+          "6779",
+          ","
+        ],
+        "tokens_right": [
+          ",",
+          "(",
+          "217",
+          ")",
+          "-"
+        ]
+      },
+      "value": "217 331 6778"
+    },
+    {
+      "context": {
+        "end": 26,
+        "identifier": "telenum_rule_us",
+        "input": "tokens",
+        "rule_id": 0,
+        "start": 19,
+        "text": "- 331 - 6778 , <etk 'attribute' = 'phone'>( 217 ) - 331 - 6777</etk> , 217 - 331 - ",
+        "tokens_left": [
+          "-",
+          "331",
+          "-",
+          "6778",
+          ","
+        ],
+        "tokens_right": [
+          ",",
+          "217",
+          "-",
+          "331",
+          "-"
+        ]
+      },
+      "value": "217 331 6777"
+    },
+    {
+      "context": {
+        "end": 32,
+        "identifier": "telenum_rule_us",
+        "input": "tokens",
+        "rule_id": 0,
+        "start": 27,
+        "text": "- 331 - 6777 , <etk 'attribute' = 'phone'>217 - 331 - 6776</etk> , 734 . 709 . ",
+        "tokens_left": [
+          "-",
+          "331",
+          "-",
+          "6777",
+          ","
+        ],
+        "tokens_right": [
+          ",",
+          "734",
+          ".",
+          "709",
+          "."
+        ]
+      },
+      "value": "217 331 6776"
+    },
+    {
+      "context": {
+        "end": 38,
+        "identifier": "telenum_rule_us",
+        "input": "tokens",
+        "rule_id": 0,
+        "start": 33,
+        "text": "- 331 - 6776 , <etk 'attribute' = 'phone'>734 . 709 . 8965</etk> , 949 484 6951 , ",
+        "tokens_left": [
+          "-",
+          "331",
+          "-",
+          "6776",
+          ","
+        ],
+        "tokens_right": [
+          ",",
+          "949",
+          "484",
+          "6951",
+          ","
+        ]
+      },
+      "value": "734 709 8965"
+    },
+    {
+      "context": {
+        "end": 42,
+        "identifier": "telenum_rule_us",
+        "input": "tokens",
+        "rule_id": 0,
+        "start": 39,
+        "text": ". 709 . 8965 , <etk 'attribute' = 'phone'>949 484 6951</etk> , 5017774643 , 664 123 ",
+        "tokens_left": [
+          ".",
+          "709",
+          ".",
+          "8965",
+          ","
+        ],
+        "tokens_right": [
+          ",",
+          "5017774643",
+          ",",
+          "664",
+          "123"
+        ]
+      },
+      "value": "949 484 6951"
+    },
+    {
+      "context": {
+        "end": 44,
+        "identifier": "telenum_rule_us",
+        "input": "tokens",
+        "rule_id": 1,
+        "start": 43,
+        "text": ", 949 484 6951 , <etk 'attribute' = 'phone'>5017774643</etk> , 664 123 45 67 ",
+        "tokens_left": [
+          ",",
+          "949",
+          "484",
+          "6951",
+          ","
+        ],
+        "tokens_right": [
+          ",",
+          "664",
+          "123",
+          "45",
+          "67"
+        ]
+      },
+      "value": "5017774643"
+    },
+    {
+      "context": {
+        "end": 49,
+        "identifier": "telenum_rule_us",
+        "input": "tokens",
+        "rule_id": 6,
+        "start": 45,
+        "text": "484 6951 , 5017774643 , <etk 'attribute' = 'phone'>664 123 45 67</etk> , 0660852222 \n Hi Gentlemen ",
+        "tokens_left": [
+          "484",
+          "6951",
+          ",",
+          "5017774643",
+          ","
+        ],
+        "tokens_right": [
+          ",",
+          "0660852222",
+          "\n",
+          "Hi",
+          "Gentlemen"
+        ]
+      },
+      "value": "664 123 45 67"
+    },
+    {
+      "context": {
+        "end": 51,
+        "identifier": "telenum_rule_us",
+        "input": "tokens",
+        "rule_id": 1,
+        "start": 50,
+        "text": "664 123 45 67 , <etk 'attribute' = 'phone'>0660852222</etk> \n Hi Gentlemen , My ",
+        "tokens_left": [
+          "664",
+          "123",
+          "45",
+          "67",
+          ","
+        ],
+        "tokens_right": [
+          "\n",
+          "Hi",
+          "Gentlemen",
+          ",",
+          "My"
+        ]
+      },
+      "value": "0660852222"
+    },
+    {
+      "context": {
+        "end": 81,
+        "identifier": "telenum_rule_us",
+        "input": "tokens",
+        "rule_id": 0,
+        "start": 74,
+        "text": "My names is Alanda \n <etk 'attribute' = 'phone'>( 217 ) - 331 - 6778</etk> , ( 044 ) 322 ",
+        "tokens_left": [
+          "My",
+          "names",
+          "is",
+          "Alanda",
+          "\n"
+        ],
+        "tokens_right": [
+          ",",
+          "(",
+          "044",
+          ")",
+          "322"
+        ]
+      },
+      "value": "217 331 6778"
+    },
+    {
+      "context": {
+        "end": 87,
+        "identifier": "telenum_rule_us",
+        "input": "tokens",
+        "rule_id": 7,
+        "start": 82,
+        "text": "- 331 - 6778 , <etk 'attribute' = 'phone'>( 044 ) 322 1719850</etk> , 044 322 1719851 , ",
+        "tokens_left": [
+          "-",
+          "331",
+          "-",
+          "6778",
+          ","
+        ],
+        "tokens_right": [
+          ",",
+          "044",
+          "322",
+          "1719851",
+          ","
+        ]
+      },
+      "value": "044 322 1719850"
+    },
+    {
+      "context": {
+        "end": 91,
+        "identifier": "telenum_rule_us",
+        "input": "tokens",
+        "rule_id": 7,
+        "start": 88,
+        "text": "044 ) 322 1719850 , <etk 'attribute' = 'phone'>044 322 1719851</etk> , ( 045 ) 322 ",
+        "tokens_left": [
+          "044",
+          ")",
+          "322",
+          "1719850",
+          ","
+        ],
+        "tokens_right": [
+          ",",
+          "(",
+          "045",
+          ")",
+          "322"
+        ]
+      },
+      "value": "044 322 1719851"
+    },
+    {
+      "context": {
+        "end": 97,
+        "identifier": "telenum_rule_us",
+        "input": "tokens",
+        "rule_id": 7,
+        "start": 92,
+        "text": ", 044 322 1719851 , <etk 'attribute' = 'phone'>( 045 ) 322 1719850</etk> , 045 55 49 40 ",
+        "tokens_left": [
+          ",",
+          "044",
+          "322",
+          "1719851",
+          ","
+        ],
+        "tokens_right": [
+          ",",
+          "045",
+          "55",
+          "49",
+          "40"
+        ]
+      },
+      "value": "045 322 1719850"
+    },
+    {
+      "context": {
+        "end": 104,
+        "identifier": "telenum_rule_us",
+        "input": "tokens",
+        "rule_id": 8,
+        "start": 98,
+        "text": "045 ) 322 1719850 , <etk 'attribute' = 'phone'>045 55 49 40 83 95</etk> , 045 - 55 - ",
+        "tokens_left": [
+          "045",
+          ")",
+          "322",
+          "1719850",
+          ","
+        ],
+        "tokens_right": [
+          ",",
+          "045",
+          "-",
+          "55",
+          "-"
+        ]
+      },
+      "value": "045 55 49 40 83 95"
+    },
+    {
+      "context": {
+        "end": 113,
+        "identifier": "telenum_rule_us",
+        "input": "tokens",
+        "rule_id": 8,
+        "start": 105,
+        "text": "49 40 83 95 , <etk 'attribute' = 'phone'>045 - 55 - 49 40 83 94</etk> , 045 - 5549408395 \n ",
+        "tokens_left": [
+          "49",
+          "40",
+          "83",
+          "95",
+          ","
+        ],
+        "tokens_right": [
+          ",",
+          "045",
+          "-",
+          "5549408395",
+          "\n"
+        ]
+      },
+      "value": "045 55 49 40 83 94"
+    },
+    {
+      "context": {
+        "end": 117,
+        "identifier": "telenum_rule_us",
+        "input": "tokens",
+        "rule_id": 9,
+        "start": 114,
+        "text": "49 40 83 94 , <etk 'attribute' = 'phone'>045 - 5549408395</etk> \n - 0466119200 , - ",
+        "tokens_left": [
+          "49",
+          "40",
+          "83",
+          "94",
+          ","
+        ],
+        "tokens_right": [
+          "\n",
+          "-",
+          "0466119200",
+          ",",
+          "-"
+        ]
+      },
+      "value": "045 5549408395"
+    },
+    {
+      "context": {
+        "end": 120,
+        "identifier": "telenum_rule_us",
+        "input": "tokens",
+        "rule_id": 1,
+        "start": 119,
+        "text": "045 - 5549408395 \n - <etk 'attribute' = 'phone'>0466119200</etk> , - 488019954 , + ",
+        "tokens_left": [
+          "045",
+          "-",
+          "5549408395",
+          "\n",
+          "-"
+        ],
+        "tokens_right": [
+          ",",
+          "-",
+          "488019954",
+          ",",
+          "+"
+        ]
+      },
+      "value": "0466119200"
+    },
+    {
+      "context": {
+        "end": 129,
+        "identifier": "telenum_rule_us",
+        "input": "tokens",
+        "rule_id": 1,
+        "start": 128,
+        "text": ", + 32465863497 - , <etk 'attribute' = 'phone'>0466119200</etk> \n 74350 - 0642516048 , ",
+        "tokens_left": [
+          ",",
+          "+",
+          "32465863497",
+          "-",
+          ","
+        ],
+        "tokens_right": [
+          "\n",
+          "74350",
+          "-",
+          "0642516048",
+          ","
+        ]
+      },
+      "value": "0466119200"
+    },
+    {
+      "context": {
+        "end": 133,
+        "identifier": "telenum_rule_us",
+        "input": "tokens",
+        "rule_id": 1,
+        "start": 132,
+        "text": ", 0466119200 \n 74350 - <etk 'attribute' = 'phone'>0642516048</etk> , 07 55 71 64 ",
+        "tokens_left": [
+          ",",
+          "0466119200",
+          "\n",
+          "74350",
+          "-"
+        ],
+        "tokens_right": [
+          ",",
+          "07",
+          "55",
+          "71",
+          "64"
+        ]
+      },
+      "value": "0642516048"
+    },
+    {
+      "context": {
+        "end": 265,
+        "identifier": "telenum_rule_us",
+        "input": "tokens",
+        "rule_id": 0,
+        "start": 262,
+        "text": "33333 , + 91 - <etk 'attribute' = 'phone'>111 222 3333</etk> \n China : ( 0111 ",
+        "tokens_left": [
+          "33333",
+          ",",
+          "+",
+          "91",
+          "-"
+        ],
+        "tokens_right": [
+          "\n",
+          "China",
+          ":",
+          "(",
+          "0111"
+        ]
+      },
+      "value": "111 222 3333"
+    },
+    {
+      "context": {
+        "end": 307,
+        "identifier": "telenum_rule_us",
+        "input": "tokens",
+        "rule_id": 0,
+        "start": 301,
+        "text": ", 33334444 \n Japan : <etk 'attribute' = 'phone'>( 011 ) 222 - 3333</etk> , ( 0120 ) - ",
+        "tokens_left": [
+          ",",
+          "33334444",
+          "\n",
+          "Japan",
+          ":"
+        ],
+        "tokens_right": [
+          ",",
+          "(",
+          "0120",
+          ")",
+          "-"
+        ]
+      },
+      "value": "011 222 3333"
+    }
+  ],
+  "rules": [
+    {
+      "description": "a description",
+      "identifier": "telenum_rule_us",
+      "is_active": "true",
+      "output_format": "",
+      "pattern": [
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "("
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "ddd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            ")"
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "-",
+            "."
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "ddd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "-",
+            "."
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "dddd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        }
+      ]
+    },
+    {
+      "description": "a description",
+      "identifier": "telenum_rule_us",
+      "is_active": "true",
+      "output_format": "",
+      "pattern": [
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "dddddddddd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        }
+      ]
+    },
+    {
+      "description": "a description",
+      "identifier": "telenum_rule_us",
+      "is_active": "true",
+      "output_format": "",
+      "pattern": [
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "("
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "ddd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            ")"
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "-",
+            "."
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "ddd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "-",
+            "."
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "dddd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        }
+      ]
+    },
+    {
+      "description": "a description",
+      "identifier": "telenum_rule_us",
+      "is_active": "true",
+      "output_format": "",
+      "pattern": [
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "dddddddddd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        }
+      ]
+    },
+    {
+      "description": "a description",
+      "identifier": "telenum_rule_us",
+      "is_active": "true",
+      "output_format": "",
+      "pattern": [
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "("
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "ddd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            ")"
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "-",
+            "."
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "ddd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "-",
+            "."
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "dddd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        }
+      ]
+    },
+    {
+      "description": "a description",
+      "identifier": "telenum_rule_us",
+      "is_active": "true",
+      "output_format": "",
+      "pattern": [
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "dddddddddd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        }
+      ]
+    },
+    {
+      "description": "a description",
+      "identifier": "telenum_rule_us",
+      "is_active": "true",
+      "output_format": "",
+      "pattern": [
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "("
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "ddd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            ")"
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "-",
+            "."
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "ddd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "-",
+            "."
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "dd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "-",
+            "."
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "dd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        }
+      ]
+    },
+    {
+      "description": "a description",
+      "identifier": "telenum_rule_us",
+      "is_active": "true",
+      "output_format": "",
+      "pattern": [
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "("
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [
+            "044",
+            "045"
+          ],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [],
+          "type": "number"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            ")"
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "-",
+            "."
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "ddd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "-",
+            "."
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "ddddddd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        }
+      ]
+    },
+    {
+      "description": "a description",
+      "identifier": "telenum_rule_us",
+      "is_active": "true",
+      "output_format": "",
+      "pattern": [
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "("
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [
+            "044",
+            "045"
+          ],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [],
+          "type": "number"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            ")"
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "-",
+            "."
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "dd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "-",
+            "."
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "dd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "-",
+            "."
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "dd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "-",
+            "."
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "dd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "-",
+            "."
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "dd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        }
+      ]
+    },
+    {
+      "description": "a description",
+      "identifier": "telenum_rule_us",
+      "is_active": "true",
+      "output_format": "",
+      "pattern": [
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "("
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [
+            "044",
+            "045"
+          ],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [],
+          "type": "number"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            ")"
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "false",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "-",
+            "."
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "dddddddddd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        }
+      ]
+    }
+  ],
+  "test_text": "my telephone number is (217)331-6779, (217)-331-6778,(217)-331-6777, 217-331-6776, 734.709.8965, 949 484 6951, 5017774643, 664 123 45 67,  0660852222\nHi Gentlemen, My name is Ashley . my name Monica I am the one and, My names is Alanda\n(217)-331-6778, (044) 322 1719850,044 322 1719851, (045) 322 1719850, 045 55 49 40 83 95, 045- 55- 49 40 83 94, 045 -5549408395\n-0466119200, -488019954,+32465863497 - , 0466119200\n74350 - 0642516048, 07 55 71 64 36 - \n + 49 15781424777, +( 49 )15732190888?\n 004915221040240\n 49( 0 )15771824788\n 111 2222, 111-3333\n UK: 07077080500, 07741 011 066, 07014-231- 011, 0751 011 41 92 , \n UK:(022) 1111 2222, (0100) 000 1113, (01222) 22224, (01222) 333335, (0122 22)3336, (0122 22) 33337, \n UK: 0121-111 2228, 0121 111 2229, 07111 222220, 0111 222 2221, 0500 111112, 0800 111113 , \n India: 111-2222222, 11111-33333, +91-111 222 3333\n China: (0111) 1111 2222, +86 122 3333 4444, 0086 111 2222 3333, +86 111 222 33 444\n HK: 1111 2222, 33334444\n Japan: (011) 222-3333, (0120)-22-3333, 0570-22-3333, 0800-22-3333,050-2222-3333, +61  \n Austrilia: (01)1111 2222, +61 42222 3333, +61 222 333 444, 1003 333 444",
+  "test_tokens": [
+    "my",
+    "telephone",
+    "number",
+    "is",
+    "(",
+    "217",
+    ")",
+    "331",
+    "-",
+    "6779",
+    ",",
+    "(",
+    "217",
+    ")",
+    "-",
+    "331",
+    "-",
+    "6778",
+    ",",
+    "(",
+    "217",
+    ")",
+    "-",
+    "331",
+    "-",
+    "6777",
+    ",",
+    "217",
+    "-",
+    "331",
+    "-",
+    "6776",
+    ",",
+    "734",
+    ".",
+    "709",
+    ".",
+    "8965",
+    ",",
+    "949",
+    "484",
+    "6951",
+    ",",
+    "5017774643",
+    ",",
+    "664",
+    "123",
+    "45",
+    "67",
+    ",",
+    "0660852222",
+    "\n",
+    "Hi",
+    "Gentlemen",
+    ",",
+    "My",
+    "name",
+    "is",
+    "Ashley",
+    ".",
+    "my",
+    "name",
+    "Monica",
+    "I",
+    "am",
+    "the",
+    "one",
+    "and",
+    ",",
+    "My",
+    "names",
+    "is",
+    "Alanda",
+    "\n",
+    "(",
+    "217",
+    ")",
+    "-",
+    "331",
+    "-",
+    "6778",
+    ",",
+    "(",
+    "044",
+    ")",
+    "322",
+    "1719850",
+    ",",
+    "044",
+    "322",
+    "1719851",
+    ",",
+    "(",
+    "045",
+    ")",
+    "322",
+    "1719850",
+    ",",
+    "045",
+    "55",
+    "49",
+    "40",
+    "83",
+    "95",
+    ",",
+    "045",
+    "-",
+    "55",
+    "-",
+    "49",
+    "40",
+    "83",
+    "94",
+    ",",
+    "045",
+    "-",
+    "5549408395",
+    "\n",
+    "-",
+    "0466119200",
+    ",",
+    "-",
+    "488019954",
+    ",",
+    "+",
+    "32465863497",
+    "-",
+    ",",
+    "0466119200",
+    "\n",
+    "74350",
+    "-",
+    "0642516048",
+    ",",
+    "07",
+    "55",
+    "71",
+    "64",
+    "36",
+    "-",
+    "\n",
+    "+",
+    "49",
+    "15781424777",
+    ",",
+    "+",
+    "(",
+    "49",
+    ")",
+    "15732190888",
+    "?",
+    "\n",
+    "004915221040240",
+    "\n",
+    "49",
+    "(",
+    "0",
+    ")",
+    "15771824788",
+    "\n",
+    "111",
+    "2222",
+    ",",
+    "111",
+    "-",
+    "3333",
+    "\n",
+    "UK",
+    ":",
+    "07077080500",
+    ",",
+    "07741",
+    "011",
+    "066",
+    ",",
+    "07014",
+    "-",
+    "231",
+    "-",
+    "011",
+    ",",
+    "0751",
+    "011",
+    "41",
+    "92",
+    ",",
+    "\n",
+    "UK",
+    ":",
+    "(",
+    "022",
+    ")",
+    "1111",
+    "2222",
+    ",",
+    "(",
+    "0100",
+    ")",
+    "000",
+    "1113",
+    ",",
+    "(",
+    "01222",
+    ")",
+    "22224",
+    ",",
+    "(",
+    "01222",
+    ")",
+    "333335",
+    ",",
+    "(",
+    "0122",
+    "22",
+    ")",
+    "3336",
+    ",",
+    "(",
+    "0122",
+    "22",
+    ")",
+    "33337",
+    ",",
+    "\n",
+    "UK",
+    ":",
+    "0121",
+    "-",
+    "111",
+    "2228",
+    ",",
+    "0121",
+    "111",
+    "2229",
+    ",",
+    "07111",
+    "222220",
+    ",",
+    "0111",
+    "222",
+    "2221",
+    ",",
+    "0500",
+    "111112",
+    ",",
+    "0800",
+    "111113",
+    ",",
+    "\n",
+    "India",
+    ":",
+    "111",
+    "-",
+    "2222222",
+    ",",
+    "11111",
+    "-",
+    "33333",
+    ",",
+    "+",
+    "91",
+    "-",
+    "111",
+    "222",
+    "3333",
+    "\n",
+    "China",
+    ":",
+    "(",
+    "0111",
+    ")",
+    "1111",
+    "2222",
+    ",",
+    "+",
+    "86",
+    "122",
+    "3333",
+    "4444",
+    ",",
+    "0086",
+    "111",
+    "2222",
+    "3333",
+    ",",
+    "+",
+    "86",
+    "111",
+    "222",
+    "33",
+    "444",
+    "\n",
+    "HK",
+    ":",
+    "1111",
+    "2222",
+    ",",
+    "33334444",
+    "\n",
+    "Japan",
+    ":",
+    "(",
+    "011",
+    ")",
+    "222",
+    "-",
+    "3333",
+    ",",
+    "(",
+    "0120",
+    ")",
+    "-",
+    "22",
+    "-",
+    "3333",
+    ",",
+    "0570",
+    "-",
+    "22",
+    "-",
+    "3333",
+    ",",
+    "0800",
+    "-",
+    "22",
+    "-",
+    "3333",
+    ",",
+    "050",
+    "-",
+    "2222",
+    "-",
+    "3333",
+    ",",
+    "+",
+    "61",
+    "\n",
+    "Austrilia",
+    ":",
+    "(",
+    "01",
+    ")",
+    "1111",
+    "2222",
+    ",",
+    "+",
+    "61",
+    "42222",
+    "3333",
+    ",",
+    "+",
+    "61",
+    "222",
+    "333",
+    "444",
+    ",",
+    "1003",
+    "333",
+    "444"
+  ]
+}
