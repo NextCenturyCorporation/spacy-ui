@@ -1229,10 +1229,10 @@ class Rule extends Component
 
                      <div  >
                         <div id={tMenu} className="tokenMenu" >
-                            <div onClick={this.showWordToken}> word </div>
-                            <div onClick={this.showNumberToken}>number </div> 
-                            <div onClick={this.showPunctuationToken} >  punctuation </div>
-                            <div onClick={this.showShapeToken}> shape </div>
+                            <div onClick={this.showWordToken} className="tokenMenu_item"> Word </div>
+                            <div onClick={this.showNumberToken} className="tokenMenu_item">Number </div> 
+                            <div onClick={this.showPunctuationToken} className="tokenMenu_item">  Punctuation </div>
+                            <div onClick={this.showShapeToken} className="tokenMenu_item"> Shape </div>
                         </div>   
 
                         <div className="arrangeRuleTokens"> 
