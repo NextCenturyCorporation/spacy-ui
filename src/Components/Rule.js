@@ -846,9 +846,19 @@ class Rule extends Component
         */
     }        
 
-    updateData(e)
+    updateData(event)
     {
         console.log("Rule: Updating the top level application data")
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+        //alert("You clicked on " + name); 
+
+        this.setState({
+        [name]: value
+        });     
+
+
         /* All the webservice conmunication is done in App.js. So we need to propagate
         all data to the top in App.js. onProcessJSONData is a method is Apps.js. 
         Send all the data related to this rule up to the app.js level. */
@@ -859,13 +869,21 @@ class Rule extends Component
 
     handleChange_outformat(event)
     {
-        this.setState({output_format: event.target.value});    
-        this.updateData(); 
+        //this.setState({output_format: event.target.value});    
+        this.updateData(event); 
     }
 
     handleChange_description(event)
     {
-        this.setState({description: event.target.value});       
+
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+        //alert("You clicked on " + name); 
+
+        this.setState({
+            [name]: value
+        });      
         this.updateData(); 
     }
 
@@ -932,11 +950,12 @@ class Rule extends Component
                     <div className="ruleHeader">
                         <label htmlFor={this.props.name}> {this.props.rulenum}.  </label>
                         <input
+                        name="description"
                         placeholder= "Enter rule description "
                         type="text"
                         className="ruleDescription"
-                        value={msg_description}
-                        onChange={this.handleChange_description}
+                        value={this.state.description}
+                        onChange={this.updateData}
                         />
                     </div>
 
@@ -968,11 +987,12 @@ class Rule extends Component
                     <div id="ruleOutput"> 
                         Output format: 
                         <input
+                        name="output_format"
                         placeholder= "e.g., {1}-{2}-{3} "
                         type="text"
                         className="output_format"
-                        value={msg_output_format}
-                        onChange={this.handleChange_outformat}/>
+                        value={this.state.output_format}
+                        onChange={this.updateData}/>
                     </div> 
                     
                 </div>

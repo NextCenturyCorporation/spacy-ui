@@ -390,17 +390,17 @@ class WordTokenConfig extends React.Component {
             <div id="div3">
               <label>
                 Length 1:
-                <input name="length1" type="text" checked={this.state.length1} onChange={this.handleInputChange} size="10" />
+                <input name="length1" type="text" value={this.state.length1} onChange={this.handleInputChange} size="10" />
                 </label>
 
               <label>
                 Length 2: 
-                <input name="length2" type="text" checked={this.state.length2} onChange={this.handleInputChange}  size="10"  />
+                <input name="length2" type="text" value={this.state.length2} onChange={this.handleInputChange}  size="10"  />
                 </label>
 
               <label>
                 Length 3
-                <input name="length3" type="text" checked={this.state.length3} onChange={this.handleInputChange} size="10"  />
+                <input name="length3" type="text" value={this.state.length3} onChange={this.handleInputChange} size="10"  />
                 
                 </label>              
             </div> 
