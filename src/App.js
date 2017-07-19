@@ -16,7 +16,7 @@ window.CREATEDBY_USER = "user";
 window.TYPE_WORD = "word"; 
 window.TYPE_NUMBERS = "numbers"; 
 window.TYPE_PUNCTUATION = "punctuation"; 
-
+window.TYPE_SHAPE = "shapes"
 /*
   Main Application entry point
 */
@@ -66,7 +66,7 @@ class App extends Component {
 
     webServiceUrl = 'http://52.36.12.77:9879/projects/' + this.props.params.projectName + '/fields/'+
                  this.props.params.fieldName + '/spacy_rules'; 
-    webServiceUrlAllRules = webServiceUrl + "?type=rules";
+    webServiceUrlAllRules = webServiceUrl + "?type=all";
 
 
     console.log("webservice url = " + webServiceUrl); 
@@ -228,12 +228,14 @@ class App extends Component {
                           }
 
                           console.log("Received data contains " + json.rules.length + " rules"); 
+                          console.log("Results"  + json.test_text); 
                           //this.state.createdby = window.CREATEDBY_SERVER; 
                           
                     
                           this.setState({
                             createdby: window.CREATEDBY_SERVER,
-                            allServerRules: json
+                            allServerRules: json,
+                            test_text: json.test_text
                           });
 /*
                         this.state.allServerRules.rules.map((rule,index)=>(
@@ -386,7 +388,7 @@ class App extends Component {
         <br/>
         <form onSubmit={this.handleSubmit}> 
           <span className="extractionText"> Text</span>
-          <div className="rulesText"> <textarea name="Text1" onChange={this.handleChange}  rows="5" className="textInput" value={this.state.test_text}/> </div> 
+          <div className="rulesText"> <textarea name="test_text" onChange={this.handleChange}  rows="5" className="textInput" value={this.state.test_text}/> </div> 
         </form>
         <br/>
        <div id="run-rules"> <button className="button" onClick={this.sendData} >Run Rules </button> </div>

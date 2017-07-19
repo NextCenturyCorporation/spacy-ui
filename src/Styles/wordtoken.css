@@ -45,20 +45,20 @@
     margin-right:10px;   
 }
 
-#div1
+#div1, #shapes-div1
 {
     /*padding: 10px; */
     padding-top: 5px; 
     padding-bottom: 5px; 
 }
 
-#div2
+#div2, #shapes-div2
 {
     height: 100%; 
     overflow: hidden;
 }
 
-#div21
+#div21, #shapes-div21
 {
     padding: 10px; 
 /*display:inline-block; */
@@ -67,7 +67,7 @@
 
 }
 
-#div22
+#div22, #shapes-div22
 {
     width: 330px;
     padding: 10px; 
@@ -78,7 +78,7 @@
 
 
 
-#footer
+#footer, #shapes-footer
 {
    float: right; 
    margin: 10px; 
@@ -105,12 +105,12 @@
   *overflow: hidden;
 }
 
-#div3
+#div3, #shapes-div3
 {
     margin: 10px; 
 }
 
-#div3 input
+#div3 input, #shapes-div3 input
 {
     margin: 10px; 
     width:30px; 
@@ -123,17 +123,16 @@
     height: 15px;     
 }
 
-#div4
+#div4, #shapes-div4
 {
     margin: 10px; 
 }
 
-#partofspeech
+#partofspeech, #shapes-partofspeech
 {
    width:200px;  
    height: 15px;
    margin-bottom: 3px;  
-
 }
 
 .inspeech
@@ -143,7 +142,7 @@
     margin: 3px;
 }
 
-#partofspeech_1
+#partofspeech_1, #shapes-partofspeech_1
 {
     width: 130px; 
     float: left; 
@@ -151,20 +150,20 @@
     padding-bottom: 10px; 
 }
 
-#partofspeech_2
+#partofspeech_2, #shapes-partofspeech_2
 {
     margin-left: 130px;   
     height: 155px;
     padding-bottom: 10px; 
 }
 
-#capitalization_header
+#capitalization_header, #shapes-capitalization_header
 {
     margin-top:5px; 
     padding-top: 5px; 
 }
 
-#capitalization
+#capitalization, #shapes-capitalization
 {
     float: bottom; 
     height: 20px; 
