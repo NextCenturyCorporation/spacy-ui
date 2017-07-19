@@ -85,9 +85,13 @@ class WordTokenConfig extends React.Component {
   {
     
     //alert("createNewToken Rule id = " + this.props.ruleid); 
+    var myWords = this.state.allwords.length==0? []:this.state.allwords.split(" ");  
+
     if(!this.props.modify)
     {
-      this.props.onAddNewToken("W",window.TYPE_WORD, this.state.allwords.split(" "), this.state.optional, 
+      //If there is no word make sure you send an empty array. 
+
+      this.props.onAddNewToken("W",window.TYPE_WORD, myWords, this.state.optional, 
           this.state.part_of_output,this.state.followed_by_space, this.state.length1, this.state.length2, this.state.length3,
           this.state.prefix,this.state.suffix, this.state.notinvocabulary,
           this.state.noun, this.state.pronoun,this.state.punctuation, 
@@ -100,7 +104,8 @@ class WordTokenConfig extends React.Component {
     }
     else 
     {
-      this.props.onModifyWordToken(this.props.tokenModifyIndex, "W",window.TYPE_WORD, this.state.allwords.split(" "), this.state.optional, 
+      //If there is no word make sure you send an empty array. 
+      this.props.onModifyWordToken(this.props.tokenModifyIndex, "W",window.TYPE_WORD, myWords, this.state.optional, 
           this.state.part_of_output,this.state.followed_by_space, this.state.length1, this.state.length2, this.state.length3,
           this.state.prefix,this.state.suffix, this.state.notinvocabulary,
           this.state.noun, this.state.pronoun,this.state.punctuation, 

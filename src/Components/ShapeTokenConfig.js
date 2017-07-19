@@ -84,6 +84,8 @@ class ShapeTokenConfig extends React.Component {
   {
     
     //alert("createNewToken Rule id = " + this.props.ruleid); 
+   var myShapes = this.state.shapes.length==0? []:this.state.shapes.split(" ");  
+    
     if(!this.props.modify)
     {
       this.props.onAddNewToken("S",window.TYPE_SHAPE, this.state.allwords.split(" "), this.state.optional, 
@@ -94,7 +96,7 @@ class ShapeTokenConfig extends React.Component {
           this.state.adjective, this.state.conjunction, this.state.verb,
           this.state.prepost_position, this.state.adverb, this.state.particle,
           this.state.interjection,this.state.exact,this.state.lower,
-          this.state.upper, this.state.title, this.state.mixed, this.state.numbers, this.state.shapes, window.CREATEDBY_USER    
+          this.state.upper, this.state.title, this.state.mixed, this.state.numbers, myShapes, window.CREATEDBY_USER    
       )
     }
     else 
@@ -107,7 +109,7 @@ class ShapeTokenConfig extends React.Component {
           this.state.adjective, this.state.conjunction, this.state.verb,
           this.state.prepost_position, this.state.adverb, this.state.particle,
           this.state.interjection,this.state.exact,this.state.lower,
-          this.state.upper, this.state.title, this.state.mixed, this.state.numbers, this.state.shapes, window.CREATEDBY_USER   ); 
+          this.state.upper, this.state.title, this.state.mixed, this.state.numbers, myShapes, window.CREATEDBY_USER   ); 
     }
   }
 

@@ -81,8 +81,11 @@ class NumberTokenConfig extends React.Component {
   createNewToken()
   {
     //alert("createNewToken Rule id = " + this.props.ruleid); 
+    var myNumbers = this.state.allnumbers.length==0? []:this.state.allnumbers.split(" ");  
+
     if(!this.props.modify)
     {    
+
       this.props.onAddNumberToken("#",window.TYPE_NUMBERS, [], this.state.optional, 
           this.state.part_of_output,this.state.followed_by_space, this.state.length1, this.state.length2, this.state.length3,
           this.state.prefix,this.state.suffix, this.state.notinvocabulary,
@@ -91,7 +94,7 @@ class NumberTokenConfig extends React.Component {
           this.state.adjective, this.state.conjunction, this.state.verb,
           this.state.prepost_position, this.state.adverb, this.state.particle,
           this.state.interjection,this.state.exact,this.state.lower,
-          this.state.upper, this.state.title, this.state.mixed,this.state.allnumbers.split(" "), 
+          this.state.upper, this.state.title, this.state.mixed,myNumbers, 
           CREATEDBY_USER ); 
     }
     else
@@ -104,7 +107,7 @@ class NumberTokenConfig extends React.Component {
           this.state.adjective, this.state.conjunction, this.state.verb,
           this.state.prepost_position, this.state.adverb, this.state.particle,
           this.state.interjection,this.state.exact,this.state.lower,
-          this.state.upper, this.state.title, this.state.mixed,this.state.allnumbers.split(" "), 
+          this.state.upper, this.state.title, this.state.mixed,myNumbers, 
           CREATEDBY_USER ); 
     }
   }
