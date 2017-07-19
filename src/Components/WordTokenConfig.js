@@ -2,18 +2,18 @@ import React from 'react';
 import "../Styles/wordtoken.css"
 import Token from "./Token"; 
 
-window.POS_noun = "NOUN"; 
-window.POS_pronoun = "PROPN"; 
-window.POS_propernoun = "PROPN";
-window.POS_determiner = "DET"; 
-window.POS_symbol = "SYM"; 
-window.POS_adjective = "ADJ"
-window.POS_conjunction= "CONJ";
-window.POS_verb= "VERB";
-window.POS_pre_post_position= "ADP";
-window.POS_adverb= "ADV";
-window.POS_particle= "PART"; 
-window.POS_interjection= "INTJ";
+window.POS_noun = "noun"; 
+window.POS_pronoun = "pronoun"; 
+window.POS_propernoun = "proper noun";
+window.POS_determiner = "determiner"; 
+window.POS_symbol = "symbol"; 
+window.POS_adjective = "adjective"
+window.POS_conjunction= "conjunction";
+window.POS_verb= "verb";
+window.POS_pre_post_position= "pre/post-position";
+window.POS_adverb= "adverb";
+window.POS_particle= "particle"; 
+window.POS_interjection= "interjection";
 
 class WordTokenConfig extends React.Component {
   constructor(props) {
