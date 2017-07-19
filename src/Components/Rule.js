@@ -74,6 +74,7 @@ class Rule extends Component
         this.createShapeJSON = this.createShapeJSON.bind(this); 
         this.showNumberToken = this.showNumberToken.bind(this); 
         this.showPunctuationToken = this.showPunctuationToken.bind(this); 
+        this.showShapeToken = this.showShapeToken.bind(this); 
         this.deleteToken = this.deleteToken.bind(this); 
         this.updateData = this.updateData.bind(this); 
         this.handleChange_outformat = this.handleChange_outformat.bind(this); 
@@ -1068,6 +1069,19 @@ class Rule extends Component
         this.toggleWordConfigDialog();
     }
 
+    /*
+    Show Word token. 
+    */
+    showShapeToken()
+    {
+        const tMenu = "tokenMenu" + this.state.id; 
+        
+        /*lets close the menu*/
+        var x = document.getElementById(tMenu);
+        x.style.display = 'none';
+        this.toggleShapeConfigDialog();
+    }    
+
     
     deleteToken(myToken )
     {
@@ -1218,7 +1232,7 @@ class Rule extends Component
                             <div onClick={this.showWordToken}> word </div>
                             <div onClick={this.showNumberToken}>number </div> 
                             <div onClick={this.showPunctuationToken} >  punctuation </div>
-
+                            <div onClick={this.showShapeToken}> shape </div>
                         </div>   
 
                         <div className="arrangeRuleTokens"> 

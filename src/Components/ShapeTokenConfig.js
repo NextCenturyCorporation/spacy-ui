@@ -115,7 +115,7 @@ class ShapeTokenConfig extends React.Component {
 
   cancelDialog()
   {
-    this.props.onCloseWordConfigDialog(); 
+    this.props.onCloseConfigDialog(); 
   }
 
  /*We had to put the setting of the state here because 
@@ -262,7 +262,7 @@ class ShapeTokenConfig extends React.Component {
                 <label>
                   <b>Shape:</b>
                   <textarea name="shapes" 
-                   placeholder= "Enter shapes such as ddd, XXXX, Xx. d is for digits and X is to alphabet"
+                   placeholder= "Enter shapes such as ddd, XXXX, Xx. d is for digits and x for letter, X for capital letter."
                    value={this.state.shapes} 
                    onChange={this.handleInputChange} 
                    rows="15" 
