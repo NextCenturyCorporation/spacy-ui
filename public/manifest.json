@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "The Extractor",
+  "name": "A graphical interface to enable a user to specify extraction rules that can be executed using SpaCy",
   "icons": [
     {
       "src": "favicon.ico",
