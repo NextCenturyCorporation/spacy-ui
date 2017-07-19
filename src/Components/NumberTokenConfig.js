@@ -1,8 +1,6 @@
 import React from 'react';
 import "../Styles/wordtoken.css"
 
-const CREATEDBY_SERVER = "server"; 
-const CREATEDBY_USER = "user"; 
 class NumberTokenConfig extends React.Component {
   constructor(props) {
     super(props);
@@ -95,7 +93,7 @@ class NumberTokenConfig extends React.Component {
           this.state.prepost_position, this.state.adverb, this.state.particle,
           this.state.interjection,this.state.exact,this.state.lower,
           this.state.upper, this.state.title, this.state.mixed,myNumbers, 
-          CREATEDBY_USER ); 
+          window.CREATEDBY_USER ); 
     }
     else
     {
@@ -108,7 +106,7 @@ class NumberTokenConfig extends React.Component {
           this.state.prepost_position, this.state.adverb, this.state.particle,
           this.state.interjection,this.state.exact,this.state.lower,
           this.state.upper, this.state.title, this.state.mixed,myNumbers, 
-          CREATEDBY_USER ); 
+          window.CREATEDBY_USER ); 
     }
   }
 

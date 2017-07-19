@@ -1,8 +1,6 @@
 import React from 'react';
 import "../Styles/wordtoken.css"
 
-const CREATEDBY_SERVER = "server"; 
-const CREATEDBY_USER = "user"; 
 class PunctuationTokenConfig extends React.Component {
   constructor(props) {
     super(props);
@@ -148,12 +146,12 @@ class PunctuationTokenConfig extends React.Component {
     if(!this.props.modify)
     {
       this.props.onAddNewToken("P","punctuation", this.createAllPunctuations(), this.state.optional, 
-          this.state.part_of_output, CREATEDBY_USER); 
+          this.state.part_of_output, window.CREATEDBY_USER); 
     }
     else
     {
       this.props.onModifyPunctuationToken(this.props.tokenModifyIndex, "P","punctuation", this.createAllPunctuations(), this.state.optional, 
-          this.state.part_of_output, CREATEDBY_USER); 
+          this.state.part_of_output, window.CREATEDBY_USER); 
 
     }
 

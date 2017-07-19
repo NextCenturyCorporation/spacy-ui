@@ -14,8 +14,9 @@ var TOKEN_BASE = 9000;
 var PTOKEN_BASE = 8000; 
 var RULE_BASE = 7000; 
 var GLOBAL_RULE_ID = 1; 
-
 var GLOBAL_COUNT=1; 
+
+
 
 /*
 The Rule class holds the different token. There can be multiple rules. 
@@ -225,9 +226,9 @@ class Rule extends Component
                 var myarr1 = myToken.capitalization; 
                 this.onAddWordToken("W",window.TYPE_WORD, myToken.token, !(myToken.is_required=='true'), 
                     myToken.is_in_output=='true', myToken.is_followed_by_space == 'true', 0, 0, 0,
-                    myToken.prefix, myToken.suffix, myToken.is_in_vocabulary, (myarr.indexOf("noun") > -1), (myarr.indexOf("pronoun") > -1), (myarr.indexOf("punctuation") > -1),
-                    (myarr.indexOf("propernoun") > -1), (myarr.indexOf("determiner") > -1), (myarr.indexOf("symbol") > -1), (myarr.indexOf("adjective") > -1), (myarr.indexOf("conjunction") > -1),(myarr.indexOf("verb") > -1),  
-                    (myarr.indexOf("prepost_position") > -1), (myarr.indexOf("adverb") > -1), (myarr.indexOf("particle") > -1), (myarr.indexOf("interjection") > -1), (myarr1.indexOf("exact") > -1),(myarr1.indexOf("lower") > -1), (myarr1.indexOf("upper") > -1),
+                    myToken.prefix, myToken.suffix, myToken.is_in_vocabulary, (myarr.indexOf(window.POS_noun) > -1), (myarr.indexOf(window.POS_pronoun) > -1), (myarr.indexOf(window.POS_punctuation) > -1),
+                    (myarr.indexOf(window.POS_propernoun) > -1), (myarr.indexOf(window.POS_determiner) > -1), (myarr.indexOf(window.POS_symbol) > -1), (myarr.indexOf(window.POS_adjective) > -1), (myarr.indexOf(window.POS_conjunction) > -1),(myarr.indexOf(window.POS_verb) > -1),  
+                    (myarr.indexOf("prepost_position") > -1), (myarr.indexOf(window.POS_adverb) > -1), (myarr.indexOf(window.POS_particle) > -1), (myarr.indexOf(window.POS_interjection) > -1), (myarr1.indexOf("exact") > -1),(myarr1.indexOf("lower") > -1), (myarr1.indexOf("upper") > -1),
                     (myarr1.indexOf("title") > -1), (myarr1.indexOf("mixed") > -1), myToken.numbers, window.CREATEDBY_SERVER);            
             }
             else if (myToken.type == window.TYPE_NUMBERS)
@@ -236,9 +237,9 @@ class Rule extends Component
                 var myarr1 = myToken.capitalization; 
                 this.onAddNumberToken("#",window.TYPE_NUMBERS, myToken.token, !(myToken.is_required=='true'), 
                     myToken.is_in_output=='true', myToken.is_followed_by_space == 'true', 0, 0, 0,
-                    myToken.prefix, myToken.suffix, myToken.is_in_vocabulary, (myarr.indexOf("noun") > -1), (myarr.indexOf("pronoun") > -1), (myarr.indexOf("punctuation") > -1),
-                    (myarr.indexOf("propernoun") > -1), (myarr.indexOf("determiner") > -1), (myarr.indexOf("symbol") > -1), (myarr.indexOf("adjective") > -1), (myarr.indexOf("conjunction") > -1),(myarr.indexOf("verb") > -1),  
-                    (myarr.indexOf("prepost_position") > -1), (myarr.indexOf("adverb") > -1), (myarr.indexOf("particle") > -1), (myarr.indexOf("interjection") > -1), (myarr1.indexOf("exact") > -1),(myarr1.indexOf("lower") > -1), (myarr1.indexOf("upper") > -1),
+                    myToken.prefix, myToken.suffix, myToken.is_in_vocabulary, (myarr.indexOf(window.POS_noun) > -1), (myarr.indexOf(window.POS_pronoun) > -1), (myarr.indexOf(window.POS_punctuation) > -1),
+                    (myarr.indexOf(window.POS_propernoun) > -1), (myarr.indexOf(window.POS_determiner) > -1), (myarr.indexOf(window.POS_symbol) > -1), (myarr.indexOf(window.POS_adjective) > -1), (myarr.indexOf(window.POS_conjunction) > -1),(myarr.indexOf(window.POS_verb) > -1),  
+                    (myarr.indexOf("prepost_position") > -1), (myarr.indexOf(window.POS_adverb) > -1), (myarr.indexOf(window.POS_particle) > -1), (myarr.indexOf(window.POS_interjection) > -1), (myarr1.indexOf("exact") > -1),(myarr1.indexOf("lower") > -1), (myarr1.indexOf("upper") > -1),
                     (myarr1.indexOf("title") > -1), (myarr1.indexOf("mixed") > -1), myToken.numbers, window.CREATEDBY_SERVER);            
             }
             else if (myToken.type == window.TYPE_PUNCTUATION)
@@ -252,9 +253,9 @@ class Rule extends Component
                 var myarr1 = myToken.capitalization; 
                 this.onAddShapeToken("S",window.TYPE_SHAPE, myToken.token, !(myToken.is_required=='true'), 
                     myToken.is_in_output=='true', myToken.is_followed_by_space == 'true', 0, 0, 0,
-                    myToken.prefix, myToken.suffix, myToken.is_in_vocabulary, (myarr.indexOf("noun") > -1), (myarr.indexOf("pronoun") > -1), (myarr.indexOf("punctuation") > -1),
-                    (myarr.indexOf("propernoun") > -1), (myarr.indexOf("determiner") > -1), (myarr.indexOf("symbol") > -1), (myarr.indexOf("adjective") > -1), (myarr.indexOf("conjunction") > -1),(myarr.indexOf("verb") > -1),  
-                    (myarr.indexOf("prepost_position") > -1), (myarr.indexOf("adverb") > -1), (myarr.indexOf("particle") > -1), (myarr.indexOf("interjection") > -1), (myarr1.indexOf("exact") > -1),(myarr1.indexOf("lower") > -1), (myarr1.indexOf("upper") > -1),
+                    myToken.prefix, myToken.suffix, myToken.is_in_vocabulary, (myarr.indexOf(window.POS_noun) > -1), (myarr.indexOf(window.POS_pronoun) > -1), (myarr.indexOf(window.POS_punctuation) > -1),
+                    (myarr.indexOf(window.POS_propernoun) > -1), (myarr.indexOf(window.POS_determiner) > -1), (myarr.indexOf(window.POS_symbol) > -1), (myarr.indexOf(window.POS_adjective) > -1), (myarr.indexOf(window.POS_conjunction) > -1),(myarr.indexOf(window.POS_verb) > -1),  
+                    (myarr.indexOf("prepost_position") > -1), (myarr.indexOf(window.POS_adverb) > -1), (myarr.indexOf(window.POS_particle) > -1), (myarr.indexOf(window.POS_interjection) > -1), (myarr1.indexOf("exact") > -1),(myarr1.indexOf("lower") > -1), (myarr1.indexOf("upper") > -1),
                     (myarr1.indexOf("title") > -1), (myarr1.indexOf("mixed") > -1), myToken.numbers,myToken.shapes, window.CREATEDBY_SERVER);            
             }
             
@@ -328,19 +329,18 @@ class Rule extends Component
         
 
         var mypartOfSpeech = []; 
-        noun1? mypartOfSpeech.push("noun"): mypartOfSpeech;
-        pronoun1? mypartOfSpeech.push("pronoun"): mypartOfSpeech;
-        punctuation1? mypartOfSpeech.push("punctuation"): mypartOfSpeech;
-        propernoun1? mypartOfSpeech.push("propernoun"): mypartOfSpeech;        
-        determiner1? mypartOfSpeech.push("determiner"): mypartOfSpeech;
-        symbol1? mypartOfSpeech.push("symbol"): mypartOfSpeech;
-        adjective1? mypartOfSpeech.push("adjective"): mypartOfSpeech;
-        conjunction1? mypartOfSpeech.push("conjunction"): mypartOfSpeech;
-        verb1? mypartOfSpeech.push("verb"): mypartOfSpeech;
-        prepost_position1? mypartOfSpeech.push("pre/post-position"): mypartOfSpeech;
-        adverb1? mypartOfSpeech.push("adverb"): mypartOfSpeech;
-        particle1? mypartOfSpeech.push("particle"): mypartOfSpeech;
-        interjection1? mypartOfSpeech.push("interjection"): mypartOfSpeech;
+        noun1? mypartOfSpeech.push(window.POS_noun): mypartOfSpeech;
+        pronoun1? mypartOfSpeech.push(window.POS_pronoun): mypartOfSpeech;
+        propernoun1? mypartOfSpeech.push(window.POS_propernoun): mypartOfSpeech;        
+        determiner1? mypartOfSpeech.push(window.POS_determiner): mypartOfSpeech;
+        symbol1? mypartOfSpeech.push(window.POS_symbol): mypartOfSpeech;
+        adjective1? mypartOfSpeech.push(window.POS_adjective): mypartOfSpeech;
+        conjunction1? mypartOfSpeech.push(window.POS_conjunction): mypartOfSpeech;
+        verb1? mypartOfSpeech.push(window.POS_verb): mypartOfSpeech;
+        prepost_position1? mypartOfSpeech.push(window.POS_pre_post_position): mypartOfSpeech;
+        adverb1? mypartOfSpeech.push(window.POS_adverb): mypartOfSpeech;
+        particle1? mypartOfSpeech.push(window.POS_particle): mypartOfSpeech;
+        interjection1? mypartOfSpeech.push(window.POS_interjection): mypartOfSpeech;
 
         var myLength=[]; 
         length11>0? myLength.push(length11): myLength; 
@@ -542,19 +542,18 @@ class Rule extends Component
         
 
         var mypartOfSpeech = []; 
-        noun1? mypartOfSpeech.push("noun"): mypartOfSpeech;
-        pronoun1? mypartOfSpeech.push("pronoun"): mypartOfSpeech;
-        punctuation1? mypartOfSpeech.push("punctuation"): mypartOfSpeech;
-        propernoun1? mypartOfSpeech.push("propernoun"): mypartOfSpeech;        
-        determiner1? mypartOfSpeech.push("determiner"): mypartOfSpeech;
-        symbol1? mypartOfSpeech.push("symbol"): mypartOfSpeech;
-        adjective1? mypartOfSpeech.push("adjective"): mypartOfSpeech;
-        conjunction1? mypartOfSpeech.push("conjunction"): mypartOfSpeech;
-        verb1? mypartOfSpeech.push("verb"): mypartOfSpeech;
-        prepost_position1? mypartOfSpeech.push("pre/post-position"): mypartOfSpeech;
-        adverb1? mypartOfSpeech.push("adverb"): mypartOfSpeech;
-        particle1? mypartOfSpeech.push("particle"): mypartOfSpeech;
-        interjection1? mypartOfSpeech.push("interjection"): mypartOfSpeech;
+        noun1? mypartOfSpeech.push(window.POS_noun): mypartOfSpeech;
+        pronoun1? mypartOfSpeech.push(window.POS_pronoun): mypartOfSpeech;
+        propernoun1? mypartOfSpeech.push(window.POS_propernoun): mypartOfSpeech;        
+        determiner1? mypartOfSpeech.push(window.POS_determiner): mypartOfSpeech;
+        symbol1? mypartOfSpeech.push(window.POS_symbol): mypartOfSpeech;
+        adjective1? mypartOfSpeech.push(window.POS_adjective): mypartOfSpeech;
+        conjunction1? mypartOfSpeech.push(window.POS_conjunction): mypartOfSpeech;
+        verb1? mypartOfSpeech.push(window.POS_verb): mypartOfSpeech;
+        prepost_position1? mypartOfSpeech.push(window.POS_pre_post_position): mypartOfSpeech;
+        adverb1? mypartOfSpeech.push(window.POS_adverb): mypartOfSpeech;
+        particle1? mypartOfSpeech.push(window.POS_particle): mypartOfSpeech;
+        interjection1? mypartOfSpeech.push(window.POS_interjection): mypartOfSpeech;
 
         var myLength=[]; 
         length11>0? myLength.push(length11): myLength; 

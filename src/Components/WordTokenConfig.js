@@ -2,8 +2,19 @@ import React from 'react';
 import "../Styles/wordtoken.css"
 import Token from "./Token"; 
 
-//const CREATEDBY_SERVER = "server"; 
-//const CREATEDBY_USER = "user"; 
+window.POS_noun = "NOUN"; 
+window.POS_pronoun = "PROPN"; 
+window.POS_propernoun = "PROPN";
+window.POS_determiner = "DET"; 
+window.POS_symbol = "SYM"; 
+window.POS_adjective = "ADJ"
+window.POS_conjunction= "CONJ";
+window.POS_verb= "VERB";
+window.POS_pre_post_position= "ADP";
+window.POS_adverb= "ADV";
+window.POS_particle= "PART"; 
+window.POS_interjection= "INTJ";
+
 class WordTokenConfig extends React.Component {
   constructor(props) {
     super(props);
@@ -169,19 +180,18 @@ class WordTokenConfig extends React.Component {
         title: tData.capitalization.indexOf("title")>-1? true:false, 
         mixed: tData.capitalization.indexOf("mixed")>-1? true:false, 
         exact: tData.capitalization.indexOf("exact")>-1? true:false, 
-        noun: tData.part_of_speech.indexOf("noun")>-1? true:false, 
-        pronoun:tData.part_of_speech.indexOf("pronoun")>-1? true:false, 
-        punctuation:tData.part_of_speech.indexOf("punctuation")>-1? true:false,
-        propernoun: tData.part_of_speech.indexOf("propernoun")>-1? true:false,
-        determiner: tData.part_of_speech.indexOf("determiner")>-1? true:false, 
-        symbol: tData.part_of_speech.indexOf("symbol")>-1? true:false,
-        adjective: tData.part_of_speech.indexOf("adjective")>-1? true:false,
-        conjunction: tData.part_of_speech.indexOf("conjunction")>-1? true:false,
-        verb: tData.part_of_speech.indexOf("verb")>-1? true:false, 
-        prepost_position: tData.part_of_speech.indexOf("pre/post-position")>-1? true:false,
-        adverb: tData.part_of_speech.indexOf("adverb")>-1? true:false, 
-        particle: tData.part_of_speech.indexOf("particle")>-1? true:false, 
-        interjection: tData.part_of_speech.indexOf("interjection")>-1? true:false, 
+        noun: tData.part_of_speech.indexOf(window.POS_noun)>-1? true:false, 
+        pronoun:tData.part_of_speech.indexOf(window.POS_pronoun)>-1? true:false, 
+        propernoun: tData.part_of_speech.indexOf(window.POS_propernoun)>-1? true:false,
+        determiner: tData.part_of_speech.indexOf(window.POS_determiner)>-1? true:false, 
+        symbol: tData.part_of_speech.indexOf(window.POS_symbol)>-1? true:false,
+        adjective: tData.part_of_speech.indexOf(window.POS_adjective)>-1? true:false,
+        conjunction: tData.part_of_speech.indexOf(window.POS_conjunction)>-1? true:false,
+        verb: tData.part_of_speech.indexOf(window.POS_verb)>-1? true:false, 
+        prepost_position: tData.part_of_speech.indexOf(window.POS_pre_post_position)>-1? true:false,
+        adverb: tData.part_of_speech.indexOf(window.POS_adverb)>-1? true:false, 
+        particle: tData.part_of_speech.indexOf(window.POS_particle)>-1? true:false, 
+        interjection: tData.part_of_speech.indexOf(window.POS_interjection)>-1? true:false, 
         length1: tData.length[0], 
         length2: tData.length[1],
         length3: tData.length[2],
@@ -305,10 +315,6 @@ class WordTokenConfig extends React.Component {
                       pronoun
                     </label> 
 
-                    <label className="inspeech">
-                      <input name="punctuation" type="checkbox" checked={this.state.punctuation} onChange={this.handleInputChange} className="wordlabels" />
-                      punctuation
-                    </label> 
 
                     <label className="inspeech">
                       <input name="propernoun" type="checkbox" checked={this.state.propernoun} onChange={this.handleInputChange} className="wordlabels" />
