@@ -56,7 +56,7 @@ class Token extends Component
       else
       {
         tokenText = this.props.tokenPatternData.token.map((word, index) => (
-                  <div className="tokenEachText"> {word}</div>
+                  <div className="tokenEachText" key={index}> {word}</div>
                   ));  
       }
       
@@ -91,9 +91,25 @@ class Token extends Component
       else
       {
         tokenText = this.props.tokenPatternData.token.map((word, index) => (
-                  <div className="tokenEachText"> {word}</div>
+                  <div className="tokenEachText" key={index}> {word}</div>
                   ));  
       }
+    }
+    else if(this.props.tokenPatternData.type === window.TYPE_SHAPE)
+    {
+      /*if there is no word text, keep
+      the space for formatting otherwise the tokens will be misaligned. */
+      if(this.props.tokenPatternData.shapes.length === 0)
+      {
+        tokenText = <div className="tokenEachText"></div>
+      }
+      else
+      {
+        tokenText = this.props.tokenPatternData.shapes.map((word, index) => (
+                  <div className="tokenEachText" key={index}> {word}</div>
+                  ));  
+      }
+      
     }
 
     const divStyle =  this.props.tokenPatternData.is_in_output? 

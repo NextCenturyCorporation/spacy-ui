@@ -14,9 +14,9 @@ var RULE_NUM = 0;
 window.CREATEDBY_SERVER = "server"; 
 window.CREATEDBY_USER = "user"; 
 window.TYPE_WORD = "word"; 
-window.TYPE_NUMBERS = "numbers"; 
+window.TYPE_NUMBERS = "number"; 
 window.TYPE_PUNCTUATION = "punctuation"; 
-window.TYPE_SHAPE = "shapes"
+window.TYPE_SHAPE = "shape"
 /*
   Main Application entry point
 */
@@ -228,7 +228,7 @@ class App extends Component {
                           }
 
                           console.log("Received data contains " + json.rules.length + " rules"); 
-                          console.log("Results"  + json.test_text); 
+                          console.log("Results = "  + json.test_text); 
                           //this.state.createdby = window.CREATEDBY_SERVER; 
                           
                     
@@ -257,7 +257,7 @@ class App extends Component {
   */
   sendData()
   {
-    console.log("SendData");
+    console.log("Enter SendData: about post json to the SERVER");
 
     //This is how you authenticate using base64(username:password. )
     var headers = new Headers();
@@ -376,7 +376,7 @@ class App extends Component {
                 ))*/}    
                 {this.state.allServerRules.rules.map((rule,index)=>(
                    // <Rule rulenum={index+1}  index = {index} onProcessJSONData={this.ProcessJSONData} ruleObj={rule}/>
-                    <Rule rulenum={index+1} index = {index}  onProcessJSONData={this.ProcessJSONData}  ruleObj={rule} createdby={this.state.createdby}/> 
+                    <Rule rulenum={index+1} index = {index} key={index} onProcessJSONData={this.ProcessJSONData}  ruleObj={rule} createdby={this.state.createdby}/> 
 
                 ))}
 

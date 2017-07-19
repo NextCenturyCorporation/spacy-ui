@@ -17,11 +17,6 @@ var GLOBAL_RULE_ID = 1;
 
 var GLOBAL_COUNT=1; 
 
-//const CREATEDBY_SERVER = "server"; 
-//const CREATEDBY_USER = "user"; 
-//const TYPE_WORD = "word"; 
-//const window.TYPE_NUMBERS = "numbers"; 
-//const TYPE_PUNCTUATION = "punctuation"; 
 /*
 The Rule class holds the different token. There can be multiple rules. 
 */
@@ -249,6 +244,17 @@ class Rule extends Component
             {
                 this.onAddPunctuationToken("P", window.TYPE_PUNCTUATION, myToken.token, !(myToken.is_required=='true'), 
                     myToken.is_in_output=='true',window.CREATEDBY_SERVER); 
+            }
+            else if( myToken.type == window.TYPE_SHAPE)
+            {
+                var myarr = myToken.part_of_speech; 
+                var myarr1 = myToken.capitalization; 
+                this.onAddShapeToken("S",window.TYPE_SHAPE, myToken.token, !(myToken.is_required=='true'), 
+                    myToken.is_in_output=='true', myToken.is_followed_by_space == 'true', 0, 0, 0,
+                    myToken.prefix, myToken.suffix, myToken.is_in_vocabulary, (myarr.indexOf("noun") > -1), (myarr.indexOf("pronoun") > -1), (myarr.indexOf("punctuation") > -1),
+                    (myarr.indexOf("propernoun") > -1), (myarr.indexOf("determiner") > -1), (myarr.indexOf("symbol") > -1), (myarr.indexOf("adjective") > -1), (myarr.indexOf("conjunction") > -1),(myarr.indexOf("verb") > -1),  
+                    (myarr.indexOf("prepost_position") > -1), (myarr.indexOf("adverb") > -1), (myarr.indexOf("particle") > -1), (myarr.indexOf("interjection") > -1), (myarr1.indexOf("exact") > -1),(myarr1.indexOf("lower") > -1), (myarr1.indexOf("upper") > -1),
+                    (myarr1.indexOf("title") > -1), (myarr1.indexOf("mixed") > -1), myToken.numbers,myToken.shapes, window.CREATEDBY_SERVER);            
             }
             
         }
@@ -1224,7 +1230,7 @@ class Rule extends Component
                                 <div className="arrangeEachToken">  {token}   </div>
                             ))*/}  
                             {this.state.array.map((token, index) => (
-                               <div className="arrangeEachToken"> <TokenWrapper data={token} index={index} onEditToken={this.onEditToken}/> </div>
+                               <div className="arrangeEachToken"  key={index}> <TokenWrapper data={token} index={index} key={index} onEditToken={this.onEditToken}/> </div>
                             ))}  
 
                         </div>
