@@ -85,6 +85,11 @@ class App extends Component {
 
   }
 
+  componentDidMount()
+  {
+    document.title = "The Extractor";
+  }
+
   /*
     Method for form submittal. 
   */

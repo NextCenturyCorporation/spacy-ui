@@ -2,11 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, hashHistory } from 'react-router'
 
-//import './index.css';
-//import './layout.css'; 
-//import './token.css';
-//import './rule.css';
-
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
