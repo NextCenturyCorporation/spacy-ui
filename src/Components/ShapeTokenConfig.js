@@ -101,7 +101,7 @@ class ShapeTokenConfig extends React.Component {
     }
     else 
     {
-      this.props.onModifyShapeToken(this.props.tokenModifyIndex, "S",window.TYPE_SHAPE, this.state.allwords.split(" "), this.state.optional, 
+      this.props.onModifyToken(this.props.tokenModifyIndex, "S",window.TYPE_SHAPE, this.state.allwords.split(" "), this.state.optional, 
           this.state.part_of_output,this.state.followed_by_space, this.state.length1, this.state.length2, this.state.length3,
           this.state.prefix,this.state.suffix, this.state.notinvocabulary,
           this.state.noun, this.state.pronoun,this.state.punctuation, 
@@ -124,17 +124,14 @@ class ShapeTokenConfig extends React.Component {
   componentWillReceiveProps(nextProps)
   {
     
-    console.log("WordTokenConfig: componentWillReceiveProps"); 
+    console.log("ShapeTokenConfig->componentWillReceiveProps are we modifying token = " + nextProps.modify);   
     
     var tData = nextProps.tokenData; 
-    console.log("Was Modify clicked = " + nextProps.modify);   
-    console.log("componentWillReceiveProps: part of output = " + this.props.modify);   
 
     if(nextProps.modify)
     {
-      console.log("componentWillReceiveProps: Tokens are = " + tData.is_in_output); 
       this.setState({
-        shapes: tData.shapes.join(""),
+        shapes: tData.shapes.join(" "),
         allwords: tData.token.join(" "),
         optional: !tData.is_required, 
         part_of_output: tData.is_in_output,

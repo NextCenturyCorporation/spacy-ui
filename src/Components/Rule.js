@@ -666,7 +666,7 @@ class Rule extends Component
         //alert("addNewToken + id" + this.state.id);
         //Let's close the token modal dialog box. 
         if(createdby === window.CREATEDBY_USER)
-            this.toggleWordConfigDialog();
+            this.toggleShapeConfigDialog();
 
         //Keep track of the token with a generated token id. 
         var tokenid = TOKEN_BASE+(++GLOBAL_ID); 

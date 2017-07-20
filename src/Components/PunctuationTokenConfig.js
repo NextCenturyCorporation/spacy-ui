@@ -64,15 +64,11 @@ class PunctuationTokenConfig extends React.Component {
   componentWillReceiveProps(nextProps)
   {
     
-    console.log("WordTokenConfig: componentWillReceiveProps"); 
+    console.log("PunctuationTokenConfig->componentWillReceiveProps are we modifying token = " + nextProps.modify);   
     
     var tData = nextProps.tokenData; 
-    console.log("Was Modify clicked = " + nextProps.modify);   
-    console.log("componentWillReceiveProps: part of output = " + this.props.modify);   
-
     if(nextProps.modify)
     {
-      console.log("componentWillReceiveProps: Tokens are = " + tData.is_in_output); 
       this.setState({
         allwords: tData.token.join(" "),
         optional: !tData.is_required, 
