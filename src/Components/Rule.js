@@ -86,6 +86,7 @@ class Rule extends Component
         this.onModifyPunctuationToken = this.onModifyPunctuationToken.bind(this); 
         this.onModifyNumberToken = this.onModifyNumberToken.bind(this);
         this.onModifyShapeToken = this.onModifyShapeToken.bind(this);  
+        this.handle_onBlur = this.handle_onBlur.bind(this); 
     }
 
     componentWillMount() 
@@ -1125,22 +1126,37 @@ class Rule extends Component
 
     handleChange_outformat(event)
     {
-        //this.setState({output_format: event.target.value});    
-        this.updateData(event); 
+        console.log("Rule: Enter handleChange_outformat name = "+ event.target.name + " value = " + event.target.value); 
+        this.setState({
+        [event.target.name]: event.target.value
+        });  
+        console.log("Rule: new state output format = " + this.state.description); 
+    
     }
 
     handleChange_description(event)
     {
-
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
-        //alert("You clicked on " + name); 
-
+        console.log("Rule: Enter handleChange_description name = "+ event.target.name + " value = " + event.target.value); 
+        console.log("Rule->handleChange_description: event = " + event.name)
+        var myDescr = event.target.value;      
         this.setState({
-            [name]: value
-        });      
-        this.updateData(); 
+           description: myDescr
+        });   
+
+        console.log("Rule: new state description = " + this.state.description); 
+    }
+
+    /*lets update the webservice when the mouse is moved from description and output format inputs*/
+    handle_onBlur(event)
+    {
+        console.log("handle_onBlur"); 
+        /* All the webservice conmunication is done in App.js. So we need to propagate
+        all data to the top in App.js. onProcessJSONData is a method is Apps.js. 
+        Send all the data related to this rule up to the app.js level. */
+        this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
+                this.state.identifier, this.state.description, this.state.polarity, 
+                this.state.is_active, this.state.output_format, window.CREATEDBY_USER ); 
+        
     }
 
     render() 
@@ -1221,8 +1237,10 @@ class Rule extends Component
                         placeholder= "Enter rule description "
                         type="text"
                         className="ruleDescription"
-                        value={this.state.description}
-                        onChange={this.updateData}
+                        value={msg_description}
+                        onChange={this.handleChange_description}
+                        onBlur={this.handle_onBlur}
+
                         />
                     </div>
 
@@ -1258,8 +1276,9 @@ class Rule extends Component
                         placeholder= "e.g., {1}-{2}-{3} "
                         type="text"
                         className="output_format"
-                        value={this.state.output_format}
-                        onChange={this.updateData}
+                        value={msg_output_format}
+                        onChange={this.handleChange_outformat}
+                        onBlur={this.handle_onBlur}
                         size="20"
                         />
                     </div> 
