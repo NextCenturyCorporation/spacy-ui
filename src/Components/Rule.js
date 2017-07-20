@@ -86,7 +86,8 @@ class Rule extends Component
         this.onModifyPunctuationToken = this.onModifyPunctuationToken.bind(this); 
         this.onModifyNumberToken = this.onModifyNumberToken.bind(this);
         this.onModifyShapeToken = this.onModifyShapeToken.bind(this);  
-        this.handle_onBlur = this.handle_onBlur.bind(this); 
+        this.handle_onBlur = this.handle_onBlur.bind(this);
+        this.updateActiveRule = this.updateActiveRule.bind(this);  
     }
 
     componentWillMount() 
@@ -214,7 +215,7 @@ class Rule extends Component
         var myToken; 
         this.state.description = this.props.ruleObj.description; 
         this.state.output_format = this.props.ruleObj.output_format; 
-        this.state.is_active = this.props.ruleObj.is_active; 
+        this.state.is_active = this.props.ruleObj.is_active == "true"; 
         this.state.identifier = this.props.ruleObj.identifier; 
         var count = this.props.ruleObj.pattern.length; 
 
@@ -1159,6 +1160,28 @@ class Rule extends Component
         
     }
 
+    updateActiveRule(event)
+    {
+        console.log("Rule->updateActiveRule toggling rule active = " + event.target.checked ) ; 
+
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+
+        this.setState({
+            [name]: value
+        });     
+
+
+        /* All the webservice conmunication is done in App.js. So we need to propagate
+        all data to the top in App.js. onProcessJSONData is a method is Apps.js. 
+        Send all the data related to this rule up to the app.js level. */
+        this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
+                this.state.identifier, this.state.description, this.state.polarity, 
+                value, this.state.output_format, window.CREATEDBY_USER ); 
+        
+    }
+
     render() 
 	{
         const tMenu = "tokenMenu" + this.state.id; 
@@ -1255,7 +1278,7 @@ class Rule extends Component
                         <div className="arrangeRuleTokens"> 
 
 
-                            <input type="checkbox" defaultChecked={this.state.is_active}  name="rule"  className="ruleCheckBox"  onChange={this.updateData}/> 
+                            <input type="checkbox" defaultChecked={this.state.is_active}  name="is_active"  className="ruleCheckBox"  onChange={this.updateActiveRule}/> 
 
                             {/*this.state.array.map((token, index) => (
                                 <div className="arrangeEachToken">  {token}   </div>

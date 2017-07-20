@@ -51,14 +51,6 @@ class ShapeTokenConfig extends React.Component {
 
   }
 
-  componentWillMount() 
-  {
-    //alert("WordTokenConfig id="+this.props.ruleid); 
-    console.log("WordTokenConfig: componentWillMount")
-    console.log("Was Modify clicked = " + this.props.modify);     
-    console.log("Is token part of output "+ this.state.part_of_output);     
-  }
-
   handleInputChange(event) 
   {
 

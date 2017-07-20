@@ -51,12 +51,6 @@ class PunctuationTokenConfig extends React.Component {
 
   }
 
-  componentWillMount() 
-  {
-    //alert("WordTokenConfig id="+this.props.ruleid); 
-    console.log("Was Modify clicked = " + this.props.modify);     
-    
-  }
 
   /*We had to put the setting of the state here because 
   * of the way we show the dialog and don't re-render. 

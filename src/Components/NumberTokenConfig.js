@@ -49,10 +49,6 @@ class NumberTokenConfig extends React.Component {
 
   componentWillMount() 
   {
-    //alert("NumberTokenConfig id="+this.props.ruleid); 
-    console.log("NumberTokenConfig: componentWillMount")
-    console.log("Was Modify clicked = " + this.props.modify);     
-    console.log("Is token part of output "+ this.state.part_of_output);     
   }
 
   handleInputChange(event) 
@@ -126,15 +122,10 @@ class NumberTokenConfig extends React.Component {
   */
   componentWillReceiveProps(nextProps)
   {
-    
-    console.log("NumberTokenConfig: componentWillReceiveProps"); 
-    
+    console.log("NumberTokenConfig->componentWillReceiveProps are we modifying token = " + nextProps.modify);       
     var tData = nextProps.tokenData; 
-    console.log("Was Modify clicked = " + nextProps.modify);   
-    
     if(nextProps.modify)
     {
-      console.log("componentWillReceiveProps: Tokens are part_of_output = " + tData.is_in_output); 
       this.setState({
         allnumbers: tData.numbers.join(" "),
         optional: !tData.is_required, 
