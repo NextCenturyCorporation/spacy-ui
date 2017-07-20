@@ -135,10 +135,6 @@ class App extends Component {
     map allTokenData */
 
     /*Let's build each rule token according to the JSON spec */
-    
-    const result = Object.values(allTokenData);
-
-
     var myRuleData = this.state.allRuleData; 
     myRuleData[ruleid] = {
         polarity: polarity1, 
@@ -156,7 +152,7 @@ class App extends Component {
     });
 
     //console.log("Data 2 send  ="+ this.buildData2Send()); 
-    if(createdby == window.CREATEDBY_USER)
+    if(createdby === window.CREATEDBY_USER)
     {
       this.sendData(); 
     }
@@ -164,7 +160,6 @@ class App extends Component {
 
   processRulesData(rule, index)
   {
-    var myRule= this.getInitialState(); 
     //this.state.allServerRules.rules.push(myRule); 
     let allRules = this.state.allServerRules.rules; 
     allRules[index] = rule; 
@@ -228,7 +223,7 @@ class App extends Component {
                         /*If there is an error, then there is no json.rules - it's undefined. 
                         *
                         */
-                        if(json.rules !=undefined)
+                        if(json.rules !== undefined)
                         {
                           console.log("Received 200 ok"); 
                           if(json.rules.length < 1 )
@@ -327,8 +322,6 @@ class App extends Component {
     //this.state.allServerRules.rules.push(myRule); 
     let allRules = this.state.allServerRules.rules; 
     allRules.push(myRule); 
-    var test = {rules:allRules}; 
-
     this.setState(prevState =>
     ({
         allServerRules: {rules:allRules}

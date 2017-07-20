@@ -61,7 +61,7 @@ class Token extends Component
       }
       
       const tCase = this.generateTokenCase(); 
-      const divStyle =  tCase ==""? 
+      const divStyle =  tCase ===""? 
                           {backgroundColor: 'none'}: {backgroundColor: '#BE9974'}; 
       isCaseRequired = <div id="tokenCase" style={divStyle}>{tCase}</div>; 
     }

@@ -1,6 +1,5 @@
 import React from 'react';
 import "../Styles/wordtoken.css"
-import Token from "./Token"; 
 
 class ShapeTokenConfig extends React.Component {
   constructor(props) {
@@ -76,7 +75,7 @@ class ShapeTokenConfig extends React.Component {
   {
     
     //alert("createNewToken Rule id = " + this.props.ruleid); 
-   var myShapes = this.state.shapes.length==0? []:this.state.shapes.split(" ");  
+   var myShapes = this.state.shapes.length===0? []:this.state.shapes.split(" ");  
     
     if(!this.props.modify)
     {

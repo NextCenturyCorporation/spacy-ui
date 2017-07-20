@@ -30,7 +30,7 @@ class TokenWrapper extends Component
     render() 
 	{   
         var tokenDisplayed; 
-        if(this.props.index != 0 && (this.props.index%2) != 0)
+        if(this.props.index !== 0 && (this.props.index%2) !== 0)
         {
             tokenDisplayed = <div className="tokenHeader2" >  <div className="overlayEdit" onClick={this.clickEdit}> </div>
                             <div className="overlayClose" onClick={this.clickClose}> </div>

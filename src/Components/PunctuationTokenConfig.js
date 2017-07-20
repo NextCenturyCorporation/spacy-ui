@@ -74,7 +74,7 @@ class PunctuationTokenConfig extends React.Component {
         punctuation_tilde: tData.token.indexOf("~")>-1, 
         punctuation_colon: tData.token.indexOf(":")>-1, 
         punctuation_2quote: tData.token.indexOf("\"")>-1, 
-        punctuation_1quote: tData.token.indexOf("\'")>-1, 
+        punctuation_1quote: tData.token.indexOf("'")>-1, 
         punctuation_plus: tData.token.indexOf("+")>-1, 
         punctuation_underscore: tData.token.indexOf("_")>-1, 
         punctuation_amperand: tData.token.indexOf("&")>-1, 
@@ -198,7 +198,7 @@ class PunctuationTokenConfig extends React.Component {
       ret = this.state.punctuation_tilde? allPunct.push("~"):allPunct; 
       ret = this.state.punctuation_colon? allPunct.push(":"):allPunct; 
       ret = this.state.punctuation_2quote? allPunct.push("\""):allPunct; 
-      ret = this.state.punctuation_1quote? allPunct.push("\'"):allPunct; 
+      ret = this.state.punctuation_1quote? allPunct.push("'"):allPunct; 
       ret = this.state.punctuation_plus? allPunct.push("+"):allPunct; 
       ret = this.state.punctuation_underscore? allPunct.push("_"):allPunct; 
       ret = this.state.punctuation_amperand? allPunct.push("&"):allPunct; 

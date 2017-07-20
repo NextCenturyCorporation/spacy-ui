@@ -1,6 +1,5 @@
 import React from 'react';
 import "../Styles/wordtoken.css"
-import Token from "./Token"; 
 
 window.POS_noun = "noun"; 
 window.POS_pronoun = "pronoun"; 
@@ -89,7 +88,7 @@ class WordTokenConfig extends React.Component {
   {
     
     //alert("createNewToken Rule id = " + this.props.ruleid); 
-    var myWords = this.state.allwords.length==0? []:this.state.allwords.split(" ");  
+    var myWords = this.state.allwords.length===0? []:this.state.allwords.split(" ");  
 
     if(!this.props.modify)
     {

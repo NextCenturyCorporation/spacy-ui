@@ -77,7 +77,7 @@ class NumberTokenConfig extends React.Component {
   createNewToken()
   {
     //alert("createNewToken Rule id = " + this.props.ruleid); 
-    var myNumbers = this.state.allnumbers.length==0? []:this.state.allnumbers.split(" ");  
+    var myNumbers = this.state.allnumbers.length===0? []:this.state.allnumbers.split(" ");  
 
     if(!this.props.modify)
     {    
