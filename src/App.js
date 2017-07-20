@@ -57,7 +57,7 @@ class App extends Component {
   componentWillMount() 
   {
     //    'http://52.36.12.77:9879/projects/pedro_test_01/fields/name/spacy_rules'
-    console.log("Servername is = " + this.props.params.serverName);
+    console.log("Server name = " + this.props.params.serverName);
 
     if(this.props.params.projectName === undefined || this.props.params.fieldName === undefined)
     {

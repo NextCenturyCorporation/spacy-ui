@@ -1061,24 +1061,35 @@ class Rule extends Component
     }    
 
     
-    deleteToken(myToken )
+    deleteToken(index)
     {
-        /*
-        //var myArray = this.state.array; 
-        console.log("Rule: Enter deleteToken"); 
-        console.log("My token index is = " + myArray.findIndex(myToken)); 
+        let dataIndex = Math.round((index-1)/2); 
+        console.log("deleteToken index = " + index + " data index = " + dataIndex);
 
-        var f;
-        var filteredElements = myArray.filter(function(myToken, index) 
-                        { f = index; return myToken.id === removeId; });
+        //Get the state token array. 
+        var myTokenData = this.state.allTokenData; 
 
+        //Add the new token to the array of tokens. 
+        myTokenData.splice(dataIndex, 1); 
+        this.setState(
+            {
+                allTokenData: myTokenData
+            }
+        )
+        
 
-        if (!filteredElements.length) {
-            return false;
-        }
+        var myTokens = this.state.array; 
+/*
+        const newToken = <Token id={tokenid} clickable="0" tokenAbbreviation={tokenAbbreviation1}
+            tokenPatternData={newJSONTokenData} deleteToken={this.deleteToken} />
+*/
+        myTokens.splice(index,2); 
 
-        data.splice(f, 1);
-        */
+        this.setState(prevState =>
+            ({
+                array: myTokens
+            }));
+
     }        
 
     updateData(event)
@@ -1261,7 +1272,7 @@ class Rule extends Component
                                 <div className="arrangeEachToken">  {token}   </div>
                             ))*/}  
                             {this.state.array.map((token, index) => (
-                               <div className="arrangeEachToken"  key={index}> <TokenWrapper data={token} index={index} key={index} onEditToken={this.onEditToken}/> </div>
+                               <div className="arrangeEachToken"  key={index}> <TokenWrapper data={token} index={index} key={index} onEditToken={this.onEditToken} onDeleteToken={this.deleteToken}/> </div>
                             ))}  
 
                         </div>

@@ -14,6 +14,7 @@ class TokenWrapper extends Component
     clickClose()
     {
         console.log("TokenWrapper: clickClose"); 
+        this.props.onDeleteToken(this.props.index);
     }
 
     clickEdit()
@@ -58,4 +59,7 @@ class TokenWrapper extends Component
 }
 
 
+
+
 export default TokenWrapper;
+

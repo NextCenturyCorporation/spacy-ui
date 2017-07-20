@@ -23,7 +23,7 @@ class Token extends Component
     return tokenCase; 
   }
 
-  deleteToken()
+  deleteToken(index)
   {
     console.log("Token:Enter deleteToken()"); 
     this.props.deleteToken(this); 
