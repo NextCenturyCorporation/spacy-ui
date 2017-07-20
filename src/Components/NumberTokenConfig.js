@@ -33,7 +33,9 @@ class NumberTokenConfig extends React.Component {
       lower: false, 
       upper: false, 
       title: false, 
-      mixed: false
+      mixed: false,
+      minimum:"",
+      maximum: ""
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -82,7 +84,7 @@ class NumberTokenConfig extends React.Component {
 
       this.props.onAddNumberToken("#",window.TYPE_NUMBERS, [], this.state.optional, 
           this.state.part_of_output,this.state.followed_by_space, this.state.length1, this.state.length2, this.state.length3,
-          this.state.prefix,this.state.suffix, this.state.notinvocabulary,
+          this.state.minimum,this.state.maximum, this.state.notinvocabulary,
           this.state.noun, this.state.pronoun,this.state.punctuation, 
           this.state.propernoun, this.state.determiner, this.state.symbol, 
           this.state.adjective, this.state.conjunction, this.state.verb,
@@ -95,7 +97,7 @@ class NumberTokenConfig extends React.Component {
     {
       this.props.onModifyNumberToken(this.props.tokenModifyIndex, "#",window.TYPE_NUMBERS, [], this.state.optional, 
           this.state.part_of_output,this.state.followed_by_space, this.state.length1, this.state.length2, this.state.length3,
-          this.state.prefix,this.state.suffix, this.state.notinvocabulary,
+          this.state.minimum,this.state.maximum, this.state.notinvocabulary,
           this.state.noun, this.state.pronoun,this.state.punctuation, 
           this.state.propernoun, this.state.determiner, this.state.symbol, 
           this.state.adjective, this.state.conjunction, this.state.verb,
@@ -157,6 +159,8 @@ class NumberTokenConfig extends React.Component {
       length1:"",
       length2:"",
       length3:"",
+      minimum:"",
+      maximum:"",
       prefix:"",
       suffix:"",
       notinvocabulary: false,
@@ -244,13 +248,13 @@ class NumberTokenConfig extends React.Component {
 
                 <div id="number-prefix-suffix">
                 <label>
-                Prefix: 
-                <input name="prefix" type="text" value={this.state.prefix} onChange={this.handleInputChange}   size="50" className="num_prefixsuffix" />
+                Min: 
+                <input name="minimum" type="text" value={this.state.minimum} onChange={this.handleInputChange}   size="10" className="num_minmax" />
               </label> 
 
               <label>
-                Suffix: 
-                <input name="suffix" type="text" value={this.state.suffix} onChange={this.handleInputChange}  size="50" />
+                Max: 
+                <input name="maximum" type="text" value={this.state.maximum} onChange={this.handleInputChange}  size="10"  className="num_minmax"/>
               </label> 
                                                    
                 </div> 
