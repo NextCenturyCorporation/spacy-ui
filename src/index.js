@@ -12,7 +12,7 @@ ReactDOM.render((
     <Route path="/" component={App}>
       <Route path="/" component={App}/>
       {/* add the new route */}
-      <Route path=":projectName/:fieldName" component={App}/>
+      <Route path=":serverName/:projectName/:fieldName" component={App}/>
     </Route>
   </Router>
 ), document.getElementById('root'))

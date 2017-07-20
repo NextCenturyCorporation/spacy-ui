@@ -57,6 +57,7 @@ class App extends Component {
   componentWillMount() 
   {
     //    'http://52.36.12.77:9879/projects/pedro_test_01/fields/name/spacy_rules'
+    console.log("Servername is = " + this.props.params.serverName);
 
     if(this.props.params.projectName === undefined || this.props.params.fieldName === undefined)
     {
@@ -64,7 +65,11 @@ class App extends Component {
     }
 
 
+/*
     webServiceUrl = 'http://52.36.12.77:9879/projects/' + this.props.params.projectName + '/fields/'+
+                 this.props.params.fieldName + '/spacy_rules'; 
+*/
+    webServiceUrl = 'http://' + this.props.params.serverName  +'/projects/' + this.props.params.projectName + '/fields/'+
                  this.props.params.fieldName + '/spacy_rules'; 
     webServiceUrlAllRules = webServiceUrl + "?type=all";
 
