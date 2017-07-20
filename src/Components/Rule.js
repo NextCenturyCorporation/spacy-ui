@@ -74,7 +74,6 @@ class Rule extends Component
         this.showPunctuationToken = this.showPunctuationToken.bind(this); 
         this.showShapeToken = this.showShapeToken.bind(this); 
         this.deleteToken = this.deleteToken.bind(this); 
-        this.updateData = this.updateData.bind(this); 
         this.handleChange_outformat = this.handleChange_outformat.bind(this); 
         this.handleChange_description = this.handleChange_description.bind(this); 
         this.loadTokensFromServer = this.loadTokensFromServer.bind(this); 
@@ -410,7 +409,7 @@ class Rule extends Component
         all data to the top in App.js. onProcessJSONData is a method is Apps.js. 
         Send all the data related to this rule up to the app.js level. */
  
-        this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
+        this.props.onProcessJSONData(this.state.id, myTokenData, 
                     this.state.identifier, this.state.description, this.state.polarity, 
                     this.state.is_active, this.state.output_format,createdby ); 
 
@@ -482,7 +481,7 @@ class Rule extends Component
         /* All the webservice conmunication is done in App.js. So we need to propagate
         all data to the top in App.js. onProcessJSONData is a method is Apps.js. 
         Send all the data related to this rule up to the app.js level. */
-        this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
+        this.props.onProcessJSONData(this.state.id, myTokenData, 
                     this.state.identifier, this.state.description, this.state.polarity, 
                     this.state.is_active, this.state.output_format, createdby ); 
 
@@ -613,9 +612,12 @@ class Rule extends Component
 
         /* All the webservice conmunication is done in App.js. So we need to propagate
         all data to the top in App.js. onProcessJSONData is a method is Apps.js. 
-        Send all the data related to this rule up to the app.js level. */
-        //if(createdby === window.CREATEDBY_USER)
-        this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
+        Send all the data related to this rule up to the app.js level. 
+        NOTE: For the value that I am changing in this method, I use the stack value not 
+        the state value because the state value is not updated until after rendering. 
+        so in this case I am passing myTokenData which is a local value. 
+        */
+        this.props.onProcessJSONData(this.state.id, myTokenData, 
                     this.state.identifier, this.state.description, this.state.polarity, 
                     this.state.is_active, this.state.output_format,createdby ); 
 
@@ -678,8 +680,12 @@ class Rule extends Component
 
         /* All the webservice conmunication is done in App.js. So we need to propagate
         all data to the top in App.js. onProcessJSONData is a method is Apps.js. 
-        Send all the data related to this rule up to the app.js level. */
-        this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
+        Send all the data related to this rule up to the app.js level. 
+        NOTE: For the value that I am changing in this method, I use the stack value not 
+        the state value because the state value is not updated until after rendering. 
+        so in this case I am passing myTokenData which is a local value. 
+        */
+        this.props.onProcessJSONData(this.state.id, myTokenData, 
                     this.state.identifier, this.state.description, this.state.polarity, 
                     this.state.is_active, this.state.output_format, createdby ); 
 
@@ -742,8 +748,12 @@ class Rule extends Component
 
         /* All the webservice conmunication is done in App.js. So we need to propagate
         all data to the top in App.js. onProcessJSONData is a method is Apps.js. 
-        Send all the data related to this rule up to the app.js level. */
-        this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
+        Send all the data related to this rule up to the app.js level. 
+        NOTE: For the value that I am changing in this method, I use the stack value not 
+        the state value because the state value is not updated until after rendering. 
+        so in this case I am passing myTokenData which is a local value. 
+        */
+        this.props.onProcessJSONData(this.state.id, myTokenData, 
                 this.state.identifier, this.state.description, this.state.polarity, 
                 this.state.is_active, this.state.output_format,createdby ); 
 
@@ -800,8 +810,12 @@ class Rule extends Component
 
         /* All the webservice conmunication is done in App.js. So we need to propagate
         all data to the top in App.js. onProcessJSONData is a method is Apps.js. 
-        Send all the data related to this rule up to the app.js level. */
-        this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
+        Send all the data related to this rule up to the app.js level. 
+        NOTE: For the value that I am changing in this method, I use the stack value not 
+        the state value because the state value is not updated until after rendering. 
+        so in this case I am passing myTokenData which is a local value. 
+        */
+        this.props.onProcessJSONData(this.state.id, myTokenData, 
                 this.state.identifier, this.state.description, this.state.polarity, 
                 this.state.is_active, this.state.output_format, createdby ); 
 
@@ -850,8 +864,12 @@ class Rule extends Component
 
         /* All the webservice conmunication is done in App.js. So we need to propagate
         all data to the top in App.js. onProcessJSONData is a method is Apps.js. 
-        Send all the data related to this rule up to the app.js level. */
-        this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
+        Send all the data related to this rule up to the app.js level. 
+        NOTE: For the value that I am changing in this method, I use the stack value not 
+        the state value because the state value is not updated until after rendering. 
+        so in this case I am passing myTokenData which is a local value. 
+        */
+        this.props.onProcessJSONData(this.state.id, myTokenData, 
                 this.state.identifier, this.state.description, this.state.polarity, 
                 this.state.is_active, this.state.output_format,createdby ); 
 
@@ -900,8 +918,12 @@ class Rule extends Component
 
         /* All the webservice conmunication is done in App.js. So we need to propagate
         all data to the top in App.js. onProcessJSONData is a method is Apps.js. 
-        Send all the data related to this rule up to the app.js level. */
-        this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
+        Send all the data related to this rule up to the app.js level. 
+        NOTE: For the value that I am changing in this method, I use the stack value not 
+        the state value because the state value is not updated until after rendering. 
+        so in this case I am passing myTokenData which is a local value. 
+        */
+        this.props.onProcessJSONData(this.state.id, myTokenData, 
                 this.state.identifier, this.state.description, this.state.polarity, 
                 this.state.is_active, this.state.output_format, createdby ); 
 
@@ -1076,6 +1098,17 @@ class Rule extends Component
                 allTokenData: myTokenData
             }
         )
+
+        /* All the webservice conmunication is done in App.js. So we need to propagate
+        all data to the top in App.js. onProcessJSONData is a method is Apps.js. 
+        Send all the data related to this rule up to the app.js level. 
+        NOTE: For the value that I am changing in this method, I use the stack value not 
+        the state value because the state value is not updated until after rendering. 
+        so in this case I am passing myTokenData which is a local value. 
+        */
+        this.props.onProcessJSONData(this.state.id, myTokenData, 
+                this.state.identifier, this.state.description, this.state.polarity, 
+                this.state.is_active, this.state.output_format, window.CREATEDBY_USER ); 
         
 
         var myTokens = this.state.array; 
@@ -1091,27 +1124,6 @@ class Rule extends Component
             }));
 
     }        
-
-    updateData(event)
-    {
-        console.log("Rule: Updating the top level application data")
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
-        //alert("You clicked on " + name); 
-
-        this.setState({
-        [name]: value
-        });     
-
-
-        /* All the webservice conmunication is done in App.js. So we need to propagate
-        all data to the top in App.js. onProcessJSONData is a method is Apps.js. 
-        Send all the data related to this rule up to the app.js level. */
-        this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
-                this.state.identifier, this.state.description, this.state.polarity, 
-                this.state.is_active, this.state.output_format, window.CREATEDBY_USER ); 
-    }
 
     handleChange_outformat(event)
     {
