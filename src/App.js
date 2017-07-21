@@ -31,6 +31,7 @@ class App extends Component {
       jsonReturnedValue: null, 
       allRuleData:{}, 
       test_text:"",
+      test_tokens:[],
       jsonresults:{},
       jsonRules:[], 
       jsonExtraction:[],
@@ -240,7 +241,8 @@ class App extends Component {
                           this.setState({
                             createdby: window.CREATEDBY_SERVER,
                             allServerRules: json,
-                            test_text: json.test_text
+                            test_text: json.test_text,
+                            test_tokens: json.test_tokens
                           });
 /*
                         this.state.allServerRules.rules.map((rule,index)=>(
@@ -362,8 +364,9 @@ class App extends Component {
       <div className="page-wrap">
         <div id="appHeader">
           <div id="ruleMenu">
-          <button className="button" onClick={this.addNewRule} >Add Rule </button>  <button className="button" onClick={this.selectAll}>Select All </button> <button className="button" onClick={this.deselectAll}> Deselect All</button> 
-          {/*<button className="button"> Delete</button> <button className="button"> Duplicate</button> */}
+          <button className="button" onClick={this.addNewRule} >Add Rule </button>  
+          {/*<button className="button" onClick={this.selectAll}>Select All </button> <button className="button" onClick={this.deselectAll}> Deselect All</button> 
+          <button className="button"> Delete</button> <button className="button"> Duplicate</button> */}
           </div> 
           
         </div> 
@@ -390,8 +393,11 @@ class App extends Component {
           </div>
         <br/>
         <form onSubmit={this.handleSubmit}> 
-          <span className="extractionText"> Text</span>
-          <div className="rulesText"> <textarea name="test_text" onChange={this.handleChange}  rows="5" className="textInput" value={this.state.test_text}/> </div> 
+          <span className="extractionText"> Text/Tokens</span>
+          <div className="rulesText"> 
+            <textarea name="test_text" onChange={this.handleChange}  rows="5" className="textInput" value={this.state.test_text}/>
+            <textarea name="test_token"   rows="5" className="textInput2" value={this.state.test_tokens.join("\n")}/>
+           </div> 
         </form>
         <br/>
        <div id="run-rules"> <button className="button" onClick={this.sendData} >Run Rules </button> </div>
