@@ -77,7 +77,7 @@ class NumberTokenConfig extends React.Component {
   createNewToken()
   {
     //alert("createNewToken Rule id = " + this.props.ruleid); 
-    var myNumbers = this.state.allnumbers.length===0? []:this.state.allnumbers.split(" ");  
+    var myNumbers = this.state.allnumbers.match(/\S+/g) || [];  
 
     if(!this.props.modify)
     {    
@@ -124,7 +124,7 @@ class NumberTokenConfig extends React.Component {
   */
   componentWillReceiveProps(nextProps)
   {
-    console.log("NumberTokenConfig->componentWillReceiveProps are we modifying token = " + nextProps.modify);       
+    //console.log("NumberTokenConfig->componentWillReceiveProps are we modifying token = " + nextProps.modify);       
     var tData = nextProps.tokenData; 
     if(nextProps.modify)
     {

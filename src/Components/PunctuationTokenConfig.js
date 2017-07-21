@@ -58,7 +58,7 @@ class PunctuationTokenConfig extends React.Component {
   componentWillReceiveProps(nextProps)
   {
     
-    console.log("PunctuationTokenConfig->componentWillReceiveProps are we modifying token = " + nextProps.modify);   
+    //console.log("PunctuationTokenConfig->componentWillReceiveProps are we modifying token = " + nextProps.modify);   
     
     var tData = nextProps.tokenData; 
     if(nextProps.modify)

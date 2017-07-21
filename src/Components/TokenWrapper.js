@@ -9,6 +9,7 @@ class TokenWrapper extends Component
         //this.deleteToken = this.deleteToken.bind(this); 
         this.clickClose = this.clickClose.bind(this); 
         this.clickEdit = this.clickEdit.bind(this); 
+        this.clickPlusToken = this.clickPlusToken.bind(this); 
     }
 
     clickClose()
@@ -25,7 +26,8 @@ class TokenWrapper extends Component
 
     clickPlusToken()
     {
-        //this.props.
+        console.log("TokenWrapper: clickPlusToken"); 
+        this.props.onClickPlusToken(this.props.index); 
     }
 
     render() 
@@ -42,7 +44,7 @@ class TokenWrapper extends Component
         }
         else
         {
-            tokenDisplayed = <div className="wrapPlusToken" >
+            tokenDisplayed = <div className="wrapPlusToken" onClick={this.clickPlusToken} >
                                 {this.props.data} 
                             </div>
         }                         

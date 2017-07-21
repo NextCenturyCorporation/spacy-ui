@@ -75,11 +75,12 @@ class ShapeTokenConfig extends React.Component {
   {
     
     //alert("createNewToken Rule id = " + this.props.ruleid); 
-   var myShapes = this.state.shapes.length===0? []:this.state.shapes.split(" ");  
+    var myShapes = this.state.shapes.match(/\S+/g) || [];  
+   
     
     if(!this.props.modify)
     {
-      this.props.onAddNewToken("S",window.TYPE_SHAPE, this.state.allwords.split(" "), this.state.optional, 
+      this.props.onAddNewToken("S",window.TYPE_SHAPE, [], this.state.optional, 
           this.state.part_of_output,this.state.followed_by_space, this.state.length1, this.state.length2, this.state.length3,
           this.state.prefix,this.state.suffix, this.state.notinvocabulary,
           this.state.noun, this.state.pronoun,this.state.punctuation, 
@@ -87,12 +88,12 @@ class ShapeTokenConfig extends React.Component {
           this.state.adjective, this.state.conjunction, this.state.verb,
           this.state.prepost_position, this.state.adverb, this.state.particle,
           this.state.interjection,this.state.exact,this.state.lower,
-          this.state.upper, this.state.title, this.state.mixed, this.state.numbers, myShapes, window.CREATEDBY_USER    
+          this.state.upper, this.state.title, this.state.mixed, [], myShapes, window.CREATEDBY_USER    
       )
     }
     else 
     {
-      this.props.onModifyToken(this.props.tokenModifyIndex, "S",window.TYPE_SHAPE, this.state.allwords.split(" "), this.state.optional, 
+      this.props.onModifyToken(this.props.tokenModifyIndex, "S",window.TYPE_SHAPE, [], this.state.optional, 
           this.state.part_of_output,this.state.followed_by_space, this.state.length1, this.state.length2, this.state.length3,
           this.state.prefix,this.state.suffix, this.state.notinvocabulary,
           this.state.noun, this.state.pronoun,this.state.punctuation, 
@@ -100,7 +101,7 @@ class ShapeTokenConfig extends React.Component {
           this.state.adjective, this.state.conjunction, this.state.verb,
           this.state.prepost_position, this.state.adverb, this.state.particle,
           this.state.interjection,this.state.exact,this.state.lower,
-          this.state.upper, this.state.title, this.state.mixed, this.state.numbers, myShapes, window.CREATEDBY_USER   ); 
+          this.state.upper, this.state.title, this.state.mixed, [], myShapes, window.CREATEDBY_USER   ); 
     }
   }
 
@@ -115,7 +116,7 @@ class ShapeTokenConfig extends React.Component {
   componentWillReceiveProps(nextProps)
   {
     
-    console.log("ShapeTokenConfig->componentWillReceiveProps are we modifying token = " + nextProps.modify);   
+    //console.log("ShapeTokenConfig->componentWillReceiveProps are we modifying token = " + nextProps.modify);   
     
     var tData = nextProps.tokenData; 
 

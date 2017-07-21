@@ -84,6 +84,7 @@ class Rule extends Component
         this.onModifyShapeToken = this.onModifyShapeToken.bind(this);  
         this.handle_onBlur = this.handle_onBlur.bind(this);
         this.updateActiveRule = this.updateActiveRule.bind(this);  
+        this.onClickPlusToken = this.onClickPlusToken.bind(this); 
     }
 
     componentWillMount() 
@@ -408,7 +409,7 @@ class Rule extends Component
         /* All the webservice conmunication is done in App.js. So we need to propagate
         all data to the top in App.js. onProcessJSONData is a method is Apps.js. 
         Send all the data related to this rule up to the app.js level. */
- 
+        
         this.props.onProcessJSONData(this.state.id, myTokenData, 
                     this.state.identifier, this.state.description, this.state.polarity, 
                     this.state.is_active, this.state.output_format,createdby ); 
@@ -1125,6 +1126,12 @@ class Rule extends Component
 
     }        
 
+    onClickPlusToken(index)
+    {
+        console.log("Rule->onClickPlusToken....index = " + index); 
+
+    }
+
     handleChange_outformat(event)
     {
         console.log("Rule: Enter handleChange_outformat name = "+ event.target.name + " value = " + event.target.value); 
@@ -1294,7 +1301,7 @@ class Rule extends Component
                                 <div className="arrangeEachToken">  {token}   </div>
                             ))*/}  
                             {this.state.array.map((token, index) => (
-                               <div className="arrangeEachToken"  key={index}> <TokenWrapper data={token} index={index} key={index} onEditToken={this.onEditToken} onDeleteToken={this.deleteToken}/> </div>
+                               <div className="arrangeEachToken"  key={index}> <TokenWrapper data={token} index={index} key={index} onEditToken={this.onEditToken} onDeleteToken={this.deleteToken} onClickPlusToken={this.onClickPlusToken}/> </div>
                             ))}  
 
                         </div>

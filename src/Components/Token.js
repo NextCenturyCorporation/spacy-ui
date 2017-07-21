@@ -76,7 +76,7 @@ class Token extends Component
       else
       {
           tokenText = this.props.tokenPatternData.numbers.map((num, index) => (
-                  <div className="tokenEachText"> {num} </div>
+                  <div className="tokenEachText" key={index}> {num} </div>
                   ));  
 
       }

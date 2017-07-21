@@ -88,7 +88,7 @@ class WordTokenConfig extends React.Component {
   {
     
     //alert("createNewToken Rule id = " + this.props.ruleid); 
-    var myWords = this.state.allwords.length===0? []:this.state.allwords.split(" ");  
+    var myWords = this.state.allwords.match(/\S+/g) || [];  
 
     if(!this.props.modify)
     {
@@ -153,7 +153,7 @@ class WordTokenConfig extends React.Component {
   */
   componentWillReceiveProps(nextProps)
   {    
-    console.log("WordTokenConfig->componentWillReceiveProps are we modifying token = " + nextProps.modify);   
+    //console.log("WordTokenConfig->componentWillReceiveProps are we modifying token = " + nextProps.modify);   
     var tData = nextProps.tokenData; 
     if(nextProps.modify)
     {
