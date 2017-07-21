@@ -406,7 +406,7 @@ class App extends Component {
         <div id="result">
           <ul className="listStyle">
             {this.state.jsonRules.map((ruleid, index) => (
-               <li> <span className="resultwrap"> Rule: <b>{ruleid+1}</b> </span>  Extraction: <b>{this.state.jsonExtraction[index]}</b>  </li>
+               <li key={index}> <span className="resultwrap" key={index}> Rule: <b>{ruleid+1}</b> </span>  Extraction: <b>{this.state.jsonExtraction[index]}</b>  </li>
             ))}             
           </ul>
        </div>

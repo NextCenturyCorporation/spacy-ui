@@ -1190,7 +1190,7 @@ class Rule extends Component
 
     componentDidMount()
     {
-        if(this.state.createdby = window.CREATEDBY_SERVER)
+        if(this.state.createdby === window.CREATEDBY_SERVER)
         {
             console.log("RUle->componentDidMount updating information that came from server"); 
             this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 

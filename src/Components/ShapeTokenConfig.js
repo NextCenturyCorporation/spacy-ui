@@ -402,11 +402,11 @@ class ShapeTokenConfig extends React.Component {
     );
   }
 }
-
+/*
 ShapeTokenConfig.propTypes = {
   //onClose: React.PropTypes.func.isRequired,
   show: React.PropTypes.bool,
   children: React.PropTypes.node
 };
-
+*/
 export default ShapeTokenConfig;

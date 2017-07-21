@@ -315,7 +315,7 @@ class PunctuationTokenConfig extends React.Component {
 
             </div> 
           </div> 
-          <div id="punctuation-footer" align="right">
+          <div id="punctuation-footer">
             <button onClick={this.cancelDialog} className="button">
               cancel
                 </button>
@@ -331,10 +331,11 @@ class PunctuationTokenConfig extends React.Component {
   }
 }
 
+/*
 PunctuationTokenConfig.propTypes = {
   //onClose: React.PropTypes.func.isRequired,
   show: React.PropTypes.bool,
   children: React.PropTypes.node
 };
-
+*/
 export default PunctuationTokenConfig;
