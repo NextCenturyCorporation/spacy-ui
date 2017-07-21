@@ -1138,7 +1138,6 @@ class Rule extends Component
     handleChange_description(event)
     {
         console.log("Rule: Enter handleChange_description name = "+ event.target.name + " value = " + event.target.value); 
-        console.log("Rule->handleChange_description: event = " + event.name)
         var myDescr = event.target.value;      
         this.setState({
            description: myDescr
@@ -1180,6 +1179,17 @@ class Rule extends Component
                 this.state.identifier, this.state.description, this.state.polarity, 
                 value, this.state.output_format, window.CREATEDBY_USER ); 
         
+    }
+
+    componentDidMount()
+    {
+        if(this.state.createdby = window.CREATEDBY_SERVER)
+        {
+            console.log("RUle->componentDidMount updating information that came from server"); 
+            this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
+                this.state.identifier, this.state.description, this.state.polarity, 
+                this.state.is_active, this.state.output_format, window.CREATEDBY_SERVER );            
+        }
     }
 
     render() 

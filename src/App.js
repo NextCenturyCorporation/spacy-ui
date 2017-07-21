@@ -117,7 +117,7 @@ class App extends Component {
   ProcessJSONData(ruleid, allTokenData, identifier1, description1, polarity1,is_active1,output_format1, createdby)
   {
     
-    console.log("ProcessJSONData....ruleid="+ruleid ); 
+    console.log("ProcessJSONData....ruleid = " + ruleid + " description = " + description1); 
     //This allows us to make a copy. 
     var myPattern = JSON.parse(JSON.stringify(allTokenData));
     
