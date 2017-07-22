@@ -27,7 +27,9 @@
 .modal-header
 {
     background-color: #A2A1B2; 
-    width: 100%; 
+    width: 470px; 
+    border-top-left-radius: 5px; 
+    border-top-right-radius: 5px;
     height: 25px; 
     text-align: left;
     padding-top:5px; 
