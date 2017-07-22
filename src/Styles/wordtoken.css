@@ -19,7 +19,8 @@
     max-width: 480px; 
     min-Height: 430px; 
     margin: auto; 
-    padding: 0; 
+    border: solid; 
+    border-width: 0.04em; 
 
 }
 
@@ -29,8 +30,8 @@
     width: 100%; 
     height: 25px; 
     text-align: left;
-    padding-left: 5px; 
     padding-top:5px; 
+    padding-left: 10px; 
 }
 
 .wordlabels
@@ -64,7 +65,6 @@
 /*display:inline-block; */
     width: 100px;
     float: left;  
-
 }
 
 #div22, #shapes-div22
@@ -90,6 +90,7 @@
 .allwords
 {
     display: block; 
+    width: 100%; 
 }
 
 .modal-body input 
@@ -107,7 +108,8 @@
 
 #div3, #shapes-div3
 {
-    margin: 10px; 
+    margin-left: 10px; 
+    margin-top: 0px; 
 }
 
 #div3 input, #shapes-div3 input
@@ -125,7 +127,8 @@
 
 #div4, #shapes-div4
 {
-    margin: 10px; 
+    margin-left: 10px ; 
+    margin-top: 0px ; 
 }
 
 #partofspeech, #shapes-partofspeech
