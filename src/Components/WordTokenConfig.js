@@ -256,7 +256,7 @@ class WordTokenConfig extends React.Component {
 
     return (
       <div className="backdrop" >
-        <form onSubmit={this.handleSubmit} className="modal">
+        <div  className="modal">
           {this.props.children}
 
           {displayHeader}
@@ -433,7 +433,7 @@ class WordTokenConfig extends React.Component {
               Save
                 </button>
           </div>
-        </form>
+        </div>
       </div>
     );
   }

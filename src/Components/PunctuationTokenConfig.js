@@ -250,7 +250,7 @@ class PunctuationTokenConfig extends React.Component {
 
     return (
       <div className="backdrop" >
-        <form onSubmit={this.handleSubmit} className="punctuation-modal">
+        <div className="punctuation-modal">
           {this.props.children}
 
           {displayHeader}
@@ -325,7 +325,7 @@ class PunctuationTokenConfig extends React.Component {
           </div>
 
 
-        </form>
+        </div>
       </div>
     );
   }

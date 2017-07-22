@@ -392,13 +392,13 @@ class App extends Component {
           
           </div>
         <br/>
-        <form onSubmit={this.handleSubmit}> 
+        <div> 
           <span className="extractionText"> Text/Tokens</span>
           <div className="rulesText"> 
             <textarea name="test_text" onChange={this.handleChange}  rows="5" className="textInput" value={this.state.test_text}/>
             <textarea name="test_token"   rows="5" className="textInput2" value={this.state.test_tokens.join("\n")}/>
            </div> 
-        </form>
+        </div>
         <br/>
        <div id="run-rules"> <button className="button" onClick={this.sendData} >Run Rules </button> </div>
 

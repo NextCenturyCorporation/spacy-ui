@@ -194,7 +194,7 @@ class NumberTokenConfig extends React.Component {
 
     return (
       <div className="backdrop" >
-        <form onSubmit={this.handleSubmit} className="number-modal">
+        <div className="number-modal">
           {this.props.children}
           {displayHeader}
           <div className="modal-body">
@@ -271,7 +271,7 @@ class NumberTokenConfig extends React.Component {
               Save
                 </button>
           </div>
-        </form>
+        </div>
       </div>
     );
   }
