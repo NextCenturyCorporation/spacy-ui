@@ -47,6 +47,7 @@ class Rule extends Component
             isModifyNumbers: false, 
             tokenModifyIndex: -1,
             isModifyShape: false, 
+            newToken2AddIndex: -1
 
         }
 
@@ -85,6 +86,7 @@ class Rule extends Component
         this.handle_onBlur = this.handle_onBlur.bind(this);
         this.updateActiveRule = this.updateActiveRule.bind(this);  
         this.onClickPlusToken = this.onClickPlusToken.bind(this); 
+        this.ProcessAllNewTokens = this.ProcessAllNewTokens.bind(this); 
     }
 
     componentWillMount() 
@@ -111,11 +113,11 @@ class Rule extends Component
     {  
         /* Let's determine when to show/close the menu when the 
         plus token is clicked. 
-        */  
-        //alert("You clicked on "+e.target)
-        //alert("handleclick - " + this.state.id); 
+        */
 
         //reset some variable. 
+
+        /*@Wole turn this off for now. 07/22
         this.setState({
             isModifyWord:false,
             tokenModifyIndex: -1
@@ -131,6 +133,7 @@ class Rule extends Component
         {
             x.style.display = 'none';
         }
+        */
     }
 
     /*
@@ -383,8 +386,7 @@ class Rule extends Component
         if(createdby === window.CREATEDBY_USER)
             this.toggleWordConfigDialog();
 
-        //Keep track of the token with a generated token id. 
-        var tokenid = TOKEN_BASE+(++GLOBAL_ID); 
+
 
         /*Get the JSON formatted data structure*/
         var newJSONTokenData = this.createWordJSON(tokenAbbreviation1,type1, allwords1, optional1, 
@@ -395,42 +397,7 @@ class Rule extends Component
             title1, mixed1, numbers1
         )
 
-        //Get the state token array. 
-        var myTokenData = this.state.allTokenData; 
-
-        //Add the new token to the array of tokens. 
-        myTokenData.push(newJSONTokenData); 
-
-        //Let's update the state with our new map data. 
-        this.setState({
-            allTokenData: myTokenData
-        });
-
-        /* All the webservice conmunication is done in App.js. So we need to propagate
-        all data to the top in App.js. onProcessJSONData is a method is Apps.js. 
-        Send all the data related to this rule up to the app.js level. */
-        
-        this.props.onProcessJSONData(this.state.id, myTokenData, 
-                    this.state.identifier, this.state.description, this.state.polarity, 
-                    this.state.is_active, this.state.output_format,createdby ); 
-
-
-        //console.log("Here is  my JSON = " + JSON.stringify(this.state.allTokenData)); 
-
-        /*Now lets create a new token that we are doing to display in the GUI. 
-        */
-        const newToken = <Token id={tokenid} clickable="0" tokenAbbreviation={tokenAbbreviation1}
-            tokenPatternData={newJSONTokenData} deleteToken={this.deleteToken} />
-
-        /*We always need a plus token between regular token*/
-        const btt = <PlusToken id={PTOKEN_BASE + (++GLOBAL_ID)} clickable="1" onClick={this.handleClick.bind(this)} />;
-
-        /*Let's update the token array in the state that way it re-renders the rules.*/
-        this.setState(prevState =>
-            ({
-                array: [...prevState.array, newToken, btt]
-            }));
-
+        this.ProcessAllNewTokens(newJSONTokenData, tokenAbbreviation1, createdby); 
     }  
 
 
@@ -589,7 +556,6 @@ class Rule extends Component
             this.toggleShapeConfigDialog();
 
         //Keep track of the token with a generated token id. 
-        var tokenid = TOKEN_BASE+(++GLOBAL_ID); 
 
         /*Get the JSON formatted data structure*/
         var newJSONTokenData = this.createShapeJSON(tokenAbbreviation1,type1, allwords1, optional1, 
@@ -599,25 +565,43 @@ class Rule extends Component
             prepost_position1, adverb1, particle1, interjection1, exact1,lower1, upper1,
             title1, mixed1, numbers1, shapes1
         )
+        this.ProcessAllNewTokens(newJSONTokenData, tokenAbbreviation1, createdby); 
+    }
 
+
+    ProcessAllNewTokens(newJSONTokenData, tokenAbbreviation1, createdby)
+    {
+        //Keep track of the token with a generated token id. 
+        var tokenid = TOKEN_BASE+(++GLOBAL_ID); 
         //Get the state token array. 
         var myTokenData = this.state.allTokenData; 
 
         //Add the new token to the array of tokens. 
-        myTokenData.push(newJSONTokenData); 
+        //myTokenData.push(newJSONTokenData); 
 
         //Let's update the state with our new map data. 
+        console.log("Location of new token to add = "  + this.state.newToken2AddIndex); 
+
+        //Add the new token to the array of tokens. 
+        if(this.state.newToken2AddIndex!= -1)
+        {
+            myTokenData.splice(this.state.newToken2AddIndex/2, 0, newJSONTokenData); 
+        }
+        else
+        {
+            myTokenData.push(newJSONTokenData); 
+           
+        }
+
+
         this.setState({
             allTokenData: myTokenData
         });
 
         /* All the webservice conmunication is done in App.js. So we need to propagate
         all data to the top in App.js. onProcessJSONData is a method is Apps.js. 
-        Send all the data related to this rule up to the app.js level. 
-        NOTE: For the value that I am changing in this method, I use the stack value not 
-        the state value because the state value is not updated until after rendering. 
-        so in this case I am passing myTokenData which is a local value. 
-        */
+        Send all the data related to this rule up to the app.js level. */
+        
         this.props.onProcessJSONData(this.state.id, myTokenData, 
                     this.state.identifier, this.state.description, this.state.polarity, 
                     this.state.is_active, this.state.output_format,createdby ); 
@@ -627,17 +611,29 @@ class Rule extends Component
 
         /*Now lets create a new token that we are doing to display in the GUI. 
         */
+        var myTokens = this.state.array; 
+
         const newToken = <Token id={tokenid} clickable="0" tokenAbbreviation={tokenAbbreviation1}
             tokenPatternData={newJSONTokenData} deleteToken={this.deleteToken} />
 
         /*We always need a plus token between regular token*/
         const btt = <PlusToken id={PTOKEN_BASE + (++GLOBAL_ID)} clickable="1" onClick={this.handleClick.bind(this)} />;
 
+        if(this.state.newToken2AddIndex!= -1)
+        {
+            myTokens.splice(this.state.newToken2AddIndex+1,0,newToken, btt); 
+        }
+        else
+        {
+            myTokens.push(newToken)
+            myTokens.push(btt);   
+        }
+
         /*Let's update the token array in the state that way it re-renders the rules.*/
-        this.setState(prevState =>
-            ({
-                array: [...prevState.array, newToken, btt]
-            }));
+       this.setState(
+            {
+                array: myTokens
+            });
 
     }  
 
@@ -786,8 +782,6 @@ class Rule extends Component
         console.log("Rule: Enter onAddNumberToken"); 
         if(createdby === window.CREATEDBY_USER)
             this.toggleNumberConfigDialog(); 
-        //Keep track of the token with a generated token id. 
-        var tokenid = TOKEN_BASE+(++GLOBAL_ID); 
 
         /*Get the JSON formatted data structure*/
         var newJSONTokenData = this.createNumberJSON(tokenAbbreviation1,type1, allwords1, optional1, 
@@ -798,44 +792,7 @@ class Rule extends Component
             title1, mixed1, numbers1
         )
 
-        //Get the state token array. 
-        var myTokenData = this.state.allTokenData; 
-
-        //Add the new token to the array of tokens. 
-        myTokenData.push(newJSONTokenData); 
-
-        //Let's update the state with our new map data. 
-        this.setState({
-            allTokenData: myTokenData
-        });
-
-        /* All the webservice conmunication is done in App.js. So we need to propagate
-        all data to the top in App.js. onProcessJSONData is a method is Apps.js. 
-        Send all the data related to this rule up to the app.js level. 
-        NOTE: For the value that I am changing in this method, I use the stack value not 
-        the state value because the state value is not updated until after rendering. 
-        so in this case I am passing myTokenData which is a local value. 
-        */
-        this.props.onProcessJSONData(this.state.id, myTokenData, 
-                this.state.identifier, this.state.description, this.state.polarity, 
-                this.state.is_active, this.state.output_format, createdby ); 
-
-        //console.log("Here is  my JSON = " + JSON.stringify(this.state.allTokenData)); 
-
-        /*Now lets create a new token that we are doing to display in the GUI. 
-        */
-        const newToken = <Token id={tokenid} clickable="0" tokenAbbreviation={tokenAbbreviation1}
-            tokenPatternData={newJSONTokenData} deleteToken={this.deleteToken} />
-
-        /*We always need a plus token between regular token*/
-        const btt = <PlusToken id={PTOKEN_BASE + (++GLOBAL_ID)} clickable="1" onClick={this.handleClick.bind(this)} />;
-
-        /*Let's update the token array in the state that way it re-renders the rules.*/
-        this.setState(prevState =>
-            ({
-                array: [...prevState.array, newToken, btt]
-            }));
-
+        this.ProcessAllNewTokens(newJSONTokenData, tokenAbbreviation1, createdby); 
 
     }
 
@@ -897,55 +854,14 @@ class Rule extends Component
         part_of_output1, createdby) 
     {
         console.log("Rule: Enter onAddPunctuationToken"); 
+        
         if(createdby === window.CREATEDBY_USER)
             this.togglePunctuationConfigDialog(); 
 
-        //Keep track of the token with a generated token id. 
-        var tokenid = TOKEN_BASE+(++GLOBAL_ID); 
-
         var newJSONTokenData = this.createPunctuationJSON(tokenAbbreviation1,type1, allPunctuations, optional1, 
             part_of_output1);    
-            
-        //Get the state token array. 
-        var myTokenData = this.state.allTokenData; 
-
-        //Add the new token to the array of tokens. 
-        myTokenData.push(newJSONTokenData); 
-
-        //Let's update the state with our new map data. 
-        this.setState({
-            allTokenData: myTokenData
-        });
-
-        /* All the webservice conmunication is done in App.js. So we need to propagate
-        all data to the top in App.js. onProcessJSONData is a method is Apps.js. 
-        Send all the data related to this rule up to the app.js level. 
-        NOTE: For the value that I am changing in this method, I use the stack value not 
-        the state value because the state value is not updated until after rendering. 
-        so in this case I am passing myTokenData which is a local value. 
-        */
-        this.props.onProcessJSONData(this.state.id, myTokenData, 
-                this.state.identifier, this.state.description, this.state.polarity, 
-                this.state.is_active, this.state.output_format, createdby ); 
-
-        //console.log("Here is  my JSON = " + JSON.stringify(this.state.allTokenData)); 
-
-        /*Now lets create a new token that we are doing to display in the GUI. 
-        * Note that words and punctions interchange. 
-        */
-        const newToken = <Token id={tokenid} clickable="0" tokenAbbreviation={tokenAbbreviation1}
-            tokenPatternData={newJSONTokenData}  deleteToken={this.deleteToken} />
-
-        /*We always need a plus token between regular token*/
-        const btt = <PlusToken id={PTOKEN_BASE + (++GLOBAL_ID)} clickable="1" onClick={this.handleClick.bind(this)} />;
-
-        /*Let's update the token array in the state that way it re-renders the rules.*/
-        this.setState(prevState =>
-            ({
-                array: [...prevState.array, newToken, btt]
-            }));
-           
-            
+                
+        this.ProcessAllNewTokens(newJSONTokenData, tokenAbbreviation1, createdby); 
 
     }
 
@@ -1129,6 +1045,25 @@ class Rule extends Component
     onClickPlusToken(index)
     {
         console.log("Rule->onClickPlusToken....index = " + index); 
+        /* Let's determine when to show/close the menu when the 
+        plus token is clicked. 
+        */
+
+        //reset some variable. 
+        this.setState({
+            newToken2AddIndex: index
+        })
+
+        const tMenu = "tokenMenu" + this.state.id; 
+
+        var x = document.getElementById(tMenu);
+        if (x.style.display === 'none' || x.style.display === '') 
+        {
+            x.style.display = 'block';
+        } else 
+        {
+            x.style.display = 'none';
+        }        
 
     }
 
