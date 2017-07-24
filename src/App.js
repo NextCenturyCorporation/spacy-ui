@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import Rule from './Components/Rule'; 
 import "./layout.css"; 
+import ReactTooltip from 'react-tooltip'
+
 
 /*We need base.64 for the authentication*/
 const base64 = require('base-64');
@@ -17,6 +19,13 @@ window.TYPE_WORD = "word";
 window.TYPE_NUMBERS = "number"; 
 window.TYPE_PUNCTUATION = "punctuation"; 
 window.TYPE_SHAPE = "shape"
+
+var ActionEnum =
+{
+  "DeleteRule": "1",
+  "ReceivingServerData":"2"
+}
+
 /*
   Main Application entry point
 */
@@ -37,7 +46,9 @@ class App extends Component {
       jsonExtraction:[],
       ruleList:[],
       allServerRules:{rules:[]},
-      createdby:window.CREATEDBY_SERVER
+      createdby:window.CREATEDBY_SERVER,
+      lastAction: ActionEnum.ReceivingServerData
+
     }
 
     /*function binding required by react*/
@@ -53,6 +64,8 @@ class App extends Component {
     this.getInitialState = this.getInitialState.bind(this); 
     this.selectAll = this.selectAll.bind(this); 
     this.deselectAll = this.deselectAll.bind(this); 
+    this.onDeleteRule = this.onDeleteRule.bind(this); 
+    this.onDuplicateRule = this.onDuplicateRule.bind(this); 
   }
 
   componentWillMount() 
@@ -153,7 +166,8 @@ class App extends Component {
     });
 
     //console.log("Data 2 send  ="+ this.buildData2Send()); 
-    if(createdby === window.CREATEDBY_USER)
+    if(createdby === window.CREATEDBY_USER || 
+      (createdby === window.CREATEDBY_SERVER && this.state.lastAction === ActionEnum.DeleteRule))
     {
       this.sendData(); 
     }
@@ -233,8 +247,8 @@ class App extends Component {
                             return; 
                           }
 
-                          console.log("Received data contains " + json.rules.length + " rules"); 
-                          console.log("Results = "  + json.test_text); 
+                          //console.log("Received data contains " + json.rules.length + " rules"); 
+                          //console.log("Results = "  + json.test_text); 
                           //this.state.createdby = window.CREATEDBY_SERVER; 
                           
                     
@@ -352,12 +366,47 @@ class App extends Component {
     }));    
   }
 
+  onDeleteRule(index)
+  {
+    console.log("Apps->onDeleteRule"); 
+    
+    var myRule = this.getInitialState(); 
 
+    let allRules = this.state.allServerRules.rules; 
+    allRules.splice(index,1); 
+    /*
+    this.setState(
+      {
+        lastAction: ActionEnum.DeleteRule,
+        allServerRules: {rules:allRules}
+      });
+    */
+
+    
+    this.setState(prevState =>
+    ({
+        lastAction: ActionEnum.DeleteRule,      
+        allServerRules: {rules:allRules}
+    }));
+  
+  }
+
+  onDuplicateRule(index)
+  {
+    console.log("Apps->onDuplicate"); 
+
+  }
   /*
     For rendering the GUI. 
   */  
   render() 
   {
+
+    var displayedRules = this.state.allServerRules.rules.map((rule,index)=>(
+                              <Rule rulenum={index+1} index={index} key={index} onDeleteRule={this.onDeleteRule} onDuplicateRule={this.onDuplicateRule}
+                              onProcessJSONData={this.ProcessJSONData}  ruleObj={rule} createdby={this.state.createdby}/> 
+
+                        )); 
     return (
       <div className="App">
       
@@ -374,17 +423,9 @@ class App extends Component {
         <div className="extraction-rules">
 
           <div>
-            {/*<Rule rulenum="1"  onProcessJSONData={this.ProcessJSONData}/> */}
               <ul className="listStyle">
 
-                {/*this.state.ruleList.map((rule, index) => (
-                  <li>{rule} </li>
-                ))*/}    
-                {this.state.allServerRules.rules.map((rule,index)=>(
-                   // <Rule rulenum={index+1}  index = {index} onProcessJSONData={this.ProcessJSONData} ruleObj={rule}/>
-                    <Rule rulenum={index+1} index = {index} key={index} onProcessJSONData={this.ProcessJSONData}  ruleObj={rule} createdby={this.state.createdby}/> 
-
-                ))}
+                {displayedRules}
 
               </ul>
 

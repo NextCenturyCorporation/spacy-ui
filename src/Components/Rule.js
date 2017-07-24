@@ -87,6 +87,10 @@ class Rule extends Component
         this.updateActiveRule = this.updateActiveRule.bind(this);  
         this.onClickPlusToken = this.onClickPlusToken.bind(this); 
         this.ProcessAllNewTokens = this.ProcessAllNewTokens.bind(this); 
+        this.deleteRule = this.deleteRule.bind(this); 
+        this.duplicate = this.duplicate.bind(this); 
+
+
     }
 
     componentWillMount() 
@@ -580,7 +584,7 @@ class Rule extends Component
         //myTokenData.push(newJSONTokenData); 
 
         //Let's update the state with our new map data. 
-        console.log("Location of new token to add = "  + this.state.newToken2AddIndex); 
+        //console.log("Location of new token to add = "  + this.state.newToken2AddIndex); 
 
         //Add the new token to the array of tokens. 
         if(this.state.newToken2AddIndex!= -1)
@@ -1134,6 +1138,18 @@ class Rule extends Component
         }
     }
 
+    deleteRule()
+    {
+        console.log("Rule->deleteRule....."); 
+        this.props.onDeleteRule(this.props.index); 
+    }
+
+    duplicate()
+    {
+        console.log("Rule->deleteRule....."); 
+        this.props.onDuplicateRule(this.props.index); 
+    }
+
     render() 
 	{
         const tMenu = "tokenMenu" + this.state.id; 
@@ -1217,6 +1233,7 @@ class Rule extends Component
                         onBlur={this.handle_onBlur}
 
                         />
+
                     </div>
 
                      <div  >
@@ -1229,9 +1246,15 @@ class Rule extends Component
 
                         <div className="arrangeRuleTokens"> 
 
+                            <div className="arrangeEachToken"> 
+                            <div  className="ruleCheckBox">
+                            <input type="checkbox" defaultChecked={this.state.is_active}  name="is_active"   onChange={this.updateActiveRule}/> 
+                            </div>
+                            <div>
+                         <button className="deletebutton" onClick={this.deleteRule}> X </button>
 
-                            <input type="checkbox" defaultChecked={this.state.is_active}  name="is_active"  className="ruleCheckBox"  onChange={this.updateActiveRule}/> 
-
+                            </div> 
+                            </div>
                             {/*this.state.array.map((token, index) => (
                                 <div className="arrangeEachToken">  {token}   </div>
                             ))*/}  

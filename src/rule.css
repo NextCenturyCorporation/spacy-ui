@@ -88,3 +88,26 @@
   border-width: 0.05em; 
 }
 
+.deletebutton {
+  /*display: inline-block;*/
+  display: none; 
+  margin-top: 28px; 
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color:red;
+  border: 1px solid red;
+  border-radius: 50%;
+  box-shadow: 0 4px #999;
+}
+
+.deletebutton:hover {background-color: #355667}
+
+.deletebutton:active {
+  background-color: #3e8e41;
+  box-shadow: 0 2px #666;
+  transform: translateY(1px);
+}

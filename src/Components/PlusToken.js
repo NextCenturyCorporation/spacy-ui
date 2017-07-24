@@ -6,8 +6,6 @@ class PlusToken extends Component
   constructor(props)
   {
   	super(props); 
-    //this.props.isPlusToken = "1"; 
-    console.log("PlusToken id = ", this.props.id); 
   }
 	render() 
 	{
