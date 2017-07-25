@@ -26,6 +26,8 @@ var ActionEnum =
   "ReceivingServerData":"2"
 }
 
+var allRuleData = new Object(); 
+
 /*
   Main Application entry point
 */
@@ -33,34 +35,26 @@ class App extends Component {
   constructor(props) 
   {
     super(props);
-
     /*Set necessary state*/
     this.state = 
     {
-      jsonReturnedValue: null, 
-      allRuleData:{}, 
       test_text:"",
       test_tokens:[],
-      jsonresults:{},
       jsonRules:[], 
       jsonExtraction:[],
-      ruleList:[],
       allServerRules:{rules:[]},
       createdby:window.CREATEDBY_SERVER,
-      lastAction: ActionEnum.ReceivingServerData
-
     }
+
+    this.lastAction =  ActionEnum.ReceivingServerData; 
 
     /*function binding required by react*/
     this.sendData = this.sendData.bind(this);
     this.ProcessJSONData = this.ProcessJSONData.bind(this); 
     this.buildData2Send = this.buildData2Send.bind(this); 
-    this.handleSubmit = this.handleSubmit.bind(this);  
     this.handleChange = this.handleChange.bind(this);
     this.addNewRule = this.addNewRule.bind(this); 
     this.getData = this.getData.bind(this); 
-    this.addRuleFromServer = this.addRuleFromServer.bind(this); 
-    this.processRulesData = this.processRulesData.bind(this); 
     this.getInitialState = this.getInitialState.bind(this); 
     this.selectAll = this.selectAll.bind(this); 
     this.deselectAll = this.deselectAll.bind(this); 
@@ -77,8 +71,6 @@ class App extends Component {
     {
       console.log("No project/field name specified. ")
     }
-
-
 /*
     webServiceUrl = 'http://52.36.12.77:9879/projects/' + this.props.params.projectName + '/fields/'+
                  this.props.params.fieldName + '/spacy_rules'; 
@@ -92,16 +84,6 @@ class App extends Component {
     console.log("Address for getting rules:" +webServiceUrlAllRules); 
 
     this.getData(); 
-
-    /*
-    const initialRule = <Rule rulenum={++RULE_NUM}  onProcessJSONData={this.ProcessJSONData}/> ; 
-
-    this.setState(prevState =>
-    ({
-        ruleList: [...prevState.ruleList, initialRule]
-    }));
-    */
-
   }
 
   componentDidMount()
@@ -109,13 +91,6 @@ class App extends Component {
     document.title = "The Extractor";
   }
 
-  /*
-    Method for form submittal. 
-  */
-  handleSubmit(event) 
-  {
-    event.preventDefault();
-  }
 
   /*
     Method to update the form when the test_text changes. 
@@ -149,6 +124,7 @@ class App extends Component {
     map allTokenData */
 
     /*Let's build each rule token according to the JSON spec */
+  /*
     var myRuleData = this.state.allRuleData; 
     myRuleData[ruleid] = {
         polarity: polarity1, 
@@ -157,32 +133,31 @@ class App extends Component {
         output_format: output_format1,
         is_active: is_active1? "true":"false", //requires a string for true or false. 
         identifier: identifier1
-    } 
+    } ; 
+*/
+
+    allRuleData[ruleid] = {
+        polarity: polarity1, 
+        description: description1, 
+        pattern: myPattern,
+        output_format: output_format1,
+        is_active: is_active1? "true":"false", //requires a string for true or false. 
+        identifier: identifier1
+    } ;
 
     /*update the state data - kind of a way to persist the data */
-
+/*
     this.setState({
       allRuleData: myRuleData
     });
-
+*/
     //console.log("Data 2 send  ="+ this.buildData2Send()); 
-    if(createdby === window.CREATEDBY_USER || 
-      (createdby === window.CREATEDBY_SERVER && this.state.lastAction === ActionEnum.DeleteRule))
+    if(createdby === window.CREATEDBY_USER )
+    
+       // ||  this.state.lastAction == ActionEnum.DeleteRule )
     {
       this.sendData(); 
     }
-  }
-
-  processRulesData(rule, index)
-  {
-    //this.state.allServerRules.rules.push(myRule); 
-    let allRules = this.state.allServerRules.rules; 
-    allRules[index] = rule; 
-
-    this.setState(prevState =>
-    ({
-        allServerRules: {rules:allRules}
-    }));
   }
 
   getInitialState()
@@ -203,7 +178,7 @@ class App extends Component {
   {
 
     //TODO: @wole change the rule data to send. 
-    const values = Object.values(this.state.allRuleData); 
+    const values = Object.values(allRuleData); 
     var myData2Send = {};
     myData2Send={
       rules: values, 
@@ -258,11 +233,6 @@ class App extends Component {
                             test_text: json.test_text,
                             test_tokens: json.test_tokens
                           });
-/*
-                        this.state.allServerRules.rules.map((rule,index)=>(
-                            this.addRuleFromServer(rule, index)
-                        )); 
-*/
 
                         }
                         else
@@ -323,13 +293,6 @@ class App extends Component {
   */
   addNewRule()
   {
-    /*
-    const newRule = <Rule rulenum={++RULE_NUM}  onProcessJSONData={this.ProcessJSONData} createdby="user" /> ; 
-    this.setState(prevState =>
-    ({
-        ruleList: [...prevState.ruleList, newRule]
-    }));
-    */
     var myRule = this.getInitialState(); 
     this.setState({
         createdby: window.CREATEDBY_USER
@@ -357,23 +320,16 @@ class App extends Component {
 
   }
 
-  addRuleFromServer(rule, index)
+  onDeleteRule(myIndex)
   {
-    const newRule = <Rule rulenum={++RULE_NUM}  onProcessJSONData={this.ProcessJSONData}  ruleObj={rule} createdby="server"/> ; 
-    this.setState(prevState =>
-    ({
-        ruleList: [...prevState.ruleList, newRule]
-    }));    
-  }
-
-  onDeleteRule(index)
-  {
-    console.log("Apps->onDeleteRule"); 
+    console.log("Apps->onDeleteRule....delete index = " + myIndex); 
     
     var myRule = this.getInitialState(); 
+    var allRuleData = new Object(); 
+
 
     let allRules = this.state.allServerRules.rules; 
-    allRules.splice(index,1); 
+    allRules.splice(myIndex,1); 
     /*
     this.setState(
       {
@@ -401,11 +357,11 @@ class App extends Component {
   */  
   render() 
   {
-
-    var displayedRules = this.state.allServerRules.rules.map((rule,index)=>(
-                              <Rule rulenum={index+1} index={index} key={index} onDeleteRule={this.onDeleteRule} onDuplicateRule={this.onDuplicateRule}
+    let length = this.state.allServerRules.rules.length; 
+    var displayedRules = this.state.allServerRules.rules.map((rule,i)=>(
+                            <div key={i}>  <Rule rulenum={i+1} index={i}  key={i} onDeleteRule={this.onDeleteRule} onDuplicateRule={this.onDuplicateRule}
                               onProcessJSONData={this.ProcessJSONData}  ruleObj={rule} createdby={this.state.createdby}/> 
-
+                          </div>
                         )); 
     return (
       <div className="App">

@@ -1,6 +1,6 @@
 {
-  "name": "spacygui",
-  "version": "0.1.0",
+  "name": "theextractor",
+  "version": "1.0.2",
   "private": true,
   "homepage" : "http://xnet.nextcentury.com/wiser/spacy",
   "dependencies": {

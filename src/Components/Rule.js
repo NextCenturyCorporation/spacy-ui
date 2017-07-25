@@ -51,6 +51,11 @@ class Rule extends Component
 
         }
 
+        //this.description  = this.props.ruleObj.description,
+        //this.output_format  = this.props.ruleObj.output_format,
+        //this.is_active = (this.props.ruleObj.is_active === "true"),
+        //this.identifier  = this.props.ruleObj.identifier
+
         /* You need to bind all the function.
         Need in React
         if you don't bind like this you will get an error like 
@@ -97,8 +102,8 @@ class Rule extends Component
     {
         //const id = RULE_BASE+(++GLOBAL_RULE_ID); 
         //this.setState({id: id});
-        var myRuleObj = this.props.ruleObj; 
-        this.setState({ ruleObj: myRuleObj}); 
+        //var myRuleObj = this.props.ruleObj; 
+        //this.setState({ ruleObj: myRuleObj}); 
 
         if(this.props.createdby !== window.CREATEDBY_SERVER)
         {
@@ -209,13 +214,15 @@ class Rule extends Component
         var myToken; 
         var count = this.props.ruleObj.pattern.length; 
 
+    
         this.setState({
             description : this.props.ruleObj.description,
             output_format : this.props.ruleObj.output_format,
             is_active : (this.props.ruleObj.is_active === "true"),
             identifier : this.props.ruleObj.identifier
         })
-
+        
+        console.log("Rule->loadTokensFromServer.....description = " + this.setState.description); 
         for(var i = 0; i < count; i++) 
         {
             myToken = this.props.ruleObj.pattern[i]; 
@@ -599,17 +606,18 @@ class Rule extends Component
 
 
         this.setState({
-            allTokenData: myTokenData
+            allTokenData: myTokenData,
+            createdby: createdby
         });
 
         /* All the webservice conmunication is done in App.js. So we need to propagate
         all data to the top in App.js. onProcessJSONData is a method is Apps.js. 
         Send all the data related to this rule up to the app.js level. */
-        
+/*        
         this.props.onProcessJSONData(this.state.id, myTokenData, 
                     this.state.identifier, this.state.description, this.state.polarity, 
                     this.state.is_active, this.state.output_format,createdby ); 
-
+*/
 
         //console.log("Here is  my JSON = " + JSON.stringify(this.state.allTokenData)); 
 
@@ -640,6 +648,16 @@ class Rule extends Component
             });
 
     }  
+
+
+    componentDidUpdate(prevProps, prevState)
+    {
+        console.log("Rule->componentDidUpdate..."); 
+        this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
+                    this.state.identifier, this.state.description, this.state.polarity, 
+                    this.state.is_active, this.state.output_format,this.state.createdby );        
+    }
+
 
     onModifyShapeToken(index, tokenAbbreviation1, type1, allwords1, optional1,
         part_of_output1, followed_by_space1, length11, length21, length31,
@@ -832,8 +850,8 @@ class Rule extends Component
         so in this case I am passing myTokenData which is a local value. 
         */
         this.props.onProcessJSONData(this.state.id, myTokenData, 
-                this.state.identifier, this.state.description, this.state.polarity, 
-                this.state.is_active, this.state.output_format,createdby ); 
+                this.state.identifier, this.description, this.polarity, 
+                this.state.is_active, this.output_format,createdby ); 
 
         //console.log("Here is  my JSON = " + JSON.stringify(this.state.allTokenData)); 
 
