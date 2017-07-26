@@ -299,7 +299,9 @@ class App extends Component {
                         }
                         this.setState({
                           jsonRules: myResultRules,
-                          jsonExtraction: myResultExtractions
+                          jsonExtraction: myResultExtractions,
+                          test_tokens: json.test_tokens,
+                          test_text: json.test_text
                         });
                     });
   }
