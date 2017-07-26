@@ -26,7 +26,7 @@ var ActionEnum =
   "ReceivingServerData":"2"
 }
 
-var allRuleData = new Object(); 
+
 
 /*
   Main Application entry point
@@ -46,7 +46,9 @@ class App extends Component {
       createdby:window.CREATEDBY_SERVER,
     }
 
+    this.allRuleData = {}; 
     this.lastAction =  ActionEnum.ReceivingServerData; 
+    this.deleteCounter = 0; 
 
     /*function binding required by react*/
     this.sendData = this.sendData.bind(this);
@@ -55,7 +57,7 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.addNewRule = this.addNewRule.bind(this); 
     this.getData = this.getData.bind(this); 
-    this.getInitialState = this.getInitialState.bind(this); 
+    this.getInitState = this.getInitState.bind(this); 
     this.selectAll = this.selectAll.bind(this); 
     this.deselectAll = this.deselectAll.bind(this); 
     this.onDeleteRule = this.onDeleteRule.bind(this); 
@@ -64,7 +66,8 @@ class App extends Component {
 
   componentWillMount() 
   {
-    //    'http://52.36.12.77:9879/projects/pedro_test_01/fields/name/spacy_rules'
+    //This is the development Server IP. 
+    //http://52.36.12.77:9879/projects/pedro_test_01/fields/name/spacy_rules'
     console.log("Server name = " + this.props.params.serverName);
 
     if(this.props.params.projectName === undefined || this.props.params.fieldName === undefined)
@@ -105,8 +108,7 @@ class App extends Component {
   */
   ProcessJSONData(ruleid, allTokenData, identifier1, description1, polarity1,is_active1,output_format1, createdby)
   {
-    
-    console.log("ProcessJSONData....ruleid = " + ruleid + " description = " + description1); 
+    console.log("ProcessJSONData....ruleid = " + ruleid + " identifier = " + identifier1 + " descr = " + description1); 
     //This allows us to make a copy. 
     var myPattern = JSON.parse(JSON.stringify(allTokenData));
     
@@ -136,7 +138,7 @@ class App extends Component {
     } ; 
 */
 
-    allRuleData[ruleid] = {
+    this.allRuleData[identifier1] = {
         polarity: polarity1, 
         description: description1, 
         pattern: myPattern,
@@ -151,19 +153,29 @@ class App extends Component {
       allRuleData: myRuleData
     });
 */
-    //console.log("Data 2 send  ="+ this.buildData2Send()); 
-    if(createdby === window.CREATEDBY_USER )
-    
-       // ||  this.state.lastAction == ActionEnum.DeleteRule )
-    {
+    console.log("Size of allRuleData  ="+ this.allRuleData.size); 
+    if(createdby === window.CREATEDBY_USER)
+    { 
       this.sendData(); 
     }
+    else if(this.lastAction === ActionEnum.DeleteRule)
+    {
+      console.log("App->ProcessJSONData: counter = " + this.deleteCounter + " length = " + this.state.allServerRules.rules.length); 
+      if((++this.deleteCounter) === this.state.allServerRules.rules.length)
+      {
+        console.log("App->ProcessJSONData: sending deleted information to the WebService"); 
+        this.sendData(); 
+        this.lastAction = ActionEnum.ReceivingServerData; 
+      }
+    }
+
+
   }
 
-  getInitialState()
+  getInitState()
   {
     return {
-      identifier: "",
+      identifier: "rule_"+(++RULE_NUM),
       description: "",
       is_active: "true",
       output_format:"",
@@ -178,7 +190,7 @@ class App extends Component {
   {
 
     //TODO: @wole change the rule data to send. 
-    const values = Object.values(allRuleData); 
+    const values = Object.values(this.allRuleData); 
     var myData2Send = {};
     myData2Send={
       rules: values, 
@@ -226,6 +238,10 @@ class App extends Component {
                           //console.log("Results = "  + json.test_text); 
                           //this.state.createdby = window.CREATEDBY_SERVER; 
                           
+                          for(var i=0; i<json.rules.length; i++)
+                          {
+                            json.rules[i].identifier = "rule_"+(++RULE_NUM); 
+                          }
                     
                           this.setState({
                             createdby: window.CREATEDBY_SERVER,
@@ -293,7 +309,7 @@ class App extends Component {
   */
   addNewRule()
   {
-    var myRule = this.getInitialState(); 
+    var myRule = this.getInitState(); 
     this.setState({
         createdby: window.CREATEDBY_USER
     }); 
@@ -320,28 +336,28 @@ class App extends Component {
 
   }
 
+  componentDidUpdate()
+  {
+    console.log("App->componentDidUpdate...."); 
+  }
+
   onDeleteRule(myIndex)
   {
     console.log("Apps->onDeleteRule....delete index = " + myIndex); 
     
-    var myRule = this.getInitialState(); 
-    var allRuleData = new Object(); 
-
+    var myRule = this.getInitState(); 
+    this.allRuleData = new Object(); 
 
     let allRules = this.state.allServerRules.rules; 
     allRules.splice(myIndex,1); 
-    /*
-    this.setState(
-      {
-        lastAction: ActionEnum.DeleteRule,
-        allServerRules: {rules:allRules}
-      });
-    */
 
-    
+    //this.allRuleData.Object.delete(allRules[myIndex].identifier); 
+    //delete this.allRuleData[allRules[myIndex].identifier]; 
+
+    this.lastAction = ActionEnum.DeleteRule; 
+  
     this.setState(prevState =>
     ({
-        lastAction: ActionEnum.DeleteRule,      
         allServerRules: {rules:allRules}
     }));
   
@@ -359,7 +375,7 @@ class App extends Component {
   {
     let length = this.state.allServerRules.rules.length; 
     var displayedRules = this.state.allServerRules.rules.map((rule,i)=>(
-                            <div key={i}>  <Rule rulenum={i+1} index={i}  key={i} onDeleteRule={this.onDeleteRule} onDuplicateRule={this.onDuplicateRule}
+                            <div className="help" >  <Rule rulenum={i+1} index={i} key={rule.identifier} onDeleteRule={this.onDeleteRule} onDuplicateRule={this.onDuplicateRule}
                               onProcessJSONData={this.ProcessJSONData}  ruleObj={rule} createdby={this.state.createdby}/> 
                           </div>
                         )); 

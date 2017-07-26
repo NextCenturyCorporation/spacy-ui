@@ -100,16 +100,11 @@ class Rule extends Component
 
     componentWillMount() 
     {
-        //const id = RULE_BASE+(++GLOBAL_RULE_ID); 
-        //this.setState({id: id});
-        //var myRuleObj = this.props.ruleObj; 
-        //this.setState({ ruleObj: myRuleObj}); 
-
         if(this.props.createdby !== window.CREATEDBY_SERVER)
         {
             console.log("Rule was created by user")
-            const myIdentifier = "name_rule_"+this.state.id; 
-            this.setState({identifier:myIdentifier}); 
+            //const myIdentifier = "name_rule_"+this.state.id; 
+            ///this.setState({identifier:myIdentifier}); 
         }
         else
         {
