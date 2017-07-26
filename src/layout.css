@@ -102,17 +102,27 @@ body {
   float: left; 
   padding-left:5px;  
   max-width: 49%; 
+  font-size: 14px; 
+  font-family: Arial, Helvetica, sans-serif;   
+  overflow: scroll; 
+
 }
 
 .textInput2
 {
-  width: 48%; 
+  width: 50%; 
   height: 100%; 
   float: right;  
   margin-left:5px; 
-  max-width: 48%; 
-  min-width:48%; 
-  padding-left:5px; 
+  max-width: 49%; 
+  min-width:49%; 
+  padding-left:0px; 
+  padding-right: 5px; 
+  font-size: 14px; 
+  font-family: Arial, Helvetica, sans-serif; 
+  overflow: scroll; 
+  border: solid; 
+
 }
 
 
@@ -140,7 +150,17 @@ body {
   padding-right: 2em;
 }
 
-.help
+.testTokenStyle
 {
-
+  border: solid; 
+  border-right:solid; 
+  border-color: black;
+  border-width: 0.01em; 
+  width:auto; 
+  height:auto; 
+  margin:10px; 
+  word-wrap:break-word;
+  background-color: #A2A1B2; 
+  color: white;
+  line-height: 150%;
 }

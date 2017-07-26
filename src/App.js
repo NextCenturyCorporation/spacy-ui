@@ -379,6 +379,11 @@ class App extends Component {
                               onProcessJSONData={this.ProcessJSONData}  ruleObj={rule} createdby={this.state.createdby}/> 
                           </div>
                         )); 
+
+    var displayToken =  this.state.test_tokens.map((myText,i)=>(
+                           <span className="testTokenStyle"> {myText} </span>
+                        )); 
+                         
     return (
       <div className="App">
       
@@ -409,7 +414,7 @@ class App extends Component {
           <span className="extractionText"> Text/Tokens</span>
           <div className="rulesText"> 
             <textarea name="test_text" onChange={this.handleChange}  rows="5" className="textInput" value={this.state.test_text}/>
-            <textarea name="test_token"   rows="5" className="textInput2" value={this.state.test_tokens.join("\n")}/>
+            <div className ="textInput2"> {displayToken} </div>
            </div> 
         </div>
         <br/>
