@@ -11,9 +11,11 @@ import TokenWrapper from './TokenWrapper';
 /*GLOBAL values used for token, rule ids*/
 var GLOBAL_ID = 1; 
 var TOKEN_BASE = 9000; 
-var PTOKEN_BASE = 8000; 
+var PTOKEN_BASE = 81000; 
 var RULE_BASE = 7000; 
 var GLOBAL_RULE_ID = 1; 
+
+
 
 /*
 The Rule class holds the different token. There can be multiple rules. 

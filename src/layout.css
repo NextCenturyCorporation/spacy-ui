@@ -108,23 +108,7 @@ body {
 
 }
 
-.textInput2
-{
-  width: 50%; 
-  height: 100%; 
-  float: right;  
-  margin-left:5px; 
-  max-width: 49%; 
-  min-width:49%; 
-  padding-left:0px; 
-  padding-right: 5px; 
-  font-size: 14px; 
-  font-family: Arial, Helvetica, sans-serif; 
-  overflow: scroll; 
-  border: solid; 
-  border-width: 0.01em; 
 
-}
 
 
 
@@ -151,14 +135,34 @@ body {
   padding-right: 2em;
 }
 
+
+.textInput2
+{
+  height: 100%; 
+  float: right;  
+  max-width: 49%; 
+  min-width:49%; 
+  padding-left:10px; 
+  padding-right: 10px; 
+  font-size: 14px; 
+  font-family: Arial, Helvetica, sans-serif; 
+  overflow: scroll; 
+  border: solid; 
+  border-width: 0.01em; 
+  word-wrap: break-word;
+
+}
+
+
 .testTokenStyle
 {
   border: solid; 
-  border-right:solid; 
   border-color: black;
   border-width: 0.01em; 
-  margin:5px; 
-  background-color: #A2A1B2; 
-  color: white;
-  line-height: 150%;
+  margin: 3px; 
+  padding-left:2px; 
+  padding-right:2px;
+  color:black;
+  line-height: 200%;
+  width: 100%; 
 }

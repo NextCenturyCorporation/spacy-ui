@@ -1,0 +1,726 @@
+	
+Response body
+{
+  "field_name": "bitcoin",
+  "results": [
+    {
+      "context": {
+        "end": 14,
+        "identifier": "rule_5",
+        "input": "tokens",
+        "rule_id": 3,
+        "start": 10,
+        "text": "- require javascript ! \n\n\n\n <etk 'attribute' = 'bitcoin'>( 10 ) G</etk> MUSH \\ n \\ n ",
+        "tokens_left": [
+          "-",
+          "require",
+          "javascript",
+          "!",
+          "\n\n\n\n"
+        ],
+        "tokens_right": [
+          "MUSH",
+          "\\",
+          "n",
+          "\\",
+          "n"
+        ]
+      },
+      "value": "10 G"
+    },
+    {
+      "context": {
+        "end": 23,
+        "identifier": "rule_2",
+        "input": "tokens",
+        "rule_id": 0,
+        "start": 19,
+        "text": "MUSH \\ n \\ n <etk 'attribute' = 'bitcoin'>$ 40 . 00</etk> \\ n \\ n \\ ",
+        "tokens_left": [
+          "MUSH",
+          "\\",
+          "n",
+          "\\",
+          "n"
+        ],
+        "tokens_right": [
+          "\\",
+          "n",
+          "\\",
+          "n",
+          "\\"
+        ]
+      },
+      "value": "40 . 00"
+    },
+    {
+      "context": {
+        "end": 48,
+        "identifier": "rule_3",
+        "input": "tokens",
+        "rule_id": 1,
+        "start": 40,
+        "text": "2 , 497 . 00 <etk 'attribute' = 'bitcoin'>USD / BTC 21 : 36 : 05</etk> \\ n FREE Shipping ! ",
+        "tokens_left": [
+          "2",
+          ",",
+          "497",
+          ".",
+          "00"
+        ],
+        "tokens_right": [
+          "\\",
+          "n",
+          "FREE",
+          "Shipping",
+          "!"
+        ]
+      },
+      "value": "21 : 36 : 05"
+    },
+    {
+      "context": {
+        "end": 61,
+        "identifier": "rule_4",
+        "input": "tokens",
+        "rule_id": 2,
+        "start": 60,
+        "text": "! For those who desire <etk 'attribute' = 'bitcoin'>60G</etk> , you may choose to ",
+        "tokens_left": [
+          "!",
+          "For",
+          "those",
+          "who",
+          "desire"
+        ],
+        "tokens_right": [
+          ",",
+          "you",
+          "may",
+          "choose",
+          "to"
+        ]
+      },
+      "value": "60G"
+    },
+    {
+      "context": {
+        "end": 80,
+        "identifier": "rule_4",
+        "input": "tokens",
+        "rule_id": 2,
+        "start": 79,
+        "text": "the extra week for a <etk 'attribute' = 'bitcoin'>56G</etk> . ( 10 ) G ",
+        "tokens_left": [
+          "the",
+          "extra",
+          "week",
+          "for",
+          "a"
+        ],
+        "tokens_right": [
+          ".",
+          "(",
+          "10",
+          ")",
+          "G"
+        ]
+      },
+      "value": "56G"
+    },
+    {
+      "context": {
+        "end": 85,
+        "identifier": "rule_5",
+        "input": "tokens",
+        "rule_id": 3,
+        "start": 81,
+        "text": "week for a 56G . <etk 'attribute' = 'bitcoin'>( 10 ) G</etk> , 10 grams \n\n A ",
+        "tokens_left": [
+          "week",
+          "for",
+          "a",
+          "56G",
+          "."
+        ],
+        "tokens_right": [
+          ",",
+          "10",
+          "grams",
+          "\n\n",
+          "A"
+        ]
+      },
+      "value": "10 G"
+    },
+    {
+      "context": {
+        "end": 88,
+        "identifier": "rule_6",
+        "input": "tokens",
+        "rule_id": 4,
+        "start": 86,
+        "text": "( 10 ) G , <etk 'attribute' = 'bitcoin'>10 grams</etk> \n\n A new sentence begins ",
+        "tokens_left": [
+          "(",
+          "10",
+          ")",
+          "G",
+          ","
+        ],
+        "tokens_right": [
+          "\n\n",
+          "A",
+          "new",
+          "sentence",
+          "begins"
+        ]
+      },
+      "value": "10 grams"
+    }
+  ],
+  "rules": [
+    {
+      "description": "",
+      "identifier": "rule_2",
+      "is_active": "true",
+      "output_format": "",
+      "pattern": [
+        {
+          "capitalization": [
+            "exact",
+            "upper"
+          ],
+          "contain_digit": "",
+          "is_followed_by_space": "false",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "$"
+          ],
+          "type": "word"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_followed_by_space": "false",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shape": [],
+          "suffix": "",
+          "token": [],
+          "type": "number"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_followed_by_space": "false",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "."
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_followed_by_space": "false",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "dd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        }
+      ],
+      "polarity": []
+    },
+    {
+      "description": "",
+      "identifier": "rule_3",
+      "is_active": "true",
+      "output_format": "",
+      "pattern": [
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_followed_by_space": "false",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "usd"
+          ],
+          "type": "word"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_followed_by_space": "false",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "/"
+          ],
+          "type": "word"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_followed_by_space": "false",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "btc"
+          ],
+          "type": "word"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_followed_by_space": "false",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "dd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_followed_by_space": "false",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            ":"
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_followed_by_space": "false",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "dd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_followed_by_space": "false",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            ":"
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_followed_by_space": "false",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "dd"
+          ],
+          "suffix": "",
+          "token": [],
+          "type": "shape"
+        }
+      ],
+      "polarity": []
+    },
+    {
+      "description": "",
+      "identifier": "rule_4",
+      "is_active": "true",
+      "output_format": "",
+      "pattern": [
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_followed_by_space": "false",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [
+            "ddX",
+            "dX",
+            "ddX"
+          ],
+          "suffix": "G",
+          "token": [],
+          "type": "shape"
+        }
+      ],
+      "polarity": []
+    },
+    {
+      "description": "",
+      "identifier": "rule_5",
+      "is_active": "true",
+      "output_format": "",
+      "pattern": [
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_followed_by_space": "false",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "("
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_followed_by_space": "false",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shape": [],
+          "suffix": "",
+          "token": [],
+          "type": "number"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_followed_by_space": "false",
+          "is_in_output": "false",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            ")"
+          ],
+          "type": "punctuation"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_followed_by_space": "false",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "G"
+          ],
+          "type": "word"
+        }
+      ],
+      "polarity": []
+    },
+    {
+      "description": "Weight in grams",
+      "identifier": "rule_6",
+      "is_active": "true",
+      "output_format": "{1} grams",
+      "pattern": [
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_followed_by_space": "false",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shape": [],
+          "suffix": "",
+          "token": [],
+          "type": "number"
+        },
+        {
+          "capitalization": [],
+          "contain_digit": "",
+          "is_followed_by_space": "false",
+          "is_in_output": "true",
+          "is_in_vocabulary": "",
+          "is_out_of_vocabulary": "",
+          "is_required": "true",
+          "length": [],
+          "maximum": "",
+          "minimum": "",
+          "numbers": [],
+          "part_of_speech": [],
+          "prefix": "",
+          "shapes": [],
+          "suffix": "",
+          "token": [
+            "gram",
+            "grams"
+          ],
+          "type": "word"
+        }
+      ],
+      "polarity": []
+    }
+  ],
+  "test_text": "This site -does not- require javascript! \n\n\n\n(10)G MUSH \\n \\n $40.00 \\n \\n \\n \\n ฿ 0.01601922   2,497.00 USD/BTC 21:36:05 \\n FREE Shipping! World Wide! For those who desire 60G, you may choose to pass on purchasing x2 30G… and instead wait the extra week for a 56G.  (10)G, 10 grams\n\nA new sentence begins here\n",
+  "test_tokens": [
+    "This",
+    "site",
+    "-",
+    "does",
+    "not",
+    "-",
+    "require",
+    "javascript",
+    "!",
+    "\n\n\n\n",
+    "(",
+    "10",
+    ")",
+    "G",
+    "MUSH",
+    "\\",
+    "n",
+    "\\",
+    "n",
+    "$",
+    "40",
+    ".",
+    "00",
+    "\\",
+    "n",
+    "\\",
+    "n",
+    "\\",
+    "n",
+    "\\",
+    "n",
+    "฿",
+    "0",
+    ".",
+    "01601922",
+    "2",
+    ",",
+    "497",
+    ".",
+    "00",
+    "USD",
+    "/",
+    "BTC",
+    "21",
+    ":",
+    "36",
+    ":",
+    "05",
+    "\\",
+    "n",
+    "FREE",
+    "Shipping",
+    "!",
+    "World",
+    "Wide",
+    "!",
+    "For",
+    "those",
+    "who",
+    "desire",
+    "60G",
+    ",",
+    "you",
+    "may",
+    "choose",
+    "to",
+    "pass",
+    "on",
+    "purchasing",
+    "x2",
+    "30G…",
+    "and",
+    "instead",
+    "wait",
+    "the",
+    "extra",
+    "week",
+    "for",
+    "a",
+    "56G",
+    ".",
+    "(",
+    "10",
+    ")",
+    "G",
+    ",",
+    "10",
+    "grams",
+    "\n\n",
+    "A",
+    "new",
+    "sentence",
+    "begins",
+    "here",
+    "\n"
+  ]
+}

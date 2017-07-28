@@ -26,7 +26,13 @@ var ActionEnum =
   "ReceivingServerData":"2"
 }
 
-
+var charmap = {
+  n: "\n",
+  r: "\r",
+  f: "\f",
+  t: "\t",
+  b: "\b"
+};
 
 /*
   Main Application entry point
@@ -197,7 +203,8 @@ class App extends Component {
       test_text:this.state.test_text
     }; 
 
-    return JSON.stringify(myData2Send);     
+    var data2Send = JSON.stringify(myData2Send);   
+    return data2Send; 
   }
 
   getData()
@@ -345,6 +352,7 @@ class App extends Component {
 
   onDeleteRule(myIndex)
   {
+/*
     console.log("Apps->onDeleteRule....delete index = " + myIndex); 
     
     var myRule = this.getInitState(); 
@@ -362,7 +370,39 @@ class App extends Component {
     ({
         allServerRules: {rules:allRules}
     }));
-  
+*/
+/*
+    var myNewText = myText.replace(/\\(.)/g, function(_, char) 
+              {
+                  var myChar = char in charmap? charmap[char]: char
+                  console.log("replacing char = " + char + " with " + myChar); 
+
+              
+                  return myChar; 
+              })
+*/
+/*
+    var myNewText = myText.replace(/\\n/g, "\\n")
+                                      .replace(/\\'/g, "\\'")
+                                      .replace(/\\"/g, '\\"')
+                                      .replace(/\\&/g, "\\&")
+                                      .replace(/\\r/g, "\\r")
+                                      .replace(/\\t/g, "\\t")
+                                      .replace(/\\b/g, "\\b")
+                                      .replace(/\\f/g, "\\f"); 
+*/
+    var myText1 = "Wole\n";
+    var myText1JSON = JSON.stringify(myText1); 
+    console.log("After stringfying....text = " + myText1JSON); 
+     var myNewText = myText1JSON.replace(/\\n/g, "\\n")
+                                      .replace(/\\'/g, "\\'")
+                                      .replace(/\\"/g, '\\"')
+                                      .replace(/\\&/g, "\\&")
+                                      .replace(/\\r/g, "\\r")
+                                      .replace(/\\t/g, "\\t")
+                                      .replace(/\\b/g, "\\b")
+                                      .replace(/\\f/g, "\\f");    
+    console.log("My new text = " + myNewText); 
   }
 
   onDuplicateRule(index)
@@ -383,7 +423,7 @@ class App extends Component {
                         )); 
 
     var displayToken =  this.state.test_tokens.map((myText,i)=>(
-                           <span className="testTokenStyle"> {myText} </span>
+                           <span className="testTokenStyle"> {JSON.stringify(myText)}</span>
                         )); 
                          
     return (
@@ -440,6 +480,8 @@ class App extends Component {
   }
   
 }
+
+var myText = "This \r\tsite -does not- require javascript! \n\n\n\n(10)G MUSH \\n \\n $40.00 \\n \\n \\n \\n ฿ 0.01601922   2,497.00 USD/BTC 21:36:05 \\n FREE Shipping! World Wide! For those who desire 60G, you may choose to pass on purchasing x2 30G… and instead wait the extra week for a 56G.  (10)G, 10 grams\n\nA new sentence begins here\n"; 
 
 
 export default App;
