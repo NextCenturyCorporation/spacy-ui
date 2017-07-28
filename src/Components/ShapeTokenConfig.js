@@ -208,11 +208,11 @@ class ShapeTokenConfig extends React.Component {
     var displayHeader; 
     if(this.props.modify)
     {
-       displayHeader = <div className="modal-header">Modify Shape Token </div>
+       displayHeader = <div className="shape-modal-header">Modify Shape Token </div>
     }
     else
     {
-       displayHeader = <div className="modal-header">Create Shape Token </div>
+       displayHeader = <div className="shape-modal-header">Create Shape Token </div>
     }
 
 
@@ -222,7 +222,7 @@ class ShapeTokenConfig extends React.Component {
 
     return (
       <div className="backdrop" >
-        <div  className="modal">
+        <div  className="shape-modal">
           {this.props.children}
 
           {displayHeader}

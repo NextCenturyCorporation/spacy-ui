@@ -63,6 +63,7 @@ body {
 .button {
   display: inline-block;
   padding: 3px 8px;
+  margin-right:5px; 
   font-size: 14px;
   cursor: pointer;
   text-align: center;
@@ -105,7 +106,9 @@ body {
   font-size: 14px; 
   font-family: Arial, Helvetica, sans-serif;   
   overflow: scroll; 
-
+  border:none; 
+  border-right: solid; 
+  border-width:0.01em; 
 }
 
 
@@ -147,9 +150,11 @@ body {
   font-size: 14px; 
   font-family: Arial, Helvetica, sans-serif; 
   overflow: scroll; 
-  border: solid; 
-  border-width: 0.01em; 
+
   word-wrap: break-word;
+  border:none; 
+  border-left: solid; 
+  border-width:0.01em; 
 
 }
 
@@ -160,8 +165,9 @@ body {
   border-color: black;
   border-width: 0.01em; 
   margin: 3px; 
-  padding-left:2px; 
-  padding-right:2px;
+  padding-left:1px; 
+  padding-right:3px;
+  padding-bottom:1px; 
   color:black;
   line-height: 200%;
   width: 100%; 

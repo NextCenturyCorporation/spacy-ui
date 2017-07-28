@@ -35,7 +35,9 @@ class PunctuationTokenConfig extends React.Component {
       punctuation_percent: false,
       punctuation_backslash: false,
       punctuation_asterisk: false,
-      punctuation_dollar: false
+      punctuation_dollar: false,
+      punctuation_forwardslash:false,
+      punctuation_atsign: false
     };
 
     //if you don't bind like this you will get an error like 
@@ -95,7 +97,9 @@ class PunctuationTokenConfig extends React.Component {
         punctuation_percent: tData.token.indexOf("%")>-1, 
         punctuation_backslash: tData.token.indexOf("\\")>-1, 
         punctuation_asterisk: tData.token.indexOf("*")>-1, 
-        punctuation_dollar: tData.token.indexOf(" $")>-1       
+        punctuation_dollar: tData.token.indexOf("$")>-1,       
+        punctuation_forwardslash: tData.token.indexOf("/")>-1,
+        punctuation_atsign: tData.token.indexOf("@")>-1     
       })
 
     } 
@@ -180,7 +184,9 @@ class PunctuationTokenConfig extends React.Component {
       punctuation_percent: false,
       punctuation_backslash: false,
       punctuation_asterisk: false,
-      punctuation_dollar: false
+      punctuation_dollar: false,
+      punctuation_atsign:false,
+      punctuation_forwardslash:false
     };
 
   }
@@ -219,7 +225,10 @@ class PunctuationTokenConfig extends React.Component {
       ret = this.state.punctuation_percent? allPunct.push("%"):allPunct; 
       ret = this.state.punctuation_backslash? allPunct.push("\\"):allPunct; 
       ret = this.state.punctuation_asterisk? allPunct.push("*"):allPunct; 
-      ret = this.state.punctuation_dollar? allPunct.push(" $"):allPunct;
+      ret = this.state.punctuation_dollar? allPunct.push("$"):allPunct;
+      ret = this.state.punctuation_forwardslash? allPunct.push("/"):allPunct;
+      ret = this.state.punctuation_atsign? allPunct.push("@"):allPunct;
+      
 
       return allPunct;
 
@@ -271,6 +280,7 @@ class PunctuationTokenConfig extends React.Component {
 
             </div>
             <div id="punctuation-div2">
+              <div id="punctuation-symbol-header"> Punctuation Symbols:</div>
               <div id="punctuation-div21">
                 <label className="inspeech"><input name="punctuation_comma" type="checkbox" checked={this.state.punctuation_comma} onChange={this.handleInputChange} className="wordlabels"/>,</label>
                 <label className="inspeech"><input name="punctuation_period" type="checkbox" checked={this.state.punctuation_period} onChange={this.handleInputChange} className="wordlabels"/>.</label>
@@ -282,13 +292,13 @@ class PunctuationTokenConfig extends React.Component {
                 <label className="inspeech"><input name="punctuation_1quote" type="checkbox" checked={this.state.punctuation_1quote} onChange={this.handleInputChange} className="wordlabels"/>'</label>                
                 <label className="inspeech"><input name="punctuation_plus" type="checkbox" checked={this.state.punctuation_plus} onChange={this.handleInputChange} className="wordlabels"/>+</label>  
                 <label className="inspeech"><input name="punctuation_underscore" type="checkbox" checked={this.state.punctuation_underscore} onChange={this.handleInputChange} className="wordlabels"/>_</label>  
+                <label className="inspeech" ><input name="punctuation_amperand" type="checkbox" checked={this.state.punctuation_amperand} onChange={this.handleInputChange} className="wordlabels"/>&amp;</label>  
             
 
               </div> 
 
 
                <div id="punctuation-div22">
-                <label className="inspeech" ><input name="punctuation_amperand" type="checkbox" checked={this.state.punctuation_amperand} onChange={this.handleInputChange} className="wordlabels"/>&amp;</label>  
                 <label className="inspeech"><input name="punctuation_bang" type="checkbox" checked={this.state.punctuation_bang} onChange={this.handleInputChange} className="wordlabels"/>!</label>  
                 <label className="inspeech"><input name="punctuation_openbracket" type="checkbox" checked={this.state.punctuation_openbracket} onChange={this.handleInputChange} className="wordlabels"/>(</label>
                 <label className="inspeech"><input name="punctuation_closebracket" type="checkbox" checked={this.state.punctuation_closebracket} onChange={this.handleInputChange} className="wordlabels"/>)</label>
@@ -298,18 +308,22 @@ class PunctuationTokenConfig extends React.Component {
                 <label className="inspeech"><input name="punctuation_close_cbracket" type="checkbox" checked={this.state.punctuation_close_cbracket} onChange={this.handleInputChange} className="wordlabels"/>}</label>
                 <label className="inspeech"><input name="punctuation_vline" type="checkbox" checked={this.state.punctuation_vline} onChange={this.handleInputChange} className="wordlabels"/>|</label>
                 <label className="inspeech"><input name="punctuation_dash" type="checkbox" checked={this.state.punctuation_dash} onChange={this.handleInputChange} className="wordlabels"/>-</label>                 
+                <label className="inspeech"><input name="punctuation_caret" type="checkbox" checked={this.state.punctuation_caret} onChange={this.handleInputChange} className="wordlabels"/>^</label>                
+                <label className="inspeech"><input name="punctuation_pound" type="checkbox" checked={this.state.punctuation_pound} onChange={this.handleInputChange} className="wordlabels"/>#</label>                
               </div> 
 
               <div id="punctuation-div23">
-                <label className="inspeech"><input name="punctuation_caret" type="checkbox" checked={this.state.punctuation_caret} onChange={this.handleInputChange} className="wordlabels"/>^</label>
-                <label className="inspeech"><input name="punctuation_pound" type="checkbox" checked={this.state.punctuation_pound} onChange={this.handleInputChange} className="wordlabels"/>#</label>
+
+
                 <label className="inspeech"><input name="punctuation_lessthan" type="checkbox" checked={this.state.punctuation_lessthan} onChange={this.handleInputChange} className="wordlabels"/>	&lt;</label>
                 <label className="inspeech"><input name="punctuation_greaterthan" type="checkbox" checked={this.state.punctuation_greaterthan} onChange={this.handleInputChange} className="wordlabels"/>	&gt;</label>
                 <label className="inspeech"><input name="punctuation_equal" type="checkbox" checked={this.state.punctuation_equal} onChange={this.handleInputChange} className="wordlabels"/>=</label> 
                 <label className="inspeech"><input name="punctuation_percent" type="checkbox" checked={this.state.punctuation_percent} onChange={this.handleInputChange} className="wordlabels"/>%</label>
                 <label className="inspeech"><input name="punctuation_backslash" type="checkbox" checked={this.state.punctuation_backslash} onChange={this.handleInputChange} className="wordlabels"/>\</label>
+                <label className="inspeech"><input name="punctuation_forwardslash" type="checkbox" checked={this.state.punctuation_forwardslash} onChange={this.handleInputChange} className="wordlabels"/>/</label>                
                 <label className="inspeech"><input name="punctuation_asterisk" type="checkbox" checked={this.state.punctuation_asterisk} onChange={this.handleInputChange} className="wordlabels"/>*</label>
                 <label className="inspeech"><input name="punctuation_dollar" type="checkbox" checked={this.state.punctuation_dollar} onChange={this.handleInputChange} className="wordlabels"/>$</label>
+                <label className="inspeech"><input name="punctuation_atsign" type="checkbox" checked={this.state.punctuation_atsign} onChange={this.handleInputChange} className="wordlabels"/>@</label>                
                                                                                                                                                
               </div>               
 

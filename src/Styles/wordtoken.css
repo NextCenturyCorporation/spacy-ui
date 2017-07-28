@@ -17,11 +17,8 @@
     background-color:#fff; 
     border-radius: 5px; 
     max-width: 480px; 
-    min-Height: 430px; 
+    min-Height: 415px; 
     margin: auto; 
-    border: solid; 
-    border-width: 0.04em; 
-
 }
 
 .modal-header
@@ -182,11 +179,13 @@
 .number-modal-header
 {
    background-color: #A2A1B2;
-   width: 100%;
+   width: 390;
    height: 25px;
    text-align: left;
-   padding-left: 5px;
-   padding-top:5px;
+   border-top-left-radius: 5px; 
+   border-top-right-radius: 5px;   
+   padding-left: 10px;
+   padding-top: 5px;
 }
 
 .number-modal
@@ -196,8 +195,6 @@
     max-width: 400px; 
     min-Height: 280px; 
     margin: auto; 
-    padding: 0; 
-
 }
 
 .num_minmax
@@ -223,7 +220,7 @@
 
 #number-div21
 {
-   padding: 10px;
+   padding: 0px 10px 10px 10px;
 /*display:inline-block; */
    width: 100px;
    float: left; 
@@ -233,7 +230,7 @@
 #number-div22
 {
    width: 275px;
-   padding: 10px;
+   padding: 0px 10px 10px 10px;
    margin-left:100px;
    height:  150px;
 }
@@ -243,7 +240,7 @@
 #numbertoken-footer
 {
   float: right;
-  margin: 10px;
+  margin: 0px;
 }
 
 /*
@@ -293,12 +290,14 @@
 
 .shape-modal-header
 {
-   background-color: #A2A1B2;
-   width: 100%;
-   height: 25px;
-   text-align: left;
-   padding-left: 5px;
-   padding-top:5px;
+    background-color: #A2A1B2; 
+    width: 470px; 
+    border-top-left-radius: 5px; 
+    border-top-right-radius: 5px;
+    height: 25px; 
+    text-align: left;
+    padding-top:5px; 
+    padding-left: 10px; 
 }
 
 .shape-modal
@@ -306,9 +305,8 @@
     background-color:#fff; 
     border-radius: 5px; 
     max-width: 480px; 
-    min-Height: 420px; 
+    min-Height: 415px; 
     margin: auto; 
-    padding: 0; 
 }
 
 .shape-prefixsuffix
@@ -408,31 +406,30 @@
 
 .punctuation-modal-header
 {
-   background-color: #A2A1B2;
-   width: 100%;
-   height: 25px;
-   text-align: left;
-   padding-left: 5px;
-   padding-top:5px;
+    background-color: #A2A1B2; 
+    width: 300px; 
+    border-top-left-radius: 5px; 
+    border-top-right-radius: 5px;
+    height: 25px; 
+    text-align: left;
+    padding-top:5px; 
+    padding-left: 10px; 
 }
 
 .punctuation-modal
 {
     background-color:#fff; 
     border-radius: 5px; 
-    max-width: 380px; 
-    min-Height: 350px; 
+    max-width: 310px; 
+    min-Height: 370px; 
     margin: auto; 
-    padding: 0; 
-
 }
 
 #punctuation-div1
 {
-   /*padding: 10px; */
    padding-top: 5px;
-   padding-left:5px; 
    padding-bottom: 5px;
+   padding-left:5px; 
 }
 
 #punctuation-div2
@@ -440,8 +437,7 @@
     height: 100%; 
     overflow: hidden;
     display: inline-block; 
-    height: 230px; 
-    padding-left:2px; 
+    height: 260px; 
 }
 
 #punctuation-div21
@@ -450,6 +446,7 @@
     width: 100px;
     float: left;  
     height:100%; 
+    padding-left:2px; 
 }
 
 #punctuation-div22
@@ -468,12 +465,25 @@
     /*border:solid;*/
 }
 
+#punctuation-div24
+{
+    width: 100px;
+    float: left; 
+    height: 100%; 
+    /*border:solid;*/
+}
+
 
 
 #punctuation-footer
 {
   float: right;
   margin: 10px;
+}
+
+#punctuation-symbol-header
+{
+    padding-left:10px; 
 }
 
 
