@@ -591,7 +591,7 @@ class Rule extends Component
         //console.log("Location of new token to add = "  + this.state.newToken2AddIndex); 
 
         //Add the new token to the array of tokens. 
-        if(this.state.newToken2AddIndex!= -1)
+        if(this.state.newToken2AddIndex!== -1)
         {
             myTokenData.splice(this.state.newToken2AddIndex/2, 0, newJSONTokenData); 
         }
@@ -628,7 +628,7 @@ class Rule extends Component
         /*We always need a plus token between regular token*/
         const btt = <PlusToken id={PTOKEN_BASE + (++GLOBAL_ID)} clickable="1" onClick={this.handleClick.bind(this)} />;
 
-        if(this.state.newToken2AddIndex!= -1)
+        if(this.state.newToken2AddIndex!== -1)
         {
             myTokens.splice(this.state.newToken2AddIndex+1,0,newToken, btt); 
         }

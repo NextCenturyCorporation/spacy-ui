@@ -3,10 +3,6 @@ import "../token.css"
 
 class PlusToken extends Component 
 {
-  constructor(props)
-  {
-  	super(props); 
-  }
 	render() 
 	{
     //You have to set the this.props.onclick here so that you can add event handler to any

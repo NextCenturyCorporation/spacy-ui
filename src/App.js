@@ -2,8 +2,6 @@
 import React, { Component } from 'react';
 import Rule from './Components/Rule'; 
 import "./layout.css"; 
-import ReactTooltip from 'react-tooltip'
-
 
 /*We need base.64 for the authentication*/
 const base64 = require('base-64');
@@ -25,14 +23,6 @@ var ActionEnum =
   "DeleteRule": "1",
   "ReceivingServerData":"2"
 }
-
-var charmap = {
-  n: "\n",
-  r: "\r",
-  f: "\f",
-  t: "\t",
-  b: "\b"
-};
 
 /*
   Main Application entry point
@@ -352,17 +342,12 @@ class App extends Component {
 
   onDeleteRule(myIndex)
   {
-/*
     console.log("Apps->onDeleteRule....delete index = " + myIndex); 
     
-    var myRule = this.getInitState(); 
-    this.allRuleData = new Object(); 
+    this.allRuleData = {}; 
 
     let allRules = this.state.allServerRules.rules; 
     allRules.splice(myIndex,1); 
-
-    //this.allRuleData.Object.delete(allRules[myIndex].identifier); 
-    //delete this.allRuleData[allRules[myIndex].identifier]; 
 
     this.lastAction = ActionEnum.DeleteRule; 
   
@@ -370,39 +355,7 @@ class App extends Component {
     ({
         allServerRules: {rules:allRules}
     }));
-*/
-/*
-    var myNewText = myText.replace(/\\(.)/g, function(_, char) 
-              {
-                  var myChar = char in charmap? charmap[char]: char
-                  console.log("replacing char = " + char + " with " + myChar); 
 
-              
-                  return myChar; 
-              })
-*/
-/*
-    var myNewText = myText.replace(/\\n/g, "\\n")
-                                      .replace(/\\'/g, "\\'")
-                                      .replace(/\\"/g, '\\"')
-                                      .replace(/\\&/g, "\\&")
-                                      .replace(/\\r/g, "\\r")
-                                      .replace(/\\t/g, "\\t")
-                                      .replace(/\\b/g, "\\b")
-                                      .replace(/\\f/g, "\\f"); 
-*/
-    var myText1 = "Wole\n";
-    var myText1JSON = JSON.stringify(myText1); 
-    console.log("After stringfying....text = " + myText1JSON); 
-     var myNewText = myText1JSON.replace(/\\n/g, "\\n")
-                                      .replace(/\\'/g, "\\'")
-                                      .replace(/\\"/g, '\\"')
-                                      .replace(/\\&/g, "\\&")
-                                      .replace(/\\r/g, "\\r")
-                                      .replace(/\\t/g, "\\t")
-                                      .replace(/\\b/g, "\\b")
-                                      .replace(/\\f/g, "\\f");    
-    console.log("My new text = " + myNewText); 
   }
 
   onDuplicateRule(index)
@@ -415,7 +368,6 @@ class App extends Component {
   */  
   render() 
   {
-    let length = this.state.allServerRules.rules.length; 
     var displayedRules = this.state.allServerRules.rules.map((rule,i)=>(
                             <div className="help" >  <Rule rulenum={i+1} index={i} key={rule.identifier} onDeleteRule={this.onDeleteRule} onDuplicateRule={this.onDuplicateRule}
                               onProcessJSONData={this.ProcessJSONData}  ruleObj={rule} createdby={this.state.createdby}/> 
@@ -480,8 +432,5 @@ class App extends Component {
   }
   
 }
-
-var myText = "This \r\tsite -does not- require javascript! \n\n\n\n(10)G MUSH \\n \\n $40.00 \\n \\n \\n \\n ฿ 0.01601922   2,497.00 USD/BTC 21:36:05 \\n FREE Shipping! World Wide! For those who desire 60G, you may choose to pass on purchasing x2 30G… and instead wait the extra week for a 56G.  (10)G, 10 grams\n\nA new sentence begins here\n"; 
-
 
 export default App;
