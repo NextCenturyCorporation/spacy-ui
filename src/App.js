@@ -375,7 +375,7 @@ class App extends Component {
                         )); 
 
     var displayToken =  this.state.test_tokens.map((myText,i)=>(
-                           <span className="testTokenStyle"> {JSON.stringify(myText)}</span>
+                           <span className="testTokenStyle"> {JSON.stringify(myText).replace(/['"]+/g, '')}</span>
                         )); 
                          
     return (

@@ -7,8 +7,7 @@
       right: 0; 
       background-color:rgba(0,0,0,0.3);  
       z-index:20; 
-      padding: 50px; 
-
+      padding: 200px; 
 }
 
 
@@ -179,7 +178,7 @@
 .number-modal-header
 {
    background-color: #A2A1B2;
-   width: 390;
+   width: 360;
    height: 25px;
    text-align: left;
    border-top-left-radius: 5px; 
@@ -192,7 +191,7 @@
 {
     background-color:#fff; 
     border-radius: 5px; 
-    max-width: 400px; 
+    max-width: 360px; 
     min-Height: 280px; 
     margin: auto; 
 }
