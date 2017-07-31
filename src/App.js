@@ -24,6 +24,19 @@ var ActionEnum =
   "ReceivingServerData":"2"
 }
 
+
+  function replacer(key, value) 
+  {
+    // Filtering out properties
+  
+    if (typeof value === 'string') 
+    {
+      console.log("Replacers ...key = " + key +   " value = "+value); 
+    }
+  
+  return value;
+}
+
 /*
   Main Application entry point
 */
@@ -179,6 +192,9 @@ class App extends Component {
     }
   }
 
+
+
+
   /*
   This method is used to build the JSON data that will be transmitted. 
   */
@@ -193,8 +209,19 @@ class App extends Component {
       test_text:this.state.test_text
     }; 
 
-    var data2Send = JSON.stringify(myData2Send);   
-    return data2Send; 
+    var data2Send = JSON.stringify(myData2Send, replacer);   
+    //We don't want to change \n to \\n so we have to change it back
+    //by using replace. 
+
+    //There is a problem with extra backslash being added to \n or \\n so it 
+    //looks like \\n \\\n. This seems to happen because textarea does not treat
+    // \n as new line so stringify escaps the \,therefore having \\. However, this
+    // is not the intent from the user's perspective. The webservice/user wants \n to 
+    // just be backslash from the editor till it's transmitted to the webservice. Nothing 
+    // should be added. So the code below converts \\ to a single \. 
+    var cleanBackSlash = data2Send.replace(/\\\\/g, '\\'); 
+
+    return cleanBackSlash; 
   }
 
   getData()
