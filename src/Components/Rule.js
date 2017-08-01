@@ -29,8 +29,6 @@ class Rule extends Component
         const btt = <PlusToken  id={PTOKEN_BASE+(++GLOBAL_ID)}  clickable="1" onClick={this.handleClick.bind(this)}/>; 
         this.state = {
             array:[btt], 
-            tokenDataArray: [],
-            tokenArray:[],
             isWordDialogOpen: false,
             isNumberDialogOpen: false,
             isPunctuationDialogOpen: false,
@@ -52,6 +50,9 @@ class Rule extends Component
             newToken2AddIndex: -1
 
         }
+
+        this.sendData2App = false; 
+
 
         //this.description  = this.props.ruleObj.description,
         //this.output_format  = this.props.ruleObj.output_format,
@@ -197,8 +198,8 @@ class Rule extends Component
          isPunctuationDialogOpen: !this.state.isPunctuationDialogOpen
         });    
         
-                //Once the dialog closes, we need to turn off modify if it's still on. 
-        if(!this.setState.isWordDialogOpen)
+        //Once the dialog closes, we need to turn off modify if it's still on. 
+        if(!this.setState.isPunctuationDialogOpen)
         {   
             this.setState({
                 isModifyPunctuation:false
@@ -644,15 +645,21 @@ class Rule extends Component
                 array: myTokens
             });
 
+        this.sendData2App = true; 
+
     }  
 
 
     componentDidUpdate(prevProps, prevState)
     {
-        console.log("Rule->componentDidUpdate..."); 
-        this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
+        if(this.sendData2App)
+        {
+            this.sendData2App = false; 
+            console.log("Rule->componentDidUpdate..."); 
+            this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
                     this.state.identifier, this.state.description, this.state.polarity, 
                     this.state.is_active, this.state.output_format,this.state.createdby );        
+        }
     }
 
 
