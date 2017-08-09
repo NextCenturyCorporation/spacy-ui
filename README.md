@@ -8,9 +8,6 @@ This is the Spacy GUI project. The following are the required React Modules:
 
 
 
-Below you will find some information on how to perform common tasks.<br>
-You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
-
 
 
 
@@ -26,6 +23,18 @@ DESIGN
   |         |    Token 1.......Token N
 Token 1 ...Token N
 
+
+
+For deployment, you need to run 
+npm run build
+The location of the package has to defined in the package.json file. The homepage field needs to be updated to match 
+the location where you are going to deploy. 
+
+
+
+
+Below you will find some information on how to perform common tasks.<br>
+You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
 
 ## Table of Contents

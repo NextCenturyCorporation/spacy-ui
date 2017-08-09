@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import "../token.css"
+import "../Styles/token.css"
 
 class PlusToken extends Component 
 {
