@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Token from './Token'
 import PlusToken from './PlusToken'
-import "../rule.css"
+import "../Styles/rule.css"
 import WordTokenConfig from './WordTokenConfig';
 import ShapeTokenConfig from './ShapeTokenConfig'; 
 import NumberTokenConfig from './NumberTokenConfig'; 

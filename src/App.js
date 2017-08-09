@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import Rule from './Components/Rule'; 
-import "./layout.css"; 
+import "./Styles/layout.css"; 
 
 /*We need base.64 for the authentication*/
 const base64 = require('base-64');
@@ -9,7 +9,6 @@ var webServiceUrl = "";
 var webServiceUrlAllRules = ""
 
 var RULE_NUM = 0; 
-
 
 window.CREATEDBY_SERVER = "server"; 
 window.CREATEDBY_USER = "user"; 
@@ -21,24 +20,25 @@ window.TYPE_SHAPE = "shape"
 var ActionEnum =
 {
   "DeleteRule": "1",
-  "ReceivingServerData":"2"
-}
-
-
-  function replacer(key, value) 
-  {
-    // Filtering out properties
-  
-    if (typeof value === 'string') 
-    {
-      console.log("Replacers ...key = " + key +   " value = "+value); 
-    }
-  
-  return value;
+  "ReceivingData":"2"
 }
 
 /*
   Main Application entry point
+DESIGN
+         APP
+          |
+     -------------       
+     |            |
+    Rules 1.....Rule N
+      |            |
+      |          ---------------
+  ----------     |              |
+  |         |    Token 1.......Token N
+Token 1 ...Token N
+
+All rules are first created here.
+
 */
 class App extends Component {
   constructor(props) 
@@ -56,7 +56,7 @@ class App extends Component {
     }
 
     this.allRuleData = {}; 
-    this.lastAction =  ActionEnum.ReceivingServerData; 
+    this.lastAction =  ActionEnum.ReceivingData; 
     this.deleteCounter = 0; 
 
     /*function binding required by react*/
@@ -67,11 +67,10 @@ class App extends Component {
     this.addNewRule = this.addNewRule.bind(this); 
     this.getData = this.getData.bind(this); 
     this.getInitState = this.getInitState.bind(this); 
-    this.selectAll = this.selectAll.bind(this); 
-    this.deselectAll = this.deselectAll.bind(this); 
     this.onDeleteRule = this.onDeleteRule.bind(this); 
     this.onDuplicateRule = this.onDuplicateRule.bind(this); 
   }
+
 
   componentWillMount() 
   {
@@ -81,16 +80,14 @@ class App extends Component {
 
     if(this.props.params.projectName === undefined || this.props.params.fieldName === undefined)
     {
-      console.log("No project/field name specified. ")
+      console.log("No project/field name specified. They are both required!!!!!"); 
     }
-/*
-    webServiceUrl = 'http://52.36.12.77:9879/projects/' + this.props.params.projectName + '/fields/'+
-                 this.props.params.fieldName + '/spacy_rules'; 
-*/
+
     webServiceUrl = 'http://' + this.props.params.serverName  +'/projects/' + this.props.params.projectName + '/fields/'+
                  this.props.params.fieldName + '/spacy_rules'; 
-    webServiceUrlAllRules = webServiceUrl + "?type=all";
 
+    //Type=all grabs all the rules, test_text, token, results etc. 
+    webServiceUrlAllRules = webServiceUrl + "?type=all";
 
     console.log("webservice url = " + webServiceUrl); 
     console.log("Address for getting rules:" +webServiceUrlAllRules); 
@@ -100,6 +97,7 @@ class App extends Component {
 
   componentDidMount()
   {
+    //Here is where you set the application title. 
     document.title = "The Extractor";
   }
 
@@ -121,32 +119,15 @@ class App extends Component {
     //This allows us to make a copy. 
     var myPattern = JSON.parse(JSON.stringify(allTokenData));
     
+    /*Let's start building the JSON formatted data that will ultimately be sent to the webservice*/
     for(var i=0; i< myPattern.length ;  i++)
     {
       myPattern[i].is_followed_by_space = myPattern[i].is_followed_by_space.toString(); 
       myPattern[i].is_required = myPattern[i].is_required.toString(); 
       myPattern[i].is_in_output = myPattern[i].is_in_output.toString(); 
     }
-    
-
-
-    /*We need the raw date from allTokenData - we need to remove the token ids since it's not necessary 
-    when we send the JSON file across the wire. So Object.values allows us to just grab the values from the 
-    map allTokenData */
 
     /*Let's build each rule token according to the JSON spec */
-  /*
-    var myRuleData = this.state.allRuleData; 
-    myRuleData[ruleid] = {
-        polarity: polarity1, 
-        description: description1, 
-        pattern: myPattern,
-        output_format: output_format1,
-        is_active: is_active1? "true":"false", //requires a string for true or false. 
-        identifier: identifier1
-    } ; 
-*/
-
     this.allRuleData[identifier1] = {
         polarity: polarity1, 
         description: description1, 
@@ -156,25 +137,26 @@ class App extends Component {
         identifier: identifier1
     } ;
 
-    /*update the state data - kind of a way to persist the data */
-/*
-    this.setState({
-      allRuleData: myRuleData
-    });
-*/
-    console.log("Size of allRuleData  ="+ this.allRuleData.size); 
+    /*
+      if the rules/tokens are originally created by the user then we send it back to webservice.Otherwise there is no need to 
+      send rules that came from the webservice back. We just need to accumulate the JSON array/data and keep adding to it. 
+    */
     if(createdby === window.CREATEDBY_USER)
     { 
       this.sendData(); 
     }
     else if(this.lastAction === ActionEnum.DeleteRule)
     {
+      /*
+        In this scenario, the rules/tokens were created from the data from the server and the user deletes a rule. So we need
+        to update the webservice that rules has been deleted. 
+      */
       console.log("App->ProcessJSONData: counter = " + this.deleteCounter + " length = " + this.state.allServerRules.rules.length); 
       if((++this.deleteCounter) === this.state.allServerRules.rules.length)
       {
         console.log("App->ProcessJSONData: sending deleted information to the WebService"); 
         this.sendData(); 
-        this.lastAction = ActionEnum.ReceivingServerData; 
+        this.lastAction = ActionEnum.ReceivingData; 
       }
     }
 
@@ -192,15 +174,11 @@ class App extends Component {
     }
   }
 
-
-
-
   /*
   This method is used to build the JSON data that will be transmitted. 
   */
   buildData2Send()
   {
-
     //TODO: @wole change the rule data to send. 
     const values = Object.values(this.allRuleData); 
     var myData2Send = {};
@@ -209,19 +187,9 @@ class App extends Component {
       test_text:this.state.test_text
     }; 
 
-    var data2Send = JSON.stringify(myData2Send, replacer);   
-    //We don't want to change \n to \\n so we have to change it back
-    //by using replace. 
+    var data2Send = JSON.stringify(myData2Send);
 
-    //There is a problem with extra backslash being added to \n or \\n so it 
-    //looks like \\n \\\n. This seems to happen because textarea does not treat
-    // \n as new line so stringify escaps the \,therefore having \\. However, this
-    // is not the intent from the user's perspective. The webservice/user wants \n to 
-    // just be backslash from the editor till it's transmitted to the webservice. Nothing 
-    // should be added. So the code below converts \\ to a single \. 
-    var cleanBackSlash = data2Send.replace(/\\\\/g, '\\'); 
-
-    return cleanBackSlash; 
+    return data2Send; 
   }
 
   getData()
@@ -258,10 +226,9 @@ class App extends Component {
                             return; 
                           }
 
-                          //console.log("Received data contains " + json.rules.length + " rules"); 
-                          //console.log("Results = "  + json.test_text); 
-                          //this.state.createdby = window.CREATEDBY_SERVER; 
-                          
+                          /*I overwrite the rules identifier with our own naming. Sometimes these rules
+                          *are created on the server and no identifier is provided.
+                          */
                           for(var i=0; i<json.rules.length; i++)
                           {
                             json.rules[i].identifier = "rule_"+(++RULE_NUM); 
@@ -351,25 +318,12 @@ class App extends Component {
 
   }
 
-  selectAll()
-  {
-
-
-  }
-
-  deselectAll()
-  {
-
-  }
-
-  componentDidUpdate()
-  {
-    console.log("App->componentDidUpdate...."); 
-  }
-
+  /*
+  This method handles deleting of rules. 
+  */
   onDeleteRule(myIndex)
   {
-    console.log("Apps->onDeleteRule....delete index = " + myIndex); 
+    //console.log("Apps->onDeleteRule....delete index = " + myIndex); 
     
     this.allRuleData = {}; 
 
@@ -385,24 +339,28 @@ class App extends Component {
 
   }
 
+  /*
+  TODO: placeholder for a rule duplication if it's needed. 
+  */
   onDuplicateRule(index)
   {
     console.log("Apps->onDuplicate"); 
 
   }
+
   /*
     For rendering the GUI. 
   */  
   render() 
   {
     var displayedRules = this.state.allServerRules.rules.map((rule,i)=>(
-                            <div className="help" >  <Rule rulenum={i+1} index={i} key={rule.identifier} onDeleteRule={this.onDeleteRule} onDuplicateRule={this.onDuplicateRule}
+                            <div className="help" key={rule.identifier} >  <Rule rulenum={i+1} index={i} key={rule.identifier} onDeleteRule={this.onDeleteRule} onDuplicateRule={this.onDuplicateRule}
                               onProcessJSONData={this.ProcessJSONData}  ruleObj={rule} createdby={this.state.createdby}/> 
                           </div>
                         )); 
 
     var displayToken =  this.state.test_tokens.map((myText,i)=>(
-                           <span className="testTokenStyle"> {JSON.stringify(myText).replace(/['"]+/g, '')}</span>
+                           <span className="testTokenStyle" key={i}> {JSON.stringify(myText)}</span>
                         )); 
                          
     return (
@@ -412,8 +370,6 @@ class App extends Component {
         <div id="appHeader">
           <div id="ruleMenu">
           <button className="button" onClick={this.addNewRule} >Add Rule </button>  
-          {/*<button className="button" onClick={this.selectAll}>Select All </button> <button className="button" onClick={this.deselectAll}> Deselect All</button> 
-          <button className="button"> Delete</button> <button className="button"> Duplicate</button> */}
           </div> 
           
         </div> 

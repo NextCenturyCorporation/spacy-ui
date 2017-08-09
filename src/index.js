@@ -4,9 +4,11 @@ import { Router, Route, hashHistory } from 'react-router'
 
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+import "./index.css" //Set the global parameters here. fonts etc. 
 
-//ReactDOM.render( <App project_name="" field_name=""/>, document.getElementById('root'));
-
+/*
+  We use the router to map the url to serverName, project name and field name. 
+*/
 ReactDOM.render((
   <Router history={hashHistory}>
     <Route path="/" component={App}>
