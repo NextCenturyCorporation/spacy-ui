@@ -2,11 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 
 This is the Spacy GUI project. The following are the required React Modules: 
-1. react-router - this is needed for the url mapping to property in the component. 
-
-
-
-
+1. react-router - this is needed for the url mapping to props in the component. 
 
 
 
@@ -23,10 +19,14 @@ DESIGN
   |         |    Token 1.......Token N
 Token 1 ...Token N
 
+See `spacygui-design.pdf` for a uml diagram. 
+
 
 
 For deployment, you need to run 
+
 npm run build
+
 The location of the package has to defined in the package.json file. The homepage field needs to be updated to match 
 the location where you are going to deploy. 
 
@@ -75,23 +75,38 @@ We are always open to [your feedback](https://github.com/facebookincubator/creat
 
 ## Folder Structure
 
-After creation, your project should look like this:
-
 ```
-my-app/
+SPACY-UI/
   README.md
-  node_modules/
+  spacygui-design.pdf
   package.json
+  node_modules/
   public/
     index.html
     favicon.ico
   src/
-    App.css
     App.js
     App.test.js
     index.css
     index.js
     logo.svg
+    Components/
+      Modal.js
+      NumberTokenConfig.js
+      PlusToken.js
+      PunctuationTokenConfig.js
+      Rule.js
+      ShapeTokenConfig.js
+      Token.js
+      TokenWrapper.js
+      WordTokenConfig.js
+    Styles/
+      layout.css
+      numbertoken.css
+      punctuationtoken.css
+      rule.css
+      token.css
+      wordtoken.css
 ```
 
 For the project to build, **these files must exist with exact filenames**:

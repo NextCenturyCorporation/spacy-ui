@@ -88,13 +88,11 @@ class WordTokenConfig extends React.Component {
   createNewToken()
   {
     
-    //alert("createNewToken Rule id = " + this.props.ruleid); 
+    //If there is no word make sure you send an empty array. 
     var myWords = this.state.allwords.match(/\S+/g) || [];  
 
     if(!this.props.modify)
     {
-      //If there is no word make sure you send an empty array. 
-
       this.props.onAddNewToken("W",window.TYPE_WORD, myWords, this.state.optional, 
           this.state.part_of_output,this.state.followed_by_space, this.state.length1, this.state.length2, this.state.length3,
           this.state.prefix,this.state.suffix, this.state.notinvocabulary,
@@ -108,7 +106,6 @@ class WordTokenConfig extends React.Component {
     }
     else 
     {
-      //If there is no word make sure you send an empty array. 
       this.props.onModifyWordToken(this.props.tokenModifyIndex, "W",window.TYPE_WORD, myWords, this.state.optional, 
           this.state.part_of_output,this.state.followed_by_space, this.state.length1, this.state.length2, this.state.length3,
           this.state.prefix,this.state.suffix, this.state.notinvocabulary,
