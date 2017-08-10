@@ -253,7 +253,7 @@ class ShapeTokenConfig extends React.Component {
                    placeholder= "Enter shapes such as ddd, XXXX, Xx. d is for digits and x for letter, X for capital letter."
                    value={this.state.shapes} 
                    onChange={this.handleInputChange} 
-                   rows="15" 
+                   rows="12" 
                    cols="15"  
                    className="allwords"/>
                 </label>
@@ -325,52 +325,9 @@ class ShapeTokenConfig extends React.Component {
                       <input name="interjection" type="checkbox" checked={this.state.interjection} onChange={this.handleInputChange} className="wordlabels" />
                       interjection
                     </label>                       
-                </div>
-                <div >
-                <b>Capitalization: </b>
-                </div>
-                <div id="shapes-capitalization">
-                  <label>
-                    <input name="exact" type="checkbox" checked={this.state.exact} onChange={this.handleInputChange} className="wordlabels" />
-                    exact
-                  </label>      
-                  <label>
-                    <input name="lower" type="checkbox" checked={this.state.lower} onChange={this.handleInputChange} className="wordlabels" />
-                    lower
-                  </label>   
-                  <label>
-                    <input name="upper" type="checkbox" checked={this.state.upper} onChange={this.handleInputChange} className="wordlabels" />
-                    upper
-                  </label>   
-                  <label>
-                    <input name="title" type="checkbox" checked={this.state.title} onChange={this.handleInputChange} className="wordlabels" />
-                    title
-                  </label>             
-                  <label>
-                    <input name="mixed" type="checkbox" checked={this.state.mixed} onChange={this.handleInputChange} className="wordlabels" />
-                    mixed
-                  </label>                                                                           
                 </div> 
               </div> 
             </div>
-
-            <div id="shapes-div3">
-              <label>
-                Length 1:
-                <input name="length1" type="text" value={this.state.length1} onChange={this.handleInputChange} size="10" />
-                </label>
-
-              <label>
-                Length 2: 
-                <input name="length2" type="text" value={this.state.length2} onChange={this.handleInputChange}  size="10"  />
-                </label>
-
-              <label>
-                Length 3
-                <input name="length3" type="text" value={this.state.length3} onChange={this.handleInputChange} size="10"  />
-                
-                </label>              
-            </div> 
           </div>
 
           <div id="shapes-div4">

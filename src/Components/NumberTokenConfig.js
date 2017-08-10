@@ -209,10 +209,7 @@ class NumberTokenConfig extends React.Component {
                 part of output
                 </label>
 
-              <label>
-                <input name="followed_by_space" type="checkbox" checked={this.state.followed_by_space} onChange={this.handleInputChange} className="wordlabels" />
-                followed by space
-                </label>
+
             </div>
 
             <div id="number-div2">

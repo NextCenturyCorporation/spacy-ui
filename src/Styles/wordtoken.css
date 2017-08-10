@@ -44,34 +44,30 @@
     margin-right:10px;   
 }
 
-#div1, #shapes-div1
+#div1
 {
-    /*padding: 10px; */
     padding-top: 5px; 
     padding-bottom: 5px; 
 }
 
-#div2, #shapes-div2
+#div2
 {
     height: 100%; 
     overflow: hidden;
 }
 
-#div21, #shapes-div21
+#div21
 {
-    padding: 10px; 
-/*display:inline-block; */
+    padding: 10px 10px 0 10px; 
     width: 100px;
     float: left;  
 }
 
-#div22, #shapes-div22
+#div22
 {
     width: 330px;
-    padding: 10px; 
+    padding: 10px 10px 0px 10px; 
     margin-left: 120px; 
-    /*height: 300px;  */
-    height: 218px; 
 }
 
 
@@ -81,9 +77,6 @@
    float: right; 
    margin: 10px 10px 0px 10px; 
 }
-
-
-
 
 .allwords
 {
@@ -104,13 +97,13 @@
   *overflow: hidden;
 }
 
-#div3, #shapes-div3
+#div3
 {
     margin-left: 10px; 
     margin-top: 0px; 
 }
 
-#div3 input, #shapes-div3 input
+#div3 input
 {
     margin: 10px; 
     width:30px; 
@@ -123,7 +116,7 @@
     height: 15px;     
 }
 
-#div4, #shapes-div4
+#div4
 {
     margin-left: 10px ; 
     margin-top: 0px ; 
@@ -143,7 +136,7 @@
     margin: 3px;
 }
 
-#partofspeech_1, #shapes-partofspeech_1
+#partofspeech_1
 {
     width: 130px; 
     float: left; 
@@ -151,7 +144,7 @@
     padding-bottom: 10px; 
 }
 
-#partofspeech_2, #shapes-partofspeech_2
+#partofspeech_2
 {
     margin-left: 130px;   
     height: 155px;
@@ -220,7 +213,6 @@
 #number-div21
 {
    padding: 0px 10px 10px 10px;
-/*display:inline-block; */
    width: 100px;
    float: left; 
 
@@ -234,28 +226,11 @@
    height:  150px;
 }
 
-
-
 #numbertoken-footer
 {
   float: right;
   margin: 0px;
 }
-
-/*
-.modal-body input
-{
- width: 20px;
- height: 13px;
- padding: 0;
- margin-left:10px;
- margin-right: 20px;
- vertical-align: bottom;
- position: relative;
- top: -1px;
- *overflow: hidden;
-}
-*/
 
 #number-lengths
 {
@@ -265,9 +240,6 @@
    width: 100%;
    display: inlilne-block;
 }
-
-
-
 
 #number-prefix-suffix
 {
@@ -280,6 +252,12 @@
 {
     width:50px; 
     /*vertical-align: top; */
+}
+
+#numbertoken-footer
+{
+  float: right;
+  margin: 10px;
 }
 
 /********END NUMBER TOKEN *****/
@@ -304,7 +282,7 @@
     background-color:#fff; 
     border-radius: 5px; 
     max-width: 480px; 
-    min-Height: 415px; 
+    min-Height: 325px; 
     margin: auto; 
 }
 
@@ -345,29 +323,6 @@
    height:  150px;
 }
 
-
-
-#numbertoken-footer
-{
-  float: right;
-  margin: 10px;
-}
-
-/*
-.modal-body input
-{
- width: 20px;
- height: 13px;
- padding: 0;
- margin-left:10px;
- margin-right: 20px;
- vertical-align: bottom;
- position: relative;
- top: -1px;
- *overflow: hidden;
-}
-*/
-
 #shape-lengths
 {
    border-color: red;
@@ -376,8 +331,6 @@
    width: 100%;
    display: inlilne-block;
 }
-
-
 
 
 #shape-prefix-suffix
@@ -391,6 +344,71 @@
 {
     width:50px; 
     vertical-align: top; 
+}
+
+#shapes-div1
+{
+    padding-top: 5px; 
+    padding-bottom: 5px; 
+}
+
+#shapes-div2
+{
+    height: 100%; 
+    overflow: hidden;
+    padding-bottom: 10px; 
+}
+
+#shapes-div21
+{
+    padding: 10px 10px 0 10px; 
+    width: 100px;
+    float: left;  
+}
+
+#shapes-div22
+{
+    width: 330px;
+    padding: 10px 10px 0px 10px; 
+    margin-left: 120px; 
+}
+
+#shapes-div3
+{
+    margin-left: 10px; 
+    margin-top: 0px; 
+}
+
+#shapes-div3 input
+{
+    margin: 10px; 
+    width:30px; 
+    height: 15px; 
+}
+
+#shapes-div4
+{
+    margin-left: 10px ; 
+    margin-top: 0px ; 
+}
+
+#shapes-footer
+{
+   float: right; 
+   margin: 10px 10px 0px 10px; 
+}
+
+#shapes-partofspeech_1
+{
+    width: 130px; 
+    float: left; 
+    height: 155px; 
+}
+
+#shapes-partofspeech_2
+{
+    margin-left: 130px;   
+    height: 155px;
 }
 
 
@@ -486,4 +504,5 @@
 }
 
 
-/***************** End of Punctuation Toke *************************/
+/***************** End of Punctuation Token *************************/
+

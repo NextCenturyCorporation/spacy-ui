@@ -283,7 +283,12 @@ class WordTokenConfig extends React.Component {
               <div id="div21"> 
                 <label>
                   <b>Words:</b>
-                  <textarea name="allwords" value={this.state.allwords} onChange={this.handleInputChange} rows="15" cols="15"  className="allwords"/>
+                  <textarea name="allwords" 
+                  placeholder= "Enter words here. "                  
+                  value={this.state.allwords} 
+                  onChange={this.handleInputChange} rows="15" 
+                  cols="15"  
+                  className="allwords"/>
                 </label>
               </div> 
 
