@@ -2,7 +2,7 @@ This is the Spacy GUI project. The following are the required React Modules:
 1. react-router - this is needed for the url mapping to props in the component. 
 
 
-##Design
+## Design
 See `spacygui-design.pdf` for a uml diagram. 
 
 For deployment, you need to run 
