@@ -67,7 +67,7 @@ class Rule extends Component
         this.toggleNumberConfigDialog = this.toggleNumberConfigDialog.bind(this); 
         this.toggleShapeConfigDialog = this.toggleShapeConfigDialog.bind(this); 
         this.togglePunctuationConfigDialog = this.togglePunctuationConfigDialog.bind(this); 
-        this.showWordToken = this.showWordToken.bind(this); 
+        this.showWordTokenDialog = this.showWordTokenDialog.bind(this); 
         this.onAddWordToken = this.onAddWordToken.bind(this); 
         this.onAddNumberToken = this.onAddNumberToken.bind(this); 
         this.onAddPunctuationToken = this.onAddPunctuationToken.bind(this); 
@@ -76,9 +76,9 @@ class Rule extends Component
         this.createNumberJSON = this.createNumberJSON.bind(this); 
         this.createPunctuationJSON = this.createPunctuationJSON.bind(this); 
         this.createShapeJSON = this.createShapeJSON.bind(this); 
-        this.showNumberToken = this.showNumberToken.bind(this); 
-        this.showPunctuationToken = this.showPunctuationToken.bind(this); 
-        this.showShapeToken = this.showShapeToken.bind(this); 
+        this.showNumberTokenDialog = this.showNumberTokenDialog.bind(this); 
+        this.showPunctuationTokenDialog = this.showPunctuationTokenDialog.bind(this); 
+        this.showShapeTokenDialog = this.showShapeTokenDialog.bind(this); 
         this.deleteToken = this.deleteToken.bind(this); 
         this.handleChange_outformat = this.handleChange_outformat.bind(this); 
         this.handleChange_description = this.handleChange_description.bind(this); 
@@ -94,8 +94,7 @@ class Rule extends Component
         this.ProcessAllNewTokens = this.ProcessAllNewTokens.bind(this); 
         this.deleteRule = this.deleteRule.bind(this); 
         this.duplicate = this.duplicate.bind(this); 
-
-
+        this.processAllEditedTokens = this.processAllEditedTokens.bind(this); 
     }
 
     componentWillMount() 
@@ -129,7 +128,7 @@ class Rule extends Component
         }
     }
 
-        /*
+    /*
     This method is used to determine when to open or close the token dialog
     */
     toggleShapeConfigDialog()
@@ -182,8 +181,7 @@ class Rule extends Component
     {
         var myToken; 
         var count = this.props.ruleObj.pattern.length; 
-
-    
+   
         this.setState({
             description : this.props.ruleObj.description,
             output_format : this.props.ruleObj.output_format,
@@ -242,6 +240,7 @@ class Rule extends Component
         let dataIndex = Math.round((index-1)/2); 
         console.log("OnEditToken index = " + index + " data index = " + dataIndex);
         console.log("What kind of token is this " + this.state.allTokenData[dataIndex].type); 
+
         if(this.state.allTokenData[dataIndex].type === window.TYPE_WORD)
         {
             console.log("Tokens are = " + this.state.allTokenData[dataIndex].token); 
@@ -292,7 +291,6 @@ class Rule extends Component
             prepost_position1, adverb1, particle1, interjection1, exact1,lower1, upper1,
             title1, mixed1, numbers1)
     {
-
         var myCapitalization = [];
         if(exact1) myCapitalization.push("exact"); 
         if(lower1) myCapitalization.push("lower"); 
@@ -300,7 +298,6 @@ class Rule extends Component
         if(mixed1) myCapitalization.push("mixed");
         if(title1) myCapitalization.push("title");
         
-
         var mypartOfSpeech = []; 
         if(noun1) mypartOfSpeech.push(window.POS_noun);
         if(pronoun1) mypartOfSpeech.push(window.POS_pronoun);
@@ -343,6 +340,7 @@ class Rule extends Component
             is_in_output: part_of_output1,
             is_followed_by_space: false            
         }; 
+
         return tokenData; 
     }
 
@@ -361,12 +359,9 @@ class Rule extends Component
     {
         console.log("Rule: Enter onAddWordToken word="+allwords1); 
 
-        //alert("addNewToken + id" + this.state.id);
         //Let's close the token modal dialog box. 
         if(createdby === window.CREATEDBY_USER)
             this.toggleWordConfigDialog();
-
-
 
         /*Get the JSON formatted data structure*/
         var newJSONTokenData = this.createWordJSON(tokenAbbreviation1,type1, allwords1, optional1, 
@@ -382,38 +377,9 @@ class Rule extends Component
 
 
 
-    
-    /*
-    Method: Add a token to an array. 
-    Arguments: 
-    NewToken: a word, shape, punctionation token 
-    */
-    onModifyWordToken(index, tokenAbbreviation1, type1, allwords1, optional1,
-        part_of_output1, followed_by_space1, length11, length21, length31,
-        prefix1, suffix1, notinvocabulary1, noun1, pronoun1, punctuation1,
-        propernoun1, determiner1, symbol1, adjective1, conjunction1, verb1,
-        prepost_position1, adverb1, particle1, interjection1, exact1, lower1, upper1,
-        title1, mixed1, numbers1, createdby) 
+    processAllEditedTokens(index, newJSONTokenData, tokenAbbreviation1, createdby)
     {
-        console.log("Rule: Enter onModifyWordToken word="+allwords1); 
-
-        //alert("addNewToken + id" + this.state.id);
-        //Let's close the token modal dialog box. 
-        if(createdby === window.CREATEDBY_USER)
-            this.toggleWordConfigDialog();
-
-        //Keep track of the token with a generated token id. 
         var tokenid = TOKEN_BASE+(++GLOBAL_ID); 
-
-        /*Get the JSON formatted data structure*/
-        var newJSONTokenData = this.createWordJSON(tokenAbbreviation1,type1, allwords1, optional1, 
-            part_of_output1, followed_by_space1, length11, length21, length31,
-            prefix1, suffix1, notinvocabulary1, noun1, pronoun1, punctuation1,
-            propernoun1, determiner1, symbol1, adjective1, conjunction1,verb1,  
-            prepost_position1, adverb1, particle1, interjection1, exact1,lower1, upper1,
-            title1, mixed1, numbers1
-        )
-
         //Get the state token array. 
         var myTokenData = this.state.allTokenData; 
 
@@ -449,6 +415,35 @@ class Rule extends Component
             ({
                 array: myTokens
             }));
+
+    }
+
+    /*
+    Method: Modify a word token
+    */
+    onModifyWordToken(index, tokenAbbreviation1, type1, allwords1, optional1,
+        part_of_output1, followed_by_space1, length11, length21, length31,
+        prefix1, suffix1, notinvocabulary1, noun1, pronoun1, punctuation1,
+        propernoun1, determiner1, symbol1, adjective1, conjunction1, verb1,
+        prepost_position1, adverb1, particle1, interjection1, exact1, lower1, upper1,
+        title1, mixed1, numbers1, createdby) 
+    {
+        console.log("Rule: Enter onModifyWordToken word="+allwords1); 
+
+        //Let's close the token modal dialog box. 
+        if(createdby === window.CREATEDBY_USER)
+            this.toggleWordConfigDialog();
+
+        /*Get the JSON formatted data structure*/
+        var newJSONTokenData = this.createWordJSON(tokenAbbreviation1,type1, allwords1, optional1, 
+            part_of_output1, followed_by_space1, length11, length21, length31,
+            prefix1, suffix1, notinvocabulary1, noun1, pronoun1, punctuation1,
+            propernoun1, determiner1, symbol1, adjective1, conjunction1,verb1,  
+            prepost_position1, adverb1, particle1, interjection1, exact1,lower1, upper1,
+            title1, mixed1, numbers1
+        )
+
+        this.processAllEditedTokens(index, newJSONTokenData, tokenAbbreviation1, createdby); 
 
     }      
 
@@ -529,12 +524,9 @@ class Rule extends Component
     {
         console.log("Rule: Enter onAddShapeToken shapes = "+shapes1); 
 
-        //alert("addNewToken + id" + this.state.id);
         //Let's close the token modal dialog box. 
         if(createdby === window.CREATEDBY_USER)
             this.toggleShapeConfigDialog();
-
-        //Keep track of the token with a generated token id. 
 
         /*Get the JSON formatted data structure*/
         var newJSONTokenData = this.createShapeJSON(tokenAbbreviation1,type1, allwords1, optional1, 
@@ -556,12 +548,6 @@ class Rule extends Component
         var myTokenData = this.state.allTokenData; 
 
         //Add the new token to the array of tokens. 
-        //myTokenData.push(newJSONTokenData); 
-
-        //Let's update the state with our new map data. 
-        //console.log("Location of new token to add = "  + this.state.newToken2AddIndex); 
-
-        //Add the new token to the array of tokens. 
         if(this.state.newToken2AddIndex!== -1)
         {
             myTokenData.splice(this.state.newToken2AddIndex/2, 0, newJSONTokenData); 
@@ -581,13 +567,6 @@ class Rule extends Component
         /* All the webservice conmunication is done in App.js. So we need to propagate
         all data to the top in App.js. onProcessJSONData is a method is Apps.js. 
         Send all the data related to this rule up to the app.js level. */
-/*        
-        this.props.onProcessJSONData(this.state.id, myTokenData, 
-                    this.state.identifier, this.state.description, this.state.polarity, 
-                    this.state.is_active, this.state.output_format,createdby ); 
-*/
-
-        //console.log("Here is  my JSON = " + JSON.stringify(this.state.allTokenData)); 
 
         /*Now lets create a new token that we are doing to display in the GUI. 
         */
@@ -647,9 +626,6 @@ class Rule extends Component
         if(createdby === window.CREATEDBY_USER)
             this.toggleShapeConfigDialog();
 
-        //Keep track of the token with a generated token id. 
-        var tokenid = TOKEN_BASE+(++GLOBAL_ID); 
-
         /*Get the JSON formatted data structure*/
         var newJSONTokenData = this.createShapeJSON(tokenAbbreviation1,type1, allwords1, optional1, 
             part_of_output1, followed_by_space1, length11, length21, length31,
@@ -659,47 +635,7 @@ class Rule extends Component
             title1, mixed1, numbers1, shapes1
         )
 
-        //Get the state token array. 
-        var myTokenData = this.state.allTokenData; 
-
-        //Add the new token to the array of tokens. 
-        myTokenData.splice(index, 1, newJSONTokenData); 
-
-
-        //Let's update the state with our new map data. 
-        this.setState({
-            allTokenData: myTokenData
-        });
-
-        /* All the webservice conmunication is done in App.js. So we need to propagate
-        all data to the top in App.js. onProcessJSONData is a method is Apps.js. 
-        Send all the data related to this rule up to the app.js level. 
-        NOTE: For the value that I am changing in this method, I use the stack value not 
-        the state value because the state value is not updated until after rendering. 
-        so in this case I am passing myTokenData which is a local value. 
-        */
-        this.props.onProcessJSONData(this.state.id, myTokenData, 
-                    this.state.identifier, this.state.description, this.state.polarity, 
-                    this.state.is_active, this.state.output_format, createdby ); 
-
-        //console.log("Here is  my JSON = " + JSON.stringify(this.state.allTokenData)); 
-
-        /*Now lets create a new token that we are doing to display in the GUI. 
-        */
-        var myTokens = this.state.array; 
-
-        const newToken = <Token id={tokenid} clickable="0" tokenAbbreviation={tokenAbbreviation1}
-            tokenPatternData={newJSONTokenData} deleteToken={this.deleteToken} />
-
-        myTokens.splice(((2*index)+1),1,newToken); 
-
-        /*We always need a plus token between regular token*/
-        /*Let's update the token array in the state that way it re-renders the rules.*/
-        this.setState(prevState =>
-            ({
-                array: myTokens
-            }));
-
+        this.processAllEditedTokens(index, newJSONTokenData, tokenAbbreviation1, createdby); 
     }      
 
 
@@ -715,9 +651,6 @@ class Rule extends Component
 
         if(createdby === window.CREATEDBY_USER)
             this.toggleNumberConfigDialog(); 
-        
-        //Keep track of the token with a generated token id. 
-        var tokenid = TOKEN_BASE+(++GLOBAL_ID); 
 
         /*Get the JSON formatted data structure*/
         var newJSONTokenData = this.createNumberJSON(tokenAbbreviation1,type1, allwords1, optional1, 
@@ -728,44 +661,7 @@ class Rule extends Component
             title1, mixed1, numbers1
         )
 
-        //Get the state token array. 
-        var myTokenData = this.state.allTokenData; 
-
-        //Add the new token to the array of tokens by replacing 
-        myTokenData.splice(index, 1, newJSONTokenData); 
-
-        //Let's update the state with our new map data. 
-        this.setState({
-            allTokenData: myTokenData
-        });
-
-        /* All the webservice conmunication is done in App.js. So we need to propagate
-        all data to the top in App.js. onProcessJSONData is a method is Apps.js. 
-        Send all the data related to this rule up to the app.js level. 
-        NOTE: For the value that I am changing in this method, I use the stack value not 
-        the state value because the state value is not updated until after rendering. 
-        so in this case I am passing myTokenData which is a local value. 
-        */
-        this.props.onProcessJSONData(this.state.id, myTokenData, 
-                this.state.identifier, this.state.description, this.state.polarity, 
-                this.state.is_active, this.state.output_format,createdby ); 
-
-        //console.log("Here is  my JSON = " + JSON.stringify(this.state.allTokenData)); 
-
-        /*Now lets create a new token that we are doing to display in the GUI. 
-        */
-       var myTokens = this.state.array; 
-
-        const newToken = <Token id={tokenid} clickable="0" tokenAbbreviation={tokenAbbreviation1}
-            tokenPatternData={newJSONTokenData} deleteToken={this.deleteToken} />
-
-        myTokens.splice(((2*index)+1),1,newToken); 
-
-        /*Let's update the token array in the state that way it re-renders the rules.*/
-        this.setState(prevState =>
-            ({
-                array: myTokens
-            }));
+        this.processAllEditedTokens(index, newJSONTokenData, tokenAbbreviation1, createdby); 
     }
 
     onAddNumberToken(tokenAbbreviation1, type1, allwords1, optional1,
@@ -792,6 +688,9 @@ class Rule extends Component
 
     }
 
+    /*
+    Method: Modify a punctuation token
+    */    
     onModifyPunctuationToken(index, tokenAbbreviation1, type1,allPunctuations,optional1,
         part_of_output1, createdby) 
     {
@@ -799,53 +698,13 @@ class Rule extends Component
         if(createdby === window.CREATEDBY_USER)
             this.togglePunctuationConfigDialog(); 
 
-        //Keep track of the token with a generated token id. 
-        var tokenid = TOKEN_BASE+(++GLOBAL_ID); 
-
         var newJSONTokenData = this.createPunctuationJSON(tokenAbbreviation1,type1, allPunctuations, optional1, 
             part_of_output1);    
             
-        //Get the state token array. 
-        var myTokenData = this.state.allTokenData; 
-
-        //Add the new token to the array of tokens. 
-        myTokenData.splice(index, 1, newJSONTokenData); 
-
-        //Let's update the state with our new map data. 
-        this.setState({
-            allTokenData: myTokenData
-        });
-
-        /* All the webservice conmunication is done in App.js. So we need to propagate
-        all data to the top in App.js. onProcessJSONData is a method is Apps.js. 
-        Send all the data related to this rule up to the app.js level. 
-        NOTE: For the value that I am changing in this method, I use the stack value not 
-        the state value because the state value is not updated until after rendering. 
-        so in this case I am passing myTokenData which is a local value. 
-        */
-        this.props.onProcessJSONData(this.state.id, myTokenData, 
-                this.state.identifier, this.description, this.polarity, 
-                this.state.is_active, this.output_format,createdby ); 
-
-        //console.log("Here is  my JSON = " + JSON.stringify(this.state.allTokenData)); 
-
-        /*Now lets create a new token that we are doing to display in the GUI. 
-        * Note that words and punctions interchange. 
-        */
-       var myTokens = this.state.array; 
-
-        const newToken = <Token id={tokenid} clickable="0" tokenAbbreviation={tokenAbbreviation1}
-            tokenPatternData={newJSONTokenData} deleteToken={this.deleteToken} />
-
-        myTokens.splice(((2*index)+1),1,newToken); 
-
-        /*Let's update the token array in the state that way it re-renders the rules.*/
-        this.setState(prevState =>
-            ({
-                array: myTokens
-            }));
+        this.processAllEditedTokens(index, newJSONTokenData, tokenAbbreviation1, createdby); 
     }
 
+    //Method: Add a token to an array. 
     onAddPunctuationToken(tokenAbbreviation1, type1,allPunctuations,optional1,
         part_of_output1, createdby) 
     {
@@ -861,6 +720,7 @@ class Rule extends Component
 
     }
 
+    //build the JSON.
     createPunctuationJSON(tokenAbbreviation1,type1, allPunctuations, optional1, 
             part_of_output1)
     {
@@ -898,10 +758,9 @@ class Rule extends Component
         return tokenData; 
     }
 
-    /*  
-    This method is used to format our data so that it look like the JSON 
-    that the webservice is expecting. 
-    */
+     
+    //This method is used to format our data so that it look like the JSON 
+    //that the webservice is expecting. 
     createNumberJSON(tokenAbbreviation1,type1, allwords1, optional1, 
             part_of_output1, followed_by_space1, length11, length21, length31,
             minimum1, maximum1, notinvocabulary1, noun1, pronoun1, punctuation1,
@@ -947,7 +806,7 @@ class Rule extends Component
         return tokenData; 
     }
 
-    showNumberToken()
+    showNumberTokenDialog()
     {
         const tMenu = "tokenMenu" + this.state.id; 
         
@@ -957,7 +816,7 @@ class Rule extends Component
         this.toggleNumberConfigDialog();       
     }
 
-    showPunctuationToken()
+    showPunctuationTokenDialog()
     {
         const tMenu = "tokenMenu" + this.state.id; 
         
@@ -969,9 +828,9 @@ class Rule extends Component
 
 
     /*
-    Show Word token. 
+    Show Word token editor
     */
-    showWordToken()
+    showWordTokenDialog()
     {
         const tMenu = "tokenMenu" + this.state.id; 
         
@@ -981,10 +840,7 @@ class Rule extends Component
         this.toggleWordConfigDialog();
     }
 
-    /*
-    Show Word token. 
-    */
-    showShapeToken()
+    showShapeTokenDialog()
     {
         const tMenu = "tokenMenu" + this.state.id; 
         
@@ -1024,10 +880,7 @@ class Rule extends Component
         
 
         var myTokens = this.state.array; 
-/*
-        const newToken = <Token id={tokenid} clickable="0" tokenAbbreviation={tokenAbbreviation1}
-            tokenPatternData={newJSONTokenData} deleteToken={this.deleteToken} />
-*/
+
         myTokens.splice(index,2); 
 
         this.setState(prevState =>
@@ -1092,8 +945,7 @@ class Rule extends Component
         Send all the data related to this rule up to the app.js level. */
         this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
                 this.state.identifier, this.state.description, this.state.polarity, 
-                this.state.is_active, this.state.output_format, window.CREATEDBY_USER ); 
-        
+                this.state.is_active, this.state.output_format, window.CREATEDBY_USER );  
     }
 
     updateActiveRule(event)
@@ -1108,14 +960,12 @@ class Rule extends Component
             [name]: value
         });     
 
-
         /* All the webservice conmunication is done in App.js. So we need to propagate
         all data to the top in App.js. onProcessJSONData is a method is Apps.js. 
         Send all the data related to this rule up to the app.js level. */
         this.props.onProcessJSONData(this.state.id, this.state.allTokenData, 
                 this.state.identifier, this.state.description, this.state.polarity, 
-                value, this.state.output_format, window.CREATEDBY_USER ); 
-        
+                value, this.state.output_format, window.CREATEDBY_USER );       
     }
 
     componentDidMount()
@@ -1146,8 +996,12 @@ class Rule extends Component
         const tMenu = "tokenMenu" + this.state.id; 
         var msg_output_format = this.state.output_format; 
         var msg_description = this.state.description; 
-
-        var wordTokenEditor =   <WordTokenConfig show={this.state.isWordDialogOpen}
+        
+        return (
+            <section>
+                <div className="rulewrapper">
+                
+                    <WordTokenConfig show={this.state.isWordDialogOpen}
                         onAddNewToken={this.onAddWordToken} ruleid={this.state.id}
                         onCloseConfigDialog={this.toggleWordConfigDialog}
                         modify={this.state.isModifyWord} tokenModifyIndex={this.state.tokenModifyIndex}
@@ -1155,41 +1009,15 @@ class Rule extends Component
                         onModifyWordToken={this.onModifyWordToken}>
                     </WordTokenConfig>
 
-        
-        return (
-            <section>
-                <div className="rulewrapper">
-                
-                    {/*
-                    <WordConfigDialog show={this.state.isWordDialogOpen}
-                    onClose={this.addNewToken}> ruleid={this.props.ruleid}
-                    </WordTokenConfig>
-                    */} 
-                    
-                    {                 
-                        wordTokenEditor
-                    }
-
-                    {/*
-                    <ShapeTokenConfig show={false}
-                        onAddNewToken={this.addNewToken} ruleid={this.state.id}
-                         onCloseWordTokenConfig={this.toggleShapeConfigDialog}>
-                       
-                    </ShapeTokenConfig>
-                    */}
-
-                    {
-                        <PunctuationTokenConfig show={this.state.isPunctuationDialogOpen}
+                    <PunctuationTokenConfig show={this.state.isPunctuationDialogOpen}
                             onAddNewToken={this.onAddPunctuationToken} ruleid={this.state.id}
                             onCloseConfigDialog={this.togglePunctuationConfigDialog}
                             modify={this.state.isModifyPunctuation} tokenModifyIndex={this.state.tokenModifyIndex}
                             tokenData={this.state.allTokenData[this.state.tokenModifyIndex]}
                         onModifyPunctuationToken={this.onModifyPunctuationToken}
                             >
-                        </PunctuationTokenConfig>
-                    }
+                    </PunctuationTokenConfig>
 
-                    {
                     <NumberTokenConfig show={this.state.isNumberDialogOpen}
                         onAddNumberToken={this.onAddNumberToken} ruleid={this.state.id}
                         onCloseConfigDialog={this.toggleNumberConfigDialog}
@@ -1198,9 +1026,7 @@ class Rule extends Component
                         onModifyNumberToken={this.onModifyNumberToken}
                          >
                     </NumberTokenConfig>
-                    }
 
-                    {
                     <ShapeTokenConfig show={this.state.isShapeDialogOpen}
                         onAddNewToken={this.onAddShapeToken} ruleid={this.state.id}
                         onCloseConfigDialog={this.toggleShapeConfigDialog}
@@ -1209,8 +1035,6 @@ class Rule extends Component
                         onModifyToken={this.onModifyShapeToken}>
 
                     </ShapeTokenConfig>
-                    }                    
-
 
                     <div className="ruleHeader">
                         <label htmlFor={this.props.name}> {this.props.rulenum}.  </label>
@@ -1221,18 +1045,16 @@ class Rule extends Component
                         className="ruleDescription"
                         value={msg_description}
                         onChange={this.handleChange_description}
-                        onBlur={this.handle_onBlur}
-
-                        />
+                        onBlur={this.handle_onBlur}/>
 
                     </div>
 
                      <div  >
                         <div id={tMenu} className="tokenMenu" >
-                            <div onClick={this.showWordToken} className="tokenMenu_item"> Word </div>
-                            <div onClick={this.showNumberToken} className="tokenMenu_item">Number </div> 
-                            <div onClick={this.showPunctuationToken} className="tokenMenu_item">  Punctuation </div>
-                            <div onClick={this.showShapeToken} className="tokenMenu_item"> Shape </div>
+                            <div onClick={this.showWordTokenDialog} className="tokenMenu_item"> Word </div>
+                            <div onClick={this.showNumberTokenDialog} className="tokenMenu_item">Number </div> 
+                            <div onClick={this.showPunctuationTokenDialog} className="tokenMenu_item">  Punctuation </div>
+                            <div onClick={this.showShapeTokenDialog} className="tokenMenu_item"> Shape </div>
                         </div>   
 
                         <div className="arrangeRuleTokens"> 

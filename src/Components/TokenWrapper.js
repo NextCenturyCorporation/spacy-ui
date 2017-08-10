@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import "../Styles/token.css"
 
+/*
+Tokenwrapper wraps the tokens (word, punctuation...) and plus token.
+It makes indexing of the token easier. 
+*/
 class TokenWrapper extends Component 
 {
     constructor(props)
@@ -33,27 +37,24 @@ class TokenWrapper extends Component
     render() 
 	{   
         var tokenDisplayed; 
+        /*every even token is a + sign token*/
         if(this.props.index !== 0 && (this.props.index%2) !== 0)
         {
             tokenDisplayed = <div className="tokenHeader2" >  <div className="overlayEdit" onClick={this.clickEdit}> </div>
                             <div className="overlayClose" onClick={this.clickClose}> </div>
                                 {this.props.data} 
-
-                            </div>
-                                ;
+                            </div>;
         }
         else
         {
             tokenDisplayed = <div className="wrapPlusToken" onClick={this.clickPlusToken} >
                                 {this.props.data} 
-                            </div>
+                            </div>; 
         }                         
 
         return (
-			<div>
-                  
-                    {tokenDisplayed}
-                
+			<div>           
+                    {tokenDisplayed}   
             </div>
        )
   
