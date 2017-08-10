@@ -18,7 +18,12 @@ var GLOBAL_RULE_ID = 1;
 
 
 /*
-The Rule class holds the different token. There can be multiple rules. 
+The Rule class holds the different token. There currently 5 types of tokens: 
+1. word token
+2. punctuation token
+3. shape token
+4. number token
+5. linebreak token. 
 */
 class Rule extends Component
 {
@@ -26,7 +31,7 @@ class Rule extends Component
     {
         super(props); 
         
-        const btt = <PlusToken  id={PTOKEN_BASE+(++GLOBAL_ID)}  clickable="1" onClick={this.handleClick.bind(this)}/>; 
+        const btt = <PlusToken  id={PTOKEN_BASE+(++GLOBAL_ID)}/>; 
         this.state = {
             array:[btt], 
             isWordDialogOpen: false,
@@ -53,18 +58,11 @@ class Rule extends Component
 
         this.sendData2App = false; 
 
-
-        //this.description  = this.props.ruleObj.description,
-        //this.output_format  = this.props.ruleObj.output_format,
-        //this.is_active = (this.props.ruleObj.is_active === "true"),
-        //this.identifier  = this.props.ruleObj.identifier
-
         /* You need to bind all the function.
         Need in React
         if you don't bind like this you will get an error like 
         TypeError: Cannot read property 'setState' of null
         */
-        this.handleClick = this.handleClick.bind(this);
         this.toggleWordConfigDialog = this.toggleWordConfigDialog.bind(this); 
         this.toggleNumberConfigDialog = this.toggleNumberConfigDialog.bind(this); 
         this.toggleShapeConfigDialog = this.toggleShapeConfigDialog.bind(this); 
@@ -74,7 +72,6 @@ class Rule extends Component
         this.onAddNumberToken = this.onAddNumberToken.bind(this); 
         this.onAddPunctuationToken = this.onAddPunctuationToken.bind(this); 
         this.onAddShapeToken = this.onAddShapeToken.bind(this); 
-        //this.createWordToken = this.createWordToken.bind(this); 
         this.createWordJSON = this.createWordJSON.bind(this); 
         this.createNumberJSON = this.createNumberJSON.bind(this); 
         this.createPunctuationJSON = this.createPunctuationJSON.bind(this); 
@@ -106,41 +103,12 @@ class Rule extends Component
         if(this.props.createdby !== window.CREATEDBY_SERVER)
         {
             console.log("Rule was created by user")
-            //const myIdentifier = "name_rule_"+this.state.id; 
-            ///this.setState({identifier:myIdentifier}); 
         }
         else
         {
             console.log("Rule was created from server"); 
             this.loadTokensFromServer(); 
         }
-    }
-
-    handleClick(e) 
-    {  
-        /* Let's determine when to show/close the menu when the 
-        plus token is clicked. 
-        */
-
-        //reset some variable. 
-
-        /*@Wole turn this off for now. 07/22
-        this.setState({
-            isModifyWord:false,
-            tokenModifyIndex: -1
-        })
-
-        const tMenu = "tokenMenu" + this.state.id; 
-
-        var x = document.getElementById(tMenu);
-        if (x.style.display === 'none' || x.style.display === '') 
-        {
-            x.style.display = 'block';
-        } else 
-        {
-            x.style.display = 'none';
-        }
-        */
     }
 
     /*
@@ -207,6 +175,9 @@ class Rule extends Component
         }
     }
 
+    /*  
+    This method will load all the tokens for this particular rule. 
+    */
     loadTokensFromServer()
     {
         var myToken; 
@@ -263,6 +234,9 @@ class Rule extends Component
         }
     }
 
+    /*
+    This method is a callback from the tokenwrapper to edit a particular token at an index. 
+    */
     onEditToken(index)
     {
         let dataIndex = Math.round((index-1)/2); 
@@ -304,8 +278,6 @@ class Rule extends Component
                 tokenModifyIndex: dataIndex
             }); 
         }
-
-
     }
 
 
@@ -322,32 +294,31 @@ class Rule extends Component
     {
 
         var myCapitalization = [];
-        var ret; 
-        ret = exact1? myCapitalization.push("exact"):myCapitalization; 
-        ret = lower1? myCapitalization.push("lower"):myCapitalization; 
-        ret = upper1? myCapitalization.push("upper"):myCapitalization; 
-        ret = mixed1? myCapitalization.push("mixed"): myCapitalization;
-        ret = title1? myCapitalization.push("title"): myCapitalization;
+        if(exact1) myCapitalization.push("exact"); 
+        if(lower1) myCapitalization.push("lower"); 
+        if(upper1) myCapitalization.push("upper"); 
+        if(mixed1) myCapitalization.push("mixed");
+        if(title1) myCapitalization.push("title");
         
 
         var mypartOfSpeech = []; 
-        ret = noun1? mypartOfSpeech.push(window.POS_noun): mypartOfSpeech;
-        ret = pronoun1? mypartOfSpeech.push(window.POS_pronoun): mypartOfSpeech;
-        ret = propernoun1? mypartOfSpeech.push(window.POS_propernoun): mypartOfSpeech;        
-        ret = determiner1? mypartOfSpeech.push(window.POS_determiner): mypartOfSpeech;
-        ret = symbol1? mypartOfSpeech.push(window.POS_symbol): mypartOfSpeech;
-        ret = adjective1? mypartOfSpeech.push(window.POS_adjective): mypartOfSpeech;
-        ret = conjunction1? mypartOfSpeech.push(window.POS_conjunction): mypartOfSpeech;
-        ret = verb1? mypartOfSpeech.push(window.POS_verb): mypartOfSpeech;
-        ret = prepost_position1? mypartOfSpeech.push(window.POS_pre_post_position): mypartOfSpeech;
-        ret = adverb1? mypartOfSpeech.push(window.POS_adverb): mypartOfSpeech;
-        ret = particle1? mypartOfSpeech.push(window.POS_particle): mypartOfSpeech;
-        ret = interjection1? mypartOfSpeech.push(window.POS_interjection): mypartOfSpeech;
+        if(noun1) mypartOfSpeech.push(window.POS_noun);
+        if(pronoun1) mypartOfSpeech.push(window.POS_pronoun);
+        if(propernoun1) mypartOfSpeech.push(window.POS_propernoun);        
+        if(determiner1) mypartOfSpeech.push(window.POS_determiner);
+        if(symbol1) mypartOfSpeech.push(window.POS_symbol);
+        if(adjective1) mypartOfSpeech.push(window.POS_adjective);
+        if(conjunction1) mypartOfSpeech.push(window.POS_conjunction);
+        if(verb1) mypartOfSpeech.push(window.POS_verb);
+        if(prepost_position1) mypartOfSpeech.push(window.POS_pre_post_position);
+        if(adverb1) mypartOfSpeech.push(window.POS_adverb);
+        if(particle1) mypartOfSpeech.push(window.POS_particle);
+        if(interjection1) mypartOfSpeech.push(window.POS_interjection);
 
         var myLength=[]; 
-        ret = length11>0? myLength.push(length11): myLength; 
-        ret = length21>0? myLength.push(length21): myLength; 
-        ret = length31>0? myLength.push(length31): myLength;     
+        if(length11>0) myLength.push(length11); 
+        if(length21>0) myLength.push(length21); 
+        if(length31>0) myLength.push(length31);     
 
         var myNumbers= [];
         var myShape= [];  
@@ -495,32 +466,31 @@ class Rule extends Component
         console.log("createShapeJSON"); 
 
         var myCapitalization = [];
-        var ret; 
-        ret = exact1? myCapitalization.push("exact"):myCapitalization; 
-        ret = lower1? myCapitalization.push("lower"):myCapitalization; 
-        ret = upper1? myCapitalization.push("upper"):myCapitalization; 
-        ret = mixed1? myCapitalization.push("mixed"): myCapitalization;
-        ret = title1? myCapitalization.push("title"): myCapitalization;
+        if(exact1) myCapitalization.push("exact"); 
+        if(lower1) myCapitalization.push("lower"); 
+        if(upper1) myCapitalization.push("upper"); 
+        if(mixed1) myCapitalization.push("mixed");
+        if(title1) myCapitalization.push("title");
         
 
         var mypartOfSpeech = []; 
-        ret = noun1? mypartOfSpeech.push(window.POS_noun): mypartOfSpeech;
-        ret = pronoun1? mypartOfSpeech.push(window.POS_pronoun): mypartOfSpeech;
-        ret = propernoun1? mypartOfSpeech.push(window.POS_propernoun): mypartOfSpeech;        
-        ret = determiner1? mypartOfSpeech.push(window.POS_determiner): mypartOfSpeech;
-        ret = symbol1? mypartOfSpeech.push(window.POS_symbol): mypartOfSpeech;
-        ret = adjective1? mypartOfSpeech.push(window.POS_adjective): mypartOfSpeech;
-        ret = conjunction1? mypartOfSpeech.push(window.POS_conjunction): mypartOfSpeech;
-        ret = verb1? mypartOfSpeech.push(window.POS_verb): mypartOfSpeech;
-        ret = prepost_position1? mypartOfSpeech.push(window.POS_pre_post_position): mypartOfSpeech;
-        ret = adverb1? mypartOfSpeech.push(window.POS_adverb): mypartOfSpeech;
-        ret = particle1? mypartOfSpeech.push(window.POS_particle): mypartOfSpeech;
-        ret = interjection1? mypartOfSpeech.push(window.POS_interjection): mypartOfSpeech;
+        if(noun1) mypartOfSpeech.push(window.POS_noun);
+        if(pronoun1) mypartOfSpeech.push(window.POS_pronoun);
+        if(propernoun1) mypartOfSpeech.push(window.POS_propernoun);        
+        if(determiner1) mypartOfSpeech.push(window.POS_determiner);
+        if(symbol1) mypartOfSpeech.push(window.POS_symbol);
+        if(adjective1) mypartOfSpeech.push(window.POS_adjective);
+        if(conjunction1) mypartOfSpeech.push(window.POS_conjunction);
+        if(verb1) mypartOfSpeech.push(window.POS_verb);
+        if(prepost_position1) mypartOfSpeech.push(window.POS_pre_post_position);
+        if(adverb1) mypartOfSpeech.push(window.POS_adverb);
+        if(particle1) mypartOfSpeech.push(window.POS_particle);
+        if(interjection1) mypartOfSpeech.push(window.POS_interjection);
 
         var myLength=[]; 
-        ret = length11>0? myLength.push(length11): myLength; 
-        ret = length21>0? myLength.push(length21): myLength; 
-        ret = length31>0? myLength.push(length31): myLength;     
+        if(length11>0) myLength.push(length11); 
+        if(length21>0) myLength.push(length21); 
+        if(length31>0) myLength.push(length31);     
 
         var tokenData=
         {
@@ -627,7 +597,7 @@ class Rule extends Component
             tokenPatternData={newJSONTokenData} deleteToken={this.deleteToken} />
 
         /*We always need a plus token between regular token*/
-        const btt = <PlusToken id={PTOKEN_BASE + (++GLOBAL_ID)} clickable="1" onClick={this.handleClick.bind(this)} />;
+        const btt = <PlusToken id={PTOKEN_BASE + (++GLOBAL_ID)} />;
 
         if(this.state.newToken2AddIndex!== -1)
         {
@@ -947,10 +917,9 @@ class Rule extends Component
         var mypartOfSpeech = []; 
 
         var myLength=[]; 
-        var ret; 
-        ret = length11>0? myLength.push(length11): myLength; 
-        ret = length21>0? myLength.push(length21): myLength; 
-        ret = length31>0? myLength.push(length31): myLength;     
+        if(length11>0) myLength.push(length11); 
+        if(length21>0) myLength.push(length21); 
+        if(length31>0) myLength.push(length31);     
 
         var myShape= [];  
 

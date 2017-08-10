@@ -7,7 +7,7 @@ class PlusToken extends Component
 	{
     //You have to set the this.props.onclick here so that you can add event handler to any
     //other components that declars PlusToken with an onClick Handler. 
-    const btt = <button className="button"  onClick={ (e) => this.props.onClick(e) }> + </button> ; 
+    const btt = <button className="button"> + </button> ; 
 
     return (
       <section>
