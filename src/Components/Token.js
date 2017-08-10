@@ -31,20 +31,9 @@ class Token extends Component
   
 	render() 
 	{
-    //let { plates } = this.props
-    //this.state = { }; 
     var isCaseRequired; 
-    //Check to make sure that tokenabrreviation is valid
-    //if it's not 
-    /*
-    if(this.props.tokenAbbreviation !== 'P' && 
-       this.props.tokenAbbreviation !== 'N')
-    {
-    	isCaseRequired = <div id="tokenCase"> {this.generateTokenCase()}</div>; 
-    }
-    */
-
     var tokenText; 
+
     if(this.props.tokenPatternData.type === window.TYPE_WORD)
     {
       /*if there is no word text, keep
