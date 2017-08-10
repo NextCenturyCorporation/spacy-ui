@@ -1,6 +1,7 @@
 import React from 'react';
 import "../Styles/wordtoken.css"
 
+//Define some constants here. 
 window.POS_noun = "noun"; 
 window.POS_pronoun = "pronoun"; 
 window.POS_propernoun = "proper noun";
@@ -65,7 +66,7 @@ class WordTokenConfig extends React.Component {
 
   handleInputChange(event) 
   {
-    console.log("handleInputChange"); 
+    //console.log("handleInputChange"); 
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
@@ -251,7 +252,7 @@ class WordTokenConfig extends React.Component {
 
 
     if(this.state.part_of_output)
-      console.log("WordTokenConfig->render: part of outputtttttttttttttttttt"); 
+      //console.log("WordTokenConfig->render: part of outputtttttttttttttttttt"); 
    //alert("WordTokenConfig id="+this.props.ruleid); 
 
     return (
@@ -286,7 +287,8 @@ class WordTokenConfig extends React.Component {
                   <textarea name="allwords" 
                   placeholder= "Enter words here. "                  
                   value={this.state.allwords} 
-                  onChange={this.handleInputChange} rows="15" 
+                  onChange={this.handleInputChange} 
+                  rows="15" 
                   cols="15"  
                   className="allwords"/>
                 </label>

@@ -18,19 +18,19 @@ class TokenWrapper extends Component
 
     clickClose()
     {
-        console.log("TokenWrapper: clickClose"); 
+        //console.log("TokenWrapper: clickClose"); 
         this.props.onDeleteToken(this.props.index);
     }
 
     clickEdit()
     {
-        console.log("TokenWrapper: clickEdit"); 
+        //console.log("TokenWrapper: clickEdit"); 
         this.props.onEditToken(this.props.index); 
     }
 
     clickPlusToken()
     {
-        console.log("TokenWrapper: clickPlusToken"); 
+        //console.log("TokenWrapper: clickPlusToken"); 
         this.props.onClickPlusToken(this.props.index); 
     }
 

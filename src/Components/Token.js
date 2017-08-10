@@ -25,7 +25,7 @@ class Token extends Component
 
   deleteToken(index)
   {
-    console.log("Token:Enter deleteToken()"); 
+    //console.log("Token:Enter deleteToken()"); 
     this.props.deleteToken(this); 
   }
   
