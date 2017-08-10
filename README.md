@@ -1,13 +1,8 @@
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
-
-
 This is the Spacy GUI project. The following are the required React Modules: 
 1. react-router - this is needed for the url mapping to props in the component. 
 
 
-
-
-DESIGN
+##Design
 See `spacygui-design.pdf` for a uml diagram. 
 
 For deployment, you need to run 
